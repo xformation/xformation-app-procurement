@@ -1,0 +1,42 @@
+body {
+    overflow-x: hidden;
+}
+
+.wrapper {
+    display: table;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+.side-menu {
+    width: 260px;
+    z-index: 10;
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 10px 0 rgba(154, 161, 171, .15);
+    box-shadow: 0 0 10px 0 rgba(154, 161, 171, .15);
+}
+
+.content-page {
+    padding: 80px 0 20px 0;
+    min-height: 100vh;
+    margin-left: 260px;
+}
+
+.navbar-custom {
+    padding: 0 24px;
+    background-color: #ffffff;
+    min-height: 70px;
+    z-index: 1;
+}
+.main-content{
+    margin-top: 25px;
+    width: 100%;
+}
+
+@media (max-width: 767px){
+    .content-page{
+        padding-top: 66px;
+    }
+}
