@@ -15,7 +15,6 @@ import 'simplebar/dist/simplebar.min.css';
 import { emailData } from './../PostLogin/Email/emaildata';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-// import Menu from './Menu';
 
 class SideMenu extends Component {
   constructor(props) {
@@ -23,38 +22,16 @@ class SideMenu extends Component {
     this.state = {
       isOpen: true,
       activeTab: 0,
-      data: false,
-      activeChildren: null,
+      openedSubMenus: []
     }
   }
 
   handleDrawerOpenClose = () => {
     const { isOpen, } = this.state;
-    let data = !isOpen;
     this.setState({
-      isOpen: data,
-      isChild: false
+      isOpen: !isOpen,
     });
   };
-
-  LINKS = [
-    { url: '/PostLogin/dashboard', active: 0 },
-    { url: '/PostLogin/email', active: 1 },
-    { url: '/PostLogin/chat', active: 2 },
-    { url: '/PostLogin/kanban', active: 3 },
-    { url: '/PostLogin/setupcommittee', active: 4 },
-    { url: '/PostLogin/recivedrfp', active: 5 },
-    { url: '/PostLogin/sendrfq', active: 6 },
-    { url: '/PostLogin/newreq', active: 7 },
-    { url: '/psotLogin/managereq', active: 8 },
-    { url: '/PostLogin/reqtracker', active: 9 },
-    { url: '/postLogin/approvedreq', active: 10 },
-    { url: '/postLogin/contact', active: 11 },
-    { url: '/postLogin/invoices', active: 12 },
-    { url: '/postLogin/generatepo', active: 13 },
-    { url: '/postLogin/calender', active: 14 },
-    { url: '/postLogin/vendor', active: 15 }
-  ];
 
   componentDidMount() {
     const { history } = this.props;
@@ -66,48 +43,38 @@ class SideMenu extends Component {
 
   changeActiveTabColor = (location) => {
     const pathname = location.pathname;
-    for (let i = 0; i < this.LINKS.length; i++) {
-      if (pathname.indexOf(this.LINKS[i].url) !== -1) {
+    for (let i = 0; i < navigation.length; i++) {
+      if (pathname.indexOf(navigation[i].to) !== -1) {
         this.setState({
-          activeTab: this.LINKS[i].active
+          activeTab: i
         });
         break;
       }
     }
   };
 
-  onChildrenClick = (index) => {
-    const { activeChildren } = this.state;
-
-    if (index !== activeChildren) {
-      this.setState({ activeChildren: index })
-    } else {
-      this.setState({ activeChildren: null });
-    }
-  }
-
   setActiveTab = (index) => {
-    for (let i = 0; i < navigation.length; i++) {
-      if (i == index && navigation[i].children) {
-        navigation[i].open = !navigation[i].open;
-      } else {
-        navigation[i].open = false;
-      }
-    }
     this.setState({
       activeTab: index
     });
   }
 
+  setOpenClose = (index) => {
+    const { openedSubMenus } = this.state;
+    openedSubMenus[index] = !openedSubMenus[index];
+    this.setState({
+      openedSubMenus
+    });
+  };
+
   displaySidebarMenu = () => {
-    const { activeTab, activeChildren } = this.state;
-    let cpath = this.props.location.pathname;
+    const { activeTab, openedSubMenus } = this.state;
     let retData = [];
     for (let i = 0; i < navigation.length; i++) {
       let nav = navigation[i];
       retData.push(
         <li className="sidebar-menu">
-          <ListItem className={activeTab === i ? "active" : ""} tabindex="0" component={Link} to={nav.to}>
+          <ListItem className={activeTab === i ? "active" : ""} tabindex="0" component={Link} to={nav.to} onClick={() => this.setActiveTab(i)}>
             <ListItemIcon className="icon">
               {nav.icon}
             </ListItemIcon>
@@ -115,16 +82,16 @@ class SideMenu extends Component {
             {nav.name === 'Email' && <span className="float-right length">{emailData.length}</span>}
           </ListItem>
           {nav.children &&
-            <div className="float-right arrow" onClick={e => this.setActiveTab(i)}>
-              {!nav.open &&
+            <div className="float-right arrow" onClick={e => this.setOpenClose(i)}>
+              {!openedSubMenus[i] &&
                 <ExpandMoreIcon />
               }
-              {nav.open &&
+              {openedSubMenus[i] &&
                 <ExpandLessIcon />
               }
             </div>
           }
-          {(nav.children && nav.open) &&
+          {(nav.children && openedSubMenus[i]) &&
             <ul>
               {this.displayChild(nav.children)}
             </ul>
@@ -136,7 +103,6 @@ class SideMenu extends Component {
   }
 
   displayChild = (data) => {
-    console.log(data);
     let childData = [];
     for (let j = 0; j < data.length; j++) {
       childData.push(
@@ -182,7 +148,7 @@ class SideMenu extends Component {
             <List className="sidebar-content">
               <ListItem className="menu-heading">
                 Main Menu
-            </ListItem>
+              </ListItem>
               {this.displaySidebarMenu()}
             </List>
             <div className="increase-box">

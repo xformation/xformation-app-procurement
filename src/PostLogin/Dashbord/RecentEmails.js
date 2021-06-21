@@ -89,7 +89,7 @@ class RecentEmails extends Component {
             important: true,
             socials: false,
             promotion: false,
-            
+
         }
     }
 
@@ -120,7 +120,7 @@ class RecentEmails extends Component {
                                 <div className="user-img"><img src={data.recentImg} alt="" /></div>
                             </div>
                             <div className="user-content">
-                                <div className="row">
+                                <div className="d-flex">
                                     <div className="col-9">
                                         <span>{data.recentEmail}</span>
                                         <h5>{data.recentTitle}</h5>
@@ -176,12 +176,9 @@ class RecentEmails extends Component {
                         </div>
                     </div>
                 </div>
-               
-                    <SimpleBar className="recent-list">
-                        {this.displyRecentEmails()}
-                    </SimpleBar>
-
-               
+                <SimpleBar className="recent-list">
+                    {this.displyRecentEmails()}
+                </SimpleBar>
             </div>
         )
     }
