@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { makeStyles, createStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { TimeScale } from "chart.js";
 import Button from '@material-ui/core/Button';
-
 
 class MostTagUsed extends Component {
     constructor(props) {
@@ -37,37 +35,29 @@ class MostTagUsed extends Component {
                 { tagName: "dddddddd" },
             ],
             tagLimit: 3,
-            expanded:false,
+            expanded: false,
             activeCategoryIndex: 0
-
-
-
         }
     }
 
     tagLimt = () => {
-     this.setState((prev)=>({expanded:!prev.expanded}))
+        this.setState((prev) => ({ expanded: !prev.expanded }))
     }
 
     displyOtherTag = () => {
         const tagLimit = 3;
-
-        const { otherTagName,expanded } = this.state;
+        const { otherTagName, expanded } = this.state;
         var count = tagLimit;
-        if(expanded){
+        if (expanded) {
             count = otherTagName.length;
         }
         let retData = [];
-            for (let i = 0; i < count; i++) {
-                const item = otherTagName[i];
-            
-                    retData.push(
-                        <Button variant="contained" size="smoll" className="btn btn-secondary">&#35;{item.tagName}</Button>
-
-                    );
-            
-            }
-        
+        for (let i = 0; i < count; i++) {
+            const item = otherTagName[i];
+            retData.push(
+                <Button variant="contained" className="btn btn-secondary" key={item.tagName}>&#35;{item.tagName}</Button>
+            );
+        }
         return retData;
     }
 
@@ -95,13 +85,12 @@ class MostTagUsed extends Component {
                     <h5>Most Tag Used</h5>
                     <span>Lorem ipsum dolor sit amet</span>
                 </div>
-
                 <div className="most-progress">
                     <div>
                         {MostTagData.map(element => (
-                            <ul>
+                            <ul key={element.lableName}>
                                 <li>
-                                    <BorderLinearProgress variant="determinate" value={element.LineValue} className="" />
+                                    <BorderLinearProgress variant="determinate" value={element.LineValue} />
                                     <div className="progress-text">
                                         <span>&#35;{element.lableName}</span>
                                         <p>{element.time}</p>
@@ -115,8 +104,7 @@ class MostTagUsed extends Component {
                     <div className="heading">Other tag</div>
                     <div className="tag-btn">
                         {this.displyOtherTag()}
-                        <Button variant="contained" size="smoll" className="btn btn-secondary"  onClick={this.tagLimt}>{this.state.expanded?"See less":otherTagName.length-3}{!this.state.expanded&& '+'}</Button>
-                        {/* <button type="button" class="btn btn-secondary" onClick={this.tagLimt}>{this.state.expanded?"See less":otherTagName.length-3}{!this.state.expanded&& '+'}</button> */}
+                        <Button variant="contained" className="btn btn-secondary" onClick={this.tagLimt}>{this.state.expanded ? "See less" : otherTagName.length - 3}{!this.state.expanded && '+'}</Button>
                     </div>
                 </div>
             </div>

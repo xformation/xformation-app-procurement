@@ -11,8 +11,6 @@ import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -25,8 +23,6 @@ import Approval1 from '../assets/images/dashbord/approval1.png'
 import Approval2 from '../assets/images/dashbord/approval2.png'
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
-import { IconButton } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 
 
 class Header extends Component {
@@ -129,7 +125,7 @@ class Header extends Component {
     for (let i = 0; i < notificationData.length; i++) {
       let data = notificationData[i];
       retData.push(
-        <div className="user-details">
+        <div className="user-details" key={data.title}>
           <ul>
             <li>
               <Avatar alt="Remy Sharp" src={data.img} className="user-image" />
@@ -146,7 +142,7 @@ class Header extends Component {
   }
 
   render() {
-    const { selected, notification, profile, searchToggle, profileOnClick } = this.state;
+    const { selected, notification, profile, searchToggle } = this.state;
     return (
       <>
         <div className="navbar-custom">
@@ -178,7 +174,7 @@ class Header extends Component {
                     </Badge>
                     {notification && (<div className="user-list">
                       <div className="noti-tittle">
-                        <h5>notification</h5>
+                        <h5>Notification</h5>
                         <span><a href="#">Clear All</a></span>
                       </div>
                       <SimpleBar style={{ maxHeight: '300px' }} className="user-content">

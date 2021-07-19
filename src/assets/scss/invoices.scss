@@ -1,0 +1,403 @@
+.invoices-content{
+    .invoices-head-section{
+        padding: 0 0 30px 0;
+        .heading{
+            display: inline-block;
+            span {
+                font-size: 16px;
+                line-height: 24px;
+                color: #8f8f8f;
+            }
+        }
+        .search-bar{
+            float: right;
+            position: relative;
+            .form-group {
+                margin-bottom: 0;
+    
+                .form-control {
+                    border: none;
+                    height: 55px;
+                    font-weight: 500;
+                    line-height: 55px;
+                    border-radius: 10px;
+                    color: #aaaaaa;
+                    padding-left: 50px;
+                    padding-right: 30px;
+                    box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+                    -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+                    -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+                }
+    
+                ::placeholder {
+                    color: #aaaaaa;
+                }
+    
+                :-ms-input-placeholder {
+                    color: #aaaaaa;
+                }
+    
+                ::-ms-input-placeholder {
+                    color: #aaaaaa;
+                }
+    
+                button {
+                    position: absolute;
+                    top: 16px;
+                    left: 14px;
+                    background-color: transparent;
+                    border: none;
+                    color: #6418c3;
+                    font-size: 16px;
+    
+                }
+            }   
+        }
+    }
+    .invoices-tabale{
+        width: 100%;
+        padding: 30px 20px;
+        border-radius: 15px;
+        background: $body-box-bg;
+        box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+        -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+        -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+    }
+}
+.groceries-content{
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 15px;
+    background: $body-box-bg;
+    box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+    .head-top{
+        .head-left-content{
+            .head-icon{
+                padding: 6px;
+                color: #ffffff;
+                margin-right: 30px;
+                vertical-align: top;
+                background-color: #8f8f8f;
+            }
+            h4{
+                display: inline-block;
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+            p{
+                display: inline-block;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 20px;
+                color: #8f8f8f;
+                margin-bottom: 0;
+            }
+        }
+        .head-right-content{
+            float: right;
+            .invoice-btn{
+                color: #51b0d8;
+                border-radius: 8px;
+                text-transform: none;
+                background: #dfecf2;
+                margin-bottom: 0px;
+                margin-right: 20px;
+            }
+            .download-btn{
+                color: #ffffff;
+                border-radius: 8px;
+                text-transform: none;
+                background: #6418c3;
+                margin-bottom: 0px;
+                margin-right: 20px;
+            }
+            .printer-icon{
+                color: #6418c3;
+            }
+        }
+    }
+    .groceries-department{
+        padding-bottom: 50px;
+        border-bottom-style: solid;
+        margin: 30px -20px 50px -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-width: 5px;
+        border-image: linear-gradient(to left, #47d7cb, #4c84eb, #a520c7, #7118c3) 1;
+        padding-top: 30px;
+        .address{
+            span{
+                display: block;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 20px;
+                color: #8f8f8f;
+                margin-bottom: 50px;
+            }
+            .image{
+                width: 120px;
+                display: inline-block;
+                img{
+                    width: 100%;
+                }
+            }
+            .image-box{
+                width: 120px;
+                height: 120px;
+                padding: 15px;
+                border-radius: 10px;
+                display: inline-block;
+                box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
+                img{
+                    width: 100% ;
+                }
+            }
+            .address-text{
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 30px;
+                width: 340px;
+                p{
+                    display: block;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #8f8f8f;
+                }
+                ul{
+                    display: block;
+                    padding: 0;
+                    li{
+                        display: inline-block;
+                        list-style: none;
+                        margin-right: 10px;
+                        a{
+                            font-size: 14px;
+                            color: #8f8f8f;
+                            text-decoration: none;
+                            &:hover{
+                                color: #6418c3;
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .project-name{
+        border-bottom: 2px dashed #8f8f8f;
+        margin: 0 -20px 0 -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        .project-left-content{
+            span{
+                display: block;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 20px;
+                color: #8f8f8f;
+                margin-bottom: 30px;        
+            }
+            h5{
+                margin-bottom: 30px; 
+            }
+            label{
+                display: block;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 20px;
+                color: #8f8f8f;
+            }
+            p{
+                display: block;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                color: #6418c3;
+            }
+        }
+        .project-right-content{
+            .item-detail{
+                thead{
+                    tr{
+                        th{
+                            font-size: 14px;
+                            line-height: 22px;
+                            padding-bottom: 7px;
+                            color: #8f8f8f;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td {
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 22px;
+                            padding-top: 7px;
+                            padding-bottom: 7px;
+                            border-bottom: 2px solid #efefef;
+                        }
+                    } 
+                } 
+            }
+        }
+    }
+    .total-iteam{
+        padding-top: 30px;
+        .total-iteam-content{
+            ul{
+                padding: 0;
+                margin: 0;
+                li{
+                    list-style: none;
+                    label{
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 20px;
+                        display: inline-block;
+                        color: #8f8f8f;
+                        margin-bottom: 0;
+                    }
+                    span{
+                        float: right;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+    .groceries-content{
+        .head-top{
+            .head-left-content{
+                .head-icon{
+                    margin-right: 10px;
+                }
+            }
+            .head-right-content{
+                .invoice-btn{
+                    margin-right: 5px;
+                }
+                .download-btn{
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 992px){
+    .groceries-content{
+        .head-top{
+            .head-right-content{
+                float: left;
+                margin-top: 20px;
+            }
+        }
+    }  
+}
+@media only screen and (max-width: 875px){
+    .invoices-content{
+        .invoices-head-section{
+            padding-top: 45px;
+        }
+    } 
+}
+@media only screen and (max-width: 767px){
+    .invoices-content{
+        .invoices-head-section{
+            padding-top: 0;
+        }
+        
+    }
+  
+    .groceries-content{
+        .head-top{
+            .head-right-content{
+                float: left;
+                margin-top: 20px;
+            }
+        }
+        .groceries-department{
+            .address{
+                .address-text{
+                    width: 330px;
+                    margin-left: 20px;
+                }
+            } 
+        }
+    } 
+}
+@media only screen and (max-width: 575px){
+    .invoices-content{
+        .invoices-head-section{
+            .search-bar{
+                float: left;
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    }    
+}
+@media only screen and (max-width: 540px){
+    .groceries-content{
+        .project-name{
+            .project-right-content{
+                .item-detail{
+                    width: 500px;
+                }
+            }
+        } 
+        .head-top{
+            .head-left-content{
+                .head-icon {
+                    padding: 5px;
+                    margin-right: 5px;
+                    
+                }
+            }
+            .head-right-content{
+                .invoice-btn {
+                    margin-right: 10px;
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    margin-bottom: 15px;
+                }
+                .download-btn{
+                    margin-right: 0;
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .groceries-department{
+            padding-top: 0;
+            padding-bottom: 0;
+            .address{
+                margin-bottom: 20px;
+                .address-text {
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .image{
+                    margin-bottom: 20px;
+                }
+                .image-box{
+                    margin-bottom: 20px;
+                }
+                span{
+                    margin-bottom: 20px;
+                }
+            } 
+        } 
+    } 
+}

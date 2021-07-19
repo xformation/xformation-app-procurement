@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import EmailIcon from '@material-ui/icons/Email';
-import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
 import StarIcon from '@material-ui/icons/Star';
 import Kevin from '../../assets/images/dashbord/kevin.png';
 import Joannah from '../../assets/images/dashbord/joannah.png';
@@ -110,7 +107,7 @@ class RecentEmails extends Component {
         for (let i = 0; i < selectedMailData.length; i++) {
             let data = selectedMailData[i];
             retData.push(
-                <div className="recent-content">
+                <div className="recent-content" key={data.recentTitle}>
                     <ul>
                         <li>
                             <div className="user-id">
@@ -157,17 +154,17 @@ class RecentEmails extends Component {
                             <div className="social-button">
                                 <ul>
                                     <li className={selectedType === 'important' ? "active" : ""}>
-                                        <button type="button" class="btn btn-link" onClick={() => this.filterMail('important')}>
+                                        <button type="button" className="btn btn-link" onClick={() => this.filterMail('important')}>
                                             <EmailIcon /> Important
                                         </button>
                                     </li>
                                     <li className={selectedType === 'social' ? "active" : ""}>
-                                        <button type="button" class="btn btn-link" onClick={() => this.filterMail('social')}>
+                                        <button type="button" className="btn btn-link" onClick={() => this.filterMail('social')}>
                                             <SupervisorAccountIcon /> Socials
                                         </button>
                                     </li>
                                     <li className={selectedType === 'promotion' ? "active last" : "last"}>
-                                        <button type="button" class="btn btn-link" onClick={() => this.filterMail('promotion')}>
+                                        <button type="button" className="btn btn-link" onClick={() => this.filterMail('promotion')}>
                                             <ConfirmationNumberIcon /> Promotion
                                         </button>
                                     </li>

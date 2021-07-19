@@ -73,8 +73,8 @@ class SideMenu extends Component {
     for (let i = 0; i < navigation.length; i++) {
       let nav = navigation[i];
       retData.push(
-        <li className="sidebar-menu">
-          <ListItem className={activeTab === i ? "active" : ""} tabindex="0" component={Link} to={nav.to} onClick={() => this.setActiveTab(i)}>
+        <li className="sidebar-menu" key={nav.name}>
+          <ListItem className={activeTab === i ? "active" : ""} tabIndex="0" component={Link} to={nav.to} onClick={() => this.setActiveTab(i)}>
             <ListItemIcon className="icon">
               {nav.icon}
             </ListItemIcon>
@@ -106,7 +106,7 @@ class SideMenu extends Component {
     let childData = [];
     for (let j = 0; j < data.length; j++) {
       childData.push(
-        <ListItem>
+        <ListItem key={data[j].name}>
           <Link to={data[j].to}>
             {data[j].name}
           </Link>
@@ -152,6 +152,7 @@ class SideMenu extends Component {
               {this.displaySidebarMenu()}
             </List>
             <div className="increase-box">
+            <div className="increase-carcale"></div>
               <span><ViewComfyIcon /></span>
               <p>Increase your <br /> work with kanban</p>
               <span><ArrowRightAltIcon /></span>

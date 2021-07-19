@@ -41,6 +41,7 @@ class EmailPage extends Component {
         super(props);
         this.state = {
             composEmail: false,
+            detailEmail: false,
             activeindex: 0,
             isSelectAll: false,
             perPageLimit: 3,
@@ -73,12 +74,19 @@ class EmailPage extends Component {
         }
     }
 
-
     onClickShowCompos = () => {
         const { composEmail } = this.state;
         let compos = composEmail;
         this.setState({
             composEmail: !compos,
+        })
+    }
+
+    onClickShowMailDetail = () => {
+        const { detailEmail } = this.state;
+        let detail = detailEmail;
+        this.setState({
+            detailEmail: !detail,
         })
     }
 
@@ -97,7 +105,7 @@ class EmailPage extends Component {
             if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
                 let row = emailData[i];
                 retData.push(
-                    <li className={activeindex == i ? "active" : ""} onClick={() => this.setState({ activeindex: i })}>
+                    <li className={activeindex == i ? "active" : ""} onClick={this.onClickShowMailDetail} key={row.recentTitle}>
                         <div className="user-id">
                             <div className="check-box">
                                 <FormControlLabel
@@ -110,13 +118,13 @@ class EmailPage extends Component {
                             <div className="user-img"><img src={row.recentImg} alt="" /></div>
                         </div>
                         <div className="user-content">
-                            <div className="row">
+                            <div className="d-flex">
                                 <div className="col-9">
                                     <span>{row.recentEmail} {row.time}</span>
                                     <h5>{row.recentTitle}</h5>
                                     <p>{row.recentDes}</p>
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 pr-0">
                                     {!row.showIcon && <div className="list-icon">
                                         <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton></div>}
                                     {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
@@ -158,7 +166,7 @@ class EmailPage extends Component {
     }
 
     setSelectAllEmail = (e) => {
-        let { emailData, isSelectAll } = this.state;
+        let { emailData } = this.state;
         const { checked } = e.target;
         for (let i = 0; i < emailData.length; i++) {
             emailData[i].isChecked = checked;
@@ -178,23 +186,17 @@ class EmailPage extends Component {
     }
 
     peginationOfTable() {
-        const { currentPage, totalPages, emailData, perPageLimit } = this.state;
+        const { currentPage, totalPages, emailData } = this.state;
         let rows = [];
         if (emailData.length > 0) {
             for (let i = 0; i < totalPages; i++) {
                 rows.push(<li key={i}><a className={currentPage === i ? 'active' : ''} href="#" onClick={(e) => this.navigatePage('btn-click', e, i)}>{i + 1}</a></li >);
             }
             return (
-                <ul className="d-block">
-                    {/* <li className="page-item previous">
-                        <a className={currentPage === 0 ? 'page-link desable' : 'page-link enable'} href="#" onClick={(e) => this.navigatePage('pre', e, '')}>Previous</a>
-                    </li> */}
+                <ul className="d-block" key={rows}>
                     <div>
                         {rows}
                     </div>
-                    {/* <li className="page-item next">
-                        <a className={currentPage === this.state.totalPages - 1 ? 'page-link desable' : 'page-link enable'} href="#" onClick={(e) => this.navigatePage('next', e, '')}>Next</a>
-                    </li> */}
                 </ul>
             );
         }
@@ -231,38 +233,33 @@ class EmailPage extends Component {
             : isoCode;
     }
 
-    onSelect = () => {
-
-
-    }
-
-    onRemove = () => {
-
-    }
-
     render() {
-        const { composEmail, isSelectAll, currentPage, options, contacts, selectedValue, preselectValue } = this.state;
+        const { composEmail, isSelectAll, currentPage, options, contacts, selectedValue, preselectValue, detailEmail } = this.state;
         return (
             <div className="main-content">
                 <div className="compose-email-section">
                     <div className="row">
                         <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                             <div className="compose-left">
-                                <div class="compose-btn">
-                                    <Button type="button" onClick={this.onClickShowCompos} class="compose active"><CreateIcon /> Compos Email</Button>
+                                <div className="compose-btn">
+                                    <Button type="button" onClick={this.onClickShowCompos} className="compose active">
+                                        <CreateIcon />
+                                        Compos Email
+                                    </Button>
                                 </div>
                                 <div className="compose-tabs">
                                     <div className="heading">
                                         folders
-                                        <span className="last"><ChevronRightIcon /></span><span ><ChevronRightIcon /></span>
+                                        <span className="last"><ChevronRightIcon /></span>
+                                        <span><ChevronRightIcon /></span>
                                     </div>
                                     <ul>
-                                        <li className="active"><a href="#"><span><MoveToInboxIcon /></span>Inbox</a></li>
-                                        <li><a href="#"><span><SendIcon /></span>Sent</a></li>
-                                        <li><a href="#"><span><DraftsIcon /></span>Draft</a></li>
-                                        <li><a href="#"><span><ArchiveIcon /></span>Archived</a></li>
-                                        <li><a href="#"><span><StarIcon /></span>Favourites</a></li>
-                                        <li><a href="#"><span><CreateNewFolderIcon /></span>Spam</a></li>
+                                        <li className="active"><button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
+                                        <li><button className="btn"><span><SendIcon /></span>Sent</button></li>
+                                        <li><button className="btn"><span><DraftsIcon /></span>Draft</button></li>
+                                        <li><button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
+                                        <li><button className="btn"><span><StarIcon /></span>Favourites</button></li>
+                                        <li><button className="btn"><span><CreateNewFolderIcon /></span>Spam</button></li>
                                     </ul>
                                 </div>
                                 <div className="recent-content">
@@ -312,14 +309,20 @@ class EmailPage extends Component {
                                     <div className="head-top progress-form">
                                         <div className="row justify-content-center align-items-center">
                                             <div className="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-12">
-                                                <div className="heading"><span><KeyboardBackspaceIcon /></span>
+                                                <div className="heading"><span onClick={this.onClickShowCompos}><KeyboardBackspaceIcon /></span>
                                                     <h4>Compose Email</h4>
                                                 </div>
                                             </div>
                                             <div className="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-12">
                                                 <div className="progress-draft-btn">
-                                                    <Button variant="outlined" className="draft-btn"><span><SaveIcon  className="btn-icon"/></span>Save to Draft</Button>
-                                                    <Button variant="outlined" className="delete-btn"><span><DeleteForeverIcon className="btn-icon" /></span>Delete</Button>
+                                                    <Button variant="outlined" className="draft-btn">
+                                                        <span><SaveIcon className="btn-icon" /></span>
+                                                        Save to Draft
+                                                    </Button>
+                                                    <Button variant="outlined" className="delete-btn">
+                                                        <span><DeleteForeverIcon className="btn-icon" /></span>
+                                                        Delete
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -330,60 +333,18 @@ class EmailPage extends Component {
                                             <Multiselect
                                                 options={options}
                                                 selectedValues={preselectValue}
-                                                onSelect={this.onSelect}
-                                                onRemove={this.onRemove}
                                                 displayValue="email"
                                                 placeholder=''
                                             />
                                         </div>
-                                        {/* <div className="email-section">
-                                            <div className="d-inline-block heading">to</div>
-                                            <div className="email-section-inner">
-                                                <div className="d-inline-block image"><img src={Johnson} alt="" /></div>
-                                                <div className="content">
-                                                    <span>Olivia johnson</span>
-                                                    <p>oliviajohnson@mail.com</p>
-                                                </div>
-                                                <div className="close-icon"><ClearTwoToneIcon /></div>
-                                            </div>
-                                            <div className="email-section-inner">
-                                                <div className="d-inline-block image"><img src={Marteens} alt="" /></div>
-                                                <div className="content">
-                                                    <span>Olivia johnson</span>
-                                                    <p>oliviajohnson@mail.com</p>
-                                                </div>
-                                                <div className="close-icon"><ClearTwoToneIcon /></div>
-                                            </div>
-                                        </div> */}
                                         <div className="email-bcc">
                                             <div className="d-inline-block heading">bcc</div>
                                             <Multiselect
                                                 options={contacts}
                                                 selectedValues={selectedValue}
-                                                onSelect={this.onSelect}
-                                                onRemove={this.onRemove}
                                                 displayValue="email"
                                                 placeholder=''
-
                                             />
-                                            {/* <div className="email-bcc-inner">
-                                                <div className="content">
-                                                    <p>evanernest@mail.com</p>
-                                                </div>
-                                                <div className="close-icon"><ClearTwoToneIcon /></div>
-                                            </div>
-                                            <div className="email-bcc-inner">
-                                                <div className="content">
-                                                    <p>evanernest@mail.com</p>
-                                                </div>
-                                                <div className="close-icon"><ClearTwoToneIcon /></div>
-                                            </div>
-                                            <div className="email-bcc-inner last">
-                                                <div className="content">
-                                                    <p>evanernest@mail.com</p>
-                                                </div>
-                                                <div className="close-icon"><ClearTwoToneIcon /></div>
-                                            </div> */}
                                         </div>
                                         <div className="email-subject">
                                             <div className="d-inline-block heading">subject</div>
@@ -394,15 +355,12 @@ class EmailPage extends Component {
                                         <div className="email-massage">
                                             <div className="d-inline-block heading">massage</div>
                                             <div className="content">
-                                                <textarea>
-                                                    Hello guys
-
-
-                                                    Lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolore in reprehenderit in
-                                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                                    mollit anim id est ?
-                                          </textarea>
+                                                <textarea
+                                                    placeholder="Hello guys
+						
+						Lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolore in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est ?"
+                                                >
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -434,93 +392,193 @@ class EmailPage extends Component {
                                     </div>
                                 </div>
                                 :
-                                <div className="compose-right">
-                                    <div className="head-top">
-                                        <div className="row justify-content-center align-items-center">
-                                            <div className="col-xl-7 col-lg-10 col-md-10 col-sm-10 col-10">
-                                                <div className="social-button">
-                                                    <div className="check-box">
-                                                        <FormControlLabel
-                                                            control={
-                                                                <Checkbox
-                                                                    name="checkedB"
-                                                                    color="primary"
-                                                                    checked={isSelectAll}
-                                                                    onChange={this.setSelectAllEmail}
+                                <>
+                                    {detailEmail === true ?
+                                        <div className="compose-right">
+                                            <div className="d-block mail-reply-head">
+                                                <div className="row justify-content-center align-items-center">
+                                                    <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div className="d-flex align-items-center justify-content-start left">
+                                                            <Button className="back-btn" onClick={this.onClickShowMailDetail}>
+                                                                <KeyboardBackspaceIcon />
+                                                            </Button>
+                                                            <Button className="user-btn">
+                                                                <StarIcon />
+                                                            </Button>
+                                                            <div className="user-img"><img src={Kevin} alt="" /></div>
+                                                            <div className="d-block user-name-mail">
+                                                                <strong className="d-block">Kevin Head</strong>
+                                                                <span className="d-block">kevinhead@gmail.com</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div className="d-flex align-items-center justify-content-start justify-content-xl-end right">
+                                                            <Button className="btn"><i className="fas fa-print text-info"></i></Button>
+                                                            <Button className="btn"><i className="fas fa-reply text-success"></i></Button>
+                                                            <Button className="btn"><i className="fas fa-trash-alt text-danger"></i></Button>
+                                                            <Button className="btn"><i className="fas fa-clock text-muted"></i></Button>
+                                                            <Button className="btn"><i className="fas fa-ellipsis-v text-muted"></i></Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="d-block mail-reply-content">
+                                                <div className="d-block date-time">Oct 25th, 2020 02:54 AM</div>
+                                                <div className="d-block name">Discussion on Quotation</div>
+                                                <div className="d-block btns">
+                                                    <Button className="primary">&#35;projectmanagement</Button>
+                                                    <Button className="danger">&#35;working</Button>
+                                                    <Button className="secondary">&#35;covid-19</Button>
+                                                </div>
+                                                <div className="d-block text-content">
+                                                    <p>Hello guys!</p>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                </div>
+                                                <div className="d-block attachmaent">
+                                                    <div className="row justify-content-around align-items-center">
+                                                        <div className="col-lg-6 col-md-6 col-12">
+                                                            <div className="d-block heading-text">
+                                                                <i className="fas fa-paperclip"></i>
+                                                                Attachmaent Files (3)
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6 col-md-6 col-12">
+                                                            <div className="d-block text-right">
+                                                                <Button className="download-btn"><i className="fas fa-download"></i> Download All</Button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row justify-content-start align-items-center mt-4">
+                                                        <div className="col-xl-4 col-lg-6 col-md-6 col-12">
+                                                            <div className="attach-box">
+                                                                <div className="row justify-content-start align-items-center">
+                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                        <div className="icon file"><i className="fas fa-file"></i></div>
+                                                                    </div>
+                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                        <div className="text">
+                                                                            <strong>Presentation_slide.ppt</strong>
+                                                                            <span>456 KB</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-xl-4 col-lg-6 col-md-6 col-12">
+                                                            <div className="attach-box">
+                                                                <div className="row justify-content-start align-items-center">
+                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                        <div className="icon music"><i className="fas fa-music"></i></div>
+                                                                    </div>
+                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                        <div className="text">
+                                                                            <strong>Voice_REC_00012.mp3</strong>
+                                                                            <span>163 MB</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-xl-4 col-lg-6 col-md-6 col-12">
+                                                            <div className="attach-box">
+                                                                <div className="row justify-content-start align-items-center">
+                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                        <div className="icon film"><i class="fas fa-film-alt"></i></div>
+                                                                    </div>
+                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                        <div className="text">
+                                                                            <strong>Video_00345.mp4</strong>
+                                                                            <span>531 MB</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="d-block mail-reply-footer">
+                                                <Button className="reply-btn">
+                                                    <i className="fas fa-reply"></i>
+                                                    Reply this email
+                                                </Button>
+                                                <Button className="forward-btn">
+                                                    <i className="fas fa-share"></i>
+                                                    Forward
+                                                </Button>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className="compose-right">
+                                            <div className="head-top">
+                                                <div className="row justify-content-center align-items-center">
+                                                    <div className="col-xl-7 col-lg-10 col-md-10 col-sm-10 col-10">
+                                                        <div className="social-button">
+                                                            <div className="check-box">
+                                                                <FormControlLabel
+                                                                    control={
+                                                                        <Checkbox
+                                                                            name="checkedB"
+                                                                            color="primary"
+                                                                            checked={isSelectAll}
+                                                                            onChange={this.setSelectAllEmail}
+                                                                        />
+                                                                    }
                                                                 />
-                                                            }
-                                                        />
+                                                            </div>
+                                                            <ul>
+                                                                <li><a href="#" className="active"><span><MailIcon /></span>Important</a></li>
+                                                                <li><a href="#"><span><SupervisorAccountIcon /></span>Socials</a></li>
+                                                                <li><a href="#"><span><ConfirmationNumberIcon /></span>Promotion</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                    <ul>
-                                                        <li ><a href="#" className="active"><span><MailIcon /></span>Important</a></li>
-                                                        <li><a href="#"><span><SupervisorAccountIcon /></span>Socials</a></li>
-                                                        <li><a href="#"><span><ConfirmationNumberIcon /></span>Promotion</a></li>
-                                                    </ul>
+                                                    <div className="col-xl-5 col-lg-2 col-md-2 col-sm-2 col-2">
+                                                        <div className="social-icons">
+                                                            <ul>
+                                                                <li>
+                                                                    <IconButton className="icon">
+                                                                        <MoreVertIcon />
+                                                                    </IconButton>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-5 col-lg-2 col-md-2 col-sm-2 col-2">
-                                                <div className="social-icons">
+                                            <div className="recent-content">
+                                                <SimpleBar>
                                                     <ul>
-                                                        {/* <li>
-                                                            <IconButton className="icon">
-                                                                <DirectionsBusIcon />
-                                                            </IconButton>
-                                                        </li>
-                                                        <li>
-                                                            <IconButton className="icon">
-                                                                <AccessTimeIcon />
-                                                            </IconButton>
-                                                        </li>
-                                                        <li>
-                                                            <IconButton className="icon">
-                                                                <DeleteForeverIcon />
-                                                            </IconButton>
-                                                        </li>
-                                                        <li>
-                                                            <IconButton className="icon">
-                                                                <SettingsIcon />
-                                                            </IconButton>
-                                                        </li> */}
-                                                        <li>
-                                                            <IconButton className="icon">
-                                                                <MoreVertIcon />
-                                                            </IconButton>
-                                                        </li>
+                                                        {this.displayEmailList()}
                                                     </ul>
-                                                </div>
+                                                </SimpleBar>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="recent-content">
-                                        <SimpleBar>
-                                            <ul>
-                                                {this.displayEmailList()}
-                                            </ul>
-                                        </SimpleBar>
-                                    </div>
-                                    <div className="footer-bottom">
-                                        <div className="row  justify-content-center align-items-center">
-                                            <div className="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-12">
-                                                <div className="pagination-text">Showing <strong>1&#8722;10</strong> From <strong> 46 </strong> data </div>
-                                            </div>
-                                            <div className="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-12 text-right">
-                                                <div className="pagination-section">
-                                                    <div className={currentPage === 0 ? "d-inline-block btn-left desable" : "d-inline-block btn-left enable"} onClick={(e) => this.navigatePage('pre', e, '')}>
-                                                        <Button><span><ArrowBackIosIcon /></span></Button>
+                                            <div className="footer-bottom">
+                                                <div className="row justify-content-center align-items-center">
+                                                    <div className="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-12">
+                                                        <div className="pagination-text">Showing <strong>1&#8722;10</strong> From <strong> 46 </strong> data </div>
                                                     </div>
-                                                    <div className="d-inline-block pagination-icon">
-                                                        {this.peginationOfTable()}
-                                                    </div>
-                                                    <div className={currentPage === this.state.totalPages - 1 ? "d-inline-block btn-right" : "d-inline-block btn-right"} onClick={(e) => this.navigatePage('next', e, '')}>
-                                                        <Button><span><ArrowForwardIosIcon /></span></Button>
+                                                    <div className="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-12 text-right">
+                                                        <div className="pagination-section">
+                                                            <div className={currentPage === 0 ? "d-inline-block btn-left desable" : "d-inline-block btn-left enable"} onClick={(e) => this.navigatePage('pre', e, '')}>
+                                                                <Button><span><ArrowBackIosIcon /></span></Button>
+                                                            </div>
+                                                            <div className="d-inline-block pagination-icon">
+                                                                {this.peginationOfTable()}
+                                                            </div>
+                                                            <div className={currentPage === this.state.totalPages - 1 ? "d-inline-block btn-right" : "d-inline-block btn-right"} onClick={(e) => this.navigatePage('next', e, '')}>
+                                                                <Button><span><ArrowForwardIosIcon /></span></Button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    }
+                                </>
                             }
-
                         </div>
                     </div>
                 </div>

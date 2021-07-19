@@ -2,6 +2,25 @@ body {
     overflow-x: hidden;
 }
 
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+    outline: none;
+}
+
+#root .MuiButton-root{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.text-danger {
+    font-size: 12px;
+    display: block;
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked{
+    color: #6317c1!important;
+}
+
 .wrapper {
     display: table;
     height: 100vh;

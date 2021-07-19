@@ -150,11 +150,30 @@
                         }
                     }
 
+                    .picker__trigger {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                        padding: 30px 38% 0 17%;
+                    }
+
                     .picker__container {
                         right: 0 !important;
                         left: auto !important;
+                        z-index: 1;
+
+                        .calendar__day {
+                            height: 32px;
+                            line-height: 32px;
+                        }
                     }
 
+                    .rc-backdrop {
+                        z-index: 0;
+                    }
                 }
             }
 
@@ -677,6 +696,7 @@
             }
 
             .payment {
+                display: flex;
                 .graphic {
                     width: 30px;
                     height: 30px;

@@ -1,0 +1,438 @@
+import React, { Component } from "react"
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import Button from '@material-ui/core/Button';
+import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
+import { RangeDatePicker, DatePicker } from '@y0c/react-datepicker';
+import "rc-calendar/assets/index.css";
+import '@y0c/react-datepicker/assets/styles/calendar.scss';
+import Table from '../../Table/Table';
+import 'simplebar/dist/simplebar.min.css';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
+
+class GeneratePo extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            requiData: {
+                status: "",
+                reqno: "",
+                depart: "",
+                GenerateButton: false,
+            },
+            vendoreTableData: {
+                columns: [
+                    {
+                        label: 'S No',
+                        key: 'SNo',
+                        renderCallback: (value) => {
+                            return <td><span className={'s-no'}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Requisition No',
+                        key: 'RequisitionsNo',
+                        renderCallback: (value) => {
+                            return <td><span className={'requisitions-no'}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Requestor',
+                        key: 'Requestor',
+                        renderCallback: (value) => {
+                            return <td><span className={'department-value'}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Request Department',
+                        key: 'RequestDepartment',
+                        renderCallback: (value) => {
+                            return <td><span className={'department-value'}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Request type',
+                        key: 'RequestDate',
+                        renderCallback: (value) => {
+                            return <td><span className={'department-value'}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Requisition Total',
+                        key: 'RequisitionsTotal',
+                        renderCallback: (value) => {
+                            return <td><span className="department-value">{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Currency',
+                        key: 'Currency',
+                        renderCallback: (value) => {
+                            return <td><span className="department-value">{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Status',
+                        key: 'Status',
+                        renderCallback: (value) => {
+                            return <td><span className="department-value">{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Purchase Order',
+                        key: 'Details',
+                        renderCallback: (value) => {
+                            return <td><button className="btn details-btn" onClick={this.onClickShowGenerateButton}  >{value}</button></td>
+                        }
+                    },
+
+                ],
+                data: [
+                    {
+                        SNo: '1.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                    {
+                        SNo: '2.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                    {
+                        SNo: '3.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                    {
+                        SNo: '4.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                    {
+                        SNo: '5.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                    {
+                        SNo: '6.',
+                        RequisitionsNo: '789258 ',
+                        Requestor: 'james',
+                        RequestDepartment: 'Admin and Hr ',
+                        RequestDate: 'Purchase ',
+                        RequisitionsTotal: '20,000.00',
+                        Currency: 'INR',
+                        Status: 'Approved',
+                        Details: 'Generate',
+                    },
+                ]
+            },
+        }
+    }
+
+    onClickShowGenerateButton = () => {
+        const { GenerateButton } = this.state;
+        let Button = GenerateButton;
+        this.setState({
+            GenerateButton: !Button,
+        })
+    }
+    handleStateChange = (e) => {
+        const { name, value } = e.target;
+        const { requiData } = this.state;
+        requiData[name] = value;
+        this.setState({
+            requiData,
+        });
+    };
+
+    handleClickMethod = (event) => {
+        const { requiData } = this.state;
+        event.preventDefault();
+        this.setState({
+            isSubmitted: true
+        });
+        const errorData = this.validate(true);
+        if (errorData.isValid) {
+            const sendReqData = {
+                status: requiData.status,
+                reqno: requiData.reqno,
+                depart: requiData.depart
+
+            }
+            console.log(sendReqData);
+        }
+    }
+
+    validate = (isSubmitted) => {
+        const validObj = {
+            isValid: true,
+            message: ""
+        };
+        let isValid = true;
+        const retData = {
+            status: validObj,
+            reqno: validObj,
+            depart: validObj,
+            isValid
+        };
+        if (isSubmitted) {
+            const { requiData } = this.state;
+            if (!requiData.status) {
+                retData.status = {
+                    isValid: false,
+                    message: "Filter By Status  is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.reqno) {
+                retData.reqno = {
+                    isValid: false,
+                    message: "Requisitions no is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.depart) {
+                retData.depart = {
+                    isValid: false,
+                    message: "Department is required"
+                };
+                isValid = false;
+            }
+
+
+        }
+        retData.isValid = isValid;
+        return retData;
+    };
+
+    render() {
+        const { requiData, isSubmitted, GenerateButton } = this.state;
+        const errorData = this.validate(isSubmitted);
+        return (
+            <div className="main-content">
+
+
+                <div className="generate-content">
+                    {GenerateButton === true ?
+                        <>
+                            <div className="generate-order">
+                                <div className="heading">
+                                    <h4>Generate Purchase Order</h4>
+                                    <span>Lorem ipsum dolor sit amet</span>
+                                </div>
+                                <div className="row">
+                                    <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="generate-list">
+                                            <ul>
+                                                <li>
+                                                    <label>Requisition No. </label>
+                                                    <span>19271-01</span>
+                                                </li>
+                                                <li>
+                                                    <label>Requestor</label>
+                                                    <span>james</span>
+                                                </li>
+                                                <li>
+                                                    <label>Department</label>
+                                                    <span>IT Department</span>
+                                                </li>
+                                                <li>
+                                                    <label>Requisition Type</label>
+                                                    <span>Purchase</span>
+                                                </li>
+                                                <li>
+                                                    <label>Priority</label>
+                                                    <span>Normal</span>
+                                                </li>
+                                                <li>
+                                                    <label>Requisition Purpose</label>
+                                                    <span>IT maintenance and Upgrading</span>
+                                                </li>
+                                                <li>
+                                                    <label>Requisition Total</label>
+                                                    <span>INR 1,000,00</span>
+                                                </li>
+                                                <li>
+                                                    <label>Oversight Committee Report</label>
+                                                    <span>Not Required</span>
+                                                </li>
+                                                <li>
+                                                    <label>Approved Vendor</label>
+                                                    <span>Viocom tech Limited</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="generate-list">
+                                            <ul>
+                                                <li>
+                                                    <label>Date Created </label>
+                                                    <span>09/03/2020 12:30:34 PM</span>
+                                                </li>
+                                                <li>
+                                                    <label>Time Span</label>
+                                                    <span>28 day ago</span>
+                                                </li>
+                                                <li>
+                                                    <label>Status</label>
+                                                    <span>Vendor Selected</span>
+                                                </li>
+                                                <li>
+                                                    <label>Extra Budgetory</label>
+                                                    <span>No</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="viocom-tech">
+                                    <div className="viocom-heading">
+                                        <h5>Viocom Tech Limited</h5>
+                                        <span>Intial Quotation <b>0</b></span>
+                                        <span>Final Quotation <b>1</b></span>
+                                        <p>View Documents</p>
+                                    </div>
+                                    <SimpleBar>
+                                        <div className="item-detail">
+                                            <table width="100%">
+                                                <thead className="item-content">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Item Description</th>
+                                                        <th>Quantity</th>
+                                                        <th>Rate</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="item-content">
+                                                    <tr>
+                                                        <td>29</td>
+                                                        <td>Leptop Upgrade</td>
+                                                        <td>1</td>
+                                                        <td>100000</td>
+                                                        <td>100000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </SimpleBar>
+                                    <div className="viocom-heading">
+                                        <h5>P.O Parameters  </h5>
+                                    </div>
+                                    <div className="parameters-content">
+                                        <ul>
+                                            <li>
+                                                <div className="form-group">
+                                                    <label>Start Date</label>
+                                                    <DatePicker placeholder="10/28/2021" />
+                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="form-group">
+                                                    <label>Dellvery Date</label>
+                                                    <DatePicker placeholder="10/28/2021" />
+                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="form-group">
+                                                    <label>Payment Terms</label>
+                                                    <TextareaAutosize className="payment-text" placeholder="Payment of total contract sum will be made to you after delivery" />
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="form-group">
+                                                    <label>Other terms and Condition</label>
+                                                    <TextareaAutosize className="other-condition-text" placeholder="" />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="select-vendor-button">
+                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                            Generate
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="generate-purchase">
+                                <div className="heading">
+                                    <h4>Generate Purchase Order</h4>
+                                </div>
+                                <div className="requisitions-filter">
+                                    <div className="form">
+                                        <div className="form-group">
+                                            <label>Filter By Status</label>
+                                            <FormControl className="select-department">
+                                                <NativeSelect name="status">
+                                                    <option value="">-Select-</option>
+                                                    <option value={10}>abc</option>
+                                                    <option value={20}>def</option>
+                                                    <option value={30}>abc</option>
+                                                </NativeSelect>
+                                            </FormControl>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Date Range</label>
+                                        <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
+                                        <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                    </div>
+                                    <div className="requisitions-button">
+                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                            Search
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <Table valueFromData={this.state.vendoreTableData} perPageLimit={6} visiblecheckboxStatus={false}
+                                tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
+
+                        </>
+                    }
+                </div>
+            </div>
+        )
+    }
+
+}
+
+
+export default GeneratePo;

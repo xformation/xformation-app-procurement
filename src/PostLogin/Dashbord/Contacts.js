@@ -7,7 +7,6 @@ import BennykennImg from '../../assets/images/dashbord/bennykenn-img.png';
 import ChynthiaImg from '../../assets/images/dashbord/chynthia-img.png';
 import DellaImg from '../../assets/images/dashbord/della-img.png';
 import EvansjohnImg from '../../assets/images/dashbord/evansjohn-img.png';
-import { el } from 'date-fns/locale';
 
 class Contacts extends Component {
     constructor(props) {
@@ -59,7 +58,7 @@ class Contacts extends Component {
         const { contactsData } = this.state
         return (
             <div className="contact-left">
-                <div className="row  justify-content-center align-items-center">
+                <div className="row justify-content-center align-items-center">
                     <div className="col-lg-9">
                         <div className="heading">
                             <h4>Contacts</h4>
@@ -75,7 +74,7 @@ class Contacts extends Component {
                 <div className="contect-list">
                     <div>
                         {contactsData.map(element => (
-                            <div className="user-content">
+                            <div className="user-content" key={element.contactName}>
                                 <div className="d-inline-block user-img">
                                     <img src={element.contactImg} alt="" />
                                 </div>
@@ -96,7 +95,6 @@ class Contacts extends Component {
             </div>
         )
     }
-
 
 }
 

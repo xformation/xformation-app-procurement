@@ -1,4 +1,6 @@
 import * as React from 'react';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import './table.css';
 
 const sortEnum = {
@@ -38,10 +40,20 @@ export class Table extends React.Component {
             for (let i = 0; i < length; i++) {
                 if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
                     const tdJSX = [];
-                    if (visibleCheckbox === true) {
+                    if (visibleCheckbox) {
                         tdJSX.push(
-                            <td>
-                                <input type="checkbox" checked={displayData[i].checkStatus} className={`checkbox`} onChange={(e) => { this.onChangeParentCheckbox(e, i) }} />
+                            <td key={`checkbox-${i}`}>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            name="checkedB"
+                                            color="primary"
+                                            className={`checkbox`}
+                                            checked={displayData[i].checkStatus || false}
+                                            onChange={(e) => { this.onChangeParentCheckbox(e, i) }}
+                                        />
+                                    }
+                                />
                             </td>
                         );
                     }
@@ -104,11 +116,25 @@ export class Table extends React.Component {
     }
 
     tableHeader() {
-        const { sortType, sortKey, columns, visibleCheckbox, displayData } = this.state;
+        const { sortType, sortKey, columns, visibleCheckbox, displayData, isAllChecked } = this.state;
         const length = columns.length;
         const retData = [];
         if (visibleCheckbox === true && displayData.length > 0) {
-            retData.push(<th><input type="checkbox" checked={this.state.isAllChecked} onChange={this.checkAllBoxes} className="checkbox" /></th>);
+            retData.push(
+                <th>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                name="checkedB"
+                                color="primary"
+                                className={`checkbox`}
+                                checked={isAllChecked}
+                                onChange={this.checkAllBoxes}
+                            />
+                        }
+                    />
+                </th>
+            );
         }
         for (let i = 0; i < length; i++) {
             const item = columns[i];
@@ -146,7 +172,7 @@ export class Table extends React.Component {
         });
     }
 
-    onChangeParentCheckbox = (e,index) => {
+    onChangeParentCheckbox = (e, index) => {
         const { displayData } = this.state;
         const checked = e.target.checked;
         let status = false;
@@ -194,7 +220,7 @@ export class Table extends React.Component {
         }
     }
 
-    navigatePage(target, i= null,e) {
+    navigatePage(target, e, i) {
         let { totalPages, currentPage } = this.state;
         e.preventDefault();
         switch (target) {
@@ -295,7 +321,7 @@ export class Table extends React.Component {
         return pageData;
     }
 
-    sortTable(sortkey, sortVal,e) {
+    sortTable(sortkey, sortVal, e) {
         this.setState({
             sortType: sortVal,
             sortKey: sortkey
@@ -369,28 +395,6 @@ export class Table extends React.Component {
         }
         return (
             <div className={`${tableClasses.parentClass} custom-table ${dark ? 'dark' : ''}`}>
-                <div className="toolbar">
-                    <div className="showing">{showingLine}</div>
-                    <div className="showby">
-                        <label>Show</label>
-                        <select onChange={this.handleChange} className="form-control">
-                            {this.displayShowPageLimit()}
-                        </select>
-                        <span>entries per page</span>
-                    </div>
-                    <div className="multiselect">
-                        <div className="form-control select-label" onClick={this.toggleColumnSelect}>
-                            Select columns <i className="arrow down"></i>
-                        </div>
-                        <div style={{ display: showSelect ? "" : "none" }} className="border options">
-                            {this.renderColumns()}
-                        </div>
-                    </div>
-                    <div className="filter-search-control">
-                        <input type="text" className="input-group-text" onChange={this.onSearchChange} value={this.state.searchKey} />
-                        <button><span>Search</span></button>
-                    </div>
-                </div>
                 <div className={`${tableClasses.tableParent} data-table-parent`}>
                     <table className={`${tableClasses.table} data-table`}>
                         <thead>

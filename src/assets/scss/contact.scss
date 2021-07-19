@@ -1,0 +1,551 @@
+.contact-content{
+    .user-contact-list{
+        .buyers-head{
+            .head-right{
+                display: block;
+                .search-bar{
+                     display: inline-block;
+                     margin-right: 20px;
+                     vertical-align: middle;
+                     .form-group {
+                         margin-bottom: 0;
+                         .form-control {
+                             width: 350px;
+                             border: none;
+                             height: 50px;
+                             font-weight: 500;
+                             line-height: 50px;
+                             border-radius: 10px;
+                             color: #aaaaaa;
+                             padding-left: 50px;
+                             box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                             -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                             -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
+                         }
+                         button {
+                             position: absolute;
+                             top: 12px;
+                             left: 28px;
+                             background-color: transparent;
+                             border: none;
+                             color: #6418c3;
+                             font-size: 16px;
+                         }
+                     }
+                }
+                .social-buttom{
+                     display: inline-block;
+                     vertical-align: middle;
+                    ul{
+                        margin: 0;
+                        padding: 0;
+                        li{
+                            display: inline-block;
+                            list-style: none;
+                            margin-right: 20px;
+                            .plus-btn {
+                                 min-width: 0;
+                                 padding: 10px 15px;
+                                 color: #6318c3;
+                                 border-radius: 8px;
+                                 background: $body-box-bg;
+             
+                                 // &:hover {
+                                 //     background-color: #6318c3;
+                                 //     color: #ffffff;
+                                 // }
+             
+                                 // &.active {
+                                 //     background-color: #6318c3;
+                                 //     color: #ffffff;
+                                 // }
+                             }
+                             .list-icon{
+                                 color: $icon-color;
+                             }
+                             .add-bBuyres-btn{
+                                 background: $buttons-bg;
+                                 color: #ffffff;
+                                 min-width: 0;
+                                 text-transform: capitalize;
+                                 padding: 10px 20px;
+                                 border-radius: 8px;
+                                 .user-icon{
+                                     margin-right: 10px;
+                                 }
+                             }
+                        }
+                        .last{
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+         }
+         .membar-list{
+            margin-top: 25px;
+            .member-boxs{
+                display: block;
+                margin-bottom: 25px;
+                .members-box{
+                  
+                    padding: 20px 15px 15px 15px;
+                    position: relative;
+                    .user-img{
+                        display: block;
+                        text-align: center;
+                        .image{
+                            display: inline-block;
+                            position: relative;
+                            .member-position{
+                                background-color: #5ed1a7;
+                                width: 30px;
+                                height: 30px;
+                                position: absolute;
+                                top: 50px;
+                                font-weight: 500;
+                                color: #ffff;
+                                right: -13px;
+                                text-align: center;
+                                line-height: 30px;
+                                border-radius: 8px;
+                            }
+                        }
+                       
+                    }
+                    
+                    .menu-icon {
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
+                        .MuiButtonBase-root {
+                            padding: 8px;
+                        }
+                    }
+                    
+                    .member-details{
+                        padding-top: 15px;
+                        text-align: center;
+                        ul{
+                            padding: 0;
+                            margin: 0;
+                            display: block;
+                            li{
+                                display: block;
+                                list-style: none;
+                                b {
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #202020;
+                                }
+                                span {
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #a5a5a5;
+                                }
+                                p {
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    font-weight: 500;
+                                    color: #6418c3;
+                                }
+                            } 
+                        } 
+                    } 
+                    .member-contact{
+                        float: left;
+                        ul{
+                            margin: 0;
+                            padding: 0;
+                            display: block;
+                            li{
+                                display: block;
+                                list-style: none;
+                                padding-bottom: 10px;
+                                a {
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    font-weight: 500;
+                                    color: $text-color;
+                                    text-decoration: none;
+                                }
+                                .icon-btn {
+                                    min-width: 0;
+                                    padding: 5px;
+                                    margin-right: 10px;
+                                    border-radius: 8px;
+                                    color: $buttons-bg;
+                                    background: #f6edfe;
+    
+                                    .phone-icon {
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+                        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+                        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    
+                        .member-contact {
+                            ul {
+                                li {
+                                    .icon-btn {
+                                        background: $buttons-bg;
+                                        color: $button-text-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .requisition{
+                    display: block;
+                    text-align: center;
+                    position: absolute;
+                    top: 10px;
+                    left: 5px;
+                   
+                }
+            }
+        }
+    }
+    .general-contect{
+        width: 100%;
+        padding: 30px 20px;
+        border-radius: 15px;
+        background: $body-box-bg;
+        box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+        -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+        -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
+        .contact-left{
+            .user-list{
+                height: 700px;
+                padding-top: 30px;
+                ul{
+                    padding: 0;
+                    margin: 0;
+                    display: block;
+                    li{
+                        display: block;
+                        list-style: none;
+                        margin-bottom: 20px;
+                        .members-box{
+                            width: 200px;
+                            padding: 20px 15px 15px 15px;
+                            position: relative;
+                            .user-img{
+                                display: block;
+                                .image{
+                                    display: inline-block;
+                                }
+                               
+                            }
+                            
+                            .menu-icon {
+                                position: absolute;
+                                right: 5px;
+                                top: 5px;
+                                .MuiButtonBase-root {
+                                    padding: 8px;
+                                }
+                            }
+                            
+                            .member-details{
+                                padding-top: 15px;
+                                position: relative;
+                                ul{
+                                    padding: 0;
+                                    margin: 0;
+                                    display: block;
+                                    li{
+                                        display: block;
+                                        list-style: none;
+                                        margin-bottom: 0;
+                                        b {
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            color: #202020;
+                                        }
+                                        span {
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            color: #a5a5a5;
+                                        }
+                                        p {
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            font-weight: 500;
+                                            color: #6418c3;
+                                        }
+                                    }
+                                } 
+                                .member-position{
+                                    background-color: #5ed1a7;
+                                    width: 30px;
+                                    height: 30px;
+                                    font-weight: 500;
+                                    color: #ffff;
+                                    text-align: center;
+                                    line-height: 30px;
+                                    border-radius: 8px;
+                                    float: right;
+                                    position: absolute;
+                                    top: 50px;
+                                    right: 0;
+                                } 
+                            } 
+                            &:hover {
+                                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+                                -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+                                -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+            
+                                .member-contact {
+                                    ul {
+                                        li {
+                                            .icon-btn {
+                                                background: $buttons-bg;
+                                                color: $button-text-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .contact-right{
+            .user-information{
+                padding: 10px 20px 20px;
+                .heading{
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    border-bottom: 2px solid #fbfbfb;
+                    .head-icon{
+                        padding: 8px;
+                        margin-right: 15px;
+                        vertical-align: top;
+                    }
+                    h5{
+                        display: inline-block;
+                        margin-bottom: 0;
+                        vertical-align: -webkit-baseline-middle;
+                    }
+                    .head-menu-icon{
+                        padding: 8px;
+                        float: right;
+                        color: #8f8f8f;
+                    }
+                }
+                .general-information{
+                    .user-content{
+                        .add-contcat-heading{
+                            font-size: 16px;
+                            line-height: 20px;
+                            font-weight: 500;
+                            margin-bottom: 15px;
+                            margin-top: 20px;
+                        }
+                        .requester{
+                            margin-right: 20px;
+                            label{
+                                font-size: 14px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                line-height: 18px;
+                                color: #cacaca;
+                            }
+                            input {
+                                border: none;
+                                font-size: 14px;
+                                font-weight: 500;
+                                color: #90898a;
+                                padding: 8px 15px;
+                                border-radius: 8px;
+                                background-color: #f5f5f5;
+                            }
+                            .control-form{
+                                background: transparent;
+                                border: 1px solid #6418c3;
+                            }
+                        }
+                        .add-bBuyres-btn {
+                            background: #6418c3;
+                            margin-top: 25px;
+                            color: #ffffff;
+                            min-width: 0;
+                            padding: 6px 20px;
+                            border-radius: 8px;
+                            .save-icon{
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    .profile{
+                        margin-right: 0;
+                        margin-top: 55px;
+                        label{
+                            font-size: 14px;
+                            font-weight: 500;
+                            text-transform: uppercase;
+                            line-height: 18px;
+                            color: #cacaca;
+                        }
+                        .user-profile{
+                            .image{
+                                width: 100%;
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                            .user-profile-uplod{
+                                position: relative;
+                                border: 1px solid #6318c3;
+                                width: 100%;
+                                color: #6318c3;
+                                background: transparent;
+                                cursor: pointer;
+                                margin-top: 15px;
+                                border-radius: 8px;
+                                span{
+                                    font-size: 14px;
+                                }
+                                input{
+                                    width: 100%;
+                                    position: absolute;
+                                    top: 0;
+                                    opacity: 0;
+                                    cursor: pointer;
+                                }
+                                .camera-icon{
+                                    margin-right: 20px;
+                                    color: #6318c3;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+            }
+        }
+    }
+   
+  
+}
+@media only screen and (max-width: 1024px){
+    .contact-content{
+        .general-contect{
+            .contact-right{
+                .user-information{
+                    .general-information{
+                        .user-content {
+                            .add-bBuyres-btn {
+                               display: block;
+                            }
+                        }
+                    } 
+                } 
+            }
+        } 
+    }
+   
+}
+@media only screen and (max-width: 1200px){
+    .contact-content{
+        .user-contact-list{
+            .buyers-head{
+                .head-right{
+                    .search-bar{
+                        display: block;
+                        margin-right: 0;
+                        .form-group{
+                            .form-control{
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .social-buttom{
+                        display: block;
+                        float: right;
+                        margin-top: 20px;
+                    }
+                } 
+            } 
+        }
+       
+    } 
+}
+@media only screen and (max-width: 540px){
+    .contact-content{
+        .user-contact-list{
+            .buyers-head{
+                .head-right{
+                    .social-buttom{
+                        float: left;
+                        ul{
+                            li{
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                } 
+            } 
+        }
+        .general-contect{
+            .contact-left{
+                .user-list{
+                    ul{
+                        li{
+                            .members-box {
+                               width: 100%;
+                            }
+                        } 
+                    } 
+                } 
+            } 
+            .contact-right{
+                .user-information{
+                    .general-information{
+                        .user-content{
+                            .requester{
+                                width: 100%;
+                                input{
+                                    width: 100%;
+                                }
+                            }
+                            .add-bBuyres-btn{
+                                width: 100%;
+                            }
+                        }
+                        .profile{
+                            .user-profile{
+                                .user-profile-uplod{
+                                    .camera-icon{
+                                        margin-right: 5px;
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                    .heading{
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        h5{
+                            font-size: 16px;
+                        }
+                        .head-icon{
+                            margin-right: 8px;
+                        }
+                    }
+                } 
+            }
+        } 
+    } 
+}

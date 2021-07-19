@@ -6,8 +6,8 @@ import MostTagUsed from './MostTagUsed';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, } from "recharts";
 import { Pie, PieChart, ResponsiveContainer, Cell } from 'recharts';
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faSearch, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import { LineChart, Line } from 'recharts';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -172,31 +172,31 @@ class Dashbord extends Component {
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo",
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Crew.",
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew Crew",
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Fullspeedo Crew.",
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew Fullspeedo Crew.",
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
@@ -278,7 +278,7 @@ class Dashbord extends Component {
       for (let i = 0; i < invoices.length; i++) {
         let element = invoices[i];
         invoiceData.push(
-          <div className="d-flex justify-content-center align-items-center pb-3">
+          <div className="d-flex justify-content-center align-items-center pb-3" key={element.invoiceName}>
             <div className="col-xl-5 col-lg-5 col-md-5 col-5 px-0">
               <div className="payment">
                 <div className="graphic highspeed crew "></div>
@@ -325,7 +325,7 @@ class Dashbord extends Component {
       let element = contactsData[i]
       if (i < contLimt) {
         retData.push(
-          <div className="user-content">
+          <div className="user-content" key={element.contactName}>
             <div className="d-inline-block user-img">
               <img src={element.contactImg} alt="" />
             </div>
@@ -353,7 +353,7 @@ class Dashbord extends Component {
       for (let i = 0; i < statisticsData.length; i++) {
         let data = statisticsData[i];
         retData.push(
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6">
+          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6" key={data.name}>
             <div className="production-progress">
               <CircularProgressbar
                 value={data.value}
@@ -382,7 +382,7 @@ class Dashbord extends Component {
       for (let i = 0; i < pinnedEmailsData.length; i++) {
         let pin = pinnedEmailsData[i];
         pinData.push(
-          <ul>
+          <ul key={pin.title}>
             <li>
               <div className="user-id">
                 <img src={pin.img} alt="" />
@@ -441,9 +441,9 @@ class Dashbord extends Component {
                 <div className="row justify-content-center align-items-center">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-2">
                     <div className="search-bar">
-                      <div class="form-group">
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search here" />
-                        <button><FontAwesomeIcon icon={faSearch} /></button>
+                      <div className="form-group">
+                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" />
+                        <button><i className="fas fa-search"></i></button>
                       </div>
                     </div>
                   </div>
@@ -459,7 +459,7 @@ class Dashbord extends Component {
           <div className="progress-rfp-boxs">
             <div className="row">
               <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2">
-                <div class="progress-box">
+                <div className="progress-box">
                   <div className="progress-img">
                     <img src={rfpImg} alt="" />
                   </div>
@@ -470,7 +470,7 @@ class Dashbord extends Component {
                 </div>
               </div>
               <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2 pl-2">
-                <div class="progress-box">
+                <div className="progress-box">
                   <div className="progress-img">
                     <img src={rfpImg} alt="" />
                   </div>
@@ -481,9 +481,9 @@ class Dashbord extends Component {
                 </div>
               </div>
               <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2 pl-2">
-                <div class="progress-box">
+                <div className="progress-box">
                   <div className="progress-img">
-                    <div className="mail-icon"><FontAwesomeIcon icon={faEnvelope} /></div>
+                    <div className="mail-icon"><i className="fa fa-envelope"></i></div>
                     <span>&#33;</span>
                   </div>
                   <div className="progress-content">
@@ -493,7 +493,7 @@ class Dashbord extends Component {
                 </div>
               </div>
               <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-2">
-                <div class="progress-box">
+                <div className="progress-box">
                   <div className="progress-img order">
                     <div className="in-progress"></div>
                     <div className="complate-progress"></div>
@@ -606,7 +606,7 @@ class Dashbord extends Component {
                           <div className="requistions-dropdown">
                             <div className="opensens-dropdown">
                               <FormControl className="opensens-content">
-                                <NativeSelect >
+                                <NativeSelect>
                                   <option value="">Monthly</option>
                                   <option value={10}>abc</option>
                                   <option value={20}>def</option>
@@ -732,8 +732,8 @@ class Dashbord extends Component {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                     </span>
                     <div className="compose-btn">
-                      <Button variant="contained" size="large" className="compose-email">&#43; Compose Email</Button>
-                      <Button variant="contained" size="large" className="compose-email inbox-btn">Go To inbox</Button>
+                      <Button variant="contained" className="compose-email">&#43; Compose Email</Button>
+                      <Button variant="contained" className="compose-email inbox-btn">Go To inbox</Button>
                     </div>
                   </div>
                 </div>
@@ -765,7 +765,7 @@ class Dashbord extends Component {
             <div className="row">
               <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 pr-2">
                 <div className="contact-left">
-                  <div className="row  justify-content-center align-items-center">
+                  <div className="row justify-content-center align-items-center">
                     <div className="col-9">
                       <div className="heading">
                         <h4>Contacts</h4>
@@ -781,7 +781,7 @@ class Dashbord extends Component {
                   <div className="contect-list">
                     {this.displayContactData()}
                     <div className="view-btn">
-                      <Button variant="contained" size="large" className="view-more">View More</Button>
+                      <Button variant="contained" className="view-more">View More</Button>
                     </div>
                   </div>
                 </div>
@@ -820,7 +820,7 @@ class Dashbord extends Component {
                     <div className="chart-details">
                       <ul style={{ listStyle: 'none' }}>
                         {PieChartEmailData.map(element => (
-                          <li style={{ display: 'block', alignItems: 'center' }}><div style={{ backgroundColor: element.COLORS, height: 15, width: 15, borderRadius: 5, display: 'inline-block', marginRight: 10 }} />{element.title}({element.per}%) <span><b>{element.value}</b></span></li>
+                          <li style={{ display: 'block', alignItems: 'center' }} key={element.title}><div style={{ backgroundColor: element.COLORS, height: 15, width: 15, borderRadius: 5, display: 'inline-block', marginRight: '10px', marginTop: '-2px', verticalAlign: 'middle' }} />{element.title}({element.per}%) <span><b>{element.value}</b></span></li>
                         ))}
                       </ul>
                     </div>
