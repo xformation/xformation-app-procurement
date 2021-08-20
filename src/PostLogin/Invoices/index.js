@@ -15,6 +15,8 @@ import Logo from '../../assets/images/logo.png';
 import HuntImg from '../../assets/images/hunt-img.png';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
+import CheckIcon from '@material-ui/icons/Check';
 class Invoices extends Component {
     constructor(props) {
         super(props)
@@ -67,8 +69,29 @@ class Invoices extends Component {
                         label: 'Status',
                         key: 'RequisitionsTotal',
                         renderCallback: (value) => {
-                            return <td><Button variant="contained" className="rfq-btn completed-btn" onClick={this.onClickShowCompletedButton}>
-                                < DoneAllIcon className="mr-2" />{value} </Button><IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton></td>
+                            return <td>
+                                {value === 'Completed' &&
+                                    <Button variant="contained" className="invoices-list-btn completed-btn" onClick={this.onClickShowCompletedButton}>
+                                        <CheckIcon className="mr-2 bold" />{value}
+                                    </Button>
+                                }
+                                {value === 'Invoices' &&
+                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={this.onClickShowCompletedButton}>
+                                        <DoneAllIcon className="mr-2" />{value}
+                                    </Button>
+                                }
+                                {value === 'Pendding' &&
+                                    <Button variant="contained" className="invoices-list-btn pendding-btn" onClick={this.onClickShowCompletedButton}>
+                                        <WatchLaterIcon className="mr-2" />{value}
+                                    </Button>
+                                }
+                                {value === 'Invoices Sent' &&
+                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={this.onClickShowCompletedButton}>
+                                        <DoneAllIcon className="mr-2" />{value}
+                                    </Button>
+                                }
+                                <IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton>
+                            </td>
                         }
                     },
                 ],
@@ -80,6 +103,7 @@ class Invoices extends Component {
                         RequestDate: ' higspeed@mail.com ',
                         Requestor: '$650,036.34',
                         RequisitionsTotal: 'Completed',
+                        colorCode: '#000',
                     },
                     {
                         SNo: '#INV-0001234',
@@ -408,8 +432,6 @@ class Invoices extends Component {
             </div>
         )
     }
-
 }
-
 
 export default Invoices;

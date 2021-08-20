@@ -187,8 +187,8 @@ class GeneratePo extends Component {
         if (errorData.isValid) {
             const sendReqData = {
                 status: requiData.status,
-                reqno: requiData.reqno,
-                depart: requiData.depart
+                payment: requiData.payment,
+                conditionText: requiData.conditionText
 
             }
             console.log(sendReqData);
@@ -203,8 +203,8 @@ class GeneratePo extends Component {
         let isValid = true;
         const retData = {
             status: validObj,
-            reqno: validObj,
-            depart: validObj,
+            payment: validObj,
+            conditionText: validObj,
             isValid
         };
         if (isSubmitted) {
@@ -216,22 +216,20 @@ class GeneratePo extends Component {
                 };
                 isValid = false;
             }
-            if (!requiData.reqno) {
-                retData.reqno = {
+            if (!requiData.payment) {
+                retData.payment = {
                     isValid: false,
-                    message: "Requisitions no is required"
+                    message: "Payment terms  is required"
                 };
                 isValid = false;
             }
-            if (!requiData.depart) {
-                retData.depart = {
+            if (!requiData.conditionText) {
+                retData.conditionText = {
                     isValid: false,
-                    message: "Department is required"
+                    message: " Other terms and Condition is required"
                 };
                 isValid = false;
             }
-
-
         }
         retData.isValid = isValid;
         return retData;
@@ -371,13 +369,17 @@ class GeneratePo extends Component {
                                             <li>
                                                 <div className="form-group">
                                                     <label>Payment Terms</label>
-                                                    <TextareaAutosize className="payment-text" placeholder="Payment of total contract sum will be made to you after delivery" />
+                                                    <TextareaAutosize name="payment" className="payment-text" value={requiData.payment}
+                                                    onChange={this.handleStateChange} isvalid={errorData.payment.isValid} placeholder="Payment of total contract sum will be made to you after delivery" />
+                                                     <span className="text-danger">{errorData.payment.message}</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="form-group">
                                                     <label>Other terms and Condition</label>
-                                                    <TextareaAutosize className="other-condition-text" placeholder="" />
+                                                    <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
+                                                    onChange={this.handleStateChange} isvalid={errorData.conditionText.isValid} placeholder="" />
+                                                     <span className="text-danger">{errorData.conditionText.message}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -401,13 +403,15 @@ class GeneratePo extends Component {
                                         <div className="form-group">
                                             <label>Filter By Status</label>
                                             <FormControl className="select-department">
-                                                <NativeSelect name="status">
+                                                <NativeSelect name="status" value={requiData.status} onChange={this.handleStateChange}
+                                                isValid={errorData.status.isValid} >
                                                     <option value="">-Select-</option>
                                                     <option value={10}>abc</option>
                                                     <option value={20}>def</option>
                                                     <option value={30}>abc</option>
                                                 </NativeSelect>
                                             </FormControl>
+                                            <span className="text-danger">{ errorData.status.message }</span>
                                         </div>
                                     </div>
                                     <div className="form-group">

@@ -88,7 +88,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 cursor: pointer;
-                width: 50%;
+                // width: 50%;
 
                 p {
                     font-weight: 500;
@@ -602,7 +602,7 @@
         box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
-        min-height: 540px;
+        height: 520px;
 
         .heading {
             font-size: 20px;
@@ -649,6 +649,10 @@
         .production-progress {
             text-align: center;
             padding-bottom: 25px;
+            // height: 200px;
+            // .CircularProgressbar{
+            //     width: 137px;
+            // }
 
             p {
                 font-size: 14px;
@@ -660,13 +664,13 @@
     }
 
     .production-progress-right {
-        padding: 25px 25px 38px;
+        padding: 25px;
         border-radius: 15px;
         background-color: #ffffff;
         box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
-        min-height: 540px;
+        height: 520px;
 
         .heading {
             font-size: 20px;
@@ -703,17 +707,7 @@
                     display: inline-block;
                     border-radius: 5px;
                     margin-right: 10px;
-                    background-image: linear-gradient(40deg, #efb8ef, #cae9fd);
                 }
-
-                .highspeed {
-                    background-image: linear-gradient(40deg, #91de5c, #d0ed81);
-                }
-
-                .crew {
-                    background-image: linear-gradient(40deg, #84da91, #feffff);
-                }
-
                 .payment-content {
                     display: inline-block;
 
@@ -1227,7 +1221,7 @@
                     color: #6418c2;
                     border-radius: 8px;
                     background-color: #f6edfe;
-                    margin-right: 5px;
+                    margin-right: 9px;
                     margin-bottom: 10px;
 
                     &:focus {
@@ -1425,6 +1419,34 @@
                 }
             }
         }
+    }
+}
+@media only screen and (min-width: 1200px){
+    .latest-invoices-secton{
+        .production-progress-left{
+            .production-progress{
+                height: 200px;
+                .CircularProgressbar {
+                    width: 137px;
+                }
+            } 
+        } 
+    } 
+}
+@media only screen and (min-width: 992px)and(max-width: 1200px){
+    .dashbord-top-section{
+        .calender{
+            .clender-content{
+                padding: 0;
+                .calender-text{
+                    span {
+                        .picker__trigger{
+                            padding: 18px 15% 0 17%;
+                        }
+                    }
+                } 
+            }
+        } 
     }
 }
 
@@ -1686,11 +1708,37 @@
     }
 }
 
+@media only screen and (max-width: 991px){
+    .dashbord-top-section{
+        .calender{
+            .clender-content{
+                padding: 0;
+                .calender-text{
+                    span {
+                        .picker__trigger{
+                            padding: 20px 30% 0 15%;
+                        }
+                    }
+                } 
+            }
+        } 
+    }
+    .latest-invoices-secton{
+        .production-progress-left {
+            height: auto;
+        }
+        .production-progress-right {
+            height: auto;
+        }
+    }    
+
+}
 @media only screen and (max-width: 992px) {
     .dashbord-top-section {
         .heading {
             padding-bottom: 30px;
         }
+         
     }
 
     .progress-rfp-boxs {
@@ -1820,6 +1868,21 @@
         .search-bar {
             margin-bottom: 30px;
         }
+        .calender{
+            .clender-content{
+                padding: 0;
+                .calender-text{
+                    span {
+                        .picker__trigger{
+                            padding: 20px 30% 0 5%;
+                            .range-picker-input{
+                                width: 35%;
+                            }
+                        }
+                    }
+                } 
+            }
+        }
     }
 
     .progress-rfp-boxs {
@@ -1888,6 +1951,20 @@
 }
 
 @media only screen and (max-width: 540px) {
+    .dashbord-top-section{
+        .calender{
+            .clender-content{
+                padding: 0;
+                .calender-text{
+                    span {
+                        .picker__trigger{
+                            padding: 20px 30% 0 10%;
+                        }
+                    }
+                } 
+            }
+        } 
+    }
     .progress-rfp-boxs {
         .progress-box {
             .order {

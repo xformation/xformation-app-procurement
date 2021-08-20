@@ -4,7 +4,15 @@ import "rc-calendar/assets/index.css";
 import '@y0c/react-datepicker/assets/styles/calendar.scss';
 import Card from '@material-ui/core/Card';
 import Peter from '../../assets/images/Setup/peter.png';
+import Fanny from '../../assets/images/contact/fanny.png';
+import Hawkins from '../../assets/images/contact/hawkins.png';
+import David from '../../assets/images/contact/david.png';
+import Chyntia from '../../assets/images/contact/chyntia.png';
+import Brian from '../../assets/images/contact/brian.png';
+import Dennise from '../../assets/images/contact/dennise.png';
 import Angela from '../../assets/images/contact/angela.png';
+import Erbatow from '../../assets/images/contact/erbatow.png';
+import Evan from '../../assets/images/contact/evan.png';
 import AhmadZayn from '../../assets/images/contact/ahmad-zayn.png';
 import BrianConnor from '../../assets/images/contact/brian-connor.png';
 import ProfilePicture from '../../assets/images/contact/profile-picture.png';
@@ -32,18 +40,217 @@ class Contact extends Component {
                 status: "",
                 reqno: "",
                 depart: "",
-                NewContact: false,
             },
+            newContact: false,
+            activeindex: 0,
+            contactMemberList: [
+                {
+                    name: 'Angela Moss',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#5ed1a7',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Ahmad Zayn',
+                    image: Fanny,
+                    shortName: 'AV',
+                    shortNameColor: '#256fc6',
+                    position: 'Photographer at',
+                    company: 'Audio video Teams',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Brian Connor',
+                    image: Hawkins,
+                    shortName: 'Cz',
+                    shortNameColor: '#dc3472',
+                    position: 'Designer at',
+                    company: 'Crimzon Guards Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Courtney Hawkins',
+                    image: David,
+                    shortName: 'Hs',
+                    shortNameColor: '#4b1643',
+                    position: 'Programmer at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Chyntia Smilee',
+                    image: Chyntia,
+                    shortName: 'Hs',
+                    shortNameColor: '#cb8fbc',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'David Here',
+                    image: Brian,
+                    shortName: 'Hs',
+                    shortNameColor: '#a6e6e6',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Denise Lee',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#0b82ea',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Erbatov Axie',
+                    image: Dennise,
+                    shortName: 'Hs',
+                    shortNameColor: '#07504f',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Fanny Humble',
+                    image: Erbatow,
+                    shortName: 'Hs',
+                    shortNameColor: '#91d8d2',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Evan Khan',
+                    image: Evan,
+                    shortName: 'Hs',
+                    shortNameColor: '#4194e6',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Frankli jr.',
+                    image: Dennise,
+                    shortName: 'Hs',
+                    shortNameColor: '#eb6520',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Gandalf Hoos',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#0c3972',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Gabriella',
+                    image: Brian,
+                    shortName: 'Hs',
+                    shortNameColor: '#45a13c',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Hanny Shella',
+                    image: Fanny,
+                    shortName: 'Hs',
+                    shortNameColor: '#da2866',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Ivankov',
+                    image: Hawkins,
+                    shortName: 'Hs',
+                    shortNameColor: '#9304f1',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Petel Morriss',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#4b1643',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+            ],
+            contactUserList: [
+                {
+                    name: 'Petel Morriss',
+                    image: Angela,
+                    shortName: 'Hs',
+                    shortNameColor: '#36c691',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                    
+                },
+                {
+                    name: 'Petel Morriss',
+                    image: AhmadZayn,
+                    shortName: 'Hs',
+                    shortNameColor: '#256fc6',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                   
+                },
+                {
+                    name: 'Petel Morriss',
+                    image: BrianConnor,
+                    shortName: 'Hs',
+                    shortNameColor: '#dc3372',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                   
+                },
+                {
+                    name: 'Petel Morriss',
+                    image: Angela,
+                    shortName: 'Hs',
+                    shortNameColor: '#dc3372',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                   
+                },
+            ]
         }
     }
 
-
-
     onClickShowNewContact = () => {
-        const { NewContact } = this.state;
-        let Contact = NewContact;
+        const { newContact } = this.state;
+        let Contact = newContact;
         this.setState({
-            NewContact: !Contact,
+            newContact: !Contact,
         })
     }
 
@@ -116,13 +323,95 @@ class Contact extends Component {
         return retData;
     };
 
+    displayContactMemberList = () => {
+        const { contactMemberList, activeindex } = this.state;
+        let retData = [];
+        for (let i = 0; i < contactMemberList.length; i++) {
+            let row = contactMemberList[i];
+            retData.push(
+                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" key={row.name}>
+                    <div className="member-boxs">
+                        <Card className={activeindex == i ? "members-box active" : "members-box"} onClick={() => this.setState({ activeindex: i })}>
+                            <div className="user-img">
+                                <div className="image">
+                                    <img src={row.image} alt="" />
+                                    <div className="member-position" style={{ backgroundColor: `${row.shortNameColor}` }}>{row.shortName}</div>
+                                </div>
+                            </div>
+                            <div className="d-inline-block menu-icon">
+                                <IconButton aria-label="settings">
+                                    <MoreVertIcon />
+                                </IconButton>
+                            </div>
+                            <div className="member-details">
+                                <ul>
+                                    <li><b>{row.name}</b></li>
+                                    <li><span>{row.position}</span></li>
+                                    <li><p>{row.company}</p></li>
+                                </ul>
+                            </div>
+                            <div className="member-contact">
+                                <ul>
+                                    <li>
+                                        <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
+                                        <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                                    </li>
+                                    <li>
+                                        <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
+                                        <a href={`mailto: ${row.email}`}>{row.email}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+            )
+        }
+        return retData;
+    }
+    displayContactUserList = () => {
+        const { contactUserList, activeindex } = this.state;
+        let retData = [];
+        for (let i = 0; i < contactUserList.length; i++) {
+            let row = contactUserList[i];
+            retData.push(
+                <ul key={row.name}>
+                    <li>
+                        <Card className={activeindex == i ? "members-box active" : "members-box"} onClick={() => this.setState({ activeindex: i })}>
+                            <div className="user-img">
+                                <div className="image">
+                                    <img src={row.image} alt="" />
+                                </div>
+                            </div>
+                            <div className="d-inline-block menu-icon">
+                                <IconButton aria-label="settings">
+                                    <MoreVertIcon />
+                                </IconButton>
+                            </div>
+                            <div className="member-details">
+                                <ul>
+                                    <li><b>{row.name}</b></li>
+                                    <li><span>{row.position}</span></li>
+                                    <li><p>{row.company}</p></li>
+                                </ul>
+                                <div className="member-position" style={{ backgroundColor: `${row.shortNameColor}` }}>{row.shortName}</div>
+                            </div>
+                        </Card>
+                    </li>
+                </ul>
+            )
+        }
+        return retData;
+
+    }
+
     render() {
-        const { requiData, isSubmitted, NewContact } = this.state;
+        const { requiData, isSubmitted, newContact } = this.state;
         const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
                 <div className="contact-content">
-                    {NewContact === true ?
+                    {newContact === true ?
                         <>
                             <div className="general-contect">
                                 <div className="row">
@@ -134,7 +423,8 @@ class Contact extends Component {
                                             </div>
                                             <SimpleBar>
                                                 <div className="user-list">
-                                                    <ul>
+                                                    {this.displayContactUserList()}
+                                                    {/* <ul>
                                                         <li>
                                                             <Card className="members-box">
                                                                 <div className="user-img">
@@ -153,7 +443,7 @@ class Contact extends Component {
                                                                         <li><span>HR at</span></li>
                                                                         <li><p>Highspeed Studios</p></li>
                                                                     </ul>
-                                                                    <div className="member-position">SR</div>
+                                                                    <div className="member-position" style={{ backgroundColor: '#36c691' }}>Hs</div>
                                                                 </div>
                                                             </Card>
                                                         </li>
@@ -176,7 +466,7 @@ class Contact extends Component {
                                                                         <li><span>HR at</span></li>
                                                                         <li><p>Highspeed Studios</p></li>
                                                                     </ul>
-                                                                    <div className="member-position">SR</div>
+                                                                    <div className="member-position" style={{ backgroundColor: '#256fc6' }}>AV</div>
                                                                 </div>
                                                             </Card>
                                                         </li>
@@ -198,7 +488,7 @@ class Contact extends Component {
                                                                         <li><span>HR at</span></li>
                                                                         <li><p>Highspeed Studios</p></li>
                                                                     </ul>
-                                                                    <div className="member-position">SR</div>
+                                                                    <div className="member-position" style={{ backgroundColor: '#dc3372' }}>Cz</div>
                                                                 </div>
                                                             </Card>
                                                         </li>
@@ -220,11 +510,11 @@ class Contact extends Component {
                                                                         <li><span>HR at</span></li>
                                                                         <li><p>Highspeed Studios</p></li>
                                                                     </ul>
-                                                                    <div className="member-position">SR</div>
+                                                                    <div className="member-position" style={{ backgroundColor: '#dc3372' }}>Cz</div>
                                                                 </div>
                                                             </Card>
                                                         </li>
-                                                    </ul>
+                                                    </ul> */}
                                                 </div>
                                             </SimpleBar>
                                         </div>
@@ -296,7 +586,7 @@ class Contact extends Component {
                                                                             <img src={ProfilePicture} alt="" />
                                                                         </div>
                                                                         <Button className="user-profile-uplod">
-                                                                            <CameraAltIcon className="camera-icon"/>
+                                                                            <CameraAltIcon className="camera-icon" />
                                                                             <input accept="image/*" id="contained-button-file" multiple type="file" />
                                                                             <span>changes photos</span>
                                                                         </Button>
@@ -345,13 +635,14 @@ class Contact extends Component {
                                 </div>
                                 <div className="membar-list">
                                     <div className="row">
-                                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                                        {this.displayContactMemberList()}
+                                        {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                             <div className="member-boxs">
                                                 <Card className="members-box">
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#36c691' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -391,7 +682,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#256fc6' }}>AV</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -430,7 +721,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#dc3373' }}>Cz</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -469,7 +760,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#4b1545' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -508,7 +799,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#ca8fbb' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -547,7 +838,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#a6e6e6' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -586,7 +877,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#0a82ea' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -625,7 +916,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#07504f' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -664,7 +955,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#91d8d2' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -703,7 +994,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#4294e7' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -742,7 +1033,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#ea6520' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -781,7 +1072,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#0c3973' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -821,7 +1112,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#45a13c' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -861,7 +1152,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#da2866' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -901,7 +1192,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#9304f1' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -941,7 +1232,7 @@ class Contact extends Component {
                                                     <div className="user-img">
                                                         <div className="image">
                                                             <img src={Peter} alt="" />
-                                                            <div className="member-position">SR</div>
+                                                            <div className="member-position" style={{ backgroundColor: '#36c691' }}>Hs</div>
                                                         </div>
                                                     </div>
                                                     <div className="d-inline-block menu-icon">
@@ -974,7 +1265,7 @@ class Contact extends Component {
                                                     </div>
                                                 </Card>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <Pagination count={4} variant="outlined" className="float-right mb-5" shape="rounded" />
                                 </div>

@@ -21,6 +21,15 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import SearchIcon from '@material-ui/icons/Search';
 
+import David from '../../assets/images/contact/david.png';
+import Fanny from '../../assets/images/contact/fanny.png';
+import Hawkins from '../../assets/images/contact/hawkins.png';
+import Chyntia from '../../assets/images/contact/chyntia.png';
+import Brian from '../../assets/images/contact/brian.png';
+import Dennise from '../../assets/images/contact/dennise.png';
+import Erbatow from '../../assets/images/contact/erbatow.png';
+import Evan from '../../assets/images/contact/evan.png';
+
 class ApprovedRrequisition extends Component {
     constructor(props) {
         super(props)
@@ -186,7 +195,219 @@ class ApprovedRrequisition extends Component {
                     },
                 ]
             },
+            approvedMemberList: [
+                {
+                    name: 'Angela Moss',
+                    image: David,
+                    shortName: 'Hs',
+                    shortNameColor: '#5ed1a7',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Ahmad Zayn',
+                    image: Fanny,
+                    shortName: 'AV',
+                    shortNameColor: '#256fc6',
+                    position: 'Photographer at',
+                    company: 'Audio video Teams',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Brian Connor',
+                    image: Hawkins,
+                    shortName: 'Cz',
+                    shortNameColor: '#dc3472',
+                    position: 'Designer at',
+                    company: 'Crimzon Guards Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Courtney Hawkins',
+                    image: David,
+                    shortName: 'Hs',
+                    shortNameColor: '#4b1643',
+                    position: 'Programmer at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Chyntia Smilee',
+                    image: Chyntia,
+                    shortName: 'Hs',
+                    shortNameColor: '#cb8fbc',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'David Here',
+                    image: Brian,
+                    shortName: 'Hs',
+                    shortNameColor: '#a6e6e6',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Denise Lee',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#0b82ea',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Erbatov Axie',
+                    image: Dennise,
+                    shortName: 'Hs',
+                    shortNameColor: '#07504f',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Fanny Humble',
+                    image: Erbatow,
+                    shortName: 'Hs',
+                    shortNameColor: '#91d8d2',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Evan Khan',
+                    image: Evan,
+                    shortName: 'Hs',
+                    shortNameColor: '#4194e6',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Frankli jr.',
+                    image: Dennise,
+                    shortName: 'Hs',
+                    shortNameColor: '#eb6520',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Gandalf Hoos',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#0c3972',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Gabriella',
+                    image: Brian,
+                    shortName: 'Hs',
+                    shortNameColor: '#45a13c',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Hanny Shella',
+                    image: Fanny,
+                    shortName: 'Hs',
+                    shortNameColor: '#da2866',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Ivankov',
+                    image: Hawkins,
+                    shortName: 'Hs',
+                    shortNameColor: '#9304f1',
+                    position: 'Marketing Manager at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+                {
+                    name: 'Petel Morriss',
+                    image: Peter,
+                    shortName: 'Hs',
+                    shortNameColor: '#4b1643',
+                    position: 'HR at',
+                    company: 'Highspeed Studios',
+                    contNo: '+1234567890',
+                    email: 'petermorriss@gmail.com'
+                },
+            ]
         }
+    }
+
+    displayApprovedMemberList = () => {
+        const { approvedMemberList, activeindex } = this.state;
+        let retData = [];
+        for (let i = 0; i < approvedMemberList.length; i++) {
+            let row = approvedMemberList[i];
+            retData.push(
+                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" key={row.name}>
+                    <div className="member-boxs">
+                        <Card className={activeindex == i ? "members-box active" : "members-box"} onClick={() => this.setState({ activeindex: i })}>
+                            <div className="user-img">
+                                <div className="image">
+                                    <img src={row.image} alt="" />
+                                    <div className="member-position" style={{ backgroundColor: `${row.shortNameColor}` }}>{row.shortName}</div>
+                                </div>
+                            </div>
+                            <div className="d-inline-block menu-icon">
+                                <IconButton aria-label="settings">
+                                    <MoreVertIcon />
+                                </IconButton>
+                            </div>
+                            <div className="requisition">
+                                <Checkbox name="saveReq" color="primary" name="saveReq" />
+                            </div>
+                            <div className="member-details">
+                                <ul>
+                                    <li><b>{row.name}</b></li>
+                                    <li><span>{row.position}</span></li>
+                                    <li><p>{row.company}</p></li>
+                                </ul>
+                            </div>
+                            <div className="member-contact">
+                                <ul>
+                                    <li>
+                                        <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
+                                        <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                                    </li>
+                                    <li>
+                                        <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
+                                        <a href={`mailto: ${row.email}`}>{row.email}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+            )
+        }
+        return retData;
     }
 
     onClickShowViewDetails = () => {
@@ -310,13 +531,14 @@ class ApprovedRrequisition extends Component {
                         </div>
                         <div className="membar-list">
                             <div className="row">
-                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            {this.displayApprovedMemberList()}
+                                {/* <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <div className="member-boxs">
                                         <Card className="members-box">
                                             <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#36c691' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -356,7 +578,7 @@ class ApprovedRrequisition extends Component {
                                             <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#256fc6' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -395,7 +617,7 @@ class ApprovedRrequisition extends Component {
                                             <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#dd3372' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -434,7 +656,7 @@ class ApprovedRrequisition extends Component {
                                             <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#4b1644' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -473,7 +695,7 @@ class ApprovedRrequisition extends Component {
                                             <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#cb8fbb' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -512,7 +734,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#a6e6e6' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -551,7 +773,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#0b82e9' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -590,7 +812,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#074f4f' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -629,7 +851,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#91d8d2' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -668,7 +890,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#4294e6' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -707,7 +929,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#ea6520' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -746,7 +968,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#0c3971' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -786,7 +1008,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#45a13c' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -826,7 +1048,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#da2866' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -866,7 +1088,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#9304f1' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -906,7 +1128,7 @@ class ApprovedRrequisition extends Component {
                                         <div className="user-img">
                                                 <div className="image">
                                                     <img src={Peter} alt="" />
-                                                    <div className="member-position">SR</div>
+                                                    <div className="member-position" style={{ backgroundColor: '#36c691' }}>SR</div>
                                                 </div>
                                             </div>
                                             <div className="d-inline-block menu-icon">
@@ -939,7 +1161,7 @@ class ApprovedRrequisition extends Component {
                                             </div>
                                         </Card>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

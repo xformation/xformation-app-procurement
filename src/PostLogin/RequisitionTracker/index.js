@@ -66,7 +66,7 @@ class RequisitionTracker extends Component {
                         label: 'Status',
                         key: 'Status',
                         renderCallback: (value) => {
-                            return <td><span className="status">{value}</span> <IconButton><MoreVertIcon /></IconButton></td>
+                            return <td><span className="status">{value}</span> <IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton></td>
                         }
                     },
 

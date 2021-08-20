@@ -155,48 +155,56 @@ class Dashbord extends Component {
         {
           invoiceNo: "INV-0001234",
           invoiceName: "jean Graphic Inc.",
+          shortNameColor: '#efbbf0',
           invoicePrice: "6,50,000",
           invoiceLable: "2m ago"
         },
         {
           invoiceNo: "INV-0001234",
           invoiceName: "Highspeed Studios.",
+          shortNameColor: '#99e060',
           invoicePrice: "245.75",
           invoiceLable: "12m ago"
         },
         {
           invoiceNo: "INV-0001234",
           invoiceName: "Fullspeedo Crew.",
+          shortNameColor: '#c5bef4',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
           invoiceName: "Fullspeedo",
+          shortNameColor: '#84da91',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
           invoiceName: "Crew.",
+          shortNameColor: '#4b5ba8',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
           invoiceName: "Fullspeedo Crew Crew",
+          shortNameColor: '#99e060',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew.",
+          shortNameColor: '#c5bef4',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew.",
+          shortNameColor: '#efbbf0',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
@@ -281,7 +289,7 @@ class Dashbord extends Component {
           <div className="d-flex justify-content-center align-items-center pb-3" key={element.invoiceName}>
             <div className="col-xl-5 col-lg-5 col-md-5 col-5 px-0">
               <div className="payment">
-                <div className="graphic highspeed crew "></div>
+                <div className="graphic" style={{ backgroundColor: `${element.shortNameColor}` }}></div>
                 <div className="payment-content">
                   <a href="#">&#35;{element.invoiceNo}</a>
                   <p>{element.invoiceName}</p>

@@ -679,11 +679,21 @@
     font-size: 14px;
     font-weight: 600;
 }
+.invoices-content .invoices-tabale .custom-table .data-table-parent .data-table .invoices-list-btn{
+  text-transform: capitalize;
+  min-width: 156px;
+}
 .invoices-content .invoices-tabale .custom-table .data-table-parent .data-table .completed-btn{
   color: #48d968;
-  text-transform: none;
   background: #d8ffe0;
-  min-width: 156px;
+}
+.invoices-content .invoices-tabale .custom-table .data-table-parent .data-table .invoices-btn{
+  color: #69b4d4;
+  background: #e1ecf0;
+}
+.invoices-content .invoices-tabale .custom-table .data-table-parent .data-table .pendding-btn{
+  color: #ffab2f;
+  background: #ffeacb;
 }
 .invoices-content .invoices-tabale .custom-table .data-table-parent .data-table .mailicon-btn{
     min-width: 0;

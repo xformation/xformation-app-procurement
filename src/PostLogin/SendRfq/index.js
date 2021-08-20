@@ -16,12 +16,8 @@ class sendRfq extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            requiData: {
-                status: "",
-                reqno: "",
-                depart: "",
-                ViewDetail: false,
-            },
+            requiData: {},
+            ViewDetail: false,
             vendoreTableData: {
                 columns: [
                     {
@@ -184,7 +180,7 @@ class sendRfq extends Component {
                         label: 'Telephone',
                         key: 'carrency',
                         renderCallback: (value) => {
-                            return <td><span className="department-value">{value} <IconButton><MoreVertIcon /></IconButton></span></td>
+                            return <td><span className="department-value">{value} <IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton></span></td>
                         }
                     },
                 ],
@@ -266,8 +262,15 @@ class sendRfq extends Component {
         if (errorData.isValid) {
             const sendReqData = {
                 status: requiData.status,
-                reqno: requiData.reqno,
-                depart: requiData.depart
+                requisitonNo: requiData.requisitonNo,
+                dateCreated: requiData.dateCreated,
+                requestor: requiData.requestor,
+                timeSpan: requiData.timeSpan,
+                department: requiData.department,
+                status: requiData.status,
+                heard: requiData.heard,
+                lastUpdate: requiData.lastUpdate,
+                selectVendor: requiData.selectVendor
 
             }
             console.log(sendReqData);
@@ -282,8 +285,15 @@ class sendRfq extends Component {
         let isValid = true;
         const retData = {
             status: validObj,
-            reqno: validObj,
-            depart: validObj,
+            requisitonNo: validObj,
+            dateCreated: validObj,
+            requestor: validObj,
+            timeSpan: validObj,
+            department: validObj,
+            status: validObj,
+            heard: validObj,
+            lastUpdate: validObj,
+            selectVendor: validObj,
             isValid
         };
         if (isSubmitted) {
@@ -295,17 +305,66 @@ class sendRfq extends Component {
                 };
                 isValid = false;
             }
-            if (!requiData.reqno) {
-                retData.reqno = {
+            if (!requiData.requisitonNo) {
+                retData.requisitonNo = {
                     isValid: false,
                     message: "Requisitions no is required"
                 };
                 isValid = false;
             }
-            if (!requiData.depart) {
-                retData.depart = {
+            if (!requiData.dateCreated) {
+                retData.dateCreated = {
+                    isValid: false,
+                    message: "Date created is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.requestor) {
+                retData.requestor = {
+                    isValid: false,
+                    message: "Requestor is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.timeSpan) {
+                retData.timeSpan = {
+                    isValid: false,
+                    message: "Time Span is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.department) {
+                retData.department = {
                     isValid: false,
                     message: "Department is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.status) {
+                retData.status = {
+                    isValid: false,
+                    message: "Status is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.heard) {
+                retData.heard = {
+                    isValid: false,
+                    message: "Heard is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.lastUpdate) {
+                retData.lastUpdate = {
+                    isValid: false,
+                    message: "Last Update is required"
+                };
+                isValid = false;
+            }
+            if (!requiData.selectVendor) {
+                retData.selectVendor = {
+                    isValid: false,
+                    message: "Filter Vendore is required"
                 };
                 isValid = false;
             }
@@ -332,25 +391,33 @@ class sendRfq extends Component {
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Requisiton No.</label>
-                                            <DatePicker placeholder="02/03/2021" />
+                                            <DatePicker name="requisitonNo" value={requiData.requisitonNo}
+                                                onChange={this.handleStateChange} isvalid={errorData.requisitonNo.isValid} placeholder="02/03/2021" />
+                                            <span className="text-danger">{errorData.requisitonNo.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Date Created</label>
-                                            <DatePicker placeholder="02/03/2021 10:45:35 PM" />
+                                            <DatePicker name="dateCreated" value={requiData.dateCreated}
+                                                onChange={this.handleStateChange} isvalid={errorData.dateCreated.isValid} placeholder="02/03/2021 10:45:35 PM" />
+                                            <span className="text-danger">{errorData.dateCreated.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Requestor</label>
-                                            <input placeholder="Franklin" name="reqno" />
+                                            <input type="text" name="requestor" value={requiData.requestor} 
+                                                onChange={this.handleStateChange} isvalid={errorData.requestor.isValid} placeholder="Franklin" />
+                                            <span className="text-danger">{errorData.requestor.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Time Span</label>
-                                            <input placeholder="28 Days Ago" name="reqno" />
+                                            <input type="text" name="timeSpan" value={requiData.timeSpan} onChange={this.handleStateChange}
+                                                isvalid={errorData.timeSpan.isValid} placeholder="28 Days Ago" />
+                                            <span className="text-danger">{errorData.timeSpan.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
@@ -358,32 +425,40 @@ class sendRfq extends Component {
                                             <div className="form-group">
                                                 <label>Department</label>
                                                 <FormControl className="select-department">
-                                                    <NativeSelect name="status" >
+                                                    <NativeSelect name="department" value={requiData.department} onChange={this.handleStateChange}
+                                                        isvalid={errorData.department.isValid}  >
                                                         <option value="">IT Infrastructure</option>
                                                         <option value={10}>abc</option>
                                                         <option value={20}>def</option>
                                                         <option value={30}>abc</option>
                                                     </NativeSelect>
                                                 </FormControl>
+                                                <span className="text-danger">{errorData.department.message}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Status</label>
-                                            <input placeholder="Approved" name="reqno" />
+                                            <input name="status" value={requiData.status} onChange={this.handleStateChange}
+                                                isvalid={errorData.status.isValid} placeholder="Approved" />
+                                            <span className="text-danger">{errorData.status.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Heard</label>
-                                            <input placeholder="Director/ PSDS Admin" name="reqno" />
+                                            <input name="heard" value={requiData.heard} onChange={this.handleStateChange}
+                                                isvalid={errorData.heard.isValid} placeholder="Director/ PSDS Admin" />
+                                            <span className="text-danger">{errorData.heard.message}</span>
                                         </div>
                                     </div>
                                     <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
                                         <div className="form-group">
                                             <label>Last Updated</label>
-                                            <input placeholder="" name="reqno" />
+                                            <input name="lastUpdate" value={requiData.lastUpdate} onChange={this.handleStateChange}
+                                                isvalid={errorData.lastUpdate.isValid} placeholder="" />
+                                            <span className="text-danger">{errorData.lastUpdate.message}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -423,13 +498,15 @@ class sendRfq extends Component {
                                             <div className="form-group">
                                                 <label>Filter Vendors</label>
                                                 <FormControl className="select-department">
-                                                    <NativeSelect name="status" >
+                                                    <NativeSelect name="selectVendor" value={requiData.selectVendor}
+                                                     onChange={this.handleStateChange} isvalid={errorData.selectVendor.isValid} >
                                                         <option value="">-Select-</option>
                                                         <option value={10}>abc</option>
                                                         <option value={20}>def</option>
                                                         <option value={30}>abc</option>
                                                     </NativeSelect>
                                                 </FormControl>
+                                                <span className="text-danger">{errorData.selectVendor.message}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -437,11 +514,11 @@ class sendRfq extends Component {
                             </div>
                             <Table valueFromData={this.state.approvedVendoreTableData} perPageLimit={6} visiblecheckboxStatus={true}
                                 tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
-                                 <div className="select-vendor-button">
-                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
-                                            Send QRF to Selected Vendors 
-                                        </Button>
-                                    </div>
+                            <div className="select-vendor-button">
+                                <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                    Send QRF to Selected Vendors
+                                </Button>
+                            </div>
                         </>
                         :
                         <>

@@ -321,7 +321,7 @@ export class Table extends React.Component {
         return pageData;
     }
 
-    sortTable(sortkey, sortVal, e) {
+    sortTable(sortkey, e, sortVal) {
         this.setState({
             sortType: sortVal,
             sortKey: sortkey

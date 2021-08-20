@@ -43,7 +43,9 @@
                         text-overflow: ellipsis;
                         vertical-align: middle;
                     }
-
+                    .text-danger{
+                        padding-left: 210px;
+                    }
                     .select-Committee {
                         width: 200px;
                         color: #90898a;
@@ -246,8 +248,9 @@
                         background: $buttons-bg;
                         margin-bottom: 15px;
 
-                        .plus-icon {
+                        i{
                             margin-right: 10px;
+                            font-size: 18px;
                         }
                     }
                 }

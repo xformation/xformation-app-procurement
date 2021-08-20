@@ -8,7 +8,6 @@ import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SendIcon from '@material-ui/icons/Send';
 import Peter from '../../assets/images/Setup/peter.png';
 import Ahmad from '../../assets/images/Setup/ahmad.png';
 import Brian from '../../assets/images/Setup/brian.png';
@@ -23,6 +22,9 @@ class SetUpCommittee extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            requiData: {
+                status: "",
+            },
             activeindex: 0,
             commiteMemList: [
                 {
@@ -125,6 +127,58 @@ class SetUpCommittee extends Component {
         }
     }
 
+    handleStateChange = (e) => {
+        const { name, value } = e.target;
+        const { requiData } = this.state;
+        requiData[name] = value;
+        this.setState({
+            requiData,
+        });
+    };
+
+    handleClickMethod = (event) => {
+        const { requiData } = this.state;
+        event.preventDefault();
+        this.setState({
+            isSubmitted: true
+        });
+        const errorData = this.validate(true);
+        if (errorData.isValid) {
+            const sendReqData = {
+                status: requiData.status,
+                reqno: requiData.reqno,
+                depart: requiData.depart
+
+            }
+            console.log(sendReqData);
+        }
+    }
+    validate = (isSubmitted) => {
+        const validObj = {
+            isValid: true,
+            message: ""
+        };
+        let isValid = true;
+        const retData = {
+            status: validObj,
+            reqno: validObj,
+            depart: validObj,
+            isValid
+        };
+        if (isSubmitted) {
+            const { requiData } = this.state;
+            if (!requiData.status) {
+                retData.status = {
+                    isValid: false,
+                    message: "Filter By Status  is required"
+                };
+                isValid = false;
+            }
+        }
+        retData.isValid = isValid;
+        return retData;
+    };
+
     displayCommiteeMemberList = () => {
         const { commiteMemList, activeindex } = this.state;
         let retData = [];
@@ -166,8 +220,11 @@ class SetUpCommittee extends Component {
         }
         return retData;
     }
+    
 
     render() {
+        const { requiData, isSubmitted, } = this.state;
+        const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
                 <div className="setup-committee-section">
@@ -181,19 +238,24 @@ class SetUpCommittee extends Component {
                                     <div className="form-group">
                                         <label>Select Committee Type</label>
                                         <FormControl className="select-Committee">
-                                            <NativeSelect name="Depatment">
+                                            <NativeSelect name="status" value={requiData.status}
+                                                    onChange={this.handleStateChange} isvalid={errorData.status.isValid} >
                                                 <option value="">-Select-</option>
                                                 <option value={10}>abc</option>
                                                 <option value={20}>def</option>
                                                 <option value={30}>abc</option>
                                             </NativeSelect>
                                         </FormControl>
+                                        <span className="text-danger">{errorData.status.message}</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="form-group">
                                         <label>Add Committee Members</label>
-                                        <Button variant="contained" className="new-item-btn"><AddCircleIcon className="plus-icon" /> Send</Button>
+                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                            <AddCircleIcon className="plus-icon" />
+                                            Send
+                                        </Button>
                                     </div>
                                 </li>
                             </ul>
@@ -206,7 +268,7 @@ class SetUpCommittee extends Component {
                                 <div className="row">
                                     {this.displayCommiteeMemberList()}
                                     <div className="committee-btn">
-                                        <Button variant="contained" className="new-item-btn"><SendIcon className="plus-icon" /> Save &#38; Send invites</Button>
+                                        <Button variant="contained" className="new-item-btn"><i class="fas fa-paper-plane"></i> Save &#38; Send invites</Button>
                                     </div>
                                 </div>
                             </div>

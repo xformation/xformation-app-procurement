@@ -44,8 +44,8 @@ class EmailPage extends Component {
             detailEmail: false,
             activeindex: 0,
             isSelectAll: false,
-            perPageLimit: 3,
-            noOfRecordPerPage: 3,
+            perPageLimit: 5,
+            noOfRecordPerPage: 5,
             totalPages: '',
             currentPage: 0,
             emailData,
@@ -105,7 +105,7 @@ class EmailPage extends Component {
             if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
                 let row = emailData[i];
                 retData.push(
-                    <li className={activeindex == i ? "active" : ""} onClick={this.onClickShowMailDetail} key={row.recentTitle}>
+                    <li className={activeindex == i ? "active" : ""} onClick={() => this.setState({ activeindex: i })}>
                         <div className="user-id">
                             <div className="check-box">
                                 <FormControlLabel
@@ -119,7 +119,7 @@ class EmailPage extends Component {
                         </div>
                         <div className="user-content">
                             <div className="d-flex">
-                                <div className="col-9">
+                                <div className="col-9"onClick={this.onClickShowMailDetail} key={row.recentTitle}>
                                     <span>{row.recentEmail} {row.time}</span>
                                     <h5>{row.recentTitle}</h5>
                                     <p>{row.recentDes}</p>
@@ -127,7 +127,7 @@ class EmailPage extends Component {
                                 <div className="col-3 pr-0">
                                     {!row.showIcon && <div className="list-icon">
                                         <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton></div>}
-                                    {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
+                                        {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
                                         {row.isRead && <IconButton><DirectionsRailwayIcon /></IconButton>}
                                         {row.isSnooze && <IconButton><WatchLaterIcon /></IconButton>}
                                         {row.attechment && <IconButton><AttachFileIcon /></IconButton>}
@@ -234,7 +234,7 @@ class EmailPage extends Component {
     }
 
     render() {
-        const { composEmail, isSelectAll, currentPage, options, contacts, selectedValue, preselectValue, detailEmail } = this.state;
+        const { composEmail, isSelectAll, currentPage, options, contacts, selectedValue, preselectValue, detailEmail, activeindex } = this.state;
         return (
             <div className="main-content">
                 <div className="compose-email-section">
@@ -255,7 +255,7 @@ class EmailPage extends Component {
                                     </div>
                                     <ul>
                                         <li className="active"><button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
-                                        <li><button className="btn"><span><SendIcon /></span>Sent</button></li>
+                                        <li><button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
                                         <li><button className="btn"><span><DraftsIcon /></span>Draft</button></li>
                                         <li><button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
                                         <li><button className="btn"><span><StarIcon /></span>Favourites</button></li>
@@ -366,7 +366,7 @@ class EmailPage extends Component {
                                     </div>
                                     <div className="footer-bottom">
                                         <div className="footer-section-inner">
-                                            <Button variant="contained" className="send-email-btn"><SendIcon />send email</Button>
+                                            <Button variant="contained" className="send-email-btn"><i class="fas fa-paper-plane"></i>send email</Button>
                                             <IconButton className="attache-icon"><AttachFileIcon /></IconButton>
                                             <IconButton className="reply-icon"><ReplyIcon /></IconButton>
                                             <IconButton className="symbols-icon">T</IconButton>
