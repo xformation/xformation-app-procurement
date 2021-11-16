@@ -6,126 +6,66 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Card from '@material-ui/core/Card';
 import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
-import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Peter from '../../assets/images/Setup/peter.png';
-import Ahmad from '../../assets/images/Setup/ahmad.png';
-import Brian from '../../assets/images/Setup/brian.png';
-import David from '../../assets/images/Setup/david.png';
-import Dennise from '../../assets/images/Setup/dennise.png';
-import Erbatow from '../../assets/images/Setup/erbatow.png';
-import Evan from '../../assets/images/Setup/evan.png';
-import Fanny from '../../assets/images/Setup/fanny.png';
-import Hawkins from '../../assets/images/Setup/hawkins.png';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
+import { connect } from 'react-redux';
+import { committeeAction } from '../../_actions';
+import { status } from '../../_constants';
+import { alert } from '../../_utilities';
+
+const options = [
+    'Delete'
+];
 
 class SetUpCommittee extends Component {
     constructor(props) {
         super(props)
         this.state = {
             requiData: {
-                status: "",
+                status: ""
             },
-            activeindex: 0,
-            commiteMemList: [
-                {
-                    name: 'Petel Morriss',
-                    image: Peter,
-                    position: 'HR at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'petermorriss@gmail.com'
-                },
-                {
-                    name: 'Ahmad Zayn',
-                    image: Ahmad,
-                    position: 'Director of',
-                    company: 'Plucom Technology',
-                    contNo: '+1234567890',
-                    email: 'ahmadzayn@mail.com'
-                },
-                {
-                    name: 'Brian Connor',
-                    image: Brian,
-                    position: 'regional Manager at',
-                    company: 'Crimzon Guards Studios',
-                    contNo: '+1234567890',
-                    email: 'brianconnor@gmail.com'
-                },
-                {
-                    name: 'David Here',
-                    image: David,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'davidhere@gmail.com'
-                },
-                {
-                    name: 'Dennise Lee',
-                    image: Dennise,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'denniselee@mail.com'
-                },
-                {
-                    name: 'Erbatov Axie',
-                    image: Erbatow,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'erbatovaxie@mail.com'
-                },
-                {
-                    name: 'Evan Khan',
-                    image: Evan,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'evankhan@mail.com'
-                },
-                {
-                    name: 'Fanny Humble',
-                    image: Fanny,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'fannyhumble@mail.com'
-                },
-                {
-                    name: 'Franklin Ir.',
-                    image: Hawkins,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'franklinir@mail.com'
-                },
-                {
-                    name: 'Gandalf Hoos',
-                    image: Erbatow,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'gandalfhoos@mail.com'
-                },
-                {
-                    name: 'Gabriella',
-                    image: Peter,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'gabriella@mail.com'
-                },
-                {
-                    name: 'Hanny Shella',
-                    image: Ahmad,
-                    position: 'Markting Manager at',
-                    company: 'Highspeed Studios',
-                    contNo: '+1234567890',
-                    email: 'hannyshella@mail.com'
-                }
-            ],
+            activeindex: null,
+            committeeMember: [],
+            deletePopup: null,
         }
-    }
+    };
+
+    componentDidMount() {
+        this.props.dispatch(committeeAction.addCommittee());
+        this.props.dispatch(committeeAction.searchCommittee());
+        // this.props.dispatch(committeeAction.deleteCommittee(""));
+        // //this.props.dispatch(committeeAction.getCommittee(""));
+        //this.props.dispatch(committeeAction.updateCommittee(""));
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.search_committee_status !== this.props.search_committee_status && this.props.search_committee_status === status.SUCCESS) {
+            this.setState({
+                committeeMember: this.props.searchCommittee,
+            });
+        }
+        if (prevProps.delete_committee_status !== this.props.delete_committee_status && this.props.delete_committee_status === status.SUCCESS) {
+            const { deleteCommittee } = this.props;
+            const { committeeMember } = this.state;
+            const length = committeeMember.length;
+            let index = -1;
+            for (let i = 0; i < length; i++) {
+                if (committeeMember[i]._id === deleteCommittee.id) {
+                    index = i;
+                    break;
+                }
+            }
+            committeeMember.splice(index, 1);
+            this.setState({
+                committeeMember,
+                deletePopup: null
+            });
+            alert.success("Committee deleted successfully");
+        }
+    };
 
     handleStateChange = (e) => {
         const { name, value } = e.target;
@@ -150,9 +90,9 @@ class SetUpCommittee extends Component {
                 depart: requiData.depart
 
             }
-            console.log(sendReqData);
         }
-    }
+    };
+
     validate = (isSubmitted) => {
         const validObj = {
             isValid: true,
@@ -170,7 +110,7 @@ class SetUpCommittee extends Component {
             if (!requiData.status) {
                 retData.status = {
                     isValid: false,
-                    message: "Filter By Status  is required"
+                    message: "Filter By Status is required"
                 };
                 isValid = false;
             }
@@ -179,21 +119,63 @@ class SetUpCommittee extends Component {
         return retData;
     };
 
-    displayCommiteeMemberList = () => {
-        const { commiteMemList, activeindex } = this.state;
+    onClickShowDeletePopup = event => {
+        this.setState({ deletePopup: event.currentTarget });
+    };
+
+    onClickCommitteeItemDelete = (deleteCommitee) => {
+        this.setState({ deletePopup: null });
+        if (deleteCommitee) {
+            this.props.dispatch(committeeAction.deleteCommittee(deleteCommitee.id));
+        }
+    };
+
+    displayCommiteeLists = (committee) => {
         let retData = [];
-        for (let i = 0; i < commiteMemList.length; i++) {
-            let row = commiteMemList[i];
+        const { activeindex, deletePopup } = this.state;
+        const { delete_committee_status } = this.props;
+        const open = Boolean(deletePopup);
+        for (let i = 0; i < committee.length; i++) {
+            let row = committee[i];
             retData.push(
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.name}>
+                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
                     <Card className={activeindex == i ? "member-box active" : "member-box"} onClick={() => this.setState({ activeindex: i })}>
-                        <div className="image">
-                            <img src={row.image} alt="" />
-                        </div>
                         <div className="d-inline-block menu-icon">
-                            <IconButton aria-label="settings">
+                            <IconButton
+                                aria-label="More"
+                                aria-owns={open ? 'long-menu' : null}
+                                aria-haspopup="true"
+                                aria-controls="fade-menu"
+                                onClick={this.onClickShowDeletePopup}
+                            >
                                 <MoreVertIcon />
                             </IconButton>
+                            <Menu
+                                id="long-menu"
+                                anchorEl={deletePopup}
+                                open={open}
+                                TransitionComponent={Fade}
+                                onClose={this.onClickCommitteeItemDelete}
+                                PaperProps={{
+                                    style: {
+                                        width: 120,
+                                    },
+                                }}
+                            >
+                                {options.map(option => (
+                                    <MenuItem
+                                        key={option}
+                                        selected={option === 'Delete'}
+                                        onClick={() => this.onClickCommitteeItemDelete(row)}
+                                        disabled={delete_committee_status === status.IN_PROGRESS}
+                                    >
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </div>
+                        <div className="image">
+                            <img src={row.image} alt="" />
                         </div>
                         <div className="member-details">
                             <ul>
@@ -220,10 +202,13 @@ class SetUpCommittee extends Component {
         }
         return retData;
     }
-    
+
+    displayCommitee = () => {
+        const { committeeMember } = this.state;
+    }
 
     render() {
-        const { requiData, isSubmitted, } = this.state;
+        const { requiData, isSubmitted, committeeMember } = this.state;
         const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
@@ -233,32 +218,31 @@ class SetUpCommittee extends Component {
                     </div>
                     <div className="setup-committee-content">
                         <div className="add-members">
-                            <ul>
-                                <li>
-                                    <div className="form-group">
-                                        <label>Select Committee Type</label>
-                                        <FormControl className="select-Committee">
-                                            <NativeSelect name="status" value={requiData.status}
-                                                    onChange={this.handleStateChange} isvalid={errorData.status.isValid} >
-                                                <option value="">-Select-</option>
-                                                <option value={10}>abc</option>
-                                                <option value={20}>def</option>
-                                                <option value={30}>abc</option>
-                                            </NativeSelect>
-                                        </FormControl>
-                                        <span className="text-danger">{errorData.status.message}</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="form-group">
-                                        <label>Add Committee Members</label>
-                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
-                                            <AddCircleIcon className="plus-icon" />
-                                            Send
-                                        </Button>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div className="form-group row col-form-group">
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Select Committee Type</label>
+                                <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                    <FormControl className="select-menu">
+                                        <NativeSelect name="status" value={requiData.status}
+                                            onChange={this.handleStateChange} isvalid={errorData.status.isValid}>
+                                            <option value="">-Select-</option>
+                                            {this.displayCommitee()}
+                                            {/* <option value={10}>abc</option>
+                                            <option value={20}>def</option>
+                                            <option value={30}>abc</option> */}
+                                        </NativeSelect>
+                                    </FormControl>
+                                    <span className="d-block w-100 text-danger">{errorData.status.message}</span>
+                                </div>
+                            </div>
+                            <div className="form-group row col-form-group">
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Add Committee Members</label>
+                                <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                    <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
+                                        <AddCircleIcon className="plus-icon" />
+                                        Send
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                         <div className="select-members">
                             <div className="heading">
@@ -266,9 +250,12 @@ class SetUpCommittee extends Component {
                             </div>
                             <div className="members-boxs">
                                 <div className="row">
-                                    {this.displayCommiteeMemberList()}
+                                    {this.displayCommiteeLists(committeeMember)}
                                     <div className="committee-btn">
-                                        <Button variant="contained" className="new-item-btn"><i class="fas fa-paper-plane"></i> Save &#38; Send invites</Button>
+                                        <Button variant="contained" className="primary-btn">
+                                            <i className="fas fa-paper-plane"></i>
+                                            Save &#38; Send invites
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -280,5 +267,21 @@ class SetUpCommittee extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    const { addCommittee, add_committee_status, delete_committee_status, deleteCommittee, getCommittee, get_committee_status, search_committee_status, searchCommittee, update_committee_status, updateCommittee } = state.committee;
+    return {
+        add_committee_status,
+        addCommittee,
+        delete_committee_status,
+        deleteCommittee,
+        get_committee_status,
+        getCommittee,
+        search_committee_status,
+        searchCommittee,
+        update_committee_status,
+        updateCommittee,
+    };
+}
 
-export default SetUpCommittee;
+const connectedSetUpCommittee = connect(mapStateToProps)(SetUpCommittee);
+export default (connectedSetUpCommittee);

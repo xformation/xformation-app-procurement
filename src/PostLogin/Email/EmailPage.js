@@ -119,7 +119,7 @@ class EmailPage extends Component {
                         </div>
                         <div className="user-content">
                             <div className="d-flex">
-                                <div className="col-9"onClick={this.onClickShowMailDetail} key={row.recentTitle}>
+                                <div className="col-9" onClick={this.onClickShowMailDetail} key={row.recentTitle}>
                                     <span>{row.recentEmail} {row.time}</span>
                                     <h5>{row.recentTitle}</h5>
                                     <p>{row.recentDes}</p>
@@ -127,7 +127,7 @@ class EmailPage extends Component {
                                 <div className="col-3 pr-0">
                                     {!row.showIcon && <div className="list-icon">
                                         <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton></div>}
-                                        {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
+                                    {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
                                         {row.isRead && <IconButton><DirectionsRailwayIcon /></IconButton>}
                                         {row.isSnooze && <IconButton><WatchLaterIcon /></IconButton>}
                                         {row.attechment && <IconButton><AttachFileIcon /></IconButton>}
@@ -155,8 +155,7 @@ class EmailPage extends Component {
         }
         if (count == emailData.length) {
             isSelectAll = true;
-        }
-        else {
+        } else {
             isSelectAll = false;
         }
         this.setState({
@@ -239,7 +238,7 @@ class EmailPage extends Component {
             <div className="main-content">
                 <div className="compose-email-section">
                     <div className="row">
-                        <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                        <div className="col-xl-3 col-lg-4 col-md-4 col-sm-12">
                             <div className="compose-left">
                                 <div className="compose-btn">
                                     <Button type="button" onClick={this.onClickShowCompos} className="compose active">
@@ -303,7 +302,7 @@ class EmailPage extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                        <div className="col-xl-9 col-lg-8 col-md-8 col-sm-12">
                             {composEmail === true ?
                                 <div className="compose-right">
                                     <div className="head-top progress-form">
@@ -357,7 +356,6 @@ class EmailPage extends Component {
                                             <div className="content">
                                                 <textarea
                                                     placeholder="Hello guys
-						
 						Lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolore in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est ?"
                                                 >
                                                 </textarea>
@@ -438,15 +436,18 @@ class EmailPage extends Component {
                                                 </div>
                                                 <div className="d-block attachmaent">
                                                     <div className="row justify-content-around align-items-center">
-                                                        <div className="col-lg-6 col-md-6 col-12">
+                                                        <div className="col-lg-6 col-6">
                                                             <div className="d-block heading-text">
                                                                 <i className="fas fa-paperclip"></i>
                                                                 Attachmaent Files (3)
                                                             </div>
                                                         </div>
-                                                        <div className="col-lg-6 col-md-6 col-12">
+                                                        <div className="col-lg-6 col-6">
                                                             <div className="d-block text-right">
-                                                                <Button className="download-btn"><i className="fas fa-download"></i> Download All</Button>
+                                                                <Button className="download-btn">
+                                                                    <i className="fas fa-download"></i>
+                                                                    Download All
+                                                                </Button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -454,10 +455,10 @@ class EmailPage extends Component {
                                                         <div className="col-xl-4 col-lg-6 col-md-6 col-12">
                                                             <div className="attach-box">
                                                                 <div className="row justify-content-start align-items-center">
-                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                    <div className="col-lg-4 col-md-4 col-sm-6 col-4">
                                                                         <div className="icon file"><i className="fas fa-file"></i></div>
                                                                     </div>
-                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                    <div className="col-lg-8 col-md-8 col-sm-6 col-8 pl-ms-0">
                                                                         <div className="text">
                                                                             <strong>Presentation_slide.ppt</strong>
                                                                             <span>456 KB</span>
@@ -469,10 +470,10 @@ class EmailPage extends Component {
                                                         <div className="col-xl-4 col-lg-6 col-md-6 col-12">
                                                             <div className="attach-box">
                                                                 <div className="row justify-content-start align-items-center">
-                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                    <div className="col-lg-4 col-md-4 col-4 col-sm-6">
                                                                         <div className="icon music"><i className="fas fa-music"></i></div>
                                                                     </div>
-                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                    <div className="col-lg-8 col-md-8 col-8 col-sm-6 pl-ms-0">
                                                                         <div className="text">
                                                                             <strong>Voice_REC_00012.mp3</strong>
                                                                             <span>163 MB</span>
@@ -484,10 +485,10 @@ class EmailPage extends Component {
                                                         <div className="col-xl-4 col-lg-6 col-md-6 col-12">
                                                             <div className="attach-box">
                                                                 <div className="row justify-content-start align-items-center">
-                                                                    <div className="col-lg-4 col-md-4 col-sm-6">
+                                                                    <div className="col-lg-4 col-md-4 col-4 col-sm-6">
                                                                         <div className="icon film"><i class="fas fa-film-alt"></i></div>
                                                                     </div>
-                                                                    <div className="col-lg-8 col-md-8 col-sm-6 pl-0">
+                                                                    <div className="col-lg-8 col-md-8 col-8 col-sm-6 pl-ms-0">
                                                                         <div className="text">
                                                                             <strong>Video_00345.mp4</strong>
                                                                             <span>531 MB</span>

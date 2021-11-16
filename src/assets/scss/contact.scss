@@ -1,167 +1,265 @@
-.contact-content{
-    .user-contact-list{
-        .buyers-head{
-            .head-right{
-                display: block;
-                .search-bar{
-                     display: inline-block;
-                     margin-right: 20px;
-                     vertical-align: middle;
-                     .form-group {
-                         margin-bottom: 0;
-                         .form-control {
-                             width: 350px;
-                             border: none;
-                             height: 50px;
-                             font-weight: 500;
-                             line-height: 50px;
-                             border-radius: 10px;
-                             color: #aaaaaa;
-                             padding-left: 50px;
-                             box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
-                             -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
-                             -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
-                         }
-                         button {
-                             position: absolute;
-                             top: 12px;
-                             left: 28px;
-                             background-color: transparent;
-                             border: none;
-                             color: #6418c3;
-                             font-size: 16px;
-                         }
-                     }
+.contact-content {
+    .user-contact-list {
+        .buyers-head {
+            .heading {
+                h4 {
+                    margin-bottom: 5px;
                 }
-                .social-buttom{
-                     display: inline-block;
-                     vertical-align: middle;
-                    ul{
+
+                p {
+                    margin-bottom: 0;
+                }
+            }
+
+            .head-right {
+                display: flex;
+
+                .search-bar {
+                    display: inline-block;
+                    margin-right: 20px;
+                    vertical-align: middle;
+                    position: relative;
+
+                    .form-group {
+                        margin-bottom: 0;
+
+                        .form-control {
+                            width: auto;
+                            border: none;
+                            height: 50px;
+                            font-weight: 500;
+                            line-height: 50px;
+                            border-radius: 10px;
+                            color: #aaaaaa;
+                            padding-left: 50px;
+                            box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                            -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+                            -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
+                        }
+
+                        button {
+                            position: absolute;
+                            top: 12px;
+                            left: 8px;
+                            background-color: transparent;
+                            border: none;
+                            color: #6418c3;
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                .social-buttom {
+                    display: inline-block;
+                    vertical-align: middle;
+
+                    ul {
                         margin: 0;
                         padding: 0;
-                        li{
+
+                        li {
                             display: inline-block;
                             list-style: none;
                             margin-right: 20px;
+
                             .plus-btn {
-                                 min-width: 0;
-                                 padding: 10px 15px;
-                                 color: #6318c3;
-                                 border-radius: 8px;
-                                 background: $body-box-bg;
-             
-                                 // &:hover {
-                                 //     background-color: #6318c3;
-                                 //     color: #ffffff;
-                                 // }
-             
-                                 // &.active {
-                                 //     background-color: #6318c3;
-                                 //     color: #ffffff;
-                                 // }
-                             }
-                             .list-icon{
-                                 color: $icon-color;
-                             }
-                             .add-bBuyres-btn{
-                                 background: $buttons-bg;
-                                 color: #ffffff;
-                                 min-width: 0;
-                                 text-transform: capitalize;
-                                 padding: 10px 20px;
-                                 border-radius: 8px;
-                                 .user-icon{
-                                     margin-right: 10px;
-                                 }
-                             }
+                                min-width: 0;
+                                padding: 10px 15px;
+                                color: #6318c3;
+                                border-radius: 8px;
+                                background: $body-box-bg;
+
+                                // &:hover {
+                                //     background-color: #6318c3;
+                                //     color: #ffffff;
+                                // }
+
+                                // &.active {
+                                //     background-color: #6318c3;
+                                //     color: #ffffff;
+                                // }
+                            }
+
+                            .list-icon {
+                                color: $icon-color;
+                            }
+
+                            .add-buyres-btn {
+                                background: $buttons-bg;
+                                color: #ffffff;
+                                min-width: 0;
+                                text-transform: capitalize;
+                                padding: 13px 20px;
+                                border-radius: 8px;
+                                font-size: 0.875rem;
+                                font-weight: 500;
+                                line-height: 1.75;
+                                letter-spacing: 0.02857em;
+                                min-height: 44px;
+
+                                .user-icon {
+                                    margin-right: 10px;
+                                    vertical-align: top;
+                                }
+                                &:hover{
+                                    text-decoration: none;
+                                }
+                            }
                         }
-                        .last{
+
+                        .last {
                             margin-right: 0;
                         }
                     }
                 }
             }
-         }
-         .membar-list{
+        }
+
+        .membar-list {
             margin-top: 25px;
-            .member-boxs{
+
+            .member-boxs {
                 display: block;
                 margin-bottom: 25px;
-                .members-box{
-                  
+
+                .members-box {
+
                     padding: 20px 15px 15px 15px;
                     position: relative;
-                    .user-img{
+
+                    .user-img {
                         display: block;
                         text-align: center;
-                        .image{
-                            display: inline-block;
+
+                        .image {
+                            height: 80px;
+                            width: 80px;
+                            border-radius: 10px;
+                            background-color: #f5f5f5;
                             position: relative;
-                            .member-position{
+
+                            img {
+                                max-width: 100%;
+                                max-height: 80px;
+                                height: auto;
+                            }
+
+                            .member-position {
                                 background-color: #5ed1a7;
                                 width: 30px;
                                 height: 30px;
-                                position: absolute;
-                                top: 50px;
+                                position: relative;
                                 font-weight: 500;
                                 color: #ffff;
-                                right: -13px;
                                 text-align: center;
                                 line-height: 30px;
                                 border-radius: 8px;
+                                position: absolute;
+                                right: -15px;
+                                top: 50px;
                             }
+
                         }
-                       
+
+
+
                     }
-                    
+
                     .menu-icon {
                         position: absolute;
                         right: 5px;
                         top: 5px;
+
                         .MuiButtonBase-root {
                             padding: 8px;
                         }
+
+                        .settings-toggle {
+                            position: absolute;
+                            top: 35px;
+                            right: 0;
+                            width: 90px;
+                            background-color: #ffffff;
+                            box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+                            -webkit-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+                            -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+                            span {
+                                display: block;
+                                cursor: pointer;
+                                padding: 5px 10px;
+                                font-size: 14px;
+                                line-height: 18px;
+                                color: #6318c3;
+                                background-color: #ffffff;
+                                border-bottom: 1px solid #cacaca;
+
+                                .MuiSvgIcon-root {
+                                    font-size: 1rem;
+                                    vertical-align: top;
+                                    margin-top: 2px;
+                                }
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+
+                                &:hover {
+                                    background-color: #6318c3;
+                                    color: #ffffff;
+                                }
+                            }
+                        }
                     }
-                    
-                    .member-details{
+
+                    .member-details {
                         padding-top: 15px;
                         text-align: center;
-                        ul{
+
+                        ul {
                             padding: 0;
                             margin: 0;
                             display: block;
-                            li{
+
+                            li {
                                 display: block;
                                 list-style: none;
+
                                 b {
                                     font-size: 14px;
                                     line-height: 20px;
                                     color: #202020;
                                 }
+
                                 span {
                                     font-size: 14px;
                                     line-height: 20px;
                                     color: #a5a5a5;
                                 }
+
                                 p {
                                     font-size: 14px;
                                     line-height: 20px;
                                     font-weight: 500;
                                     color: #6418c3;
                                 }
-                            } 
-                        } 
-                    } 
-                    .member-contact{
+                            }
+                        }
+                    }
+
+                    .member-contact {
                         float: left;
-                        ul{
+
+                        ul {
                             margin: 0;
                             padding: 0;
                             display: block;
-                            li{
+
+                            li {
                                 display: block;
                                 list-style: none;
                                 padding-bottom: 10px;
+
                                 a {
                                     font-size: 14px;
                                     line-height: 20px;
@@ -169,6 +267,7 @@
                                     color: $text-color;
                                     text-decoration: none;
                                 }
+
                                 .icon-btn {
                                     min-width: 0;
                                     padding: 5px;
@@ -176,7 +275,7 @@
                                     border-radius: 8px;
                                     color: $buttons-bg;
                                     background: #f6edfe;
-    
+
                                     .phone-icon {
                                         font-size: 16px;
                                     }
@@ -184,19 +283,21 @@
                             }
                         }
                     }
-                    .requisition{
+
+                    .requisition {
                         display: block;
                         text-align: center;
                         position: absolute;
                         top: 10px;
                         left: 5px;
-                       
+
                     }
+
                     &:hover {
                         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
                         -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
                         -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
-    
+
                         .member-contact {
                             ul {
                                 li {
@@ -209,6 +310,7 @@
                         }
                     }
                 }
+
                 .active {
                     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
                     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
@@ -228,7 +330,8 @@
             }
         }
     }
-    .general-contect{
+
+    .general-contect {
         width: 100%;
         padding: 30px 20px;
         border-radius: 15px;
@@ -236,60 +339,214 @@
         box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -webkit-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
         -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.30);
-        .contact-left{
-            .user-list{
+
+        .heading {
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-bottom: 2px solid #fbfbfb;
+
+            .head-icon {
+                padding: 8px;
+                margin-right: 15px;
+                vertical-align: top;
+            }
+
+            h5 {
+                display: inline-block;
+                margin-bottom: 0;
+                line-height: 40px;
+                vertical-align: -webkit-baseline-middle;
+            }
+
+            .head-menu-icon {
+                padding: 8px;
+                float: right;
+                color: #8f8f8f;
+            }
+        }
+
+        .general-information {
+            padding: 10px 0px;
+
+            .user-content {
+                .add-contcat-heading {
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: 500;
+                    margin-bottom: 15px;
+                    margin-top: 20px;
+                }
+
+                .requester {
+                    padding-right: 20px;
+                    margin-right: 0;
+                    width: 50%;
+
+                    label {
+                        font-size: 14px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        line-height: 18px;
+                        color: #cacaca;
+                    }
+
+                    input {
+                        border: none;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #90898a;
+                        padding: 8px 15px;
+                        border-radius: 8px;
+                        background-color: #f5f5f5;
+                        border: 1px solid #f5f5f5;
+                        width: 100%;
+
+                        &:focus {
+                            background: #ffffff;
+                            border: 1px solid #6418c3;
+                        }
+                    }
+
+
+                }
+
+
+            }
+
+            .profile {
+                margin-right: 0;
+                margin-top: 55px;
+
+                label {
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    line-height: 18px;
+                    color: #cacaca;
+                }
+
+                .user-profile {
+                    .image {
+                        width: 100%;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+                    .user-profile-uplod {
+                        position: relative;
+                        border: 1px solid #6318c3;
+                        width: 100%;
+                        color: #6318c3;
+                        background: transparent;
+                        cursor: pointer;
+                        margin-top: 15px;
+                        border-radius: 8px;
+
+                        span {
+                            font-size: 14px;
+                        }
+
+                        input {
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            opacity: 0;
+                            cursor: pointer;
+                        }
+
+                        .camera-icon {
+                            margin-right: 20px;
+                            color: #6318c3;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+            }
+
+            .add-buyres-btn {
+                background: #6418c3;
+                margin-top: 25px;
+                color: #ffffff;
+                min-width: 0;
+                padding: 6px 20px;
+                border-radius: 8px;
+
+                .save-icon {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .contact-left {
+            .user-list {
                 height: 700px;
                 padding-top: 30px;
-                ul{
+
+                ul {
                     padding: 0;
                     margin: 0;
                     display: block;
-                    li{
+
+                    li {
                         display: block;
                         list-style: none;
                         margin-bottom: 20px;
-                        .members-box{
+
+                        .members-box {
                             width: 200px;
                             padding: 20px 15px 15px 15px;
                             position: relative;
-                            .user-img{
+
+                            .user-img {
                                 display: block;
-                                .image{
+
+                                .image {
                                     display: inline-block;
                                 }
-                               
+
                             }
-                            
+
                             .menu-icon {
                                 position: absolute;
                                 right: 5px;
                                 top: 5px;
+
                                 .MuiButtonBase-root {
                                     padding: 8px;
                                 }
                             }
-                            
-                            .member-details{
+
+                            .member-details {
                                 padding-top: 15px;
                                 position: relative;
-                                ul{
+
+                                ul {
                                     padding: 0;
                                     margin: 0;
                                     display: block;
-                                    li{
+
+                                    li {
                                         display: block;
                                         list-style: none;
                                         margin-bottom: 0;
+
                                         b {
                                             font-size: 14px;
                                             line-height: 20px;
                                             color: #202020;
                                         }
+
                                         span {
                                             font-size: 14px;
                                             line-height: 20px;
                                             color: #a5a5a5;
                                         }
+
                                         p {
                                             font-size: 14px;
                                             line-height: 20px;
@@ -297,8 +554,9 @@
                                             color: #6418c3;
                                         }
                                     }
-                                } 
-                                .member-position{
+                                }
+
+                                .member-position {
                                     background-color: #5ed1a7;
                                     width: 30px;
                                     height: 30px;
@@ -311,13 +569,14 @@
                                     position: absolute;
                                     top: 50px;
                                     right: 0;
-                                } 
-                            } 
+                                }
+                            }
+
                             &:hover {
                                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
                                 -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
                                 -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
-            
+
                                 .member-contact {
                                     ul {
                                         li {
@@ -329,240 +588,146 @@
                                     }
                                 }
                             }
-                           
+
                         }
                     }
                 }
             }
         }
-        .contact-right{
-            .user-information{
+
+        .general-information {
+            .user-information {
                 padding: 10px 20px 20px;
-                .heading{
-                    margin-left: -20px;
-                    margin-right: -20px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    border-bottom: 2px solid #fbfbfb;
-                    .head-icon{
-                        padding: 8px;
-                        margin-right: 15px;
-                        vertical-align: top;
-                    }
-                    h5{
-                        display: inline-block;
-                        margin-bottom: 0;
-                        vertical-align: -webkit-baseline-middle;
-                    }
-                    .head-menu-icon{
-                        padding: 8px;
-                        float: right;
-                        color: #8f8f8f;
-                    }
-                }
-                .general-information{
-                    .user-content{
-                        .add-contcat-heading{
-                            font-size: 16px;
-                            line-height: 20px;
-                            font-weight: 500;
-                            margin-bottom: 15px;
-                            margin-top: 20px;
-                        }
-                        .requester{
-                            margin-right: 20px;
-                            label{
-                                font-size: 14px;
-                                font-weight: 500;
-                                text-transform: uppercase;
-                                line-height: 18px;
-                                color: #cacaca;
-                            }
-                            input {
-                                border: none;
-                                font-size: 14px;
-                                font-weight: 500;
-                                color: #90898a;
-                                padding: 8px 15px;
-                                border-radius: 8px;
-                                background-color: #f5f5f5;
-                            }
-                            .control-form{
-                                background: transparent;
-                                border: 1px solid #6418c3;
+
+
+
+
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .contact-content {
+        .general-contect {
+            .general-information {
+                .user-information {
+                    .general-information {
+                        .user-content {
+                            .add-buyres-btn {
+                                display: block;
                             }
                         }
-                        .add-bBuyres-btn {
-                            background: #6418c3;
-                            margin-top: 25px;
-                            color: #ffffff;
-                            min-width: 0;
-                            padding: 6px 20px;
-                            border-radius: 8px;
-                            .save-icon{
-                                margin-right: 10px;
-                            }
-                        }
-                    }
-                    .profile{
-                        margin-right: 0;
-                        margin-top: 55px;
-                        label{
-                            font-size: 14px;
-                            font-weight: 500;
-                            text-transform: uppercase;
-                            line-height: 18px;
-                            color: #cacaca;
-                        }
-                        .user-profile{
-                            .image{
-                                width: 100%;
-                                img{
-                                    width: 100%;
-                                }
-                            }
-                            .user-profile-uplod{
-                                position: relative;
-                                border: 1px solid #6318c3;
-                                width: 100%;
-                                color: #6318c3;
-                                background: transparent;
-                                cursor: pointer;
-                                margin-top: 15px;
-                                border-radius: 8px;
-                                span{
-                                    font-size: 14px;
-                                }
-                                input{
-                                    width: 100%;
-                                    position: absolute;
-                                    top: 0;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                }
-                                .camera-icon{
-                                    margin-right: 20px;
-                                    color: #6318c3;
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                       
                     }
                 }
             }
         }
     }
-   
-  
+
 }
-@media only screen and (max-width: 1024px){
-    .contact-content{
-        .general-contect{
-            .contact-right{
-                .user-information{
-                    .general-information{
-                        .user-content {
-                            .add-bBuyres-btn {
-                               display: block;
-                            }
-                        }
-                    } 
-                } 
-            }
-        } 
-    }
-   
-}
-@media only screen and (max-width: 1200px){
-    .contact-content{
-        .user-contact-list{
-            .buyers-head{
-                .head-right{
-                    .search-bar{
+
+@media only screen and (max-width: 1200px) {
+    .contact-content {
+        .user-contact-list {
+            .buyers-head {
+                .head-right {
+                    .search-bar {
                         display: block;
                         margin-right: 0;
-                        .form-group{
-                            .form-control{
+
+                        .form-group {
+                            .form-control {
                                 width: 100%;
                             }
                         }
                     }
-                    .social-buttom{
+
+                    .social-buttom {
                         display: block;
                         float: right;
                         margin-top: 20px;
                     }
-                } 
-            } 
+                }
+            }
         }
-       
-    } 
+
+    }
 }
-@media only screen and (max-width: 540px){
-    .contact-content{
-        .user-contact-list{
-            .buyers-head{
-                .head-right{
-                    .social-buttom{
+
+@media only screen and (max-width: 540px) {
+    .contact-content {
+        .user-contact-list {
+            .buyers-head {
+                .head-right {
+                    .social-buttom {
                         float: left;
-                        ul{
-                            li{
+
+                        ul {
+                            li {
                                 margin-right: 10px;
                             }
                         }
                     }
-                } 
-            } 
+                }
+            }
         }
-        .general-contect{
-            .contact-left{
-                .user-list{
-                    ul{
-                        li{
+
+        .general-contect {
+            .contact-left {
+                .user-list {
+                    ul {
+                        li {
                             .members-box {
-                               width: 100%;
-                            }
-                        } 
-                    } 
-                } 
-            } 
-            .contact-right{
-                .user-information{
-                    .general-information{
-                        .user-content{
-                            .requester{
-                                width: 100%;
-                                input{
-                                    width: 100%;
-                                }
-                            }
-                            .add-bBuyres-btn{
                                 width: 100%;
                             }
                         }
-                        .profile{
-                            .user-profile{
-                                .user-profile-uplod{
-                                    .camera-icon{
+                    }
+                }
+            }
+
+            .general-information {
+                .user-information {
+                    .general-information {
+                        .user-content {
+                            .requester {
+                                width: 100%;
+
+                                input {
+                                    width: 100%;
+                                }
+                            }
+
+                            .add-buyres-btn {
+                                width: 100%;
+                            }
+                        }
+
+                        .profile {
+                            .user-profile {
+                                .user-profile-uplod {
+                                    .camera-icon {
                                         margin-right: 5px;
                                     }
                                 }
                             }
                         }
-                    } 
-                    .heading{
+                    }
+
+                    .heading {
                         padding-left: 15px;
                         padding-right: 15px;
-                        h5{
+
+                        h5 {
                             font-size: 16px;
                         }
-                        .head-icon{
+
+                        .head-icon {
                             margin-right: 8px;
                         }
                     }
-                } 
+                }
             }
-        } 
-    } 
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import moment from 'moment';
 import DateFormat from './DateFormat';
 import RecentEmails from './RecentEmails';
@@ -6,8 +6,6 @@ import MostTagUsed from './MostTagUsed';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, } from "recharts";
 import { Pie, PieChart, ResponsiveContainer, Cell } from 'recharts';
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faSearch, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import { LineChart, Line } from 'recharts';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -68,7 +66,6 @@ class Dashbord extends Component {
           name: "April",
           TotalPaid: 70,
           TotalUnpaid: 100,
-
         },
         {
           name: "May",
@@ -79,55 +76,44 @@ class Dashbord extends Component {
           name: "June",
           TotalPaid: 70,
           TotalUnpaid: 50,
-        },
-
+        }
       ],
       Linedata: [
         {
           name: "",
           pv: 10
-
         },
         {
           name: "Sun",
           pv: 400
-
         },
         {
           name: "Mon",
           pv: 700
-
         },
         {
           name: "Tue",
           pv: 200
-
         },
         {
           name: "Wed",
           pv: 300
-
-
         },
         {
           name: "Thu",
           pv: 500
-
         },
         {
           name: "Fri",
           pv: 800
-
         },
         {
           name: "Sat",
           pv: 300
-
         },
         {
           name: "",
           pv: 10
-
         },
       ],
       lineCharData: {
@@ -168,7 +154,7 @@ class Dashbord extends Component {
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew 1",
           shortNameColor: '#c5bef4',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
@@ -189,21 +175,21 @@ class Dashbord extends Component {
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew Crew",
+          invoiceName: "Fullspeedo Crew 2",
           shortNameColor: '#99e060',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew 3",
           shortNameColor: '#c5bef4',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
         },
         {
           invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew.",
+          invoiceName: "Fullspeedo Crew 4",
           shortNameColor: '#efbbf0',
           invoicePrice: "1,500.00",
           invoiceLable: "6h ago"
@@ -345,7 +331,6 @@ class Dashbord extends Component {
               <IconButton className="d-inline-block mail-icon disabled">
                 <EmailIcon />
               </IconButton>
-
             </div>
           </div>
         )
@@ -390,26 +375,24 @@ class Dashbord extends Component {
       for (let i = 0; i < pinnedEmailsData.length; i++) {
         let pin = pinnedEmailsData[i];
         pinData.push(
-          <ul key={pin.title}>
-            <li>
-              <div className="user-id">
-                <img src={pin.img} alt="" />
-              </div>
-              <div className="user-content">
-                <div className="row">
-                  <div className="col-10">
-                    <span>{pin.title}</span>
-                    <p>{pin.des}</p>
-                  </div>
-                  <div className="col-2">
-                    <IconButton className="contect-btn">
-                      <ColorizeIcon className="social-icon" />
-                    </IconButton>
-                  </div>
+          <li key={pin.title}>
+            <div className="user-id">
+              <img src={pin.img} alt="" />
+            </div>
+            <div className="user-content">
+              <div className="row">
+                <div className="col-10">
+                  <span>{pin.title}</span>
+                  <p>{pin.des}</p>
+                </div>
+                <div className="col-2">
+                  <IconButton className="contect-btn">
+                    <ColorizeIcon className="social-icon" />
+                  </IconButton>
                 </div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </li>
         );
       }
     }
@@ -447,7 +430,7 @@ class Dashbord extends Component {
               </div>
               <div className="col-lg-8">
                 <div className="row justify-content-center align-items-center">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-2">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
                     <div className="search-bar">
                       <div className="form-group">
                         <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" />
@@ -455,7 +438,7 @@ class Dashbord extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-2">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
                     <div className="calender">
                       <DateFormat className="d-block" />
                     </div>
@@ -466,7 +449,7 @@ class Dashbord extends Component {
           </div>
           <div className="progress-rfp-boxs">
             <div className="row">
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2">
                 <div className="progress-box">
                   <div className="progress-img">
                     <img src={rfpImg} alt="" />
@@ -477,7 +460,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2 pl-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
                 <div className="progress-box">
                   <div className="progress-img">
                     <img src={rfpImg} alt="" />
@@ -488,7 +471,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-2 pl-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
                 <div className="progress-box">
                   <div className="progress-img">
                     <div className="mail-icon"><i className="fa fa-envelope"></i></div>
@@ -500,7 +483,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-lg-2">
                 <div className="progress-box">
                   <div className="progress-img order">
                     <div className="in-progress"></div>
@@ -522,7 +505,7 @@ class Dashbord extends Component {
           </div>
           <div className="average-section">
             <div className="row">
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-2">
+              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-lg-2">
                 <div className="average-left">
                   <div className="average-form">
                     <div className="row justify-content-center align-items-center">
@@ -547,7 +530,7 @@ class Dashbord extends Component {
                   </div>
                   <div className="requisition-section">
                     <div className="row">
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-2">
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
                         <div className="Requisition-box">
                           <div className="Requisition-content">
                             <span className="d-block">Pendding Requisition</span>
@@ -555,7 +538,7 @@ class Dashbord extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-2">
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
                         <div className="Requisition-box">
                           <div className="Requisition-content">
                             <span className="d-block">Invoices</span>
@@ -566,7 +549,7 @@ class Dashbord extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-2">
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
                         <div className="Requisition-box">
                           <div className="Requisition-content">
                             <span>Total PO&#39;s</span>
@@ -574,7 +557,7 @@ class Dashbord extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-2">
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
                         <div className="Requisition-box">
                           <div className="Requisition-content">
                             <span>Pendding PO&#39;s</span>
@@ -592,7 +575,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-2">
+              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
                 <div className="average-right">
                   <div className="statistics-graph">
                     <div className="requistions-heading">
@@ -671,7 +654,7 @@ class Dashbord extends Component {
           </div>
           <div className="latest-invoices-secton">
             <div className="row">
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-2">
+              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
                 <div className="production-progress-left">
                   <div className="row justify-content-center align-items-center pb-5">
                     <div className="col-xl-5 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -709,7 +692,7 @@ class Dashbord extends Component {
                 </div>
               </div>
               {/* <LatestPayment /> */}
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-2">
+              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
                 <div className="production-progress-right">
                   <div className="heading">
                     Latest Invoice Payment
@@ -730,7 +713,7 @@ class Dashbord extends Component {
           </div>
           <div className="cenversation-sectin">
             <div className="row">
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-2">
+              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
                 <div className="cenversation-left">
                   <div className="image"><img src={EmailBackground} alt="" /></div>
                   <div className="cenversation-content">
@@ -746,7 +729,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-2">
+              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
                 <div className="cenversation-right">
                   <div className="pagemaker-heading">
                     <h5>Conversation Statistics</h5>
@@ -758,7 +741,7 @@ class Dashbord extends Component {
                     <span>software like Aldus PageMaker including versions.</span>
                     <div className="graph-chart">
                       <SimpleBar className="invoice">
-                        <LineChart width={475} height={225} data={Linedata}  >
+                        <LineChart width={480} height={225} data={Linedata}>
                           <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={6} />
                           <XAxis dataKey="name" />
                         </LineChart>
@@ -771,7 +754,7 @@ class Dashbord extends Component {
           </div>
           <div className="contact-section">
             <div className="row">
-              <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 pr-2">
+              <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 pr-lg-2">
                 <div className="contact-left">
                   <div className="row justify-content-center align-items-center">
                     <div className="col-9">
@@ -794,22 +777,22 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12 pl-2">
+              <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12 pl-lg-2">
                 <RecentEmails />
               </div>
             </div>
           </div>
           <div className="progress-categories-section">
             <div className="row">
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
                 <MostTagUsed />
               </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-2 pl-2">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2 pl-lg-2">
                 <div className="email-categories">
                   <h4>Email Categories</h4>
                   <span>Lorem ipsum dolor sit amet</span>
                   <div className="chart-content">
-                    <ResponsiveContainer height={200} width="100%">
+                    <ResponsiveContainer height={200} width={200}>
                       <PieChart height={200} width={200}>
                         <Pie
                           data={PieChartEmailData}
@@ -835,7 +818,7 @@ class Dashbord extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-2">
+              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
                 <div className="pinned-emails">
                   <div className="heading">
                     <h5>Pinned Emails</h5>
@@ -858,7 +841,9 @@ class Dashbord extends Component {
                   </div>
                   <div className="publish-content">
                     <SimpleBar style={{ maxHeight: '225px' }}>
-                      {this.displayPinedEmail()}
+                      <ul>
+                        {this.displayPinedEmail()}
+                      </ul>
                     </SimpleBar>
                   </div>
                 </div>

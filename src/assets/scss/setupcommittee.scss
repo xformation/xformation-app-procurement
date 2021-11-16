@@ -1,4 +1,3 @@
-
 .setup-committee-section {
     width: 100%;
     padding: 30px 20px;
@@ -29,71 +28,14 @@
                 li {
                     display: block;
                     list-style: none;
-                    padding-bottom: 30px;
+                    padding-bottom: 1rem;
 
-                    label {
-                        width: 200px;
-                        font-size: 14px;
-                        font-weight: 500;
-                        line-height: 20px;
-                        color: #393939;
-                        margin: 0 10px 0 0;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                        vertical-align: middle;
-                    }
-                    .text-danger{
-                        padding-left: 210px;
-                    }
-                    .select-Committee {
-                        width: 200px;
-                        color: #90898a;
-                        border-radius: 8px;
-                        background-color: #f5f5f5;
-
-                        .MuiNativeSelect-select {
-                            padding: 8px 10px;
-
-                            &:focus {
-                                border-radius: 8px;
-                            }
-                        }
-
-                        .MuiInputBase-root {
-                            &::before {
-                                display: none;
-                            }
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        .MuiSvgIcon-root {
-                            color: #ffffff;
-                            border-radius: 50%;
-                            margin-right: 10px;
-                            background: $buttons-bg;
-                        }
-                    }
-
-                    .new-item-btn {
-                        color: $button-text-color;
-                        border-radius: 8px;
-                        text-transform: none;
-                        background: $buttons-bg;
-                        margin-bottom: 0px;
-
-                        .plus-icon {
-                            margin-right: 10px;
-                        }
-                    }
                 }
             }
         }
 
         .select-members {
+            padding-top: 40px;
             .heading {
                 border-bottom: 2px solid #f7f7f7;
                 margin-left: -20px;
@@ -123,10 +65,6 @@
                         position: absolute;
                         right: 5px;
                         top: 5px;
-
-                        .MuiButtonBase-root {
-                            padding: 8px;
-                        }
                     }
 
                     .member-details {
@@ -240,19 +178,8 @@
                     display: block;
                     margin: 0 auto;
                     padding-top: 30px;
+                    margin-bottom: 15px;
 
-                    .new-item-btn {
-                        color: $button-text-color;
-                        border-radius: 8px;
-                        text-transform: none;
-                        background: $buttons-bg;
-                        margin-bottom: 15px;
-
-                        i{
-                            margin-right: 10px;
-                            font-size: 18px;
-                        }
-                    }
                 }
             }
         }
@@ -295,7 +222,8 @@
         }
     }
 }
-@media only screen and (max-width: 767px){
+
+@media only screen and (max-width: 767px) {
     .setup-committee-section {
         .setup-committee-content {
             .select-members {
@@ -325,16 +253,17 @@
                             }
                         }
                     }
-                    .committee-btn{
+
+                    .committee-btn {
                         padding-top: 20px;
                     }
                 }
             }
         }
     }
-} 
+}
 
-@media only screen and (max-width: 540px){
+@media only screen and (max-width: 540px) {
     .setup-committee-section {
         .setup-committee-content {
             .select-members {
@@ -357,9 +286,10 @@
                         .member-contact {
                             ul {
                                 li {
-                                    .icon-btn{
+                                    .icon-btn {
                                         margin-right: 5px;
                                     }
+
                                     a {
                                         font-size: 14px;
                                     }
@@ -367,20 +297,23 @@
                             }
                         }
                     }
-                    .committee-btn{
+
+                    .committee-btn {
                         padding-top: 20px;
                     }
                 }
-                .heading{
-                    h5{
+
+                .heading {
+                    h5 {
                         font-size: 18px;
                     }
                 }
             }
-            .add-members{
-                ul{
-                    li{
-                        label{
+
+            .add-members {
+                ul {
+                    li {
+                        label {
                             padding-bottom: 15px;
                         }
                     }

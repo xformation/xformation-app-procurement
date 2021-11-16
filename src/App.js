@@ -1,17 +1,15 @@
 import React, { Component, Suspense } from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-import DefaultLayout from './Layout/DefaultLayout';
-import LoginLayout from './Layout/LoginLayout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { LoginLayout, DefaultLayout } from './Layout';
+import Loading from './_components/Loading';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            Loading: false
-        }
     }
     render() {
-        const { Loading } = this.state;
         return (
             <BrowserRouter>
                 <Suspense fallback={Loading}>
@@ -20,12 +18,14 @@ class App extends Component {
                         path="/"
                         render={() => {
                             return (
-                                <Redirect to="/PostLogin/dashboard" />
+                                <Redirect to="/prelogin/login" />
                             )
                         }}
                     />
-                    <Route path="/prelogin" component={LoginLayout} />
-                    <Route path="/PostLogin" component={DefaultLayout} />
+                    <Route path="/prelogin/login" component={LoginLayout} />
+                    <Route path="/postlogin" component={DefaultLayout} />
+                  
+                    <ToastContainer enableMultiContainer containerId={'TOP_RIGHT'} position={toast.POSITION.TOP_RIGHT} />
                 </Suspense>
             </BrowserRouter>
         );

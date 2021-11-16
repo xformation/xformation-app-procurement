@@ -191,7 +191,6 @@ class GeneratePo extends Component {
                 conditionText: requiData.conditionText
 
             }
-            console.log(sendReqData);
         }
     }
 
@@ -240,8 +239,6 @@ class GeneratePo extends Component {
         const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
-
-
                 <div className="generate-content">
                     {GenerateButton === true ?
                         <>
@@ -350,44 +347,46 @@ class GeneratePo extends Component {
                                     <div className="viocom-heading">
                                         <h5>P.O Parameters  </h5>
                                     </div>
-                                    <div className="parameters-content">
-                                        <ul>
-                                            <li>
-                                                <div className="form-group">
-                                                    <label>Start Date</label>
-                                                    <DatePicker placeholder="10/28/2021" />
-                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-group">
-                                                    <label>Dellvery Date</label>
-                                                    <DatePicker placeholder="10/28/2021" />
-                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-group">
-                                                    <label>Payment Terms</label>
-                                                    <TextareaAutosize name="payment" className="payment-text" value={requiData.payment}
-                                                    onChange={this.handleStateChange} isvalid={errorData.payment.isValid} placeholder="Payment of total contract sum will be made to you after delivery" />
-                                                     <span className="text-danger">{errorData.payment.message}</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-group">
-                                                    <label>Other terms and Condition</label>
-                                                    <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
-                                                    onChange={this.handleStateChange} isvalid={errorData.conditionText.isValid} placeholder="" />
-                                                     <span className="text-danger">{errorData.conditionText.message}</span>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Start Date</label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                            <DatePicker placeholder="10/28/2021" />
+                                            <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Dellvery Date</label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                            <DatePicker placeholder="10/28/2021" />
+                                            <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Payment Terms</label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                            <TextareaAutosize name="payment" className="payment-text" value={requiData.payment}
+                                                onChange={this.handleStateChange} isvalid={errorData.payment.isValid} placeholder="Payment of total contract sum will be made to you after delivery" />
+                                            <span className="d-block w-100 text-danger">{errorData.payment.message}</span>
+                                        </div>
+                                    </div>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Other terms and Condition</label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                            <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
+                                                onChange={this.handleStateChange} isvalid={errorData.conditionText.isValid} placeholder="" />
+                                            <span className="d-block w-100 text-danger">{errorData.conditionText.message}</span>
+                                        </div>
+                                    </div>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
+                                            <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
+                                                Generate
+                                            </Button>
+                                        </div>
                                     </div>
                                     <div className="select-vendor-button">
-                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
-                                            Generate
-                                        </Button>
+
                                     </div>
                                 </div>
                             </div>
@@ -400,33 +399,48 @@ class GeneratePo extends Component {
                                 </div>
                                 <div className="requisitions-filter">
                                     <div className="form">
-                                        <div className="form-group">
-                                            <label>Filter By Status</label>
-                                            <FormControl className="select-department">
-                                                <NativeSelect name="status" value={requiData.status} onChange={this.handleStateChange}
-                                                isValid={errorData.status.isValid} >
-                                                    <option value="">-Select-</option>
-                                                    <option value={10}>abc</option>
-                                                    <option value={20}>def</option>
-                                                    <option value={30}>abc</option>
-                                                </NativeSelect>
-                                            </FormControl>
-                                            <span className="text-danger">{ errorData.status.message }</span>
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Filter By Status</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                                <FormControl className="select-menu">
+                                                    <NativeSelect name="status" value={requiData.status} onChange={this.handleStateChange}
+                                                        isValid={errorData.status.isValid} >
+                                                        <option value="">-Select-</option>
+                                                        <option value={10}>abc</option>
+                                                        <option value={20}>def</option>
+                                                        <option value={30}>abc</option>
+                                                    </NativeSelect>
+                                                </FormControl>
+                                                <span className="d-block w-100 text-danger">{errorData.status.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
-                                        <label>Date Range</label>
-                                        <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
-                                        <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Date Range</label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                            <div className="d-flex align-items-center">
+                                                <div className="d-flex align-items-center date-picker">
+                                                    <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
+                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="requisitions-button">
-                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
-                                            Search
-                                        </Button>
+                                    <div className="form-group row col-form-group">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
+                                            <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
+                                                Search
+                                            </Button>
+                                            <Button variant="contained" className="default-btn ml-2">
+                                                Clear
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <Table valueFromData={this.state.vendoreTableData} perPageLimit={6} visiblecheckboxStatus={false}
+                            isLoading={false}
                                 tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
 
                         </>

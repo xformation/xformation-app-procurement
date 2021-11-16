@@ -85,7 +85,7 @@ class Kanban extends Component {
                     progressPer: 75,
                     type: 'Important',
                     color: '38e25c',
-                }
+                },
             ],
             onProgressCount: 0,
             completedCount: 0,
@@ -107,8 +107,6 @@ class Kanban extends Component {
             onProgressCount
         })
     }
-
-    
 
     displayQuatation = () => {
         const { quatationList } = this.state;
@@ -199,7 +197,7 @@ class Kanban extends Component {
                             <div className="heading d-block">
                                 To&#8722;Do List &#40;24&#41;
                                      <div className="count-btn">
-                                    <Button variant="contained" className="plus-btn active"><AddIcon /></Button>
+                                    <Button variant="contained" className="plus-btn"><AddIcon /></Button>
                                 </div>
                             </div>
                         </div>

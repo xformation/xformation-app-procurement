@@ -127,7 +127,7 @@ class Calender extends Component {
                                     </div>
                                     <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div className="calender-btn">
-                                            <FormControl className="select-department">
+                                            <FormControl className="select-menu">
                                                 <NativeSelect name="status">
                                                     <option value="">October</option>
                                                     <option value={10}>abc</option>
@@ -135,7 +135,7 @@ class Calender extends Component {
                                                     <option value={30}>abc</option>
                                                 </NativeSelect>
                                             </FormControl>
-                                            <FormControl className="select-department">
+                                            <FormControl className="select-menu">
                                                 <NativeSelect name="status">
                                                     <option value="">2020</option>
                                                     <option value={10}>abc</option>
@@ -143,7 +143,7 @@ class Calender extends Component {
                                                     <option value={30}>abc</option>
                                                 </NativeSelect>
                                             </FormControl>
-                                            <Button variant="contained" className="new-item-btn"> &#43; New Schedule</Button>
+                                            <Button variant="contained" className="primary-btn"> &#43; New Schedule</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@ class Calender extends Component {
                                     <h5>Invoice Details</h5>
                                     <span>Thursday October 10th, 2020</span>
                                 </div>
-                                <SimpleBar style={{height: 598}}>
+                                <SimpleBar style={{ height: 598 }}>
                                     <div className="invoices-details">
                                         {this.displayInvoiceDetails()}
                                         {/* <ul>

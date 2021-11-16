@@ -291,11 +291,11 @@ class Invoices extends Component {
                                     <div className="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12">
                                         <div className="head-right-content">
                                             <Button variant="contained" className="invoice-btn">
-                                                < DoneAllIcon className="mr-2" />
+                                                <DoneAllIcon className="mr-2" />
                                                 Invoice Sent
                                             </Button>
-                                            <Button variant="contained" className="download-btn">
-                                                < SaveAltIcon className="mr-2" />
+                                            <Button variant="contained" className="primary-btn download-btn">
+                                                <SaveAltIcon className="mr-2" />
                                                 Download
                                             </Button>
                                             <IconButton className="printer-icon p-2">
@@ -424,6 +424,7 @@ class Invoices extends Component {
                             </div>
                             <div className="invoices-tabale">
                                 <Table valueFromData={this.state.approvedVendoreTableData} perPageLimit={6} visiblecheckboxStatus={true}
+                                    isLoading={false}
                                     tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
                             </div>
                         </div>

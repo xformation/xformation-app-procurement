@@ -6,7 +6,6 @@ import 'simplebar/dist/simplebar.min.css';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { DatePicker } from '@y0c/react-datepicker';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -61,7 +60,6 @@ class VendorEnroll extends Component {
                 companyCategory: requiData.companyCategory,
                 captcha: requiData.captcha
             }
-            console.log(sendReqData);
         }
     }
 
@@ -89,7 +87,7 @@ class VendorEnroll extends Component {
             state: validObj,
             business: validObj,
             postalCode: validObj,
-            legalStatus:validObj,
+            legalStatus: validObj,
             panNo: validObj,
             companyCategory: validObj,
             captcha: validObj,
@@ -261,203 +259,203 @@ class VendorEnroll extends Component {
                         <h4 className="d-block">Online Enrollment of Vendor</h4>
                         <span className="d-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
                     </div>
-                    <div className="vendor-enrollment">
-                        <div className="form-row">
-                            <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div className="user-detail">
-                                    <span className="d-block add-contcat-heading">Parsonal Details</span>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">First Name</label>
-                                            <input type="text" name="firstName" value={requiData.firstName}
-                                                onChange={this.handleStateChange} isvalid={errorData.firstName.isValid} placeholder="" />
-                                            <span className="text-danger">{errorData.firstName.message}</span>
-                                        </div>
+                    <div className="d-inline-block vendor-enrollment">
+                        <div className="d-block add-contcat-heading">Parsonal Details</div>
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">First Name</label>
+                                    <input type="text" name="firstName" value={requiData.firstName}
+                                        onChange={this.handleStateChange} isvalid={errorData.firstName.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.firstName.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Last Name</label>
+                                    <input type="text" name="lastName" value={requiData.lastName}
+                                        onChange={this.handleStateChange} isvalid={errorData.lastName.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.lastName.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Gender</label>
+                                    <FormControl className="requester-select">
+                                        <NativeSelect name="gender" value={requiData.gender}
+                                            onChange={this.handleStateChange} isvalid={errorData.gender.isValid} >
+                                            <option value="">-Select-</option>
+                                            <option value={10}>Male</option>
+                                            <option value={20}>Female</option>
+                                            <option value={30}>Other</option>
+                                        </NativeSelect>
+                                    </FormControl>
+                                    <span className="text-danger">{errorData.gender.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Father's Name</label>
+                                    <input type="text" name="fatherName" value={requiData.fatherName}
+                                        onChange={this.handleStateChange} isvalid={errorData.fatherName.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.fatherName.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">D. O. B</label>
+                                    <DatePicker name="brithDate" value={requiData.brithDate}
+                                        onChange={this.handleStateChange} isvalid={errorData.brithDate.isValid} placeholder="DD/MM/YYYY" />
+                                    <span className="text-danger">{errorData.brithDate.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Phone Number</label>
+                                    <input type="text" name="phoneNo" value={requiData.phoneNo}
+                                        onChange={this.handleStateChange} isvalid={errorData.phoneNo.isValid} placeholder="+91" className="form-control" />
+                                    <span className="text-danger">{errorData.phoneNo.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Designation</label>
+                                    <input type="text" name="designation" value={requiData.designation}
+                                        onChange={this.handleStateChange} isvalid={errorData.designation.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.designation.message}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="d-inline-block vendor-enrollment">
+                        <div className="d-block add-contcat-heading">Company Details</div>
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Company Name</label>
+                                    <input type="text" name="companyName" value={requiData.companyName}
+                                        onChange={this.handleStateChange} isvalid={errorData.companyName.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.companyName.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Registration No</label>
+                                    <input type="text" name="RegistrationNo" value={requiData.RegistrationNo}
+                                        onChange={this.handleStateChange} isvalid={errorData.RegistrationNo.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.RegistrationNo.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Named of the Partner / Director</label>
+                                    <input type="text" name="directorName" value={requiData.directorName}
+                                        onChange={this.handleStateChange} isvalid={errorData.directorName.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.directorName.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Registered Address</label>
+                                    <input type="text" name="address" value={requiData.address}
+                                        onChange={this.handleStateChange} isvalid={errorData.address.isValid} placeholder="Street No: 436/13" className="form-control" />
+                                    <span className="text-danger">{errorData.address.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Bidder Type</label>
+                                    <RadioGroup aria-label="quiz" name="bidder" className="bidder-box" value={requiData.bidder}
+                                        onChange={this.handleStateChange} isvalid={errorData.bidder.isValid}>
+                                        <FormControlLabel value="best" control={<Radio />} label="Indian" />
+                                        <FormControlLabel value="worst" control={<Radio />} label="Foreign" />
+                                    </RadioGroup>
+                                    <span className="text-danger">{errorData.bidder.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">City</label>
+                                    <input type="text" name="City" value={requiData.city}
+                                        onChange={this.handleStateChange} isvalid={errorData.city.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.city.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Establishment Year</label>
+                                    <input type="text" name="Establishment" value={requiData.establishment}
+                                        onChange={this.handleStateChange} isvalid={errorData.establishment.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.establishment.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">State</label>
+                                    <input type="text" name="State" value={requiData.state}
+                                        onChange={this.handleStateChange} isvalid={errorData.state.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.state.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Nature of Business</label>
+                                    <input type="text" name="Business" value={requiData.business}
+                                        onChange={this.handleStateChange} isvalid={errorData.business.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.business.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Postal Code </label>
+                                    <input type="text" name="PostalCode " value={requiData.postalCode}
+                                        onChange={this.handleStateChange} isvalid={errorData.postalCode.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.postalCode.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Legal Status</label>
+                                    <input type="text" name="LegalStatus" value={requiData.legalStatus}
+                                        onChange={this.handleStateChange} isvalid={errorData.legalStatus.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.legalStatus.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">PAN/TAN Number</label>
+                                    <input type="text" name="PanNo" value={requiData.panNo}
+                                        onChange={this.handleStateChange} isvalid={errorData.panNo.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.panNo.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Company Category</label>
+                                    <input type="text" name="CompanyCategory" value={requiData.companyCategory}
+                                        onChange={this.handleStateChange} isvalid={errorData.companyCategory.isValid} placeholder="" className="form-control" />
+                                    <span className="text-danger">{errorData.companyCategory.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <label className="d-block">Enter Captcha</label>
+                                    <div className="d-flex aline-item-center captcha">
+                                        <input type="text" name="Captcha" value={requiData.captcha}
+                                            onChange={this.handleStateChange} isvalid={errorData.captcha.isValid} placeholder="" className="form-control" />
+                                        <div className="captcha-text">8 T 83 TY</div>
+                                        <IconButton className="refresh-btn">
+                                            <LoopIcon />
+                                            <span>Refresh</span>
+                                        </IconButton>
                                     </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">Last Name</label>
-                                            <input type="text" name="lastName" value={requiData.lastName}
-                                                onChange={this.handleStateChange} isvalid={errorData.lastName.isValid} placeholder="" />
-                                            <span className="text-danger">{errorData.lastName.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">Gender</label>
-                                            <FormControl className="requester-select">
-                                                <NativeSelect name="gender" value={requiData.gender}
-                                                    onChange={this.handleStateChange} isvalid={errorData.gender.isValid} >
-                                                    <option value="">-Select-</option>
-                                                    <option value={10}>Male</option>
-                                                    <option value={20}>female</option>
-                                                    <option value={30}>Other</option>
-                                                </NativeSelect>
-                                            </FormControl>
-                                            <span className="text-danger">{errorData.gender.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">Father' s Name</label>
-                                            <input type="text" name="fatherName" className="control-form" value={requiData.fatherName}
-                                                onChange={this.handleStateChange} isvalid={errorData.fatherName.isValid} placeholder="" />
-                                            <span className="text-danger">{errorData.fatherName.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">D. O. B</label>
-                                            <DatePicker name="brithDate" value={requiData.brithDate}
-                                                onChange={this.handleStateChange} isvalid={errorData.brithDate.isValid} placeholder="DD/MM/YYYY" />
-                                            <span className="text-danger">{errorData.brithDate.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">Phone Number</label>
-                                            <input type="text" name="phoneNo" value={requiData.phoneNo}
-                                                onChange={this.handleStateChange} isvalid={errorData.phoneNo.isValid} placeholder="+91" />
-                                            <span className="text-danger">{errorData.phoneNo.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="d-inline-block requester">
-                                        <div className="form-group">
-                                            <label className="d-block">Designation</label>
-                                            <input type="text" name="designation" value={requiData.designation}
-                                                onChange={this.handleStateChange} isvalid={errorData.designation.isValid} placeholder="" />
-                                            <span className="text-danger">{errorData.designation.message}</span>
-                                        </div>
-                                    </div>
-                                    <div className="company-detail">
-                                        <span className="d-block add-contcat-heading">Company Details</span>
-                                        <div className="d-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Company Name</label>
-                                                <input type="text" name="companyName" value={requiData.companyName}
-                                                    onChange={this.handleStateChange} isvalid={errorData.companyName.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.companyName.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Registration No</label>
-                                                <input type="text" name="RegistrationNo" value={requiData.RegistrationNo}
-                                                    onChange={this.handleStateChange} isvalid={errorData.RegistrationNo.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.RegistrationNo.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Named of the Partner / Director</label>
-                                                <input type="text" name="directorName" value={requiData.directorName}
-                                                    onChange={this.handleStateChange} isvalid={errorData.directorName.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.directorName.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label>Registered Address</label>
-                                                <TextareaAutosize name="address" className="address-street" value={requiData.address}
-                                                    onChange={this.handleStateChange} isvalid={errorData.address.isValid} placeholder="Street No: 436/13" />
-                                                <span className="text-danger">{errorData.address.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-block requester">
-                                            <div className="form-group">
-                                                <label>Bidder Type</label>
-                                                <RadioGroup aria-label="quiz" name="bidder" className="bidder-box" value={requiData.bidder}
-                                                    onChange={this.handleStateChange} isvalid={errorData.bidder.isValid}>
-                                                    <FormControlLabel value="best" control={<Radio />} label="Indian" />
-                                                    <FormControlLabel value="worst" control={<Radio />} label="Foreign" />
-                                                </RadioGroup>
-                                                <span className="text-danger">{errorData.bidder.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">City</label>
-                                                <input type="text" name="City" value={requiData.city}
-                                                    onChange={this.handleStateChange} isvalid={errorData.city.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.city.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Establishment Year</label>
-                                                <input type="text" name="Establishment" value={requiData.establishment}
-                                                    onChange={this.handleStateChange} isvalid={errorData.establishment.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.establishment.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">State </label>
-                                                <input type="text" name="State" value={requiData.state}
-                                                    onChange={this.handleStateChange} isvalid={errorData.state.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.state.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Nature of Business</label>
-                                                <input type="text" name="Business" value={requiData.business}
-                                                    onChange={this.handleStateChange} isvalid={errorData.business.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.business.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Postal Code </label>
-                                                <input type="text" name="PostalCode " value={requiData.postalCode}
-                                                    onChange={this.handleStateChange} isvalid={errorData.postalCode.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.postalCode.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Legal Status</label>
-                                                <input type="text" name="LegalStatus" value={requiData.legalStatus}
-                                                    onChange={this.handleStateChange} isvalid={errorData.legalStatus.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.legalStatus.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">PAN/TAN Number</label>
-                                                <input type="text" name="PanNo" value={requiData.panNo}
-                                                    onChange={this.handleStateChange} isvalid={errorData.panNo.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.panNo.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester">
-                                            <div className="form-group">
-                                                <label className="d-block">Company Category</label>
-                                                <input type="text" name="CompanyCategory" value={requiData.companyCategory}
-                                                    onChange={this.handleStateChange} isvalid={errorData.companyCategory.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.companyCategory.message}</span>
-                                            </div>
-                                        </div>
-                                        <div className="d-inline-block requester captcha">
-                                            <div className="form-group">
-                                                <label className="d-block">Enter Captcha</label>
-                                                <input type="text" name="Captcha" value={requiData.captcha}
-                                                    onChange={this.handleStateChange} isvalid={errorData.captcha.isValid} placeholder="" />
-                                                <span className="text-danger">{errorData.captcha.message}</span>
-                                                <h3 className="d-inline-block">8 T 83 TY</h3>
-                                                <div className="submit-content">
-                                                    <IconButton className="search-bar">
-                                                        <LoopIcon />
-                                                    </IconButton>
-                                                    <span>Refresh</span>
-                                                </div>
-                                                <div className="vendor-btn">
-                                                    <Button variant="contained" className=" back-btn" >Back</Button>
-                                                    <Button variant="contained" className="submit-btn" disableElevation onClick={this.handleClickMethod} >Submit</Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <span className="text-danger">{errorData.captcha.message}</span>
+                                </div>
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6">
+                                <div className="form-group">
+                                    <Button variant="contained" className="back-btn" >Back</Button>
+                                    <Button variant="contained" className="submit-btn" disableElevation onClick={this.handleClickMethod} >Submit</Button>
                                 </div>
                             </div>
                         </div>

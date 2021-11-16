@@ -2,6 +2,7 @@ import * as React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import './table.css';
+import Loader from '../_components/commonLoader';
 
 const sortEnum = {
     NONE: 0,
@@ -33,51 +34,57 @@ export class Table extends React.Component {
 
     tableBodyData() {
         const { displayData, perPageLimit, currentPage, columns, visibleCheckbox } = this.state;
+        const { isLoading } = this.props;
+        console.log(isLoading)
         const retData = [];
         const length = displayData.length;
         const cLength = columns.length;
-        if (length > 0) {
-            for (let i = 0; i < length; i++) {
-                if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
-                    const tdJSX = [];
-                    if (visibleCheckbox) {
-                        tdJSX.push(
-                            <td key={`checkbox-${i}`}>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            name="checkedB"
-                                            color="primary"
-                                            className={`checkbox`}
-                                            checked={displayData[i].checkStatus || false}
-                                            onChange={(e) => { this.onChangeParentCheckbox(e, i) }}
-                                        />
-                                    }
-                                />
-                            </td>
-                        );
-                    }
-                    const row = displayData[i];
-                    for (let j = 0; j < cLength; j++) {
-                        const column = columns[j];
-                        if (!column.isRemoved) {
-                            let key = column.key;
-                            if (column.isCaseInsensitive) {
-                                key = key.toLowerCase();
-                            }
-                            if (column.renderCallback) {
-                                const jsx = column.renderCallback(row[key], row);
-                                tdJSX.push(jsx);
-                            } else {
-                                tdJSX.push(<td>{row[key]}</td>);
+        if (!isLoading) {
+            if (length > 0) {
+                for (let i = 0; i < length; i++) {
+                    if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
+                        const tdJSX = [];
+                        if (visibleCheckbox) {
+                            tdJSX.push(
+                                <td key={`checkbox-${i}`}>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                name="checkedB"
+                                                color="primary"
+                                                className={`checkbox`}
+                                                checked={displayData[i].checkStatus || false}
+                                                onChange={(e) => { this.onChangeParentCheckbox(e, i) }}
+                                            />
+                                        }
+                                    />
+                                </td>
+                            );
+                        }
+                        const row = displayData[i];
+                        for (let j = 0; j < cLength; j++) {
+                            const column = columns[j];
+                            if (!column.isRemoved) {
+                                let key = column.key;
+                                if (column.isCaseInsensitive) {
+                                    key = key.toLowerCase();
+                                }
+                                if (column.renderCallback) {
+                                    const jsx = column.renderCallback(row[key], row);
+                                    tdJSX.push(jsx);
+                                } else {
+                                    tdJSX.push(<td>{row[key]}</td>);
+                                }
                             }
                         }
+                        retData.push(<tr className={`${displayData[i].checkStatus ? 'checked-row' : ''}`} key={i}>{tdJSX}</tr>);
                     }
-                    retData.push(<tr className={`${displayData[i].checkStatus ? 'checked-row' : ''}`} key={i}>{tdJSX}</tr>);
                 }
+            } else {
+                retData.push(<tr><td colSpan={cLength} style={{ textAlign: "center" }}>There is no data</td></tr>);
             }
         } else {
-            retData.push(<tr><td colSpan={cLength} style={{ textAlign: "center" }}>There is no data</td></tr>);
+            retData.push(<tr><td colSpan={cLength} style={{ textAlign: "center" }}><Loader /></td></tr>);
         }
         return retData;
     }
@@ -270,7 +277,6 @@ export class Table extends React.Component {
     }
 
     onSearchChange = (e) => {
-        console.log(e.target.value);
         const { value } = e.target;
         this.setState({
             searchKey: value,
@@ -284,7 +290,6 @@ export class Table extends React.Component {
             if (value.trim()) {
                 for (let i = 0; i < data.length; i++) {
                     let row = data[i];
-                    console.log(row);
                     for (let j = 0; j < columns.length; j++) {
                         let colData = columns[j].key;
                         if (row[colData]) {
@@ -331,14 +336,14 @@ export class Table extends React.Component {
         if (sortVal === sortEnum.ASCENDING) {
             data.sort((a, b) => {
                 if (a[sortkey] && b[sortkey]) {
-                    return a[sortkey].localeCompare(b[sortkey]);
+                    return a[sortkey].toString().localeCompare(b[sortkey].toString());
                 }
                 return 0;
             });
         } else if (sortVal === sortEnum.DESCENDING) {
             data.sort((a, b) => {
                 if (a[sortkey] && b[sortkey]) {
-                    return a[sortkey].localeCompare(b[sortkey]);
+                    return a[sortkey].toString().localeCompare(b[sortkey].toString());
                 }
                 return 0;
             }).reverse()
@@ -382,7 +387,7 @@ export class Table extends React.Component {
 
     render() {
         const { displayData, perPageLimit, currentPage, showSelect } = this.state;
-        let { tableClasses, showingLine, dark } = this.props;
+        let { tableClasses, showingLine, dark, isLoading } = this.props;
         let startIndex = perPageLimit * currentPage + 1;
         let endIndex = perPageLimit * (currentPage + 1);
         if (endIndex > displayData.length) {
@@ -402,7 +407,6 @@ export class Table extends React.Component {
                                 {this.tableHeader()}
                             </tr>
                         </thead>
-
                         <tbody>
                             {this.tableBodyData()}
                         </tbody>

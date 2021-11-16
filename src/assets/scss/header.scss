@@ -4,6 +4,10 @@
     right: 0;
     z-index: 9;
     padding: 0 15px;
+    -webkit-transition: all .3s ease-in;
+       -moz-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;
     .header {
         padding: 15px 0;
 
@@ -341,7 +345,7 @@
 }
 
 
-@media (max-width: 767px){
+@media (max-width: 992px){
     .navbar-custom {
         min-height: 40px;
         .header {

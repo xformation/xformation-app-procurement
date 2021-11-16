@@ -273,7 +273,6 @@ class sendRfq extends Component {
                 selectVendor: requiData.selectVendor
 
             }
-            console.log(sendReqData);
         }
     }
 
@@ -388,43 +387,55 @@ class sendRfq extends Component {
                             </div>
                             <div className="requisitions-filter vendors">
                                 <div className="form-row">
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Requisiton No.</label>
-                                            <DatePicker name="requisitonNo" value={requiData.requisitonNo}
-                                                onChange={this.handleStateChange} isvalid={errorData.requisitonNo.isValid} placeholder="02/03/2021" />
-                                            <span className="text-danger">{errorData.requisitonNo.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Requisiton No.</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <div className="d-flex align-items-center">
+                                                    <DatePicker name="requisitonNo" value={requiData.requisitonNo}
+                                                        onChange={this.handleStateChange} isvalid={errorData.requisitonNo.isValid} placeholder="02/03/2021" />
+                                                </div>
+                                                <span className="d-block w-100 text-danger">{errorData.requisitonNo.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Date Created</label>
-                                            <DatePicker name="dateCreated" value={requiData.dateCreated}
-                                                onChange={this.handleStateChange} isvalid={errorData.dateCreated.isValid} placeholder="02/03/2021 10:45:35 PM" />
-                                            <span className="text-danger">{errorData.dateCreated.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Date Created</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <div className="d-flex align-items-center">
+                                                    <DatePicker name="dateCreated" value={requiData.dateCreated}
+                                                        onChange={this.handleStateChange} isvalid={errorData.dateCreated.isValid} placeholder="02/03/2021 10:45:35 PM" />
+                                                </div>
+                                                <span className="d-block w-100 text-danger">{errorData.dateCreated.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Requestor</label>
-                                            <input type="text" name="requestor" value={requiData.requestor} 
-                                                onChange={this.handleStateChange} isvalid={errorData.requestor.isValid} placeholder="Franklin" />
-                                            <span className="text-danger">{errorData.requestor.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Requestor</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <input type="text" name="requestor" value={requiData.requestor}
+                                                    onChange={this.handleStateChange} isvalid={errorData.requestor.isValid} placeholder="Franklin" />
+                                                <span className="d-block w-100 text-danger">{errorData.dateCreated.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Time Span</label>
-                                            <input type="text" name="timeSpan" value={requiData.timeSpan} onChange={this.handleStateChange}
-                                                isvalid={errorData.timeSpan.isValid} placeholder="28 Days Ago" />
-                                            <span className="text-danger">{errorData.timeSpan.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Time Span</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <input type="text" name="timeSpan" value={requiData.timeSpan} onChange={this.handleStateChange}
+                                                    isvalid={errorData.timeSpan.isValid} placeholder="28 Days Ago" />
+                                                <span className="d-block w-100 text-danger">{errorData.timeSpan.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form">
-                                            <div className="form-group">
-                                                <label>Department</label>
-                                                <FormControl className="select-department">
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Department</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <FormControl className="select-menu">
                                                     <NativeSelect name="department" value={requiData.department} onChange={this.handleStateChange}
                                                         isvalid={errorData.department.isValid}  >
                                                         <option value="">IT Infrastructure</option>
@@ -433,32 +444,38 @@ class sendRfq extends Component {
                                                         <option value={30}>abc</option>
                                                     </NativeSelect>
                                                 </FormControl>
-                                                <span className="text-danger">{errorData.department.message}</span>
+                                                <span className="d-block w-100 text-danger">{errorData.department.message}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Status</label>
-                                            <input name="status" value={requiData.status} onChange={this.handleStateChange}
-                                                isvalid={errorData.status.isValid} placeholder="Approved" />
-                                            <span className="text-danger">{errorData.status.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Status</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <input name="status" value={requiData.status} onChange={this.handleStateChange}
+                                                    isvalid={errorData.status.isValid} placeholder="Approved" />
+                                                <span className="d-block w-100 text-danger">{errorData.status.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Heard</label>
-                                            <input name="heard" value={requiData.heard} onChange={this.handleStateChange}
-                                                isvalid={errorData.heard.isValid} placeholder="Director/ PSDS Admin" />
-                                            <span className="text-danger">{errorData.heard.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Heard</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <input name="heard" value={requiData.heard} onChange={this.handleStateChange}
+                                                    isvalid={errorData.heard.isValid} placeholder="Director/ PSDS Admin" />
+                                                <span className="d-block w-100 text-danger">{errorData.heard.message}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label>Last Updated</label>
-                                            <input name="lastUpdate" value={requiData.lastUpdate} onChange={this.handleStateChange}
-                                                isvalid={errorData.lastUpdate.isValid} placeholder="" />
-                                            <span className="text-danger">{errorData.lastUpdate.message}</span>
+                                    <div className="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div className="form-group row col-form-group">
+                                            <label className="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label">Last Updated</label>
+                                            <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8 col-form-field">
+                                                <input name="lastUpdate" value={requiData.lastUpdate} onChange={this.handleStateChange}
+                                                    isvalid={errorData.lastUpdate.isValid} placeholder="" />
+                                                <span className="d-block w-100 text-danger">{errorData.lastUpdate.message}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -492,30 +509,27 @@ class sendRfq extends Component {
                             </div>
                             <div className="approved-vendor">
                                 <h4>Select From Approved vendor</h4>
-                                <div className="form-row">
-                                    <div className="col-10">
-                                        <div className="form">
-                                            <div className="form-group">
-                                                <label>Filter Vendors</label>
-                                                <FormControl className="select-department">
-                                                    <NativeSelect name="selectVendor" value={requiData.selectVendor}
-                                                     onChange={this.handleStateChange} isvalid={errorData.selectVendor.isValid} >
-                                                        <option value="">-Select-</option>
-                                                        <option value={10}>abc</option>
-                                                        <option value={20}>def</option>
-                                                        <option value={30}>abc</option>
-                                                    </NativeSelect>
-                                                </FormControl>
-                                                <span className="text-danger">{errorData.selectVendor.message}</span>
-                                            </div>
-                                        </div>
+                                <div className="form-group row col-form-group">
+                                    <label className="col-sm-12 col-md-4 col-lg-2 col-xl-2 col-form-label">Filter Vendors</label>
+                                    <div className="col-sm-12 col-md-8 col-lg-10 col-xl-10 col-form-field">
+                                        <FormControl className="select-menu">
+                                            <NativeSelect name="selectVendor" value={requiData.selectVendor}
+                                                onChange={this.handleStateChange} isvalid={errorData.selectVendor.isValid} >
+                                                <option value="">-Select-</option>
+                                                <option value={10}>abc</option>
+                                                <option value={20}>def</option>
+                                                <option value={30}>abc</option>
+                                            </NativeSelect>
+                                        </FormControl>
+                                        <span className="d-block w-100 text-danger">{errorData.selectVendor.message}</span>
                                     </div>
                                 </div>
                             </div>
                             <Table valueFromData={this.state.approvedVendoreTableData} perPageLimit={6} visiblecheckboxStatus={true}
+                                isLoading={false}
                                 tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
                             <div className="select-vendor-button">
-                                <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
                                     Send QRF to Selected Vendors
                                 </Button>
                             </div>
@@ -526,10 +540,10 @@ class sendRfq extends Component {
                                 <h4>Send RFQ to Vendors</h4>
                             </div>
                             <div className="requisitions-filter">
-                                <div className="form">
-                                    <div className="form-group">
-                                        <label>Filter By Status</label>
-                                        <FormControl className="select-department">
+                                <div className="form-group row col-form-group">
+                                    <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Filter By Status</label>
+                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <FormControl className="select-menu">
                                             <NativeSelect name="status" value={requiData.status}
                                                 onChange={this.handleStateChange} isvalid={errorData.status.isValid}>
                                                 <option value="">-Select-</option>
@@ -538,22 +552,43 @@ class sendRfq extends Component {
                                                 <option value={30}>abc</option>
                                             </NativeSelect>
                                         </FormControl>
-                                        <span className="text-danger">{errorData.status.message}</span>
+                                        <span className="d-block w-100 text-danger">{errorData.status.message}</span>
                                     </div>
                                 </div>
-                                <div className="form-group">
-                                    <label>Date Range</label>
-                                    <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
-                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                    <div className="requisitions-button">
-                                        <Button variant="contained" className="new-item-btn" disableElevation onClick={this.handleClickMethod}>
+                                <div className="form-group row col-form-group">
+                                    <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Date Range</label>
+                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <div className="d-flex align-items-center">
+                                            <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
+                                            <CalendarTodayTwoToneIcon className="calendar-icon" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form-group row col-form-group">
+                                    <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
+                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
+                                        <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
                                             Search
+                                        </Button>
+                                        <Button variant="contained" className="default-btn ml-2">
+                                            Clear
                                         </Button>
                                     </div>
                                 </div>
                             </div>
-                            <Table valueFromData={this.state.vendoreTableData} perPageLimit={6} visiblecheckboxStatus={false}
-                                tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
+                            <Table
+                                valueFromData={this.state.vendoreTableData}
+                                perPageLimit={6}
+                                visiblecheckboxStatus={false}
+                                isLoading = {false}
+                                tableClasses={{
+                                    table: "ticket-tabel",
+                                    tableParent: "tickets-tabel",
+                                    parentClass: "all-support-ticket-tabel"
+                                }}
+                                searchKey="subject"
+                                showingLine="Showing %start% to %end% of %total% Tickets"
+                            />
                         </>
                     }
                 </div>
