@@ -1,7 +1,658 @@
 {
-  "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
-  "spaces": 2,
-  "generator-cli": {
-    "version": "5.2.1"
+  "openapi": "3.0.0",
+  "info": {
+      "version": "1.0.0",
+      "title": "procurementJSON",
+      "license": {
+          "name": "MIT"
+      }
+  },
+  "servers": [
+      {
+          "url": "localhost:3000",
+          "variables": {
+              "requisitionStatus": {
+                  "default": "DRAFT",
+                  "enum": [
+                      "DRAFT",
+                      "ACTIVE",
+                      "DEACTIVE",
+                      "APPROVED"
+                  ]
+              }
+          }
+      }
+  ],
+  "paths": {
+      "/searchrequisition": {
+          "get": {
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "A list of Requisition.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/searchrequisition"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/requisition/create": {
+          "post": {
+              "summary": "Details about a user",
+              "operationId": "createRequisition",
+              "tags": [
+                  "requisition"
+              ],
+              "requestBody": {
+                  "description": "Request body to create requistion",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/createrequisition"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "Details of the added requisition",
+                      "headers": {
+                          "x-next": {
+                              "description": "A link to the next page of responses",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "description": "data containing the new requisition"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GeneralError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/buyers": {
+          "get": {
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "A list of Buyers.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/buyer"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/addbuyer": {
+          "post": {
+              "summary": "Details about a user",
+              "operationId": "",
+              "tags": [
+                  "addbuyer"
+              ],
+              "requestBody": {
+                  "description": "Add Buyer requistion",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/addbuyer"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "Details of the added buyer",
+                      "headers": {
+                          "x-next": {
+                              "description": "A link to the next page of responses",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "description": "data containing the new buyer list"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GeneralError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/fetchContact": {
+          "get": {
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "A list of Contact.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/contact"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/addcontact": {
+          "post": {
+              "summary": "Details about a contact",
+              "operationId": "",
+              "tags": [
+                  "addcontact"
+              ],
+              "requestBody": {
+                  "description": "Add Contact",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/addcontact"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "Details of the added contact",
+                      "headers": {
+                          "x-next": {
+                              "description": "A link to the next page of responses",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "description": "data containing the new contact list"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GeneralError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/editcontact": {
+          "post": {
+              "summary": "Details about a contact",
+              "operationId": "",
+              "tags": [
+                  "editcontact"
+              ],
+              "requestBody": {
+                  "description": "Edit Contact",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/editcontact"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "Details of the edit contact",
+                      "headers": {
+                          "x-next": {
+                              "description": "A link to the next page of responses",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "description": "data containing the updated contact list"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GeneralError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/geteditcontact/2": {
+          "get": {
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "contact data of selected contact.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "items": {
+                                      "$ref": "#/components/schemas/geteditcontact"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/deletecontact/1": {
+          "delete": {
+              "summary": "Delete contact",
+              "operationId": "",
+              "tags": [
+                  "deletecontact"
+              ],
+              "requestBody": {
+                  "description": "delete Contact",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/deletecontact"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "delete contact successfully",
+                      "headers": {
+                          "x-next": {
+                              "description": "A link to the next page of responses",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "description": "delete contact successfully"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/GeneralError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "components": {
+      "schemas": {
+          "searchrequisition": {
+              "type": "object",
+              "properties": {
+                  "requisitionId": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "createdOn": {
+                      "type": "string"
+                  },
+                  "createdBy": {
+                      "type": "string"
+                  },
+                  "updatedOn": {
+                      "type": "string"
+                  },
+                  "status": {
+                      "type": "string"
+                  },
+                  "progressStage": {
+                      "type": "string"
+                  },
+                  "financialYear": {
+                      "type": "string"
+                  },
+                  "totalPrice": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "type": {
+                      "type": "string"
+                  },
+                  "notes": {
+                      "type": "string"
+                  },
+                  "dueDate": {
+                      "type": "string"
+                  },
+                  "extraBudgetoryFile": {
+                      "type": "object"
+                  },
+                  "documentList": {
+                      "type": "array"
+                  },
+                  "lineItemList": {
+                      "type": "array"
+                  }
+              }
+          },
+          "createrequisition": {
+              "type": "object",
+              "properties": {
+                  "requestor": {
+                      "description": "role of the requester",
+                      "type": "string"
+                  },
+                  "financialYear": {
+                      "description": "Year of the requisition raised",
+                      "type": "string"
+                  },
+                  "departmentId": {
+                      "description": "selected department id",
+                      "type": "integer"
+                  },
+                  "currencyId": {
+                      "description": "selected currency id",
+                      "type": "integer"
+                  },
+                  "purpose": {
+                      "description": "Purpose of the requisition",
+                      "type": "string"
+                  },
+                  "status": {
+                      "description": "Status of the requisition, value should be the requisitionStatus",
+                      "type": "string"
+                  },
+                  "files": {
+                      "description": "list of object containing description and file",
+                      "type": "object"
+                  },
+                  "requisitionLineItems": {
+                      "description": "list of requisition line items data",
+                      "type": "array"
+                  },
+                  "requisitionLineItemFiles": {
+                      "description": "list of excel file containing the data of requisition line items",
+                      "type": "array"
+                  }
+              }
+          },
+          "buyer": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "image": {
+                      "type": "string"
+                  },
+                  "shortName": {
+                      "type": "string"
+                  },
+                  "shortNameColor": {
+                      "type": "string"
+                  },
+                  "position": {
+                      "type": "string"
+                  },
+                  "company": {
+                      "type": "string"
+                  },
+                  "contNo": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "email": {
+                      "type": "string"
+                  }
+              }
+          },
+          "addbuyer": {
+              "type": "object",
+              "properties": {
+                  "requesitionId": {
+                      "description": "Requisition Id",
+                      "type": "integer"
+                  },
+                  "buyerList": {
+                      "description": "List of buyers to add in particular requisition",
+                      "type": "array"
+                  }
+              }
+          },
+          "GeneralError": {
+              "type": "object",
+              "properties": {
+                  "code": {
+                      "type": "integer",
+                      "format": "int32"
+                  },
+                  "message": {
+                      "type": "string"
+                  }
+              }
+          },
+          "contact": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "company": {
+                      "type": "string"
+                  },
+                  "email": {
+                      "type": "string"
+                  },
+                  "position": {
+                      "type": "string"
+                  },
+                  "profile": {
+                      "type": "string"
+                  },
+                  "contNo": {
+                      "type": "integer",
+                      "format": "int64"
+                  }
+              }
+          },
+          "addcontact": {
+              "type": "object",
+              "properties": {
+                  "firstName": {
+                      "description": "contact first name",
+                      "type": "string"
+                  },
+                  "lastName": {
+                      "description": "contact last name",
+                      "type": "string"
+                  },
+                  "title": {
+                      "description": "contact title",
+                      "type": "string"
+                  },
+                  "company": {
+                      "description": "contact email",
+                      "type": "string"
+                  },
+                  "contactNo": {
+                      "description": "contact number",
+                      "type": "integer"
+                  },
+                  "profile": {
+                      "description": "contact profile file",
+                      "type": "object"
+                  }
+              }
+          },
+          "editcontact": {
+              "type": "object",
+              "properties": {
+                  "firstName": {
+                      "description": "contact first name",
+                      "type": "string"
+                  },
+                  "lastName": {
+                      "description": "contact last name",
+                      "type": "string"
+                  },
+                  "title": {
+                      "description": "contact title",
+                      "type": "string"
+                  },
+                  "company": {
+                      "description": "contact email",
+                      "type": "string"
+                  },
+                  "contactNo": {
+                      "description": "contact number",
+                      "type": "integer"
+                  },
+                  "profile": {
+                      "description": "contact profile file",
+                      "type": "object"
+                  },
+                  "id": {
+                      "description": "edit contact id",
+                      "type": "integer"
+                  }
+              }
+          },
+          "geteditcontact": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "company": {
+                      "type": "string"
+                  },
+                  "email": {
+                      "type": "string"
+                  },
+                  "position": {
+                      "type": "string"
+                  },
+                  "profile": {
+                      "type": "string"
+                  },
+                  "contNo": {
+                      "type": "integer",
+                      "format": "int64"
+                  }
+              }
+          },
+          "deletecontact": {
+              "type": "object",
+              "properties": {
+                  "contactId": {
+                      "description": "Contact Id",
+                      "type": "integer"
+                  }
+              }
+          }
+      }
   }
 }
