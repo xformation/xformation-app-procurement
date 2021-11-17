@@ -42,12 +42,12 @@ function getInvoice(id) {
     return fetch(`${config.apiUrl}/getInvoice/${id}`, requestOptions).then(response => response.json());
 }
 
-function searchInvoice() {
+function  searchInvoice () {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchInvoice`, requestOptions).then(response => response.json());
+    return fetch('https://c1027ec9-3590-4b25-96ed-e4c56cd8cfbe.mock.pstmn.io/getinvoices', requestOptions).then(response => response.json());
 }
 
 function updateInvoice() {

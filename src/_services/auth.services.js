@@ -1,5 +1,5 @@
-import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const authServices = {
     login,
@@ -10,5 +10,5 @@ function login(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data), true);
-    return fetch(`${config.apiUrl}/auth/login`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.LOGIN}`, requestOptions).then(response => response.json());
 }

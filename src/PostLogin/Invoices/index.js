@@ -17,6 +17,11 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import CheckIcon from '@material-ui/icons/Check';
+import { connect } from 'react-redux';
+import { invoiceServices } from '../../_services/invoice.services';
+import { invoiceAction } from '../../_actions/invoice.actions';
+import { status } from "../../_constants";
+
 class Invoices extends Component {
     constructor(props) {
         super(props)
@@ -26,48 +31,51 @@ class Invoices extends Component {
                 reqno: "",
                 depart: "",
                 CompletedButton: false,
+                searchValue: '',
+                approvedData: [],
+                duplicateApprovedData: []
 
             },
             approvedVendoreTableData: {
                 columns: [
                     {
                         label: 'ID invoices',
-                        key: 'SNo',
+                        key: 'RequisitionsNo',
                         renderCallback: (value) => {
                             return <td><span className={'s-no'}>{value}</span></td>
                         }
                     },
                     {
                         label: 'Due Date',
-                        key: 'RequisitionsNo',
+                        key: 'RequestDate',
                         renderCallback: (value) => {
-                            return <td><span className={'requisitions-no'}> <div className="graphic"></div>{value}</span></td>
+                            return <td><span className={'RequestDate'}> <div className="graphic"></div>{value}</span></td>
                         }
                     },
                     {
-                        label: 'Client',
-                        key: 'RequestDate',
+                        label: 'Department',
+                        key: 'RequestDepartment',
                         renderCallback: (value) => {
                             return <td><span className={'department-value'}><Button className="mailicon-btn"><MailIcon /></Button>{value}</span></td>
                         }
                     },
                     {
                         label: 'Contact',
-                        key: 'RequestDepartment',
+                        key: 'Requestor',
                         renderCallback: (value) => {
                             return <td><span className={'department-value'}>{value}</span></td>
                         }
                     },
                     {
                         label: 'Amount',
-                        key: 'Requestor',
+                        key: 'RequisitionsTotal',
                         renderCallback: (value) => {
                             return <td><span className={'btn details-btn'}>{value}</span></td>
                         }
                     },
                     {
                         label: 'Status',
-                        key: 'RequisitionsTotal',
+                        key: 'status',
                         renderCallback: (value) => {
                             return <td>
                                 {value === 'Completed' &&
@@ -95,73 +103,7 @@ class Invoices extends Component {
                         }
                     },
                 ],
-                data: [
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Completed',
-                        colorCode: '#000',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Invoices',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Pendding',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Completed',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Pendding',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Invoices Sent',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Pendding',
-                    },
-                    {
-                        SNo: '#INV-0001234',
-                        RequisitionsNo: 'June 1,2020, 08:22 AM',
-                        RequestDepartment: 'Higspeed Studios',
-                        RequestDate: ' higspeed@mail.com ',
-                        Requestor: '$650,036.34',
-                        RequisitionsTotal: 'Invoices',
-                    },
-                ]
+                data: []
             },
             tableData: [
                 {
@@ -191,21 +133,47 @@ class Invoices extends Component {
             ]
         }
     }
-    displayTableData = () => {
-        const { tableData } = this.state;
-        let retData = [];
-        for (let i = 0; i < tableData.length; i++) {
-            let data = tableData[i];
-            retData.push(
-                <tr key={data.id}>
-                    <td>{data.IteamDescription}</td>
-                    <td>{data.Qty}</td>
-                    <td>{data.Rate}</td>
-                    <td className="text-right">{data.Amount}</td>
-                </tr>
-            )
+
+    componentDidMount() {
+        this.props.dispatch(invoiceAction.searchInvoice())
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { approvedVendoreTableData } = this.state;
+        if (prevProps.search_invoice_status !== this.props.search_invoice_status && this.props.search_invoice_status === status.SUCCESS) {
+            if (this.props.searchInvoice && this.props.searchInvoice.length > 0) {
+                approvedVendoreTableData.data = this.props.searchInvoice;
+            }
+            this.setState({
+                approvedVendoreTableData,
+                duplicateApprovedData: this.props.searchInvoice,
+
+            })
         }
-        return retData;
+    }
+
+    onSearchChange = (e) => {
+        // debugger/
+        let { value } = e.target
+        const { duplicateApprovedData, approvedVendoreTableData } = this.state
+        let queryResult = []
+        if (duplicateApprovedData && duplicateApprovedData.length > 0) {
+            if (value.trim()) {
+                for (let i = 0; i < duplicateApprovedData.length; i++) {
+                    let approvedData = duplicateApprovedData[i]
+                    if (approvedData["RequestDepartment"].toLowerCase().indexOf(value) !== -1 ||
+                        approvedData["RequestDepartment"].indexOf(value) !== -1) {
+                        queryResult.push(approvedData)
+                    }
+                }
+                approvedVendoreTableData.data = queryResult;
+            } else {
+                approvedVendoreTableData.data = duplicateApprovedData;
+            }
+        }
+        this.setState({
+            approvedVendoreTableData
+        })
     }
 
     onClickShowCompletedButton = () => {
@@ -223,216 +191,66 @@ class Invoices extends Component {
         this.setState({
             requiData,
         });
-    };
-
-
-
-    validate = (isSubmitted) => {
-        const validObj = {
-            isValid: true,
-            message: ""
-        };
-        let isValid = true;
-        const retData = {
-            status: validObj,
-            reqno: validObj,
-            depart: validObj,
-            isValid
-        };
-        if (isSubmitted) {
-            const { requiData } = this.state;
-            if (!requiData.status) {
-                retData.status = {
-                    isValid: false,
-                    message: "Filter By Status  is required"
-                };
-                isValid = false;
-            }
-            if (!requiData.reqno) {
-                retData.reqno = {
-                    isValid: false,
-                    message: "Requisitions no is required"
-                };
-                isValid = false;
-            }
-            if (!requiData.depart) {
-                retData.depart = {
-                    isValid: false,
-                    message: "Department is required"
-                };
-                isValid = false;
-            }
-
-
-        }
-        retData.isValid = isValid;
-        return retData;
-    };
+    }
 
     render() {
-        const { requiData, isSubmitted, CompletedButton } = this.state;
-        const errorData = this.validate(isSubmitted);
+        const { approvedVendoreTableData } = this.state;
         return (
             <div className="main-content">
-                {CompletedButton === true ?
-                    <>
-                        <div className="groceries-content">
-                            <div className="head-top">
-                                <div className="row justify-content-center align-items-center">
-                                    <div className="col-xl-6 col-lg-5 col-md-12 col-sm-12 col-12">
-                                        <div className="head-left-content">
-                                            <IconButton className="head-icon">
-                                                <KeyboardBackspaceIcon />
-                                            </IconButton>
-                                            <h4>Invoice</h4>
-                                            <p>#INV-00012456</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12">
-                                        <div className="head-right-content">
-                                            <Button variant="contained" className="invoice-btn">
-                                                <DoneAllIcon className="mr-2" />
-                                                Invoice Sent
-                                            </Button>
-                                            <Button variant="contained" className="primary-btn download-btn">
-                                                <SaveAltIcon className="mr-2" />
-                                                Download
-                                            </Button>
-                                            <IconButton className="printer-icon p-2">
-                                                <PrintIcon />
-                                            </IconButton>
-                                            <IconButton className="head-menu-icon p-2">
-                                                <MoreVertIcon />
-                                            </IconButton>
-                                        </div>
-                                    </div>
+                <div className="invoices-content">
+                    <div className="invoices-head-section">
+                        <div className="row">
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div className="heading">
+                                    <h3>Invoices List</h3>
+                                    <span>Lorem ipsum dolor sit amet</span>
                                 </div>
                             </div>
-                            <div className="groceries-department">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div className="address">
-                                            <span>FROM</span>
-                                            <div className="image">
-                                                <img src={Logo} alt="" />
-                                            </div>
-                                            <div className="address-text">
-                                                <h5>SYNECTIKS Inc</h5>
-                                                <p>Madhapur, Hyderabad <b>India</b></p>
-                                                <ul>
-                                                    <li><a href="mailto: akbar.khan@synectiks.com">akbar.khan@synectiks.com</a></li>
-                                                    <li><a href="tel:(+91)88859991552">tel:(+91)88859991552</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div className="address">
-                                            <span>CLIENT</span>
-                                            <div className="image-box">
-                                                <img src={HuntImg} alt="" />
-                                            </div>
-                                            <div className="address-text">
-                                                <h5>Circle Hunt Inc.</h5>
-                                                <p>Franklin Avenue Street New  York,ABC 5562 <b>United State</b></p>
-                                                <ul>
-                                                    <li><a href="mailto: akbar.khan@synectiks.com">akbar.khan@synectiks.com</a></li>
-                                                    <li><a href="tel:(+91)88859991552">tel:(+91)88859991552</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="project-name">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div className="project-left-content">
-                                            <span>PROJECT NAME</span>
-                                            <h5>Groceries for Department 1</h5>
-                                            <label>DUE DATE</label>
-                                            <p>Sturday October 24th, 2020</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div className="project-right-content">
-                                            <SimpleBar>
-                                                <div className="item-detail">
-                                                    <table width="100%">
-                                                        <thead className="item-content">
-                                                            <tr>
-                                                                <th>ITEAM DESCRIPTION </th>
-                                                                <th>Qty</th>
-                                                                <th>RATE</th>
-                                                                <th className="text-right">AMOUNT</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {this.displayTableData()}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </SimpleBar>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="total-iteam">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ml-auto">
-                                        <div className="total-iteam-content">
-                                            <ul>
-                                                <li>
-                                                    <label>SUBTOTAL</label>
-                                                    <span>$17,883.00</span>
-                                                </li>
-                                                <li>
-                                                    <label>TAX</label>
-                                                    <span>2%</span>
-                                                </li>
-                                                <li>
-                                                    <label>TOTAL</label>
-                                                    <span><b>$17,883.00</b></span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div className="search-bar">
+                                    <div className="form-group">
+                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
+                                        <button><i className="fas fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </>
-                    :
-                    <>
-                        <div className="invoices-content">
-                            <div className="invoices-head-section">
-                                <div className="row">
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="heading">
-                                            <h3>Invoices List</h3>
-                                            <span>Lorem ipsum dolor sit amet</span>
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="search-bar">
-                                            <div className="form-group">
-                                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" />
-                                                <button><i className="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="invoices-tabale">
-                                <Table valueFromData={this.state.approvedVendoreTableData} perPageLimit={6} visiblecheckboxStatus={true}
-                                    isLoading={false}
-                                    tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
-                            </div>
-                        </div>
-                    </>
-                }
+                    </div>
+                    <div className="invoices-tabale">
+                        { }
+                        <Table valueFromData={{ columns: approvedVendoreTableData.columns, data: approvedVendoreTableData.data }} searchValue={this.state.searchValue} perPageLimit={6} visiblecheckboxStatus={true}
+                            isLoading={this.props.search_invoice_status == status.IN_PROGRESS}
+                            tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="RequestDepartment" showingLine="Showing %start% to %end% of %total% Tickets" />
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default Invoices;
+function mapStateToProps(state) {
+    const { update_invoice_status,
+        updateInvoice,
+        searchInvoice,
+        search_invoice_status,
+        get_invoice_status,
+        getInvoice,
+        delete_invoice_status,
+        deleteInvoice,
+        add_invoice_status,
+        addInvoice } = state.invoice
+    return {
+        update_invoice_status,
+        updateInvoice,
+        searchInvoice,
+        search_invoice_status,
+        get_invoice_status,
+        getInvoice,
+        delete_invoice_status,
+        deleteInvoice,
+        add_invoice_status,
+        addInvoice
+
+    }
+}
+export default connect(mapStateToProps)(Invoices);

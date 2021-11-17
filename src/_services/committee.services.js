@@ -1,5 +1,6 @@
-import config from '../config';
+// import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const committeeServices = {
     addCommittee,
@@ -14,7 +15,7 @@ function addCommittee() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addCommittee`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDCOMMITTEE}`, requestOptions).then(response => response.json());
 }
 
 function deleteCommittee(id) {
@@ -22,7 +23,7 @@ function deleteCommittee(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteCommittee/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETECOMMITTEE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getCommittee(id) {
@@ -30,7 +31,7 @@ function getCommittee(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getCommittee/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITCOMMITTEE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchCommittee() {
@@ -38,7 +39,7 @@ function searchCommittee() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchCommittee`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHCOMMITTEE}`, requestOptions).then(response => response.json());
 }
 
 function updateCommittee() {
@@ -46,5 +47,5 @@ function updateCommittee() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateCommittee`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATECOMMITTEE}`, requestOptions).then(response => response.json());
 }

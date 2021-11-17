@@ -1,7 +1,6 @@
 export * from './auth.services';
 export * from './committee.services';
 export * from './contact.services';
-export * from './currency.services';
 export * from './department.services';
 export * from './invoice.services';
 export * from './mails.services';
@@ -13,5 +12,4 @@ export * from './roles.services';
 export * from './rules.services';
 export * from './vendor.services';
 export * from './buyer.services';
-export * from './committeeMembers.services';
 export * from './home.services';

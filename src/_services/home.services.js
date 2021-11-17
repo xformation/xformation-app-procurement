@@ -2,7 +2,7 @@ import config from '../config';
 import { commonFunctions } from "../_utilities";
 
 export const homeServices = {
-    Userdata
+    // Userdata
 }
 
 function Userdata() {

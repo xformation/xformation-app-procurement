@@ -1,5 +1,5 @@
-import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const buyerServices = {
     addBuyer,
@@ -14,7 +14,7 @@ function addBuyer() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addBuyer`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDBUYER}`, requestOptions).then(response => response.json());
 }
 
 function deleteBuyer(id) {
@@ -22,7 +22,7 @@ function deleteBuyer(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteBuyer/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETEBUYER}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getBuyer(id) {
@@ -30,7 +30,7 @@ function getBuyer(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getBuyer/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITBUYER}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchBuyer() {
@@ -38,7 +38,7 @@ function searchBuyer() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchBuyer`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHBUYER}`, requestOptions).then(response => response.json());
 }
 
 function updateBuyer() {
@@ -46,5 +46,5 @@ function updateBuyer() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateBuyer`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEBUYER}`, requestOptions).then(response => response.json());
 }

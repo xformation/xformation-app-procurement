@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import { contactAction } from "../../_actions";
 import { status } from "../../_constants";
 import Checkbox from "@material-ui/core/Checkbox";
+import Loader from '../../_components/commonLoader';
 
 class Contact extends Component {
   constructor(props) {
@@ -83,6 +84,8 @@ class Contact extends Component {
   displayContactUserList = () => {
     const { contactUserList, activeindex, displayOption } = this.state;
     let retData = [];
+    let isloading = this.props.get_contact_status===status.IN_PROGRESS;
+   if (!isloading){
     for (let i = 0; i < contactUserList.length; i++) {
       let row = contactUserList[i];
       retData.push(
@@ -175,6 +178,10 @@ class Contact extends Component {
         </div>
       );
     }
+  }
+  else {
+    retData.push(<Loader />);
+}
     return retData;
   };
   render() {
@@ -191,7 +198,7 @@ class Contact extends Component {
                   </div>
                 </div>
                 <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 ">
-                  <div className="head-right justify-content-end align-items-center">
+                  <div className="head-right justify-content-lg-end align-items-center">
                     <div className="search-bar">
                       <div className="form-group">
                         <input

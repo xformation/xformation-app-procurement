@@ -8,10 +8,10 @@ import IconButton from "@material-ui/core/IconButton";
 import "simplebar/dist/simplebar.min.css";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
-import { connect } from 'react-redux';
-import { contactAction } from '../../_actions';
-import { status } from '../../_constants';
-import { commonFunctions } from '../../_utilities/commonFunctions';
+import { connect } from "react-redux";
+import { contactAction } from "../../_actions";
+import { status } from "../../_constants";
+import { commonFunctions } from "../../_utilities/commonFunctions";
 
 class addNewContact extends Component {
   constructor(props) {
@@ -28,20 +28,23 @@ class addNewContact extends Component {
       sendData: {},
       errors: {},
       isSubmitted: false,
-      profileUrl: ""
-
+      profileUrl: "",
     };
   }
 
   componentDidMount() {
     if (this.props.match.params.id) {
       // this.props.dispatch(contactAction.getEditContactData({ 'id': this.props.match.params.id }));
-      this.props.dispatch(contactAction.getEditContactData({ 'id': 1 }));
+      this.props.dispatch(contactAction.getEditContactData({ id: 1 }));
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.get_edit_contact_status !== this.props.get_edit_contact_status && this.props.get_edit_contact_status === status.SUCCESS) {
+    if (
+      prevProps.get_edit_contact_status !==
+        this.props.get_edit_contact_status &&
+      this.props.get_edit_contact_status === status.SUCCESS
+    ) {
       if (this.props.contactData) {
         const { contactData } = this.props;
         this.setState({
@@ -53,21 +56,27 @@ class addNewContact extends Component {
           email: contactData.email,
           contactNo: contactData.contactNo,
           profile: contactData.profile,
-        })
+        });
       }
     }
-    if (prevProps.add_contact_status !== this.props.add_contact_status && this.props.add_contact_status === status.SUCCESS) {
-      this.props.history.push('/postlogin/contact');
+    if (
+      prevProps.add_contact_status !== this.props.add_contact_status &&
+      this.props.add_contact_status === status.SUCCESS
+    ) {
+      this.props.history.push("/postlogin/contact");
     }
-    if (prevProps.update_contact_status !== this.props.update_contact_status && this.props.update_contact_status === status.SUCCESS) {
-      this.props.history.push('/postlogin/contact');
+    if (
+      prevProps.update_contact_status !== this.props.update_contact_status &&
+      this.props.update_contact_status === status.SUCCESS
+    ) {
+      this.props.history.push("/postlogin/contact");
     }
   }
 
   validate = (isSubmitted) => {
     const validObj = {
       isValid: true,
-      message: ""
+      message: "",
     };
     let isValid = true;
     const retData = {
@@ -78,50 +87,57 @@ class addNewContact extends Component {
       lastName: validObj,
       title: validObj,
       company: validObj,
-      isValid
+      isValid,
     };
 
     if (isSubmitted) {
-      const { email, contactNo, firstName, lastName, title, company } = this.state;
+      const {
+        email,
+        contactNo,
+        firstName,
+        lastName,
+        title,
+        company,
+      } = this.state;
       if (!firstName) {
         retData.firstName = {
           isValid: false,
-          message: 'FirstName is required'
-        }
+          message: "FirstName is required",
+        };
         isValid = false;
       }
       if (!lastName) {
         retData.lastName = {
           isValid: false,
-          message: 'LastName is required'
-        }
+          message: "LastName is required",
+        };
         isValid = false;
       }
       if (!title) {
         retData.title = {
           isValid: false,
-          message: 'Title is required'
-        }
+          message: "Title is required",
+        };
         isValid = false;
       }
       if (!company) {
         retData.company = {
           isValid: false,
-          message: 'Company name is required'
-        }
+          message: "Company name is required",
+        };
         isValid = false;
       }
 
       if (!email) {
         retData.email = {
           isValid: false,
-          message: "Email is required"
+          message: "Email is required",
         };
         isValid = false;
       } else if (email && !commonFunctions.validateEmail(email)) {
         retData.email = {
           isValid: false,
-          message: "Enter valid email"
+          message: "Enter valid email",
         };
         isValid = false;
       }
@@ -129,24 +145,22 @@ class addNewContact extends Component {
       if (!contactNo) {
         retData.contactNo = {
           isValid: false,
-          message: 'Contact is required'
-        }
+          message: "Contact is required",
+        };
         isValid = false;
       } else if (contactNo && !commonFunctions.validateNumeric(contactNo)) {
         retData.contactNo = {
           isValid: false,
-          message: 'Vaid only digits'
-        }
+          message: "Vaid only digits",
+        };
         isValid = false;
-      }
-      else if(contactNo.length>12 || contactNo.length < 10){
+      } else if (contactNo.length > 12 || contactNo.length < 10) {
         retData.contactNo = {
           isValid: false,
-          message: "Contact Number is not valid"
-        }
+          message: "Contact Number is not valid",
+        };
         isValid = false;
       }
-
     }
 
     retData.isValid = isValid;
@@ -154,48 +168,54 @@ class addNewContact extends Component {
   };
 
   addNewContact = (prevProps) => {
-    const { firstName, lastName, title, company, email, contactNo, profile, isEdit } = this.state;
-    this.setState({ isSubmitted: true })
+    const {
+      firstName,
+      lastName,
+      title,
+      company,
+      email,
+      contactNo,
+      profile,
+      isEdit,
+    } = this.state;
+    this.setState({ isSubmitted: true });
     let sentdata = {
-      'firstName': firstName,
-      'lastName': lastName,
-      'title': title,
-      'company': company,
-      'email': email,
-      'contactNo': contactNo,
-      'profile': profile
-    }
+      firstName: firstName,
+      lastName: lastName,
+      title: title,
+      company: company,
+      email: email,
+      contactNo: contactNo,
+      profile: profile,
+    };
 
     const errorData = this.validate(true);
     if (errorData.isValid) {
       if (isEdit === true) {
-        this.props.dispatch(contactAction.updateContact(sentdata))
+        this.props.dispatch(contactAction.updateContact(sentdata));
       } else {
         this.props.dispatch(contactAction.addContact(sentdata));
       }
     }
-
-  }
+  };
 
   handleChange = (e) => {
     e.preventDefault();
     const { name, value, files } = e.target;
-    let { profile, profileUrl } = this.state
-    if (name === 'profile') {
+    let { profile, profileUrl } = this.state;
+    if (name === "profile") {
       profile = files[0];
-      profileUrl = URL.createObjectURL(files[0])
+      profileUrl = URL.createObjectURL(files[0]);
       this.setState({
         profile,
-        profileUrl
+        profileUrl,
       });
-
     } else {
       this.setState({
-        [name]: value
+        [name]: value,
       });
     }
-
-  }
+  };
   render() {
     const {
       firstName,
@@ -205,10 +225,10 @@ class addNewContact extends Component {
       email,
       contactNo,
       profileUrl,
-      isSubmitted
+      isSubmitted,
     } = this.state;
     let errrorMessage = this.validate(isSubmitted);
-    console.log(errrorMessage)
+    console.log(errrorMessage);
     return (
       <div className="main-content">
         <div className="contact-content">
@@ -228,88 +248,112 @@ class addNewContact extends Component {
                     <span className="d-block add-contcat-heading">
                       General Info
                     </span>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">First Name</label>
-                        <input
-                          type="text"
-                          value={firstName}
-                          name="firstName"
-                          placeholder="Sumuel"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.firstName.message}</span>
+                    <div className="row">
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">First Name</label>
+                          <input
+                            type="text"
+                            value={firstName}
+                            name="firstName"
+                            placeholder="Sumuel"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.firstName.message}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">Last Name</label>
+                          <input
+                            type="text"
+                            name="lastName"
+                            value={lastName}
+                            placeholder="Chen"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.lastName.message}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">Last Name</label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={lastName}
-                          placeholder="Chen"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.lastName.message}</span>
+                    <div className="row">
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">Title</label>
+                          <input
+                            type="text"
+                            name="title"
+                            value={title}
+                            placeholder="Graphic Designer"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.title.message}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">Title</label>
-                        <input
-                          type="text"
-                          name="title"
-                          value={title}
-                          placeholder="Graphic Designer"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.title.message}</span>
-                      </div>
-                    </div>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">Company</label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={company}
-                          className="control-form"
-                          placeholder="HighSpeed Studios"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.company.message}</span>
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">Company</label>
+                          <input
+                            type="text"
+                            name="company"
+                            value={company}
+                            className="control-form"
+                            placeholder="HighSpeed Studios"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.company.message}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <span className="d-block add-contcat-heading">
                       Contacts
                     </span>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">Email Address</label>
-                        <input
-                          type="text"
-                          name="email"
-                          value={email}
-                          placeholder="sumuelchen002@mail.com"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.email.message}</span>
+                    <div className="row">
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">Email Address</label>
+                          <input
+                            type="text"
+                            name="email"
+                            value={email}
+                            placeholder="sumuelchen002@mail.com"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.email.message}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="d-inline-block requester">
-                      <div className="form-group">
-                        <label className="d-block">Phone Number</label>
-                        <input
-                          type="number"
-                          max='12'
-                          min='10'
-                          name="contactNo"
-                          value={contactNo}
-                          placeholder="+0123456789"
-                          onChange={this.handleChange}
-                        />
-                        <span>{errrorMessage.contactNo.message}</span>
+                      <div className="col-12 col-sm-12 col-md-6">
+                        <div className="form-group form-group-common">
+                          <label className="d-block">Phone Number</label>
+                          <input
+                            type="number"
+                            max="12"
+                            min="10"
+                            name="contactNo"
+                            value={contactNo}
+                            placeholder="+0123456789"
+                            onChange={this.handleChange}
+                            className="form-control"
+                          />
+                          <span className="text-danger">
+                            {errrorMessage.contactNo.message}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -329,7 +373,8 @@ class addNewContact extends Component {
                             id="contained-button-file"
                             multiple
                             type="file"
-                            name='profile' onChange={(e) => this.handleChange(e)}
+                            name="profile"
+                            onChange={(e) => this.handleChange(e)}
                           />
                           <span>changes photos</span>
                         </Button>
@@ -357,15 +402,19 @@ class addNewContact extends Component {
 }
 
 function mapStateToProps(state) {
-  const { get_edit_contact_status, contactData, add_contact_status,
-    update_contact_status } = state.contact;
+  const {
+    get_edit_contact_status,
+    contactData,
+    add_contact_status,
+    update_contact_status,
+  } = state.contact;
   return {
     get_edit_contact_status,
     contactData,
     add_contact_status,
-    update_contact_status
+    update_contact_status,
   };
 }
 
 const connectedNewContact = connect(mapStateToProps)(addNewContact);
-export default (connectedNewContact);
+export default connectedNewContact;

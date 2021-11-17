@@ -76,7 +76,7 @@ function deleteInvoice(id) {
     };
 }
 
-function getInvoice(id) {
+function getInvoice(id ) {
     return dispatch => {
         dispatch(dispatchFunction({
             type: invoiceConstants.GET_INVOICE_REQUEST,
@@ -95,7 +95,7 @@ function getInvoice(id) {
                             type: invoiceConstants.GET_INVOICE_FAILURE,
                             data: response
                         }));
-                        alert.error(response.message);
+                        // alert.error(response.message);
                     }
                 },
                 error => {
@@ -118,7 +118,7 @@ function searchInvoice(data) {
         invoiceServices.searchInvoice(data)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code==200) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.SEARCH_INVOICE_SUCCESS,
                             data: response.data
