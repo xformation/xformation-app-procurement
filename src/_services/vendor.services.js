@@ -1,5 +1,5 @@
-import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const vendorServices = {
     addVendor,
@@ -14,7 +14,7 @@ function addVendor() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addVendor`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDVENDOR}`, requestOptions).then(response => response.json());
 }
 
 function deleteVendor(id) {
@@ -22,7 +22,7 @@ function deleteVendor(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteVendor/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETEVENDOR}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getVendor(id) {
@@ -30,7 +30,7 @@ function getVendor(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getVendor/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITVENDOR}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchVendor() {
@@ -38,7 +38,7 @@ function searchVendor() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchVendor`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHVENDOR}`, requestOptions).then(response => response.json());
 }
 
 function updateVendor() {
@@ -46,5 +46,5 @@ function updateVendor() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateVendor`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEVENDOR}`, requestOptions).then(response => response.json());
 }

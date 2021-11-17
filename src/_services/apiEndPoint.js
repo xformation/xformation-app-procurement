@@ -6,9 +6,9 @@ export const apiEndPoint = {
     // *Buyer Api Url
     ADDBUYER: `${config.apiUrl}/addBuyer`,
     FETCHBUYER: `${config.apiUrl}/searchBuyer`,
-    GETEDITBUYER: `${config.apiUrl}/getBuyer`,
+    GETEDITBUYER: `https://d10c1133-0814-46e5-937a-3211cf6287c7.mock.pstmn.io/buyers`,
     DELETEBUYER: `${config.apiUrl}/deleteBuyer`,
-    UPDATEBUYER: `${config.apiUrl}/updateBuyer`,
+    UPDATEBUYER: `https://c9cd69b2-eed7-4c06-a92b-f81cb2b8f3d0.mock.pstmn.io/setbuyers`,
 
     // *Committee Api Url
     ADDCOMMITTEE: `${config.apiUrl}/addCommittee`,
@@ -26,4 +26,44 @@ export const apiEndPoint = {
 
     // *Department Api Url
     FETCHDEPARTMENT: `${config.apiUrl}/searchDepartment`,
+
+    // *Contact Api Url
+    ADDINVOICE: `${config.apiUrl}/addInvoice`,
+    FETCHINVOICE: `https://c1027ec9-3590-4b25-96ed-e4c56cd8cfbe.mock.pstmn.io/getinvoices`,
+    GETEDITINVOICE: `${config.apiUrl}/getInvoice`,
+    DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
+    UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
+
+    // Requisition Api Url
+    ADDREQUISTION: `${config.apiUrl}/addRequisition`,
+    FETCHREQUISTION: `${config.apiUrl}/searchRequisition`,
+    GETEDITREQUISTION: `${config.apiUrl}/getRequisition`,
+    DELETEREQUISTION: `${config.apiUrl}/deleteRequisition`,
+    UPDATEREQUISTION: `${config.apiUrl}/updateRequisition`,
+    SEARCHREQUISITION: `${config.apiUrl}/searchRequisition`,
+    APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
+
+
+    GETCURRENCY: `${config.apiUrl}/searchCurrency`,
+
+    // *Role Api Url
+    ADDROLE: `${config.apiUrl}/addRoles`,
+    FETCHROLE: `${config.apiUrl}/searchRoles`,
+    GETEDITROLE: `${config.apiUrl}/getRoles`,
+    DELETEROLE: `${config.apiUrl}/deleteRoles`,
+    UPDATEROLE: `${config.apiUrl}/updateRoles`,
+
+     // *Vendor Api Url
+     ADDVENDOR: `${config.apiUrl}/addVendor`,
+     FETCHVENDOR: `${config.apiUrl}/searchVendor`,
+     GETEDITVENDOR: `${config.apiUrl}/getVendor`,
+     DELETEVENDOR: `${config.apiUrl}/deleteVendor`,
+     UPDATEVENDOR: `${config.apiUrl}/updateVendor`,
+
+     // *Rules Api Url
+     ADDRULES: `${config.apiUrl}/addRules`,
+     FETCHRULES: `${config.apiUrl}/searchRules`,
+     GETEDITRULES: `${config.apiUrl}/getRulesByName`,
+     DELETERULES: `${config.apiUrl}/deleteRules`,
+     UPDATERULES: `${config.apiUrl}/updateRules`,
 };

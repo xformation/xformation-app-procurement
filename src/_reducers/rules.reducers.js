@@ -38,24 +38,6 @@ export function rules(state = {}, action) {
                 delete_rules_status: status.FAILURE,
                 deleteRules: null
             };
-        case rulesConstants.GET_RULES_REQUEST:
-            return {
-                ...state,
-                get_rules_status: status.IN_PROGRESS,
-                getRules: action.data
-            };
-        case rulesConstants.GET_RULES_SUCCESS:
-            return {
-                ...state,
-                get_rules_status: status.SUCCESS,
-                getRules: action.data
-            };
-        case rulesConstants.GET_RULES_FAILURE:
-            return {
-                ...state,
-                get_rules_status: status.FAILURE,
-                getRules: null
-            };
         case rulesConstants.SEARCH_RULES_REQUEST:
             return {
                 ...state,

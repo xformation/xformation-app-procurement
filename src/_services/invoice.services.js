@@ -1,9 +1,9 @@
 import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const invoiceServices = {
     addInvoice,
-    approveInvoice,
     deleteInvoice,
     getInvoice,
     searchInvoice,
@@ -15,15 +15,7 @@ function addInvoice() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addInvoice`, requestOptions).then(response => response.json());
-}
-
-function approveInvoice() {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/approveInvoice`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDINVOICE}`, requestOptions).then(response => response.json());
 }
 
 function deleteInvoice(id) {
@@ -31,7 +23,7 @@ function deleteInvoice(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteInvoice/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETEINVOICE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getInvoice(id) {
@@ -39,15 +31,15 @@ function getInvoice(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getInvoice/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITINVOICE}/${id}`, requestOptions).then(response => response.json());
 }
 
-function  searchInvoice () {
+function searchInvoice() {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch('https://c1027ec9-3590-4b25-96ed-e4c56cd8cfbe.mock.pstmn.io/getinvoices', requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHINVOICE}`, requestOptions).then(response => response.json());
 }
 
 function updateInvoice() {
@@ -55,5 +47,5 @@ function updateInvoice() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateInvoice`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEINVOICE}`, requestOptions).then(response => response.json());
 }

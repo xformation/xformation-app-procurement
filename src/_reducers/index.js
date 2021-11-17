@@ -5,11 +5,7 @@ import { committee } from './committee.reducers';
 import { contact } from './contact.reducers';
 import { department } from './department.reducers';
 import { invoice } from './invoice.reducers';
-import { mails } from './mails.reducers';
-import { purchaseOrder } from './purchaseOrder.reducers';
-import { quotation } from './quotation.reducers';
 import { requisition } from './requisition.reducers';
-import { requisitionLineTtem } from './requisitionLineTtem.reducers';
 import { roles } from './roles.reducers';
 import { rules } from './rules.reducers';
 import { vendor } from './vendor.reducers';
@@ -22,11 +18,7 @@ const appReducers = combineReducers({
     contact,
     department,
     invoice,
-    mails,
-    purchaseOrder,
-    quotation,
     requisition,
-    requisitionLineTtem,
     roles,
     rules,
     vendor,

@@ -1,5 +1,6 @@
 import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const rolesServices = {
     addRoles,
@@ -14,7 +15,7 @@ function addRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addRoles`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDROLE}`, requestOptions).then(response => response.json());
 }
 
 function deleteRoles(id) {
@@ -22,7 +23,7 @@ function deleteRoles(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteRoles/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETEROLE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getRoles(id) {
@@ -30,7 +31,7 @@ function getRoles(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getRoles/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITROLE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchRoles() {
@@ -38,7 +39,7 @@ function searchRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchRoles`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHROLE}`, requestOptions).then(response => response.json());
 }
 
 function updateRoles() {
@@ -46,5 +47,5 @@ function updateRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateRoles`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEROLE}`, requestOptions).then(response => response.json());
 }

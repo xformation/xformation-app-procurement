@@ -5,7 +5,6 @@ import { alert, commonFunctions } from '../_utilities';
 export const rulesAction = {
     addRules,
     deleteRules,
-    getRules,
     searchRules,
     getRulesByName,
     updateRules
@@ -69,39 +68,6 @@ function deleteRules(id) {
                 error => {
                     dispatch(dispatchFunction({
                         type: rulesConstants.DELETE_RULES_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
-function getRules(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: rulesConstants.GET_RULES_REQUEST,
-            data: null
-        }));
-        rulesServices.getRules(id)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: rulesConstants.GET_RULES_SUCCESS,
-                            data: response.data
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: rulesConstants.GET_RULES_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: rulesConstants.GET_RULES_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

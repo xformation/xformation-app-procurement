@@ -1,12 +1,12 @@
 import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const rulesServices = {
     addRules,
     deleteRules,
     searchRules,
     getRulesByName,
-    getRules,
     updateRules
 }
 
@@ -15,7 +15,7 @@ function addRules() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/addRules`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDRULES}`, requestOptions).then(response => response.json());
 }
 
 function deleteRules(id) {
@@ -23,7 +23,7 @@ function deleteRules(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteRules/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETERULES}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchRules(id) {
@@ -31,7 +31,7 @@ function searchRules(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchRules`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHRULES}`, requestOptions).then(response => response.json());
 }
 
 function getRulesByName(name) {
@@ -39,15 +39,7 @@ function getRulesByName(name) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getRulesByName/${name}`, requestOptions).then(response => response.json());
-}
-
-function getRules() {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getRules`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITRULES}/${name}`, requestOptions).then(response => response.json());
 }
 
 function updateRules() {
@@ -55,5 +47,5 @@ function updateRules() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${config.apiUrl}/updateRules`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATERULES}`, requestOptions).then(response => response.json());
 }

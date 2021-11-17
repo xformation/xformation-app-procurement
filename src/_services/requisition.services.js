@@ -1,5 +1,5 @@
-import config from '../config';
 import { commonFunctions } from "../_utilities";
+import { apiEndPoint } from "./apiEndPoint";
 
 export const requisitionServices = {
     addRequisition,
@@ -28,7 +28,7 @@ function addRequisition(data) {
     }
     formData.append("obj", JSON.stringify(data.obj));
     const requestOptions = commonFunctions.getRequestOptions("POST", {}, formData);
-    return fetch(`${config.apiUrl}/addRequisition`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ADDREQUISTION}`, requestOptions).then(response => response.json());
 }
 
 function deleteRequisition(data) {
@@ -36,7 +36,7 @@ function deleteRequisition(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${config.apiUrl}/deleteRequisition/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DELETEREQUISTION}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function getRequisition(data) {
@@ -60,7 +60,7 @@ function getRequisition(data) {
         url += `${url ? '&' : '?'}fromDate=${data.fromDate}`;
     }
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchRequisition${url}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.FETCHREQUISTION}${url}`, requestOptions).then(response => response.json());
 }
 
 function searchRequisition() {
@@ -68,7 +68,7 @@ function searchRequisition() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchRequisition`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.SEARCHREQUISITION}`, requestOptions).then(response => response.json());
 }
 
 function editRequisition(data) {
@@ -85,7 +85,7 @@ function editRequisition(data) {
     }
     formData.append("obj", JSON.stringify(data.obj));
     const requestOptions = commonFunctions.getRequestOptions("POST", {}, formData);
-    return fetch(`${config.apiUrl}/updateRequisition`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEREQUISTION}`, requestOptions).then(response => response.json());
 }
 
 function getRequisitionEditData(data) {
@@ -93,7 +93,7 @@ function getRequisitionEditData(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/getRequisition/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITREQUISTION}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function getCurrency(data) {
@@ -101,7 +101,7 @@ function getCurrency(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${config.apiUrl}/searchCurrency`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETCURRENCY}`, requestOptions).then(response => response.json());
 }
 
 function approveRequisition(data) {
@@ -109,7 +109,7 @@ function approveRequisition(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${config.apiUrl}/approveRequisition`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.APPROVEDREQUISITION}`, requestOptions).then(response => response.json());
 }
 
 function getbuyerList(data) {
@@ -117,7 +117,7 @@ function getbuyerList(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`https://d10c1133-0814-46e5-937a-3211cf6287c7.mock.pstmn.io/buyers`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETEDITBUYER}`, requestOptions).then(response => response.json());
 }
 
 function setRequisitionBuyers(data) {
@@ -125,5 +125,5 @@ function setRequisitionBuyers(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`https://c9cd69b2-eed7-4c06-a92b-f81cb2b8f3d0.mock.pstmn.io/setbuyers`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATEBUYER}`, requestOptions).then(response => response.json());
 }
