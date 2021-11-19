@@ -51,7 +51,7 @@ class ManageRequisition extends Component {
                     label: 'Request Department',
                     key: 'department',
                     renderCallback: (value) => {
-                        return <td><span className={'department-value'}>{value.name}</span></td>
+                        return <td><span className={'department-value'}>{value}</span></td>
                     }
                 },
                 {
@@ -65,7 +65,7 @@ class ManageRequisition extends Component {
                     label: 'Requisitions Total',
                     key: 'totalPrice',
                     renderCallback: (value, row) => {
-                        return <td><span className="price">{row.currency.code} {value}</span></td>
+                        return <td><span className="price">{value}</span></td>
                     }
                 },
                 {
@@ -128,6 +128,7 @@ class ManageRequisition extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log(this.props.getRequisitionlist)
         if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
             this.setState({
                 requistionList: this.props.getRequisitionlist,

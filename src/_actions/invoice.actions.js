@@ -85,7 +85,7 @@ function getInvoice(id ) {
         invoiceServices.getInvoice(id)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.GET_INVOICE_SUCCESS,
                             data: response.data

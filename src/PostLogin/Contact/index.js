@@ -29,6 +29,7 @@ class Contact extends Component {
         status: "",
         reqno: "",
         depart: "",
+        isSected: '',
       },
       newContact: false,
       activeindex: 0,
@@ -81,107 +82,112 @@ class Contact extends Component {
     this.props.history.push(`/postlogin/newcontact/${id}`);
   };
 
+  handleStateChange = (index, e) => {
+    let { contactUserList } = this.state;
+    const { checked } = e.target;
+    contactUserList[index]["isSelected"] = checked
+    this.setState({contactUserList})
+  }
   displayContactUserList = () => {
     const { contactUserList, activeindex, displayOption } = this.state;
     let retData = [];
-    let isloading = this.props.get_contact_status===status.IN_PROGRESS;
-   if (!isloading){
-    for (let i = 0; i < contactUserList.length; i++) {
-      let row = contactUserList[i];
-      retData.push(
-        <div
-          className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12"
-          key={row.name}
-        >
-          <div className="member-boxs">
-            <Card
-              className={
-                activeindex == i ? "members-box active" : "members-box"
-              }
-              onClick={() => this.setState({ activeindex: i })}
-            >
-              <div className="d-flex justify-content-center align-items-center user-img">
-                <div className="d-flex justify-content-center align-items-center image">
-                  <img src={row.profile} alt="" />
-                  <div
-                    className="member-position"
-                    style={{ backgroundColor: `${row.shortNameColor}` }}
-                  >
-                    {row.name.match(/\b(\w)/g)}
+    let isloading = this.props.get_contact_status === status.IN_PROGRESS;
+    if (!isloading) {
+      for (let i = 0; i < contactUserList.length; i++) {
+        let row = contactUserList[i];
+        retData.push(
+          <div
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12"
+            key={row.name}
+          >
+            <div className="member-boxs">
+              <Card
+                className={
+                  activeindex == i ? "members-box active" : "members-box"
+                }
+                onClick={() => this.setState({ activeindex: i })}
+              >
+                <div className="d-flex justify-content-center align-items-center user-img">
+                  <div className="d-flex justify-content-center align-items-center image">
+                    <img src={row.profile} alt="" />
+                    <div
+                      className="member-position"
+                      style={{ backgroundColor: `${row.shortNameColor}` }}
+                    >
+                      {row.name.match(/\b(\w)/g)}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className="d-inline-block menu-icon"
-                style={{ display: "flex" }}
-              >
-                <IconButton aria-label="settings">
-                  <MoreVertIcon
-                    onClick={
-                      i === activeindex ? this.toggleDisplayOptions : null
-                    }
-                  />
-                </IconButton>
-                <div className="settings-toggle">
-                  {displayOption && i === activeindex ? (
-                    <>
-                      <span onClick={() => this.editContact(row.id)}>
-                        <EditTwoToneIcon /> Edit
-                      </span>
-                      <span onClick={() => this.removeContact(row.id)}>
-                        <HighlightOffIcon /> Delete
-                      </span>
-                    </>
-                  ) : null}
+                <div
+                  className="d-inline-block menu-icon"
+                  style={{ display: "flex" }}
+                >
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon
+                      onClick={
+                        i === activeindex ? this.toggleDisplayOptions : null
+                      }
+                    />
+                  </IconButton>
+                  <div className="settings-toggle">
+                    {displayOption && i === activeindex ? (
+                      <>
+                        <span onClick={() => this.editContact(row.id)}>
+                          <EditTwoToneIcon /> Edit
+                        </span>
+                        <span onClick={() => this.removeContact(row.id)}>
+                          <HighlightOffIcon /> Delete
+                        </span>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-              <div className="requisition">
-                <Checkbox
-                  name="saveReq"
-                  color="primary"
-                  name="saveReq"
-                  checked={row.isSected}
-                  onChange={(e) => this.handleStateChange(i, e)}
-                />
-              </div>
-              <div className="member-details">
-                <ul>
-                  <li>
-                    <b>{row.name}</b>
-                  </li>
-                  <li>
-                    <span>{row.position}</span>
-                  </li>
-                  <li>
-                    <p>{row.company}</p>
-                  </li>
-                </ul>
-              </div>
-              <div className="member-contact">
-                <ul>
-                  <li>
-                    <Button className="icon-btn">
-                      <CallIcon className="phone-icon" />
-                    </Button>
-                    <a href={`tel:${row.contNo}`}>{row.contNo}</a>
-                  </li>
-                  <li>
-                    <Button className="icon-btn">
-                      <MailIcon className="phone-icon" />
-                    </Button>
-                    <a href={`mailto: ${row.email}`}>{row.email}</a>
-                  </li>
-                </ul>
-              </div>
-            </Card>
+                <div className="requisition">
+                  <Checkbox
+                    name="saveReq"
+                    color="primary"
+                    checked={row.isSelected}
+                    onChange={(e) => this.handleStateChange(i, e)}
+                  />
+                </div>
+                <div className="member-details">
+                  <ul>
+                    <li>
+                      <b>{row.name}</b>
+                    </li>
+                    <li>
+                      <span>{row.position}</span>
+                    </li>
+                    <li>
+                      <p>{row.company}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div className="member-contact">
+                  <ul>
+                    <li>
+                      <Button className="icon-btn">
+                        <CallIcon className="phone-icon" />
+                      </Button>
+                      <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                    </li>
+                    <li>
+                      <Button className="icon-btn">
+                        <MailIcon className="phone-icon" />
+                      </Button>
+                      <a href={`mailto: ${row.email}`}>{row.email}</a>
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     }
-  }
-  else {
-    retData.push(<Loader />);
-}
+    else {
+      retData.push(<Loader />);
+    }
     return retData;
   };
   render() {

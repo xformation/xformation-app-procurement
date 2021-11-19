@@ -35,7 +35,6 @@ export class Table extends React.Component {
     tableBodyData() {
         const { displayData, perPageLimit, currentPage, columns, visibleCheckbox } = this.state;
         const { isLoading } = this.props;
-        console.log(isLoading)
         const retData = [];
         const length = displayData.length;
         const cLength = columns.length;
@@ -116,10 +115,12 @@ export class Table extends React.Component {
 
     calculateTotalPages(displayData) {
         const { perPageLimit } = this.state;
+        if(displayData.length>0){
         let indexOfLastData = Math.ceil(displayData.length / perPageLimit);
         this.setState({
             totalPages: indexOfLastData,
         });
+    }
     }
 
     tableHeader() {

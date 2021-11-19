@@ -16,8 +16,8 @@ class DefaultLayout extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(rolesAction.searchRoles());
-    this.props.dispatch(rulesAction.searchRules());
+    // this.props.dispatch(rolesAction.searchRoles());
+    // this.props.dispatch(rulesAction.searchRules());
     this.props.dispatch(departmentAction.getDepartment());
     this.props.dispatch(requistionAction.getCurrency());
   }

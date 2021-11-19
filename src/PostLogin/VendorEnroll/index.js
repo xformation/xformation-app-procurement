@@ -19,7 +19,6 @@ class VendorEnroll extends Component {
       requiData: {},
     };
   }
-
   handleStateChange = (e) => {
     const { name, value } = e.target;
     const { requiData } = this.state;
@@ -29,6 +28,12 @@ class VendorEnroll extends Component {
     });
   };
 
+  handleDateChange =(value)=>{
+    const{requiData} =this.state;
+    requiData['brithDate']=value;
+    this.setState({requiData});
+
+  }
   handleClickMethod = (event) => {
     const { requiData } = this.state;
     event.preventDefault();
@@ -124,6 +129,7 @@ class VendorEnroll extends Component {
         isValid = false;
       }
       if (!requiData.brithDate) {
+        
         retData.brithDate = {
           isValid: false,
           message: "D. O. B is required",
@@ -136,6 +142,14 @@ class VendorEnroll extends Component {
           message: "Phone number is required",
         };
         isValid = false;
+      }
+      else if (requiData.phoneNo.length > 12  || requiData.phoneNo.length < 10){
+        console.log(retData.phoneNo)
+        retData.phoneNo ={
+          isValid:false,
+          message :"Phone number is invalid"
+        }
+        isValid = false
       }
       if (!requiData.designation) {
         retData.designation = {
@@ -341,7 +355,7 @@ class VendorEnroll extends Component {
                   <DatePicker
                     name="brithDate"
                     value={requiData.brithDate}
-                    onChange={this.handleStateChange}
+                    onChange={this.handleDateChange}
                     isvalid={errorData.brithDate.isValid}
                     placeholder="DD/MM/YYYY"
                   />
@@ -354,7 +368,7 @@ class VendorEnroll extends Component {
                 <div className="form-group form-group-common">
                   <label className="d-block">Phone Number</label>
                   <input
-                    type="text"
+                    type="number"
                     name="phoneNo"
                     value={requiData.phoneNo}
                     onChange={this.handleStateChange}

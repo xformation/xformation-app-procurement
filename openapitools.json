@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-      "version": "1.0.0",
-      "title": "procurementJSON",
+      "version": "3.0.1",
+      "title": "procument",
       "license": {
           "name": "MIT"
       }
@@ -11,32 +11,69 @@
       {
           "url": "localhost:3000",
           "variables": {
-              "requisitionStatus": {
-                  "default": "DRAFT",
+              "successCode": {
                   "enum": [
-                      "DRAFT",
-                      "ACTIVE",
-                      "DEACTIVE",
-                      "APPROVED"
-                  ]
+                      "200"
+                  ],
+                  "default": "200"
               }
           }
       }
   ],
   "paths": {
-      "/searchrequisition": {
+      "/getdepartment": {
           "get": {
-              "description": "",
+              "summary": "Details of department",
+              "operationId": "",
+              "tags": [
+                  "department"
+              ],
+              "parameters": [],
               "responses": {
                   "200": {
-                      "description": "A list of Requisition.",
+                      "description": "Details of department",
+                      "headers": {
+                          "x-next": {
+                              "description": "Department List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "type": "array",
-                                  "items": {
-                                      "$ref": "#/components/schemas/searchrequisition"
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Fetch department Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/department"
+                                          }
+                                      }
                                   }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -44,13 +81,183 @@
               }
           }
       },
-      "/requisition/create": {
-          "post": {
+      "/getcurrency": {
+          "get": {
+              "summary": "Details of currency",
+              "operationId": "",
+              "tags": [
+                  "currency"
+              ],
+              "parameters": [],
+              "responses": {
+                  "200": {
+                      "description": "Details of currency",
+                      "headers": {
+                          "x-next": {
+                              "description": "Currency List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Fetch currency Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/currency"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/searchrequisition": {
+          "get": {
               "summary": "Details about a user",
-              "operationId": "createRequisition",
+              "operationId": "",
               "tags": [
                   "requisition"
               ],
+              "parameters": [],
+              "responses": {
+                  "200": {
+                      "description": "Details about a user",
+                      "headers": {
+                          "x-next": {
+                              "description": "Requisiton List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/requisition"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/deleterequisition/id": {
+          "delete": {
+              "summary": "Delete Requisition",
+              "operationId": "",
+              "parameters": [],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "headers": {
+                          "x-next": {
+                              "description": "Delete Requisition List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Delete Requisition Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/addrequisition": {
+          "post": {
+              "summary": "Details about a Requester",
+              "operationId": "createRequisition",
               "requestBody": {
                   "description": "Request body to create requistion",
                   "required": true,
@@ -59,7 +266,7 @@
                           "schema": {
                               "type": "object",
                               "items": {
-                                  "$ref": "#/components/schemas/createrequisition"
+                                  "$ref": "#/components/schemas/requisitionData"
                               }
                           }
                       }
@@ -67,10 +274,10 @@
               },
               "responses": {
                   "200": {
-                      "description": "Details of the added requisition",
+                      "description": "",
                       "headers": {
                           "x-next": {
-                              "description": "A link to the next page of responses",
+                              "description": "Delete Requisition List",
                               "schema": {
                                   "type": "string"
                               }
@@ -80,7 +287,22 @@
                           "application/json": {
                               "schema": {
                                   "type": "object",
-                                  "description": "data containing the new requisition"
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Add Requisition Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
                               }
                           }
                       }
@@ -90,7 +312,7 @@
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "$ref": "#/components/schemas/GeneralError"
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -98,42 +320,19 @@
               }
           }
       },
-      "/buyers": {
-          "get": {
-              "description": "",
-              "responses": {
-                  "200": {
-                      "description": "A list of Buyers.",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "array",
-                                  "items": {
-                                      "$ref": "#/components/schemas/buyer"
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      },
-      "/addbuyer": {
+      "/editrequisition": {
           "post": {
-              "summary": "Details about a user",
+              "summary": "Edit Requester Detail",
               "operationId": "",
-              "tags": [
-                  "addbuyer"
-              ],
               "requestBody": {
-                  "description": "Add Buyer requistion",
+                  "description": "Edit Requisition",
                   "required": true,
                   "content": {
                       "application/json": {
                           "schema": {
                               "type": "object",
                               "items": {
-                                  "$ref": "#/components/schemas/addbuyer"
+                                  "$ref": "#/components/schemas/editrequisitionData"
                               }
                           }
                       }
@@ -141,10 +340,10 @@
               },
               "responses": {
                   "200": {
-                      "description": "Details of the added buyer",
+                      "description": "",
                       "headers": {
                           "x-next": {
-                              "description": "A link to the next page of responses",
+                              "description": "Edit Requisition",
                               "schema": {
                                   "type": "string"
                               }
@@ -154,7 +353,22 @@
                           "application/json": {
                               "schema": {
                                   "type": "object",
-                                  "description": "data containing the new buyer list"
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Edit Requisition Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
                               }
                           }
                       }
@@ -164,7 +378,7 @@
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "$ref": "#/components/schemas/GeneralError"
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -172,19 +386,109 @@
               }
           }
       },
-      "/fetchContact": {
+      "/fetchcontact": {
           "get": {
-              "description": "",
+              "summary": "Contact Detail",
+              "operationId": "",
+              "tags": [
+                  "contactdetail"
+              ],
+              "parameters": [],
               "responses": {
                   "200": {
-                      "description": "A list of Contact.",
+                      "description": "contact detail",
+                      "headers": {
+                          "x-next": {
+                              "description": "contact List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "type": "array",
-                                  "items": {
-                                      "$ref": "#/components/schemas/contact"
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/contactlist"
+                                          }
+                                      }
                                   }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/deletecontact/id": {
+          "delete": {
+              "summary": "Delete Contact List",
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "headers": {
+                          "x-next": {
+                              "description": "Delete Contact List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "delete contact successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -194,20 +498,17 @@
       },
       "/addcontact": {
           "post": {
-              "summary": "Details about a contact",
-              "operationId": "",
-              "tags": [
-                  "addcontact"
-              ],
+              "summary": "Details about a Contact",
+              "operationId": "createContact",
               "requestBody": {
-                  "description": "Add Contact",
+                  "description": "Request body to create contact",
                   "required": true,
                   "content": {
                       "application/json": {
                           "schema": {
                               "type": "object",
                               "items": {
-                                  "$ref": "#/components/schemas/addcontact"
+                                  "$ref": "#/components/schemas/contactData"
                               }
                           }
                       }
@@ -215,10 +516,10 @@
               },
               "responses": {
                   "200": {
-                      "description": "Details of the added contact",
+                      "description": "",
                       "headers": {
                           "x-next": {
-                              "description": "A link to the next page of responses",
+                              "description": "",
                               "schema": {
                                   "type": "string"
                               }
@@ -228,7 +529,22 @@
                           "application/json": {
                               "schema": {
                                   "type": "object",
-                                  "description": "data containing the new contact list"
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Add Contact Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
                               }
                           }
                       }
@@ -238,61 +554,7 @@
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "$ref": "#/components/schemas/GeneralError"
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      },
-      "/editcontact": {
-          "post": {
-              "summary": "Details about a contact",
-              "operationId": "",
-              "tags": [
-                  "editcontact"
-              ],
-              "requestBody": {
-                  "description": "Edit Contact",
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "type": "object",
-                              "items": {
-                                  "$ref": "#/components/schemas/editcontact"
-                              }
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "description": "Details of the edit contact",
-                      "headers": {
-                          "x-next": {
-                              "description": "A link to the next page of responses",
-                              "schema": {
-                                  "type": "string"
-                              }
-                          }
-                      },
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "description": "data containing the updated contact list"
-                              }
-                          }
-                      }
-                  },
-                  "default": {
-                      "description": "unexpected error",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/GeneralError"
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -302,51 +564,18 @@
       },
       "/geteditcontact/2": {
           "get": {
-              "description": "",
-              "responses": {
-                  "200": {
-                      "description": "contact data of selected contact.",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "object",
-                                  "items": {
-                                      "$ref": "#/components/schemas/geteditcontact"
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      },
-      "/deletecontact/1": {
-          "delete": {
-              "summary": "Delete contact",
+              "summary": "Get Edit Contact Detail",
               "operationId": "",
               "tags": [
-                  "deletecontact"
+                  "contactdetail"
               ],
-              "requestBody": {
-                  "description": "delete Contact",
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "type": "object",
-                              "items": {
-                                  "$ref": "#/components/schemas/deletecontact"
-                              }
-                          }
-                      }
-                  }
-              },
+              "parameters": [],
               "responses": {
                   "200": {
-                      "description": "delete contact successfully",
+                      "description": "Get edit contact detail",
                       "headers": {
                           "x-next": {
-                              "description": "A link to the next page of responses",
+                              "description": "contact List",
                               "schema": {
                                   "type": "string"
                               }
@@ -356,7 +585,25 @@
                           "application/json": {
                               "schema": {
                                   "type": "object",
-                                  "description": "delete contact successfully"
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "object",
+                                          "items": {
+                                              "$ref": "#/components/schemas/editcontactdata"
+                                          }
+                                      }
+                                  }
                               }
                           }
                       }
@@ -366,7 +613,293 @@
                       "content": {
                           "application/json": {
                               "schema": {
-                                  "$ref": "#/components/schemas/GeneralError"
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/fetchinvoice": {
+          "get": {
+              "summary": "Invoice Detail",
+              "operationId": "",
+              "responses": {
+                  "200": {
+                      "description": "Invoice detail",
+                      "headers": {
+                          "x-next": {
+                              "description": "Invoice List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/invoiceList"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/deleteinvoice/1": {
+          "delete": {
+              "summary": "Delete invoice List",
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "headers": {
+                          "x-next": {
+                              "description": "Delete invoice List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "delete invoice successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/viewinvoice": {
+          "get": {
+              "summary": "Invoice Detail",
+              "operationId": "",
+              "responses": {
+                  "200": {
+                      "description": "Invoice detail",
+                      "headers": {
+                          "x-next": {
+                              "description": "Invoice detail",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "object",
+                                          "items": {
+                                              "$ref": "#/components/schemas/invoicedetail"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/fetchbuyer": {
+          "get": {
+              "summary": "Buyer Detail",
+              "operationId": "",
+              "tags": [
+                  "buyerdetail"
+              ],
+              "parameters": [],
+              "responses": {
+                  "200": {
+                      "description": "Buyer detail",
+                      "headers": {
+                          "x-next": {
+                              "description": "Buyer List",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "type": {
+                                          "type": "string"
+                                      },
+                                      "data": {
+                                          "type": "array",
+                                          "items": {
+                                              "$ref": "#/components/schemas/contactlist"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/addbuyer": {
+          "post": {
+              "summary": "Details about a buyer",
+              "operationId": "setbuyer",
+              "requestBody": {
+                  "description": "Request body to create contact",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "items": {
+                                  "$ref": "#/components/schemas/buyerdata"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "headers": {
+                          "x-next": {
+                              "description": "",
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "code": {
+                                          "type": "integer",
+                                          "format": "int64",
+                                          "default": 200
+                                      },
+                                      "message": {
+                                          "type": "string",
+                                          "default": "Add Buyer Successfully"
+                                      },
+                                      "type": {
+                                          "type": "string",
+                                          "default": "SUCCESS"
+                                      },
+                                      "data": {}
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Error"
                               }
                           }
                       }
@@ -377,56 +910,64 @@
   },
   "components": {
       "schemas": {
-          "searchrequisition": {
+          "department": {
               "type": "object",
               "properties": {
-                  "requisitionId": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "name": {
+                      "type": "string"
+                  }
+              }
+          },
+          "currency": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "countryName": {
+                      "type": "string",
+                      "default": "Reactive secured line"
+                  },
+                  "countryCode": {
+                      "type": "string",
+                      "default": "RO"
+                  },
+                  "code": {
+                      "type": "string",
+                      "default": "Research wireless"
+                  }
+              }
+          },
+          "requisition": {
+              "type": "object",
+              "properties": {
+                  "id": {
                       "type": "integer",
                       "format": "int64"
                   },
                   "createdOn": {
                       "type": "string"
                   },
+                  "department": {
+                      "type": "string"
+                  },
                   "createdBy": {
                       "type": "string"
                   },
-                  "updatedOn": {
+                  "totalPrice": {
                       "type": "string"
                   },
                   "status": {
                       "type": "string"
-                  },
-                  "progressStage": {
-                      "type": "string"
-                  },
-                  "financialYear": {
-                      "type": "string"
-                  },
-                  "totalPrice": {
-                      "type": "integer",
-                      "format": "int64"
-                  },
-                  "type": {
-                      "type": "string"
-                  },
-                  "notes": {
-                      "type": "string"
-                  },
-                  "dueDate": {
-                      "type": "string"
-                  },
-                  "extraBudgetoryFile": {
-                      "type": "object"
-                  },
-                  "documentList": {
-                      "type": "array"
-                  },
-                  "lineItemList": {
-                      "type": "array"
                   }
               }
           },
-          "createrequisition": {
+          "requisitionData": {
               "type": "object",
               "properties": {
                   "requestor": {
@@ -467,55 +1008,208 @@
                   }
               }
           },
-          "buyer": {
+          "editrequisitionData": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "description": "edit requisition id",
+                      "type": "integer"
+                  },
+                  "requestor": {
+                      "description": "role of the requester",
+                      "type": "string"
+                  },
+                  "financialYear": {
+                      "description": "Year of the requisition raised",
+                      "type": "string"
+                  },
+                  "departmentId": {
+                      "description": "selected department id",
+                      "type": "integer"
+                  },
+                  "currencyId": {
+                      "description": "selected currency id",
+                      "type": "integer"
+                  },
+                  "purpose": {
+                      "description": "Purpose of the requisition",
+                      "type": "string"
+                  },
+                  "status": {
+                      "description": "Status of the requisition, value should be the requisitionStatus",
+                      "type": "string"
+                  },
+                  "files": {
+                      "description": "list of object containing description and file",
+                      "type": "object"
+                  },
+                  "requisitionLineItems": {
+                      "description": "list of requisition line items data",
+                      "type": "array"
+                  },
+                  "requisitionLineItemFiles": {
+                      "description": "list of excel file containing the data of requisition line items",
+                      "type": "array"
+                  }
+              }
+          },
+          "contactlist": {
               "type": "object",
               "properties": {
                   "id": {
                       "type": "integer",
                       "format": "int64"
                   },
+                  "company": {
+                      "type": "string"
+                  },
+                  "email": {
+                      "type": "string"
+                  },
                   "name": {
-                      "type": "string"
-                  },
-                  "image": {
-                      "type": "string"
-                  },
-                  "shortName": {
-                      "type": "string"
-                  },
-                  "shortNameColor": {
                       "type": "string"
                   },
                   "position": {
                       "type": "string"
                   },
-                  "company": {
-                      "type": "string"
+                  "profile": {
+                      "type": "string",
+                      "default": "https://pe-images.s3.amazonaws.com/basics/cc/2021/crop/crop-image-in-circle/photoshop-crop-image-to-circle.jpg"
                   },
                   "contNo": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "default": "+1234567859"
+                  }
+              }
+          },
+          "contactData": {
+              "type": "object",
+              "properties": {
+                  "company": {
+                      "type": "string"
                   },
                   "email": {
+                      "type": "string"
+                  },
+                  "firstName": {
+                      "type": "string"
+                  },
+                  "lastName": {
+                      "type": "string"
+                  },
+                  "title": {
+                      "type": "string"
+                  },
+                  "profile": {
+                      "type": "string"
+                  },
+                  "contactNo": {
+                      "type": "integer",
+                      "format": "int64",
+                      "default": "+1234567859"
+                  }
+              }
+          },
+          "editcontactdata": {
+              "type": "object",
+              "properties": {
+                  "id": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "company": {
+                      "type": "string"
+                  },
+                  "email": {
+                      "type": "string"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "position": {
+                      "type": "string"
+                  },
+                  "profile": {
+                      "type": "string",
+                      "default": "https://pe-images.s3.amazonaws.com/basics/cc/2021/crop/crop-image-in-circle/photoshop-crop-image-to-circle.jpg"
+                  },
+                  "contNo": {
+                      "type": "integer",
+                      "format": "int64",
+                      "default": "+1234567859"
+                  }
+              }
+          },
+          "invoiceList": {
+              "type": "object",
+              "properties": {
+                  "RequisitionsNo": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "RequestDate": {
+                      "type": "string"
+                  },
+                  "RequestDepartment": {
+                      "type": "string"
+                  },
+                  "Requestor": {
+                      "type": "string"
+                  },
+                  "RequisitionsTotal": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "status": {
+                      "type": "string",
+                      "default": "completed"
+                  }
+              }
+          },
+          "invoicedetail": {
+              "type": "object",
+              "properties": {
+                  "RequisitionsNo": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "RequestDate": {
+                      "type": "string"
+                  },
+                  "RequestDepartment": {
+                      "type": "string"
+                  },
+                  "Requestor": {
+                      "type": "string"
+                  },
+                  "RequisitionsTotal": {
+                      "type": "integer",
+                      "format": "int64"
+                  },
+                  "status": {
+                      "type": "string",
+                      "default": "completed"
+                  }
+              }
+          },
+          "buyerdata": {
+              "type": "object",
+              "properties": {
+                  "requisitionID": {
+                      "type": "array"
+                  },
+                  "buyersId": {
                       "type": "string"
                   }
               }
           },
-          "addbuyer": {
+          "Error": {
               "type": "object",
-              "properties": {
-                  "requesitionId": {
-                      "description": "Requisition Id",
-                      "type": "integer"
-                  },
-                  "buyerList": {
-                      "description": "List of buyers to add in particular requisition",
-                      "type": "array"
-                  }
-              }
-          },
-          "GeneralError": {
-              "type": "object",
+              "required": [
+                  "code",
+                  "message"
+              ],
               "properties": {
                   "code": {
                       "type": "integer",
@@ -525,134 +1219,18 @@
                       "type": "string"
                   }
               }
-          },
-          "contact": {
-              "type": "object",
-              "properties": {
-                  "id": {
-                      "type": "integer",
-                      "format": "int64"
-                  },
-                  "name": {
-                      "type": "string"
-                  },
-                  "company": {
-                      "type": "string"
-                  },
-                  "email": {
-                      "type": "string"
-                  },
-                  "position": {
-                      "type": "string"
-                  },
-                  "profile": {
-                      "type": "string"
-                  },
-                  "contNo": {
-                      "type": "integer",
-                      "format": "int64"
-                  }
-              }
-          },
-          "addcontact": {
-              "type": "object",
-              "properties": {
-                  "firstName": {
-                      "description": "contact first name",
-                      "type": "string"
-                  },
-                  "lastName": {
-                      "description": "contact last name",
-                      "type": "string"
-                  },
-                  "title": {
-                      "description": "contact title",
-                      "type": "string"
-                  },
-                  "company": {
-                      "description": "contact email",
-                      "type": "string"
-                  },
-                  "contactNo": {
-                      "description": "contact number",
-                      "type": "integer"
-                  },
-                  "profile": {
-                      "description": "contact profile file",
-                      "type": "object"
-                  }
-              }
-          },
-          "editcontact": {
-              "type": "object",
-              "properties": {
-                  "firstName": {
-                      "description": "contact first name",
-                      "type": "string"
-                  },
-                  "lastName": {
-                      "description": "contact last name",
-                      "type": "string"
-                  },
-                  "title": {
-                      "description": "contact title",
-                      "type": "string"
-                  },
-                  "company": {
-                      "description": "contact email",
-                      "type": "string"
-                  },
-                  "contactNo": {
-                      "description": "contact number",
-                      "type": "integer"
-                  },
-                  "profile": {
-                      "description": "contact profile file",
-                      "type": "object"
-                  },
-                  "id": {
-                      "description": "edit contact id",
-                      "type": "integer"
-                  }
-              }
-          },
-          "geteditcontact": {
-              "type": "object",
-              "properties": {
-                  "id": {
-                      "type": "integer",
-                      "format": "int64"
-                  },
-                  "name": {
-                      "type": "string"
-                  },
-                  "company": {
-                      "type": "string"
-                  },
-                  "email": {
-                      "type": "string"
-                  },
-                  "position": {
-                      "type": "string"
-                  },
-                  "profile": {
-                      "type": "string"
-                  },
-                  "contNo": {
-                      "type": "integer",
-                      "format": "int64"
-                  }
-              }
-          },
-          "deletecontact": {
-              "type": "object",
-              "properties": {
-                  "contactId": {
-                      "description": "Contact Id",
-                      "type": "integer"
-                  }
-              }
+          }
+      },
+      "securitySchemes": {
+          "BasicAuth": {
+              "type": "http",
+              "scheme": "basic"
           }
       }
-  }
+  },
+  "security": [
+      {
+          "BasicAuth": []
+      }
+  ]
 }

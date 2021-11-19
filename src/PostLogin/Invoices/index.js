@@ -22,6 +22,7 @@ import { invoiceServices } from '../../_services/invoice.services';
 import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
 
+
 class Invoices extends Component {
     constructor(props) {
         super(props)
@@ -76,25 +77,25 @@ class Invoices extends Component {
                     {
                         label: 'Status',
                         key: 'status',
-                        renderCallback: (value) => {
+                        renderCallback: (value, row) => {
                             return <td>
                                 {value === 'Completed' &&
-                                    <Button variant="contained" className="invoices-list-btn completed-btn" onClick={this.onClickShowCompletedButton}>
+                                    <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <CheckIcon className="mr-2 bold" />{value}
                                     </Button>
                                 }
                                 {value === 'Invoices' &&
-                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={this.onClickShowCompletedButton}>
+                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={(id) => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <DoneAllIcon className="mr-2" />{value}
                                     </Button>
                                 }
                                 {value === 'Pendding' &&
-                                    <Button variant="contained" className="invoices-list-btn pendding-btn" onClick={this.onClickShowCompletedButton}>
+                                    <Button variant="contained" className="invoices-list-btn pendding-btn" onClick={(id) => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <WatchLaterIcon className="mr-2" />{value}
                                     </Button>
                                 }
                                 {value === 'Invoices Sent' &&
-                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={this.onClickShowCompletedButton}>
+                                    <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={(id) => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <DoneAllIcon className="mr-2" />{value}
                                     </Button>
                                 }
@@ -176,12 +177,9 @@ class Invoices extends Component {
         })
     }
 
-    onClickShowCompletedButton = () => {
-        const { CompletedButton } = this.state;
-        let Button = CompletedButton;
-        this.setState({
-            CompletedButton: !Button,
-        })
+    onClickShowCompletedButton = (id) => {
+        this.props.history.push(`/postlogin/viewinvoice/3`)
+
     }
 
     handleStateChange = (e) => {

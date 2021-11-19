@@ -16,6 +16,7 @@ const Contact = React.lazy(() => import('../PostLogin/Contact'));
 const addNewContact = React.lazy(() => import('../PostLogin/Contact/addNewContact'));
 const VendorEnroll = React.lazy(() => import('../PostLogin/VendorEnroll'));
 const Invoices = React.lazy(() => import('../PostLogin/Invoices'));
+const ViewInvoice = React.lazy(() => import('../PostLogin/Invoices/ViewInvoice'))
 const Calender = React.lazy(() => import('../PostLogin/Calender'));
 
 const routes = [
@@ -37,6 +38,7 @@ const routes = [
     { path: '/postlogin/newcontact/:id', exact: true, name: 'addNewContact', component: addNewContact },
     { path: '/postlogin/vendorenroll', exact: true, name: 'VendorEnroll', component: VendorEnroll },
     { path: '/postlogin/invoices', exact: true, name: 'Invoices', component: Invoices },
+    { path: '/postlogin/viewinvoice/:id', exact: true, name: 'ViewInvoices', component: ViewInvoice },
     { path: '/postlogin/managerequisition', exact: true, name: 'ManageRequisition', component: ManageRequisition },
     { path: '/postlogin/calender', exact: true, name: 'Calender', component: Calender }
 ]

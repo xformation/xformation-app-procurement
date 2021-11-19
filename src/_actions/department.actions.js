@@ -18,7 +18,7 @@ function getDepartment(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: departmentConstants.GET_DEPARTMENT_SUCCESS,
-                            data: response.object
+                            data: response.data
                         }));
                     } else {
                         dispatch(dispatchFunction({

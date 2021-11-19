@@ -61,7 +61,7 @@ function getRequisition(data) {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.GET_REQUISITION_SUCCESS,
-                            data: response.object
+                            data: response.data
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -157,10 +157,11 @@ function getCurrency(data) {
         requisitionServices.getCurrency(data)
             .then(
                 response => {
+                    console.log(response)
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.GET_CURRENCY_SUCCESS,
-                            data: response.object
+                            data: response.data
                         }));
                     } else {
                         dispatch(dispatchFunction({
