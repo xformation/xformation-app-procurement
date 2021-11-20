@@ -56,24 +56,6 @@ export function buyer(state = {}, action) {
                 get_buyer_status: status.FAILURE,
                 getBuyer: null
             };
-        case buyerConstants.SEARCH_BUYER_REQUEST:
-            return {
-                ...state,
-                search_buyer_status: status.IN_PROGRESS,
-                searchBuyer: action.data
-            };
-        case buyerConstants.SEARCH_BUYER_SUCCESS:
-            return {
-                ...state,
-                search_buyer_status: status.SUCCESS,
-                searchBuyer: action.data
-            };
-        case buyerConstants.SEARCH_BUYER_FAILURE:
-            return {
-                ...state,
-                search_buyer_status: status.FAILURE,
-                searchBuyer: null
-            };
         case buyerConstants.UPDATE_BUYER_REQUEST:
             return {
                 ...state,

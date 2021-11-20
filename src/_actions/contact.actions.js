@@ -22,7 +22,7 @@ function fetchContactList() {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: contactConstants.GET_CONTACT_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -56,7 +56,7 @@ function addContact(data) {
                     if (response.code==200) {
                         dispatch(dispatchFunction({
                             type: contactConstants.ADD_CONTACT_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                         alert.success(response.message);
                     } else {
@@ -124,7 +124,7 @@ function getEditContactData(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: contactConstants.GET_EDIT_CONTACT_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -158,7 +158,7 @@ function updateContact(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: contactConstants.UPDATE_CONTACT_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                         alert.success(response.message);
                     } else {

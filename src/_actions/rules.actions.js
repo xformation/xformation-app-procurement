@@ -22,7 +22,7 @@ function addRules(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: rulesConstants.ADD_RULES_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -55,7 +55,7 @@ function deleteRules(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: rulesConstants.DELETE_RULES_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -88,7 +88,7 @@ function searchRules(data) {
                     if (response.code==200) {
                         dispatch(dispatchFunction({
                             type: rulesConstants.SEARCH_RULES_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -121,7 +121,7 @@ function getRulesByName(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: rulesConstants.RULES_BY_NAME_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -154,7 +154,7 @@ function updateRules(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: rulesConstants.UPDATE_RULES_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

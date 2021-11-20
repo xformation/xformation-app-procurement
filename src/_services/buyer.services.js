@@ -5,7 +5,6 @@ export const buyerServices = {
     addBuyer,
     deleteBuyer,
     getBuyer,
-    searchBuyer,
     updateBuyer
 }
 
@@ -31,14 +30,6 @@ function getBuyer(id) {
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
     return fetch(`${apiEndPoint.GETEDITBUYER}/${id}`, requestOptions).then(response => response.json());
-}
-
-function searchBuyer() {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHBUYER}`, requestOptions).then(response => response.json());
 }
 
 function updateBuyer() {

@@ -22,7 +22,7 @@ function addCommittee(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: committeeConstants.ADD_COMMITTEE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -88,7 +88,7 @@ function getCommittee(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: committeeConstants.GET_COMMITTEE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -154,7 +154,7 @@ function updateCommittee(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: committeeConstants.UPDATE_COMMITTEE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

@@ -19,7 +19,7 @@ function login(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: authConstants.USER_LOGIN_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

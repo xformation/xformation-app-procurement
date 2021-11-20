@@ -22,7 +22,7 @@ function addInvoice(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.ADD_INVOICE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -55,7 +55,7 @@ function deleteInvoice(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.DELETE_INVOICE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -88,7 +88,7 @@ function getInvoice(id ) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.GET_INVOICE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -121,7 +121,7 @@ function searchInvoice(data) {
                     if (response.code==200) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.SEARCH_INVOICE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -154,7 +154,7 @@ function updateInvoice(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: invoiceConstants.UPDATE_INVOICE_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

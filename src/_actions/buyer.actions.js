@@ -6,7 +6,6 @@ export const buyerAction = {
     addBuyer,
     deleteBuyer,
     getBuyer,
-    searchBuyer,
     updateBuyer
 };
 
@@ -22,7 +21,7 @@ function addBuyer(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.ADD_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -55,7 +54,7 @@ function deleteBuyer(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.DELETE_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -88,7 +87,7 @@ function getBuyer(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.GET_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -109,39 +108,6 @@ function getBuyer(id) {
     };
 }
 
-function searchBuyer(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: buyerConstants.SEARCH_BUYER_REQUEST,
-            data: null
-        }));
-        buyerServices.searchBuyer(data)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.SEARCH_BUYER_SUCCESS,
-                            data: response.data
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.SEARCH_BUYER_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: buyerConstants.SEARCH_BUYER_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
 function updateBuyer(id) {
     return dispatch => {
         dispatch(dispatchFunction({
@@ -154,7 +120,7 @@ function updateBuyer(id) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.UPDATE_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

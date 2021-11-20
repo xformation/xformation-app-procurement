@@ -18,7 +18,7 @@ function Userdata(data) {
                     if (response.status) {
                         dispatch(dispatchFunction({
                             type: homeConstants.USERDATA_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({

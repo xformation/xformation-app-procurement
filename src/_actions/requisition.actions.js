@@ -28,7 +28,7 @@ function addRequisition(data) {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.ADD_REQUISITION_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -61,7 +61,7 @@ function getRequisition(data) {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.GET_REQUISITION_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -127,7 +127,7 @@ function editRequisition(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.EDIT_REQUISITION_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -161,7 +161,7 @@ function getCurrency(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.GET_CURRENCY_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -227,7 +227,7 @@ function approveRequisition(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.APPROVE_REQUISITION_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -260,7 +260,7 @@ function getbuyerList(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.GET_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -293,7 +293,7 @@ function setRequisitionBuyers(data) {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.SET_BUYER_SUCCESS,
-                            data: response.data
+                            data: response.object
                         }));
                         alert.success(response.message);
                     } else {

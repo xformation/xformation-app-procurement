@@ -79,8 +79,6 @@ class NewRequisition extends Component {
 
     componentDidMount() {
         this.getCurrentFinancialYear();
-        // this.props.dispatch(departmentAction.getDepartment());
-        // this.props.dispatch(requistionAction.getCurrency());
         if (this.props.match.params.id) {
             this.props.dispatch(
                 requistionAction.getRequisitionEditData({
@@ -111,17 +109,14 @@ class NewRequisition extends Component {
                 addRequiData.notes = editRequisitiondata.notes;
                 addRequiData.requisitionLineItemLists =
                     editRequisitiondata.lineItemList || [];
-                if (
-                    editRequisitiondata.documentList &&
-                    editRequisitiondata.documentList.length > 0
-                ) {
-                    for (let i = 0; i < editRequisitiondata.documentList.length; i++) {
-                        requisitionFile.push({
-                            ...editRequisitiondata.documentList[i],
-                            name: editRequisitiondata.documentList[i].fileName,
-                        });
-                    }
-                }
+                // if (editRequisitiondata.documentList && editRequisitiondata.documentList.length > 0) {
+                //     for (let i = 0; i < editRequisitiondata.documentList.length; i++) {
+                //         requisitionFile.push({
+                //             ...editRequisitiondata.documentList[i],
+                //             name: editRequisitiondata.documentList[i].fileName,
+                //         });
+                //     }
+                // }
                 this.setState({
                     editReq: true,
                     addRequiData,

@@ -5,10 +5,9 @@ export const apiEndPoint = {
 
     // *Buyer Api Url
     ADDBUYER: `${config.apiUrl}/addbuyer`,
-    FETCHBUYER: `${config.apiUrl}/fetchbuyer`,
-    GETEDITBUYER: `${config.apiUrl}/buyers`,
+    GETEDITBUYER: `${config.apiUrl}/getBuyers`,
     DELETEBUYER: `${config.apiUrl}/deleteBuyer`,
-    UPDATEBUYER: `${config.apiUrl}/setbuyers`,
+    UPDATEBUYER: `${config.apiUrl}/setBuyers`,
 
     // *Committee Api Url
     ADDCOMMITTEE: `${config.apiUrl}/addCommittee`,
@@ -19,13 +18,13 @@ export const apiEndPoint = {
 
     // *Contact Api Url
     ADDCONTACT: `${config.apiUrl}/addContact`,
-    FETCHCONTACT: `${config.apiUrl}/fetchcontact`,
+    FETCHCONTACT: `${config.apiUrl}/getContacts`,
     GETEDITCONTACT: `${config.apiUrl}/geteditcontact/2`,
     DELETECONTACT: `${config.apiUrl}/deletecontact/id`,
     UPDATECONTACT: `${config.apiUrl}/editContact`,
 
     // *Department Api Url
-    FETCHDEPARTMENT: `${config.apiUrl}/getdepartment`,
+    FETCHDEPARTMENT: `${config.apiUrl}/searchDepartment`,
 
     // *Contact Api Url
     ADDINVOICE: `${config.apiUrl}/addInvoice`,
@@ -44,7 +43,7 @@ export const apiEndPoint = {
     APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
 
 
-    GETCURRENCY: `${config.apiUrl}/getcurrency`,
+    GETCURRENCY: `${config.apiUrl}/searchCurrency`,
 
     // *Role Api Url
     ADDROLE: `${config.apiUrl}/addRoles`,
