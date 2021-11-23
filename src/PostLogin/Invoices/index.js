@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import { invoiceServices } from '../../_services/invoice.services';
 import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
+import { commonFunctions} from '../../_utilities';
 
 
 class Invoices extends Component {
@@ -50,7 +51,7 @@ class Invoices extends Component {
                         label: 'Due Date',
                         key: 'RequestDate',
                         renderCallback: (value) => {
-                            return <td><span className={'RequestDate'}> <div className="graphic"></div>{value}</span></td>
+                            return <td><span className={'RequestDate'}> <div className="graphic"></div>{commonFunctions.convertDateToString(new Date(value))}</span></td>
                         }
                     },
                     {

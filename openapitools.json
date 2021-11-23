@@ -48,7 +48,7 @@
                                         "code": {
                                             "type": "string",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -59,7 +59,6 @@
                                         },
                                         "object": {
                                             "type": "array",
-                                            "x-count": 7,
                                             "items": {
                                                 "$ref": "#/components/schemas/department"
                                             }
@@ -109,7 +108,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -171,7 +170,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -240,7 +239,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -295,7 +294,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -361,7 +360,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -427,7 +426,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -483,7 +482,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -538,7 +537,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -604,7 +603,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -660,7 +659,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -715,7 +714,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -723,8 +722,9 @@
                                         "type": {
                                             "type": "string"
                                         },
-                                        "data": {
+                                        "object": {
                                             "type": "array",
+                                            "x-count": 10,
                                             "items": {
                                                 "$ref": "#/components/schemas/invoiceList"
                                             }
@@ -769,7 +769,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -821,7 +821,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -880,7 +880,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string"
@@ -950,7 +950,7 @@
                                         "code": {
                                             "type": "integer",
                                             "format": "int64",
-                                            "x-faker": "random.number({ \"min\": 200, \"max\": 200 })"
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
                                         },
                                         "message": {
                                             "type": "string",
@@ -988,7 +988,7 @@
                     "id": {
                         "type": "integer",
                         "format": "int64",
-                        "x-faker": "random.number({ \"min\": 1, \"max\": 10000 })"
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
                     },
                     "name": {
                         "type": "string",
@@ -1002,7 +1002,7 @@
                     "id": {
                         "type": "integer",
                         "format": "int64",
-                        "x-faker": "random.number({ \"min\": 1, \"max\": 10000 })"
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
                     },
                     "countryName": {
                         "type": "string",
@@ -1025,11 +1025,11 @@
                     "id": {
                         "type": "integer",
                         "format": "int64",
-                        "x-faker": "random.number({ \"min\": 1, \"max\": 100000 })"
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
                     },
                     "createdOn": {
                         "type": "string",
-                        "format": "date-time",
+                        "format": "date",
                         "x-faker": "datatype.datetime"
                     },
                     "department": {
@@ -1047,7 +1047,7 @@
                         "x-faker": "{{name.firstName}} {{name.lastName}}"
                     },
                     "totalPrice": {
-                        "type": "string",
+                        "type": "integer",
                         "x-faker": "{{commerce.price}}"
                     },
                     "status": {
@@ -1065,9 +1065,8 @@
                         "type": "string"
                     },
                     "requisitionNo": {
-                        "type": "integer",
-                        "format": "int64",
-                        "x-faker": "random.number({ \"min\": 1, \"max\": 100000 })"
+                        "type": "string",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
                     }
                 }
             },
@@ -1162,28 +1161,32 @@
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
                     },
                     "company": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker": "{{company.companyName}}"
                     },
                     "email": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker": "{{internet.email}}"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker": "{{name.firstName}} {{name.lastName}}"
                     },
                     "position": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker":"{{company.catchPhrase}}"
                     },
                     "profile": {
                         "type": "string",
-                        "default": "https://pe-images.s3.amazonaws.com/basics/cc/2021/crop/crop-image-in-circle/photoshop-crop-image-to-circle.jpg"
-                    },
+                        "x-faker": "{{image.imageUrl}}"                    },
                     "contNo": {
                         "type": "integer",
                         "format": "int64",
-                        "default": "+1234567859"
+                        "x-faker": "datatype.number({ \"min\": 1000000000, \"max\": 9999999999 })"
                     }
                 }
             },
@@ -1250,20 +1253,26 @@
                 "properties": {
                     "RequisitionsNo": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int64",
+                        "x-faker":"datatype.number({ \"min\": 1, \"max\": 10000 })"
                     },
                     "RequestDate": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date",
+                        "x-faker":"datatype.datetime"
                     },
                     "RequestDepartment": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker":"{{commerce.department}}"
                     },
                     "Requestor": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker":"{{internet.email}}"
                     },
                     "RequisitionsTotal": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int64",
+                        "x-faker":"{{commerce.price}}"
                     },
                     "status": {
                         "type": "string",
