@@ -59,6 +59,7 @@
                                         },
                                         "object": {
                                             "type": "array",
+                                            "x-count": 7,
                                             "items": {
                                                 "$ref": "#/components/schemas/department"
                                             }
@@ -270,11 +271,20 @@
                 }
             }
         },
-        "/deleterequisition/id": {
+        "/deleterequisition/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "delete": {
                 "summary": "Delete Requisition",
                 "operationId": "",
-                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "",
@@ -515,7 +525,7 @@
                 }
             }
         },
-        "/deletecontact/id": {
+        "/deleteContact/id": {
             "delete": {
                 "summary": "Delete Contact List",
                 "responses": {
@@ -566,7 +576,7 @@
                 }
             }
         },
-        "/addcontact": {
+        "/addContact": {
             "post": {
                 "summary": "Details about a Contact",
                 "operationId": "createContact",
@@ -632,7 +642,7 @@
                 }
             }
         },
-        "/geteditcontact/2": {
+        "/getEditContact/2": {
             "get": {
                 "summary": "Get Edit Contact Detail",
                 "operationId": "",
@@ -691,7 +701,7 @@
                 }
             }
         },
-        "/fetchinvoice": {
+        "/fetchInvoice": {
             "get": {
                 "summary": "Invoice Detail",
                 "operationId": "",
@@ -747,7 +757,7 @@
                 }
             }
         },
-        "/deleteinvoice/1": {
+        "/deleteInvoice/1": {
             "delete": {
                 "summary": "Delete invoice List",
                 "responses": {
@@ -798,7 +808,7 @@
                 }
             }
         },
-        "/viewinvoice": {
+        "/viewInvoice": {
             "get": {
                 "summary": "Invoice Detail",
                 "operationId": "",

@@ -19,8 +19,8 @@ export const apiEndPoint = {
     // *Contact Api Url
     ADDCONTACT: `${config.apiUrl}/addContact`,
     FETCHCONTACT: `${config.apiUrl}/getContacts`,
-    GETEDITCONTACT: `${config.apiUrl}/geteditcontact/2`,
-    DELETECONTACT: `${config.apiUrl}/deletecontact/id`,
+    GETEDITCONTACT: `${config.apiUrl}/getEditContact/2`,
+    DELETECONTACT: `${config.apiUrl}/deleteContact/id`,
     UPDATECONTACT: `${config.apiUrl}/editContact`,
 
     // *Department Api Url
@@ -28,8 +28,8 @@ export const apiEndPoint = {
 
     // *Contact Api Url
     ADDINVOICE: `${config.apiUrl}/addInvoice`,
-    FETCHINVOICE: `${config.apiUrl}/fetchinvoice`,
-    GETEDITINVOICE: `${config.apiUrl}/viewinvoice`,
+    FETCHINVOICE: `${config.apiUrl}/fetchInvoice`,
+    GETEDITINVOICE: `${config.apiUrl}/viewInvoice`,
     DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
     UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
 
