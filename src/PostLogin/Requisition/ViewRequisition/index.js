@@ -253,23 +253,24 @@ class ViewRequisition extends Component {
   // };
 
   setSelectedBuyers = () => {
-    const { buyersList } = this.state;
+    const { buyersListTable } = this.state;
     let buyersId = [];
-    if (buyersList && buyersList.length > 0) {
+    console.log(buyersListTable.data);
+    if (buyersListTable.data && buyersListTable.data.length > 0) {
       this.setState({
         isLoading: true,
       });
-      for (let i = 0; i < buyersList.length; i++) {
-        if (buyersList[i].isSected == true) {
-          buyersId.push(buyersList[i].id);
+      for (let i = 0; i < buyersListTable.data.length; i++) {
+        if (buyersListTable.data[i].isSected == true) {
+          buyersId.push(buyersListTable.data[i].id);
         }
       }
+      let sendData = {
+        requisitionID: this.props.match.params.id,
+        buyersId,
+      };
+      this.props.dispatch(requistionAction.setRequisitionBuyers(sendData));
     }
-    let sendData = {
-      requisitionID: this.props.match.params.id,
-      buyersId,
-    };
-    this.props.dispatch(requistionAction.setRequisitionBuyers(sendData));
   };
 
   removeSelectedBuyers = (id) => {
@@ -396,7 +397,6 @@ class ViewRequisition extends Component {
             </div>
             {buyersListTable.data && buyersListTable.data.length > 0 && (
               <div className="buyers-list">
-
                 <div className="mt-5 mb-3">
                   <div className="row">
                     <div className="col-9">
@@ -413,10 +413,11 @@ class ViewRequisition extends Component {
                     </div>
                   </div>
                 </div>
-
-
                 <Table
-                  valueFromData={this.state.buyersListTable}
+                  valueFromData={{
+                    columns: buyersListTable.columns,
+                    data: buyersListTable.data,
+                  }}
                   perPageLimit={10}
                   visiblecheckboxStatus={false}
                   isLoading={this.props.get_requisition_status === status.IN_PROGRESS}
@@ -428,24 +429,6 @@ class ViewRequisition extends Component {
                   searchKey="subject"
                   showingLine="Showing %start% to %end% of %total% Tickets"
                 />
-
-                {/* <table width="100%">
-                      <thead className="item-content">
-                        <tr>
-                          <th>S No</th>
-                          <th>Buyers Id</th>
-                          <th>Name</th>
-                          <th>Dealing Nature</th>
-                          <th>Positions</th>
-                          <th>Email Address</th>
-                          <th>Telephone</th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.displaySelectedBuyers()}
-                      </tbody>
-                    </table> */}
               </div>
             )}
             <div className="recieved-button">

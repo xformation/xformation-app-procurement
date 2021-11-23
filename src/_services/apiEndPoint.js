@@ -4,7 +4,7 @@ export const apiEndPoint = {
     LOGIN: `${config.apiUrl}/auth/login`,
 
     // *Buyer Api Url
-    ADDBUYER: `${config.apiUrl}/addbuyer`,
+    ADDBUYER: `${config.apiUrl}/addBuyer`,
     GETEDITBUYER: `${config.apiUrl}/getBuyers`,
     DELETEBUYER: `${config.apiUrl}/deleteBuyer`,
     UPDATEBUYER: `${config.apiUrl}/setBuyers`,
@@ -15,12 +15,13 @@ export const apiEndPoint = {
     GETEDITCOMMITTEE: `${config.apiUrl}/getCommittee`,
     DELETECOMMITTEE: `${config.apiUrl}/deleteCommittee`,
     UPDATECOMMITTEE: `${config.apiUrl}/updateCommittee`,
+    GETCOMMITTEETYPE:`${config.apiUrl}/getCommitteeType`,
 
     // *Contact Api Url
     ADDCONTACT: `${config.apiUrl}/addContact`,
     FETCHCONTACT: `${config.apiUrl}/getContacts`,
-    GETEDITCONTACT: `${config.apiUrl}/getEditContact/2`,
-    DELETECONTACT: `${config.apiUrl}/deleteContact/id`,
+    GETCONTACT: `${config.apiUrl}/getContact`,
+    DELETECONTACT: `${config.apiUrl}/deleteContact`,
     UPDATECONTACT: `${config.apiUrl}/editContact`,
 
     // *Department Api Url

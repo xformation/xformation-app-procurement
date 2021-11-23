@@ -6,7 +6,7 @@ export const contactServices = {
     addContact,
     deleteContact,
     fetchContactList,
-    getEditContactData,
+    getContactData,
     updateContact
 }
 
@@ -18,12 +18,12 @@ function addContact(data) {
     return fetch(`${apiEndPoint.ADDCONTACT}`, requestOptions).then(response => response.json());
 }
 
-function deleteContact(id) {
+function deleteContact(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETECONTACT}/2`, requestOptions).then(response => response);
+    return fetch(`${apiEndPoint.DELETECONTACT}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function fetchContactList() {
@@ -34,12 +34,12 @@ function fetchContactList() {
     return fetch(`${apiEndPoint.FETCHCONTACT}`, requestOptions).then(response => response.json());
 }
 
-function getEditContactData(data) {
+function getContactData(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETEDITCONTACT}/2`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETCONTACT}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function updateContact(data) {
@@ -47,5 +47,5 @@ function updateContact(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.UPDATECONTACT}/2`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.UPDATECONTACT}`, requestOptions).then(response => response.json());
 }

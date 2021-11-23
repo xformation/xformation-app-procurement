@@ -249,9 +249,7 @@
                                             "type": "string"
                                         },
                                         "object": {
-                                            "schema": {
-                                                "$ref": "#/components/schemas/requisition"
-                                            }
+                                            "$ref": "#/components/schemas/requisition"
                                         }
                                     }
                                 }
@@ -271,7 +269,7 @@
                 }
             }
         },
-        "/deleterequisition/{id}": {
+        "/deleteRequisition/{id}": {
             "parameters": [
                 {
                     "name": "id",
@@ -314,7 +312,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -380,7 +378,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -446,7 +444,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -525,7 +523,17 @@
                 }
             }
         },
-        "/deleteContact/id": {
+        "/deleteContact/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "delete": {
                 "summary": "Delete Contact List",
                 "responses": {
@@ -557,7 +565,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -623,7 +631,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -642,7 +650,83 @@
                 }
             }
         },
-        "/getEditContact/2": {
+        "/editContact": {
+            "post": {
+                "summary": "Edit contact",
+                "operationId": "editContact",
+                "requestBody": {
+                    "description": "Request body to edit contact",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/contactData"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Edit Contact Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getContact/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "get": {
                 "summary": "Get Edit Contact Detail",
                 "operationId": "",
@@ -677,11 +761,9 @@
                                         "type": {
                                             "type": "string"
                                         },
-                                        "data": {
+                                        "object": {
                                             "type": "object",
-                                            "items": {
-                                                "$ref": "#/components/schemas/editcontactdata"
-                                            }
+                                            "$ref": "#/components/schemas/userData"
                                         }
                                     }
                                 }
@@ -789,7 +871,7 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
                                     }
                                 }
                             }
@@ -839,7 +921,7 @@
                                         "type": {
                                             "type": "string"
                                         },
-                                        "data": {
+                                        "object": {
                                             "type": "object",
                                             "items": {
                                                 "$ref": "#/components/schemas/invoicedetail"
@@ -970,7 +1052,129 @@
                                             "type": "string",
                                             "default": "SUCCESS"
                                         },
-                                        "data": {}
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/searchCommittee": {
+            "get": {
+                "summary": "Committee Detail",
+                "operationId": "",
+                "tags": [
+                    "committeedetail"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "committee detail",
+                        "headers": {
+                            "x-next": {
+                                "description": "committee List",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "type": "array",
+                                            "x-count": 12,
+                                            "items": {
+                                                "$ref": "#/components/schemas/userData"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getCommitteeType": {
+            "get": {
+                "summary": "Detail of Committee Type",
+                "operationId": "",
+                "tags": [
+                    "committeetype"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Detail of Committee Type",
+                        "headers": {
+                            "x-next": {
+                                "description": "Committee Type",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Fetch currency Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {
+                                            "type": "array",
+                                            "x-count": 7,
+                                            "items": {
+                                                "$ref": "#/components/schemas/currency"
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1043,14 +1247,10 @@
                         "x-faker": "datatype.datetime"
                     },
                     "department": {
-                        "schema": {
-                            "$ref": "#/components/schemas/department"
-                        }
+                        "$ref": "#/components/schemas/department"
                     },
                     "currency": {
-                        "schema": {
-                            "$ref": "#/components/schemas/currency"
-                        }
+                        "$ref": "#/components/schemas/currency"
                     },
                     "createdBy": {
                         "type": "string",
@@ -1061,7 +1261,8 @@
                         "x-faker": "{{commerce.price}}"
                     },
                     "status": {
-                        "type": "string"
+                        "type": "string",
+                        "x-faker": "{{helpers.randomize(PSC)}}"
                     },
                     "dueDate": {
                         "type": "string",
@@ -1188,11 +1389,12 @@
                     },
                     "position": {
                         "type": "string",
-                        "x-faker":"{{company.catchPhrase}}"
+                        "x-faker": "{{company.catchPhrase}}"
                     },
                     "profile": {
                         "type": "string",
-                        "x-faker": "{{image.imageUrl}}"                    },
+                        "x-faker": "{{image.imageUrl}}"
+                    },
                     "contNo": {
                         "type": "integer",
                         "format": "int64",
@@ -1228,61 +1430,31 @@
                     }
                 }
             },
-            "editcontactdata": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "company": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "position": {
-                        "type": "string"
-                    },
-                    "profile": {
-                        "type": "string",
-                        "default": "https://pe-images.s3.amazonaws.com/basics/cc/2021/crop/crop-image-in-circle/photoshop-crop-image-to-circle.jpg"
-                    },
-                    "contNo": {
-                        "type": "integer",
-                        "format": "int64",
-                        "default": "+1234567859"
-                    }
-                }
-            },
             "invoiceList": {
                 "type": "object",
                 "properties": {
                     "RequisitionsNo": {
                         "type": "integer",
                         "format": "int64",
-                        "x-faker":"datatype.number({ \"min\": 1, \"max\": 10000 })"
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
                     },
                     "RequestDate": {
                         "type": "string",
                         "format": "date",
-                        "x-faker":"datatype.datetime"
+                        "x-faker": "datatype.datetime"
                     },
                     "RequestDepartment": {
                         "type": "string",
-                        "x-faker":"{{commerce.department}}"
+                        "x-faker": "{{commerce.department}}"
                     },
                     "Requestor": {
                         "type": "string",
-                        "x-faker":"{{internet.email}}"
+                        "x-faker": "{{internet.email}}"
                     },
                     "RequisitionsTotal": {
                         "type": "integer",
                         "format": "int64",
-                        "x-faker":"{{commerce.price}}"
+                        "x-faker": "{{commerce.price}}"
                     },
                     "status": {
                         "type": "string",

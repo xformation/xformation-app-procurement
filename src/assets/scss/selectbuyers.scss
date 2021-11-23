@@ -225,6 +225,12 @@
                                 font-size: 14px;
                                 line-height: 20px;
                                 color: #a5a5a5;
+                                display: block;
+                                width: 100%;
+                                padding: 0 15px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
 
                             p {
@@ -232,6 +238,12 @@
                                 line-height: 20px;
                                 font-weight: 500;
                                 color: #6418c3;
+                                display: block;
+                                width: 100%;
+                                padding: 0 15px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
                         }
                     }
@@ -256,6 +268,13 @@
                                 font-weight: 500;
                                 color: $text-color;
                                 text-decoration: none;
+                                display: inline-block;
+                                vertical-align: middle;
+                                margin-top: -2px;
+                                width: calc(100% - 36px);
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
 
                             .icon-btn {

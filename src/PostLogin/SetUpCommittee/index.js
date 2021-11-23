@@ -137,6 +137,7 @@ class SetUpCommittee extends Component {
         const open = Boolean(deletePopup);
         for (let i = 0; i < committee.length; i++) {
             let row = committee[i];
+            console.log(row)
             retData.push(
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
                     <Card className={activeindex == i ? "member-box active" : "member-box"} onClick={() => this.setState({ activeindex: i })}>
@@ -174,8 +175,10 @@ class SetUpCommittee extends Component {
                                 ))}
                             </Menu>
                         </div>
-                        <div className="image">
-                            <img src={row.image} alt="" />
+                        <div className="d-flex justify-content-center align-items-center user-img">
+                            <div className="d-flex justify-content-center align-items-center image">
+                                <img src={row.profile} width='50px' height="50px"  alt="" />
+                            </div>
                         </div>
                         <div className="member-details">
                             <ul>

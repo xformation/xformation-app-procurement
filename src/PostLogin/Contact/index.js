@@ -20,7 +20,7 @@ import { contactAction } from "../../_actions";
 import { status } from "../../_constants";
 import Checkbox from "@material-ui/core/Checkbox";
 import Loader from '../../_components/commonLoader';
-
+import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@material-ui/core';
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +31,8 @@ class Contact extends Component {
         depart: "",
         isSected: '',
       },
+      deleteIndex:'',
+      openDialog:false,
       newContact: false,
       activeindex: 0,
       contactMemberList: [],
@@ -69,9 +71,20 @@ class Contact extends Component {
       });
     }
   }
-
-  removeContact = (id) => {
-    this.props.dispatch(contactAction.deleteContact({ id: id }));
+  onClickDelete = (id) => {
+    const { openDialog } = this.state;
+    let deleteItem = !openDialog;
+    this.setState({
+        openDialog: deleteItem,
+        deleteIndex: id,
+    })
+};
+  removeContact = (id , index) => {
+    // console.log(id)
+    let{openDialog}=this.state
+    this.props.dispatch(contactAction.deleteContact({ id: this.state.deleteIndex }));
+    openDialog= false;
+    this.setState({openDialog})
   };
 
   toggleDisplayOptions = () => {
@@ -135,7 +148,7 @@ class Contact extends Component {
                         <span onClick={() => this.editContact(row.id)}>
                           <EditTwoToneIcon /> Edit
                         </span>
-                        <span onClick={() => this.removeContact(row.id)}>
+                        <span onClick={(id) =>  this.onClickDelete(row.id)}>
                           <HighlightOffIcon /> Delete
                         </span>
                       </>
@@ -191,6 +204,7 @@ class Contact extends Component {
     return retData;
   };
   render() {
+  let {openDialog}=this.state
     return (
       <div className="main-content">
         <div className="contact-content">
@@ -259,6 +273,22 @@ class Contact extends Component {
             </div>
           </div>
         </div>
+        <Dialog open={openDialog} onClose={() => this.setState({ openDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
+                    <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
+                        Delete Confirmation
+                    </DialogTitle>
+                    <DialogContent className="dialogSmWidth addNewItemDialogContent">
+                        <p>Are you sure to delete record?</p>
+                    </DialogContent>
+                    <DialogActions className="dialogSmWidth addNewItemDialogActions">
+                        <Button variant="contained" onClick={this.removeContact} className="primary-btn">
+                            Yes
+                        </Button>
+                        <Button variant="contained" onClick={() => this.setState({ openDialog: false })} className="default-btn">
+                            No
+                        </Button>
+                    </DialogActions>
+                </Dialog>
       </div>
     );
   }

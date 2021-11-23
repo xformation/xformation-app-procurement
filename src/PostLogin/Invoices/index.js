@@ -216,7 +216,6 @@ class Invoices extends Component {
                         </div>
                     </div>
                     <div className="invoices-tabale">
-                        { }
                         <Table valueFromData={{ columns: approvedVendoreTableData.columns, data: approvedVendoreTableData.data }} searchValue={this.state.searchValue} perPageLimit={6} visiblecheckboxStatus={true}
                             isLoading={this.props.search_invoice_status == status.IN_PROGRESS}
                             tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="RequestDepartment" showingLine="Showing %start% to %end% of %total% Tickets" />

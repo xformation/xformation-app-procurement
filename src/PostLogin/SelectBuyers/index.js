@@ -18,6 +18,8 @@ import { requistionAction } from "../../_actions";
 import { status } from "../../_constants";
 import { alert } from "../../_utilities";
 import Loader from "../../_components/commonLoader";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
 
 class SelectBuyers extends Component {
   constructor(props) {
@@ -25,169 +27,9 @@ class SelectBuyers extends Component {
     this.state = {
       isLoading: true,
       searchval: "",
-      approvedMemberList: [
-        // {
-        //     name: 'Angela Moss',
-        //     image: David,
-        //     shortName: 'Hs',
-        //     shortNameColor: '#5ed1a7',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Ahmad Zayn',
-        //     image: Fanny,
-        //     shortName: 'AV',
-        //     shortNameColor: '#256fc6',
-        //     position: 'Photographer at',
-        //     company: 'Audio video Teams',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Brian Connor',
-        //     image: 'Hawkins',
-        //     shortName: 'Cz',
-        //     shortNameColor: '#dc3472',
-        //     position: 'Designer at',
-        //     company: 'Crimzon Guards Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Courtney Hawkins',
-        //     image: 'David',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#4b1643',
-        //     position: 'Programmer at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Chyntia Smilee',
-        //     image: 'Chyntia',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#cb8fbc',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'David Here',
-        //     image: 'Brian',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#a6e6e6',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Denise Lee',
-        //     image: 'Peter',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#0b82ea',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Erbatov Axie',
-        //     image: 'Dennise',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#07504f',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Fanny Humble',
-        //     image: 'Erbatow',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#91d8d2',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Evan Khan',
-        //     image: 'Evan',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#4194e6',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Frankli jr.',
-        //     image: 'Dennise',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#eb6520',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Gandalf Hoos',
-        //     image: 'Peter',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#0c3972',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Gabriella',
-        //     image: 'Brian',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#45a13c',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Hanny Shella',
-        //     image: 'Fanny',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#da2866',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Ivankov',
-        //     image: 'Hawkins',
-        //     shortName: 'Hs',
-        //     shortNameColor: '#9304f1',
-        //     position: 'Marketing Manager at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-        // {
-        //     name: 'Petel Morriss',
-        //     image: "Peter",
-        //     shortName: 'Hs',
-        //     shortNameColor: '#4b1643',
-        //     position: 'HR at',
-        //     company: 'Highspeed Studios',
-        //     contNo: '+1234567890',
-        //     email: 'petermorriss@gmail.com'
-        // },
-      ],
+      approvedMemberList: [],
       duplicateData: [],
+      displayOption: false,
     };
   }
 
@@ -196,15 +38,8 @@ class SelectBuyers extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.get_buyer_status !== this.props.get_buyer_status &&
-      this.props.get_buyer_status === status.SUCCESS
-    ) {
-      if (
-        this.props.selected_buyer_list &&
-        this.props.selected_buyer_list.approvedMemberList &&
-        this.props.selected_buyer_list.approvedMemberList.length > 0
-      ) {
+    if (prevProps.get_buyer_status !== this.props.get_buyer_status && this.props.get_buyer_status === status.SUCCESS) {
+      if (this.props.selected_buyer_list && this.props.selected_buyer_list.approvedMemberList && this.props.selected_buyer_list.approvedMemberList.length > 0) {
         if (this.props.selected_buyer_list.id == this.props.match.params.id) {
           this.setState({
             approvedMemberList: this.props.selected_buyer_list
@@ -237,8 +72,20 @@ class SelectBuyers extends Component {
     }
   }
 
+  toggleDisplayOptions = () => {
+    this.setState({ displayOption: !this.state.displayOption });
+  };
+
+  editContact = (id) => {
+    //this.props.history.push(`/postlogin/newcontact/${id}`);
+  };
+
+  removeContact = (id , index) => {
+    //this.props.dispatch(requistionAction.deleteContact({ id: id }));
+  };
+
   displayApprovedMemberList = () => {
-    const { approvedMemberList, activeindex } = this.state;
+    const { approvedMemberList, activeindex, displayOption } = this.state;
     let retData = [];
     for (let i = 0; i < approvedMemberList.length; i++) {
       let row = approvedMemberList[i];
@@ -248,12 +95,8 @@ class SelectBuyers extends Component {
           key={row.name}
         >
           <div className="member-boxs">
-            <Card
-              className={
-                activeindex == i ? "members-box active" : "members-box"
-              }
-              onClick={() => this.setState({ activeindex: i })}
-            >
+            <Card className={activeindex == i ? "members-box active" : "members-box"}
+              onClick={() => this.setState({ activeindex: i })}>
               <div className="d-flex justify-content-center align-items-center user-img">
                 <div className="d-flex justify-content-center align-items-center image">
                   <img src={row.profile} alt="" />
@@ -267,8 +110,24 @@ class SelectBuyers extends Component {
               </div>
               <div className="d-inline-block menu-icon">
                 <IconButton aria-label="settings">
-                  <MoreVertIcon />
+                  <MoreVertIcon 
+                    onClick={
+                      i === activeindex ? this.toggleDisplayOptions : null
+                    }
+                  />
                 </IconButton>
+                <div className="settings-toggle">
+                  {displayOption && i === activeindex ? (
+                    <>
+                      <span onClick={() => this.editContact(row.id)}>
+                        <EditTwoToneIcon /> Edit
+                      </span>
+                      <span onClick={() => this.removeContact(row.id)}>
+                        <HighlightOffIcon /> Delete
+                      </span>
+                    </>
+                  ) : null}
+                </div>
               </div>
               <div className="requisition">
                 <Checkbox

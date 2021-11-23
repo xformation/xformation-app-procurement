@@ -6,7 +6,7 @@ export const contactAction = {
     addContact,
     deleteContact,
     fetchContactList,
-    getEditContactData,
+    getContactData,
     updateContact
 };
 
@@ -92,6 +92,7 @@ function deleteContact(id) {
                             type: contactConstants.DELETE_CONTACT_SUCCESS,
                             data: response.object
                         }));
+                        alert.success(response.message);
                     } else {
                         dispatch(dispatchFunction({
                             type: contactConstants.DELETE_CONTACT_FAILURE,
@@ -111,13 +112,13 @@ function deleteContact(id) {
     };
 }
 
-function getEditContactData(data) {
+function getContactData(data) {
     return dispatch => {
         dispatch(dispatchFunction({
             type: contactConstants.GET_EDIT_CONTACT_REQUEST,
             data: null
         }));
-        contactServices.getEditContactData(data)
+        contactServices.getContactData(data)
             .then(
                 response => {
                     console.log(response)

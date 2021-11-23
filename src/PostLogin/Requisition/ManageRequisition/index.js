@@ -98,18 +98,18 @@ class ManageRequisition extends Component {
                                             <Link to={`/postlogin/newrequisition/${value}`}> <CreateIcon /></Link>
                                         </Button>
                                     }
-                                    {row.status == requisitionStatus.DRAFT &&
+                                    {/* {row.status == requisitionStatus.DRAFT && */}
                                         <Button>
                                             <DeleteIcon onClick={() => this.onClickDelete(value)} />
                                         </Button>
-                                    }
-                                    {row.status !== requisitionStatus.DRAFT &&
+                                    {/* } */}
+                                    {/* {row.status !== requisitionStatus.DRAFT &&
                                         <Tooltip title="You can delete only draft">
                                             <Button area-label="You can delete only draft" className="disabled">
                                                 <DeleteIcon />
                                             </Button>
                                         </Tooltip>
-                                    }
+                                    } */}
                                 </div>
                             </td>
                         )

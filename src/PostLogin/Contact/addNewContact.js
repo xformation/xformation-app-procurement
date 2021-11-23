@@ -34,28 +34,31 @@ class addNewContact extends Component {
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      // this.props.dispatch(contactAction.getEditContactData({ 'id': this.props.match.params.id }));
-      this.props.dispatch(contactAction.getEditContactData({ id: 1 }));
+      this.props.dispatch(contactAction.getContactData({ 'id': this.props.match.params.id }));
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.get_edit_contact_status !==
-        this.props.get_edit_contact_status &&
+      this.props.get_edit_contact_status &&
       this.props.get_edit_contact_status === status.SUCCESS
     ) {
       if (this.props.contactData) {
         const { contactData } = this.props;
+        let fname = contactData.name.split(' ').slice(0, 1);
+        let lname = contactData.name.split(' ').slice(1, 2);
         this.setState({
           isEdit: true,
-          firstName: contactData.firstName,
-          lastName: contactData.lastName,
-          title: contactData.title,
+          firstName: fname,
+          lastName: lname,
+          title: contactData.position,
           company: contactData.company,
           email: contactData.email,
-          contactNo: contactData.contactNo,
+          contactNo: contactData.contNo,
           profile: contactData.profile,
+          profileUrl: contactData.profile,
+
         });
       }
     }
@@ -199,6 +202,9 @@ class addNewContact extends Component {
     }
   };
 
+  handleBack = () => {
+    this.props.history.push('/postlogin/contact')
+  }
   handleChange = (e) => {
     e.preventDefault();
     const { name, value, files } = e.target;
@@ -236,7 +242,7 @@ class addNewContact extends Component {
             <div className="heading">
               <h5>
                 <IconButton className="head-icon">
-                  <KeyboardBackspaceIcon />
+                  <KeyboardBackspaceIcon onClick={this.handleBack} />
                 </IconButton>
                 Add New Contact
               </h5>
