@@ -1162,7 +1162,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "default": "Fetch currency Successfully"
+                                            "default": "Fetch committee type Successfully"
                                         },
                                         "type": {
                                             "type": "string",
@@ -1172,9 +1172,75 @@
                                             "type": "array",
                                             "x-count": 7,
                                             "items": {
-                                                "$ref": "#/components/schemas/currency"
+                                                "$ref": "#/components/schemas/committee"
                                             }
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addCommittee": {
+            "post": {
+                "summary": "Details about a set committee members",
+                "operationId": "setbuyer",
+                "requestBody": {
+                    "description": "Request body to set committee memberse",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/selectCommitteeMembers"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Add Committee Members Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
                                     }
                                 }
                             }
@@ -1495,6 +1561,31 @@
                         "type": "string"
                     },
                     "buyersId": {
+                        "type": "array"
+                    }
+                }
+            },
+            "committee": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-faker": "{{commerce.department}}"
+                    }
+                }
+            },
+            "selectCommitteeMembers": {
+                "type": "object",
+                "properties": {
+                    "userID": {
+                        "type": "string"
+                    },
+                    "membersId": {
                         "type": "array"
                     }
                 }

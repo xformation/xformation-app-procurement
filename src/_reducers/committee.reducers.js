@@ -20,41 +20,23 @@ export function committee(state = {}, action) {
                 add_committee_status: status.FAILURE,
                 addCommittee: null
             };
-        case committeeConstants.DELETE_COMMITTEE_REQUEST:
+        case committeeConstants.GET_COMMITTEETYPE_REQUEST:
             return {
                 ...state,
-                delete_committee_status: status.IN_PROGRESS,
-                deleteCommittee: action.data
+                get_committee_type_status: status.IN_PROGRESS,
+                getCommitteeType: action.data
             };
-        case committeeConstants.DELETE_COMMITTEE_SUCCESS:
+        case committeeConstants.GET_COMMITTEETYPE_SUCCESS:
             return {
                 ...state,
-                delete_committee_status: status.SUCCESS,
-                deleteCommittee: action.data
+                get_committee_type_status: status.SUCCESS,
+                getCommitteeType: action.data
             };
-        case committeeConstants.DELETE_COMMITTEE_FAILURE:
+        case committeeConstants.GET_COMMITTEETYPE_FAILURE:
             return {
                 ...state,
-                delete_committee_status: status.FAILURE,
-                deleteCommittee: null
-            };
-        case committeeConstants.GET_COMMITTEE_REQUEST:
-            return {
-                ...state,
-                get_committee_status: status.IN_PROGRESS,
-                getCommittee: action.data
-            };
-        case committeeConstants.GET_COMMITTEE_SUCCESS:
-            return {
-                ...state,
-                get_committee_status: status.SUCCESS,
-                getCommittee: action.data
-            };
-        case committeeConstants.GET_COMMITTEE_FAILURE:
-            return {
-                ...state,
-                get_committee_status: status.FAILURE,
-                getCommittee: null
+                get_committee_type_status: status.FAILURE,
+                getCommitteeType: null
             };
         case committeeConstants.SEARCH_COMMITTEE_REQUEST:
             return {
@@ -91,6 +73,12 @@ export function committee(state = {}, action) {
                 ...state,
                 update_committee_status: status.FAILURE,
                 updateCommittee: null
+            };
+        case committeeConstants.SET_SELECTED_COMITTEE_MEMBER:
+            return {
+                ...state,
+                selected_committee_status: status.SUCCESS,
+                selected_member_list: action.data
             };
         default:
             return state;

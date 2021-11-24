@@ -4,10 +4,11 @@ import { alert, commonFunctions } from '../_utilities';
 
 export const committeeAction = {
     addCommittee,
-    deleteCommittee,
-    getCommittee,
+    // deleteCommittee,
+    getCommitteeType,
     searchCommittee,
-    updateCommittee
+    // updateCommittee,
+    addSelectedMember
 };
 
 function addCommittee(data) {
@@ -19,11 +20,12 @@ function addCommittee(data) {
         committeeServices.addCommittee(data)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: committeeConstants.ADD_COMMITTEE_SUCCESS,
                             data: response.object
                         }));
+                        alert.success(response.message);
                     } else {
                         dispatch(dispatchFunction({
                             type: committeeConstants.ADD_COMMITTEE_FAILURE,
@@ -43,71 +45,71 @@ function addCommittee(data) {
     };
 }
 
-function deleteCommittee(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: committeeConstants.DELETE_COMMITTEE_REQUEST,
-            data: null
-        }));
-        committeeServices.deleteCommittee(id)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: committeeConstants.DELETE_COMMITTEE_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: committeeConstants.DELETE_COMMITTEE_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: committeeConstants.DELETE_COMMITTEE_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
+// function deleteCommittee(id) {
+//     return dispatch => {
+//         dispatch(dispatchFunction({
+//             type: committeeConstants.DELETE_COMMITTEE_REQUEST,
+//             data: null
+//         }));
+//         committeeServices.deleteCommittee(id)
+//             .then(
+//                 response => {
+//                     if (response.code === 200) {
+//                         dispatch(dispatchFunction({
+//                             type: committeeConstants.DELETE_COMMITTEE_SUCCESS,
+//                             data: response.object
+//                         }));
+//                     } else {
+//                         dispatch(dispatchFunction({
+//                             type: committeeConstants.DELETE_COMMITTEE_FAILURE,
+//                             data: response
+//                         }));
+//                         alert.error(response.message);
+//                     }
+//                 },
+//                 error => {
+//                     dispatch(dispatchFunction({
+//                         type: committeeConstants.DELETE_COMMITTEE_FAILURE,
+//                         data: error.message
+//                     }));
+//                     alert.error(error.message);
+//                 }
+//             );
+//     };
+// }
 
-function getCommittee(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: committeeConstants.GET_COMMITTEE_REQUEST,
-            data: null
-        }));
-        committeeServices.getCommittee(id)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: committeeConstants.GET_COMMITTEE_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: committeeConstants.GET_COMMITTEE_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: committeeConstants.GET_COMMITTEE_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
+// function getCommittee(id) {
+//     return dispatch => {
+//         dispatch(dispatchFunction({
+//             type: committeeConstants.GET_COMMITTEE_REQUEST,
+//             data: null
+//         }));
+//         committeeServices.getCommittee(id)
+//             .then(
+//                 response => {
+//                     if (response.status) {
+//                         dispatch(dispatchFunction({
+//                             type: committeeConstants.GET_COMMITTEE_SUCCESS,
+//                             data: response.object
+//                         }));
+//                     } else {
+//                         dispatch(dispatchFunction({
+//                             type: committeeConstants.GET_COMMITTEE_FAILURE,
+//                             data: response
+//                         }));
+//                         alert.error(response.message);
+//                     }
+//                 },
+//                 error => {
+//                     dispatch(dispatchFunction({
+//                         type: committeeConstants.GET_COMMITTEE_FAILURE,
+//                         data: error.message
+//                     }));
+//                     alert.error(error.message);
+//                 }
+//             );
+//     };
+// }
 
 function searchCommittee(data) {
     return dispatch => {
@@ -142,23 +144,23 @@ function searchCommittee(data) {
     };
 }
 
-function updateCommittee(id) {
+function getCommitteeType(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: committeeConstants.UPDATE_COMMITTEE_REQUEST,
+            type: committeeConstants.GET_COMMITTEETYPE_REQUEST,
             data: null
         }));
-        committeeServices.updateCommittee(id)
+        committeeServices.getCommitteeType(data)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
-                            type: committeeConstants.UPDATE_COMMITTEE_SUCCESS,
+                            type: committeeConstants.GET_COMMITTEETYPE_SUCCESS,
                             data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: committeeConstants.UPDATE_COMMITTEE_FAILURE,
+                            type: committeeConstants.GET_COMMITTEETYPE_FAILURE,
                             data: response
                         }));
                         alert.error(response.message);
@@ -166,12 +168,21 @@ function updateCommittee(id) {
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: committeeConstants.UPDATE_COMMITTEE_FAILURE,
+                        type: committeeConstants.GET_COMMITTEETYPE_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);
                 }
             );
+    };
+}
+
+function addSelectedMember(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: committeeConstants.SET_SELECTED_COMITTEE_MEMBER,
+            data: data,
+        }));
     };
 }
 

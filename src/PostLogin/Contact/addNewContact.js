@@ -209,7 +209,7 @@ class addNewContact extends Component {
     e.preventDefault();
     const { name, value, files } = e.target;
     let { profile, profileUrl } = this.state;
-    if (name === "profile") {
+    if (name === "profile" && files.length>0) {
       profile = files[0];
       profileUrl = URL.createObjectURL(files[0]);
       this.setState({
@@ -380,7 +380,7 @@ class addNewContact extends Component {
                             multiple
                             type="file"
                             name="profile"
-                            onChange={(e) => this.handleChange(e)}
+                            
                           />
                           <span>changes photos</span>
                         </Button>

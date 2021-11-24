@@ -29,22 +29,25 @@ class SetUpCommittee extends Component {
             },
             activeindex: null,
             committeeMember: [],
+            comitteeType: [],
             deletePopup: null,
         }
     };
 
     componentDidMount() {
-        this.props.dispatch(committeeAction.addCommittee());
-        this.props.dispatch(committeeAction.searchCommittee());
-        // this.props.dispatch(committeeAction.deleteCommittee(""));
-        // //this.props.dispatch(committeeAction.getCommittee(""));
-        //this.props.dispatch(committeeAction.updateCommittee(""));
+        this.props.dispatch(committeeAction.getCommitteeType());
+        if (this.props.selected_member_list && this.props.selected_member_list.committeeMember && this.props.selected_member_list.committeeMember.length > 0) {
+            console.log(this.props.selected_member_list)
+            this.setState({
+                committeeMember: this.props.selected_member_list.committeeMember,
+            });
+        }
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.search_committee_status !== this.props.search_committee_status && this.props.search_committee_status === status.SUCCESS) {
+        if (prevProps.selected_committee_status !== this.props.selected_committee_status && this.props.selected_committee_status === status.SUCCESS) {
             this.setState({
-                committeeMember: this.props.searchCommittee,
+                committeeMember: this.props.selected_member_list.committeeMember,
             });
         }
         if (prevProps.delete_committee_status !== this.props.delete_committee_status && this.props.delete_committee_status === status.SUCCESS) {
@@ -65,6 +68,13 @@ class SetUpCommittee extends Component {
             });
             alert.success("Committee deleted successfully");
         }
+        if (prevProps.get_committee_type_status !== this.props.get_committee_type_status && this.props.get_committee_type_status === status.SUCCESS) {
+            if (this.props.getCommitteeType) {
+                this.setState({
+                    comitteeType: this.props.getCommitteeType,
+                })
+            }
+        }
     };
 
     handleStateChange = (e) => {
@@ -76,21 +86,8 @@ class SetUpCommittee extends Component {
         });
     };
 
-    handleClickMethod = (event) => {
-        const { requiData } = this.state;
-        event.preventDefault();
-        this.setState({
-            isSubmitted: true
-        });
-        const errorData = this.validate(true);
-        if (errorData.isValid) {
-            const sendReqData = {
-                status: requiData.status,
-                reqno: requiData.reqno,
-                depart: requiData.depart
-
-            }
-        }
+    handleClickMethod = () => {
+        this.props.history.push("/postlogin/selectecommittee");
     };
 
     validate = (isSubmitted) => {
@@ -130,89 +127,117 @@ class SetUpCommittee extends Component {
         }
     };
 
-    displayCommiteeLists = (committee) => {
+    displayCommiteeLists = () => {
         let retData = [];
-        const { activeindex, deletePopup } = this.state;
+        const { activeindex, deletePopup, committeeMember } = this.state;
         const { delete_committee_status } = this.props;
         const open = Boolean(deletePopup);
-        for (let i = 0; i < committee.length; i++) {
-            let row = committee[i];
-            console.log(row)
-            retData.push(
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
-                    <Card className={activeindex == i ? "member-box active" : "member-box"} onClick={() => this.setState({ activeindex: i })}>
-                        <div className="d-inline-block menu-icon">
-                            <IconButton
-                                aria-label="More"
-                                aria-owns={open ? 'long-menu' : null}
-                                aria-haspopup="true"
-                                aria-controls="fade-menu"
-                                onClick={this.onClickShowDeletePopup}
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                                id="long-menu"
-                                anchorEl={deletePopup}
-                                open={open}
-                                TransitionComponent={Fade}
-                                onClose={this.onClickCommitteeItemDelete}
-                                PaperProps={{
-                                    style: {
-                                        width: 120,
-                                    },
-                                }}
-                            >
-                                {options.map(option => (
-                                    <MenuItem
-                                        key={option}
-                                        selected={option === 'Delete'}
-                                        onClick={() => this.onClickCommitteeItemDelete(row)}
-                                        disabled={delete_committee_status === status.IN_PROGRESS}
-                                    >
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </div>
-                        <div className="d-flex justify-content-center align-items-center user-img">
-                            <div className="d-flex justify-content-center align-items-center image">
-                                <img src={row.profile} width='50px' height="50px"  alt="" />
+        for (let i = 0; i < committeeMember.length; i++) {
+            let row = committeeMember[i];
+            if (row.isSelected == true) {
+                retData.push(
+                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
+                        <Card className={activeindex == i ? "member-box active" : "member-box"} onClick={() => this.setState({ activeindex: i })}>
+                            <div className="d-inline-block menu-icon">
+                                <IconButton
+                                    aria-label="More"
+                                    aria-owns={open ? 'long-menu' : null}
+                                    aria-haspopup="true"
+                                    aria-controls="fade-menu"
+                                    onClick={this.onClickShowDeletePopup}
+                                >
+                                    <MoreVertIcon />
+                                </IconButton>
+                                <Menu
+                                    id="long-menu"
+                                    anchorEl={deletePopup}
+                                    open={open}
+                                    TransitionComponent={Fade}
+                                    // onClose={this.onClickCommitteeItemDelete}
+                                    PaperProps={{
+                                        style: {
+                                            width: 120,
+                                        },
+                                    }}
+                                >
+                                    {options.map(option => (
+                                        <MenuItem
+                                            key={option}
+                                            selected={option === 'Delete'}
+                                            // onClick={() => this.onClickCommitteeItemDelete(row)}
+                                            disabled={delete_committee_status === status.IN_PROGRESS}
+                                        >
+                                            {option}
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
                             </div>
-                        </div>
-                        <div className="member-details">
-                            <ul>
-                                <li><b>{row.name}</b></li>
-                                <li><span>{row.position}</span></li>
-                                <li><p>{row.company}</p></li>
-                            </ul>
-                        </div>
-                        <div className="member-contact">
-                            <ul>
-                                <li>
-                                    <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
-                                    <a href={`tel:${row.contNo}`}>{row.contNo}</a>
-                                </li>
-                                <li>
-                                    <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
-                                    <a href={`mailto: ${row.email}`}>{row.email}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </Card>
-                </div>
-            );
+                            <div className="d-flex justify-content-center align-items-center user-img">
+                                <div className="d-flex justify-content-center align-items-center image">
+                                    <img src={row.profile} width='50px' height="50px" alt="" />
+                                </div>
+                            </div>
+                            <div className="member-details">
+                                <ul>
+                                    <li><b>{row.name}</b></li>
+                                    <li><span>{row.position}</span></li>
+                                    <li><p>{row.company}</p></li>
+                                </ul>
+                            </div>
+                            <div className="member-contact">
+                                <ul>
+                                    <li>
+                                        <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
+                                        <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                                    </li>
+                                    <li>
+                                        <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
+                                        <a href={`mailto: ${row.email}`}>{row.email}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Card>
+                    </div>
+                );
+            }
         }
         return retData;
     }
 
     displayCommitee = () => {
+        const { comitteeType } = this.state;
+        let retoption = [];
+        if (comitteeType && comitteeType.length > 0) {
+            for (let i = 0; i < comitteeType.length; i++) {
+                retoption.push(
+                    <option value={comitteeType[i].id}>{comitteeType[i].name}</option>
+                );
+            }
+        }
+        return retoption;
+    }
+
+    addCommitteeMember = () => {
         const { committeeMember } = this.state;
+        let selectedMember = [];
+        if (committeeMember && committeeMember.length > 0) {
+            for (let i = 0; i < committeeMember.length; i++) {
+                if (committeeMember[i].isSelected == true) {
+                    selectedMember.push(committeeMember[i].id);
+                }
+            }
+        }
+        if (selectedMember.length > 0) {
+            let sendData = {
+                selectedMember,
+                userid: 5,
+            }
+            this.props.dispatch(committeeAction.addCommittee(sendData));
+        }
     }
 
     render() {
-        const { requiData, isSubmitted, committeeMember } = this.state;
-        const errorData = this.validate(isSubmitted);
+        const { requiData, committeeMember } = this.state;
         return (
             <div className="main-content">
                 <div className="setup-committee-section">
@@ -226,15 +251,11 @@ class SetUpCommittee extends Component {
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
                                     <FormControl className="select-menu">
                                         <NativeSelect name="status" value={requiData.status}
-                                            onChange={this.handleStateChange} isvalid={errorData.status.isValid}>
+                                            onChange={this.handleStateChange} >
                                             <option value="">-Select-</option>
                                             {this.displayCommitee()}
-                                            {/* <option value={10}>abc</option>
-                                            <option value={20}>def</option>
-                                            <option value={30}>abc</option> */}
                                         </NativeSelect>
                                     </FormControl>
-                                    <span className="d-block w-100 text-danger">{errorData.status.message}</span>
                                 </div>
                             </div>
                             <div className="form-group row col-form-group">
@@ -242,27 +263,29 @@ class SetUpCommittee extends Component {
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
                                     <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
                                         <AddCircleIcon className="plus-icon" />
-                                        Send
+                                        Add
                                     </Button>
                                 </div>
                             </div>
                         </div>
-                        <div className="select-members">
-                            <div className="heading">
-                                <h5>Selected Committee Members</h5>
-                            </div>
-                            <div className="members-boxs">
-                                <div className="row">
-                                    {this.displayCommiteeLists(committeeMember)}
-                                    <div className="committee-btn">
-                                        <Button variant="contained" className="primary-btn">
-                                            <i className="fas fa-paper-plane"></i>
-                                            Save &#38; Send invites
-                                        </Button>
+                        {committeeMember && committeeMember.length > 0 &&
+                            <div className="select-members">
+                                <div className="heading">
+                                    <h5>Selected Committee Members</h5>
+                                </div>
+                                <div className="members-boxs">
+                                    <div className="row">
+                                        {this.displayCommiteeLists()}
+                                        <div className="committee-btn" >
+                                            <Button variant="contained" className="primary-btn" onClick={this.addCommitteeMember}>
+                                                <i className="fas fa-paper-plane"></i>
+                                                Save &#38; Send Invites
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -271,18 +294,16 @@ class SetUpCommittee extends Component {
 }
 
 function mapStateToProps(state) {
-    const { addCommittee, add_committee_status, delete_committee_status, deleteCommittee, getCommittee, get_committee_status, search_committee_status, searchCommittee, update_committee_status, updateCommittee } = state.committee;
+    const { addCommittee, add_committee_status, delete_committee_status, deleteCommittee, selected_committee_status, selected_member_list, get_committee_type_status, getCommitteeType } = state.committee;
     return {
         add_committee_status,
         addCommittee,
         delete_committee_status,
         deleteCommittee,
-        get_committee_status,
-        getCommittee,
-        search_committee_status,
-        searchCommittee,
-        update_committee_status,
-        updateCommittee,
+        selected_committee_status,
+        selected_member_list,
+        get_committee_type_status,
+        getCommitteeType
     };
 }
 

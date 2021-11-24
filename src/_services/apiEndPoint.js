@@ -12,9 +12,6 @@ export const apiEndPoint = {
     // *Committee Api Url
     ADDCOMMITTEE: `${config.apiUrl}/addCommittee`,
     FETCHCOMMITTEE: `${config.apiUrl}/searchCommittee`,
-    GETEDITCOMMITTEE: `${config.apiUrl}/getCommittee`,
-    DELETECOMMITTEE: `${config.apiUrl}/deleteCommittee`,
-    UPDATECOMMITTEE: `${config.apiUrl}/updateCommittee`,
     GETCOMMITTEETYPE:`${config.apiUrl}/getCommitteeType`,
 
     // *Contact Api Url

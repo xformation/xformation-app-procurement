@@ -18,6 +18,7 @@ const VendorEnroll = React.lazy(() => import('../PostLogin/VendorEnroll'));
 const Invoices = React.lazy(() => import('../PostLogin/Invoices'));
 const ViewInvoice = React.lazy(() => import('../PostLogin/Invoices/ViewInvoice'))
 const Calender = React.lazy(() => import('../PostLogin/Calender'));
+const selectCommitteeMember = React.lazy(() => import('../PostLogin/SetUpCommittee/selectCommitteeMember'));
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
@@ -40,7 +41,8 @@ const routes = [
     { path: '/postlogin/invoices', exact: true, name: 'Invoices', component: Invoices },
     { path: '/postlogin/viewinvoice/:id', exact: true, name: 'ViewInvoices', component: ViewInvoice },
     { path: '/postlogin/managerequisition', exact: true, name: 'ManageRequisition', component: ManageRequisition },
-    { path: '/postlogin/calender', exact: true, name: 'Calender', component: Calender }
+    { path: '/postlogin/calender', exact: true, name: 'Calender', component: Calender },
+    { path: '/postlogin/selectecommittee', exact: true, name: 'selectCommitteeMember', component: selectCommitteeMember },
 ]
 
 export default routes;
