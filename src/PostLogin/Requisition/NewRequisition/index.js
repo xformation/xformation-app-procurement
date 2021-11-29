@@ -108,15 +108,7 @@ class NewRequisition extends Component {
                 addRequiData.totalPrice = editRequisitiondata.totalPrice;
                 addRequiData.notes = editRequisitiondata.notes;
                 addRequiData.requisitionLineItemLists =
-                    editRequisitiondata.lineItemList || [];
-                // if (editRequisitiondata.documentList && editRequisitiondata.documentList.length > 0) {
-                //     for (let i = 0; i < editRequisitiondata.documentList.length; i++) {
-                //         requisitionFile.push({
-                //             ...editRequisitiondata.documentList[i],
-                //             name: editRequisitiondata.documentList[i].fileName,
-                //         });
-                //     }
-                // }
+                    editRequisitiondata.requistionItem || [];
                 this.setState({
                     editReq: true,
                     addRequiData,
@@ -160,7 +152,34 @@ class NewRequisition extends Component {
 
     displayTableData = () => {
         const { addRequiData, open, anchorEl } = this.state;
+        const{editRequisitiondata ,get_edit_requisition_status}=this.props;
         let retData = [];
+    if (get_edit_requisition_status===status.SUCCESS && editRequisitiondata.requistionItem.length>0){
+        console.log(editRequisitiondata.requistionItem)
+        for (let i = 0; i <editRequisitiondata.requistionItem; i++) {
+            let data = editRequisitiondata.requistionItem[i];
+            retData.push(
+                <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{data.itemDescription}</td>
+                    <td>{data.orderQuantity}</td>
+                    <td>{data.ratePerItem}</td>
+                    <td>{data.price}</td>
+                    <td>
+                        <div className="popper-toggle">
+                            <Button>
+                                <DeleteIcon onClick={() => this.deleteReqData(i)} />
+                            </Button>
+                            <Button>
+                                <CreateIcon onClick={() => this.editReqData(data, i)} />
+                            </Button>
+                        </div>
+                    </td>
+                </tr>
+            );
+        }
+    }
+         
         if (
             addRequiData.requisitionLineItemLists &&
             addRequiData.requisitionLineItemLists.length > 0
@@ -188,6 +207,7 @@ class NewRequisition extends Component {
                 );
             }
         }
+    
         return retData;
     };
 
@@ -837,6 +857,7 @@ class NewRequisition extends Component {
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
+                                                        {/* changes here */}
                                                         <tbody>{this.displayTableData()}</tbody>
                                                     </table>
                                                 </div>
@@ -956,7 +977,7 @@ class NewRequisition extends Component {
                                                         <div className="col-sm-12 col-md-6 form-group">
                                                             <p className="requisition-text">Rate</p>
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 name="ratePerItem"
                                                                 value={ratePerItem}
                                                                 onChange={this.handlenewReqState}
@@ -971,7 +992,7 @@ class NewRequisition extends Component {
                                                         <div className="col-sm-12 col-md-6 form-group">
                                                             <p className="requisition-text">Quantity</p>
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 name="itemQuantity"
                                                                 value={itemQuantity}
                                                                 onChange={this.handlenewReqState}

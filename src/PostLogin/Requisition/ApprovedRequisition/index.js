@@ -63,7 +63,7 @@ class ApprovedRequisition extends Component {
         },
         {
           label: "Requestor",
-          key: "createdBy",
+          key: "roleName",
           renderCallback: (value) => {
             return (
               <td>

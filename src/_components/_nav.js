@@ -87,9 +87,9 @@ const _nav = [
     },
     {
         _tag: 'SidebarNavItem',
-        name: 'Send RfQ',
-        to: '/postlogin/sendrfq',
-        activeArr: ['/postlogin/sendrfq'],
+        name: 'Recieved RFQ',
+        to: '/postlogin/recievedrfq',
+        activeArr: ['/postlogin/recievedrfq'],
         open: false,
         icon: <i className="fab fa-first-order"></i>,
     },

@@ -78,9 +78,9 @@ class RequisitionTracker extends Component {
                     renderCallback: (value, row) => {
                         return (
                             <td>
-                                {row.status == requisitionStatus.ACTIVE &&
-                                    <Button className="secondary-btn" onClick={() => this.onClickApproveReq(row)}><ThumbUpIcon /> Approve</Button>
-                                }
+                                {/* {row.status == requisitionStatus.ACTIVE && */}
+                                <Button className="secondary-btn" onClick={() => this.onClickApproveReq(row)}><ThumbUpIcon /> Approve</Button>
+                                {/* } */}
                             </td>
                         )
                     }
@@ -91,7 +91,7 @@ class RequisitionTracker extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(requistionAction.getRequisition({}));
+        this.props.dispatch(requistionAction.getRequisition());
         // this.props.dispatch(departmentAction.getDepartment());
     }
 
@@ -101,10 +101,13 @@ class RequisitionTracker extends Component {
                 requistionList: this.props.getRequisitionlist,
             });
         }
+        if (prevProps.approve_requisition_status !== this.props.approve_requisition_status && this.props.approve_requisition_status === status.SUCCESS) {
+            this.props.dispatch(requistionAction.getRequisition());
+        }
     }
 
     onClickApproveReq = (data) => {
-        this.props.dispatch(requistionAction.approveRequisition({ 'requisitionId': data.id, 'roleName': 'General_Director' }));
+        this.props.dispatch(requistionAction.approveRequisition({ 'requisitionId': data.id, 'roleName': data.roleName }));
     }
 
     validate = (isSubmitted) => {

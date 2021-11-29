@@ -98,18 +98,18 @@ class ManageRequisition extends Component {
                                             <Link to={`/postlogin/newrequisition/${value}`}> <CreateIcon /></Link>
                                         </Button>
                                     }
-                                    {/* {row.status == requisitionStatus.DRAFT && */}
+                                    {row.status == requisitionStatus.DRAFT &&
                                         <Button>
                                             <DeleteIcon onClick={() => this.onClickDelete(value)} />
                                         </Button>
-                                    {/* } */}
-                                    {/* {row.status !== requisitionStatus.DRAFT &&
+                                    }
+                                    {row.status !== requisitionStatus.DRAFT &&
                                         <Tooltip title="You can delete only draft">
                                             <Button area-label="You can delete only draft" className="disabled">
                                                 <DeleteIcon />
                                             </Button>
                                         </Tooltip>
-                                    } */}
+                                    }
                                 </div>
                             </td>
                         )
@@ -128,7 +128,6 @@ class ManageRequisition extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(this.props.getRequisitionlist)
         if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
             this.setState({
                 requistionList: this.props.getRequisitionlist,
@@ -168,7 +167,6 @@ class ManageRequisition extends Component {
 
     handleStateChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value)
         const { searchData } = this.state;
         searchData[name] = value;
         this.setState({
@@ -278,7 +276,6 @@ class ManageRequisition extends Component {
     render() {
         const { searchData, isSubmitted, openDialog, isLoading } = this.state;
         const { get_requisition_status } = this.props;
-        // const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
                 <div className="manage-requisitions">

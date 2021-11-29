@@ -12,7 +12,7 @@ export const apiEndPoint = {
     // *Committee Api Url
     ADDCOMMITTEE: `${config.apiUrl}/addCommittee`,
     FETCHCOMMITTEE: `${config.apiUrl}/searchCommittee`,
-    GETCOMMITTEETYPE:`${config.apiUrl}/getCommitteeType`,
+    GETCOMMITTEETYPE: `${config.apiUrl}/getCommitteeType`,
 
     // *Contact Api Url
     ADDCONTACT: `${config.apiUrl}/addContact`,
@@ -27,7 +27,7 @@ export const apiEndPoint = {
     // *Contact Api Url
     ADDINVOICE: `${config.apiUrl}/addInvoice`,
     FETCHINVOICE: `${config.apiUrl}/fetchInvoice`,
-    GETEDITINVOICE: `${config.apiUrl}/viewInvoice`,
+    GETINVOICE: `${config.apiUrl}/viewInvoice`,
     DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
     UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
 
@@ -50,17 +50,35 @@ export const apiEndPoint = {
     DELETEROLE: `${config.apiUrl}/deleteRoles`,
     UPDATEROLE: `${config.apiUrl}/updateRoles`,
 
-     // *Vendor Api Url
-     ADDVENDOR: `${config.apiUrl}/addVendor`,
-     FETCHVENDOR: `${config.apiUrl}/searchVendor`,
-     GETEDITVENDOR: `${config.apiUrl}/getVendor`,
-     DELETEVENDOR: `${config.apiUrl}/deleteVendor`,
-     UPDATEVENDOR: `${config.apiUrl}/updateVendor`,
+    // *Vendor Api Url
+    ADDVENDOR: `${config.apiUrl}/addVendor`,
+    FETCHVENDOR: `${config.apiUrl}/searchVendor`,
+    GETEDITVENDOR: `${config.apiUrl}/getVendor`,
+    DELETEVENDOR: `${config.apiUrl}/deleteVendor`,
+    UPDATEVENDOR: `${config.apiUrl}/updateVendor`,
 
-     // *Rules Api Url
-     ADDRULES: `${config.apiUrl}/addRules`,
-     FETCHRULES: `${config.apiUrl}/searchRules`,
-     GETEDITRULES: `${config.apiUrl}/getRulesByName`,
-     DELETERULES: `${config.apiUrl}/deleteRules`,
-     UPDATERULES: `${config.apiUrl}/updateRules`,
+    // *Rules Api Url
+    ADDRULES: `${config.apiUrl}/addRules`,
+    FETCHRULES: `${config.apiUrl}/searchRules`,
+    GETEDITRULES: `${config.apiUrl}/getRulesByName`,
+    DELETERULES: `${config.apiUrl}/deleteRules`,
+    UPDATERULES: `${config.apiUrl}/updateRules`,
+
+    // *recievedrfp api url
+
+    FETCHRECIEVEDRFP: `${config.apiUrl}/searchRecievedRfp`,
+    GETRECIEVEDRFP: `${config.apiUrl}/getRequisitionRfp`,
+    ADDSTATUSRFP: `${config.apiUrl}/addStatusRfp`,
+
+    //*generate po api url
+
+    FETCHGPO: `${config.apiUrl}/searchGeneratePo`,
+    GETGPO: `${config.apiUrl}/getGeneratePo`,
+    ADDGPODETAIL: `${config.apiUrl}/addGeneratePoDetail`,
+
+    //recievedefq api url
+
+    FETCHRECIEVEDRFQ: `${config.apiUrl}/searchRecievedRfq`,
+    GETRECIEVEDRFQ: `${config.apiUrl}/getRecievedRfq`,
+    ADDSTATUSRFQ: `${config.apiUrl}/addStatusRfq`,
 };

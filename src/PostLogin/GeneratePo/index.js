@@ -11,7 +11,9 @@ import 'simplebar/dist/simplebar.min.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
-
+import { connect } from 'react-redux';
+import { purchaseOrderAction } from "../../_actions/purchaseOrder.action";
+import { status } from "../../_constants";
 class GeneratePo extends Component {
     constructor(props) {
         super(props)
@@ -22,151 +24,93 @@ class GeneratePo extends Component {
                 depart: "",
                 GenerateButton: false,
             },
-            vendoreTableData: {
-                columns: [
-                    {
-                        label: 'S No',
-                        key: 'SNo',
-                        renderCallback: (value) => {
-                            return <td><span className={'s-no'}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Requisition No',
-                        key: 'RequisitionsNo',
-                        renderCallback: (value) => {
-                            return <td><span className={'requisitions-no'}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Requestor',
-                        key: 'Requestor',
-                        renderCallback: (value) => {
-                            return <td><span className={'department-value'}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Request Department',
-                        key: 'RequestDepartment',
-                        renderCallback: (value) => {
-                            return <td><span className={'department-value'}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Request type',
-                        key: 'RequestDate',
-                        renderCallback: (value) => {
-                            return <td><span className={'department-value'}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Requisition Total',
-                        key: 'RequisitionsTotal',
-                        renderCallback: (value) => {
-                            return <td><span className="department-value">{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Currency',
-                        key: 'Currency',
-                        renderCallback: (value) => {
-                            return <td><span className="department-value">{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Status',
-                        key: 'Status',
-                        renderCallback: (value) => {
-                            return <td><span className="department-value">{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Purchase Order',
-                        key: 'Details',
-                        renderCallback: (value) => {
-                            return <td><button className="btn details-btn" onClick={this.onClickShowGenerateButton}  >{value}</button></td>
-                        }
-                    },
+            tableData: [],
+            columns: [
+                // {
+                //     label: 'S No',
+                //     renderCallback: (value,index) => {
+                //         return <td><span className={'s-no'}>{value  + 1}</span></td>
+                //     }  
+                // },
+                {
+                    label: 'Requisition No',
+                    key: 'id',
+                    renderCallback: (value) => {
+                        return <td><span className={'requisitions-no'}>{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Requestor',
+                    key: 'createdBy',
+                    renderCallback: (value) => {
+                        return <td><span className={'department-value'}>{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Request Department',
+                    key: 'department',
+                    renderCallback: (value) => {
+                        return <td><span className={'department-value'}>{value.name}</span></td>
+                    }
+                },
+                {
+                    label: 'Request type',
+                    key: 'requisitionType',
+                    renderCallback: (value) => {
+                        return <td><span className={'department-value'}>{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Requisition Total',
+                    key: 'totalPrice',
+                    renderCallback: (value) => {
+                        return <td><span className="department-value">{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Currency',
+                    key: 'currency',
+                    renderCallback: (value) => {
+                        return <td><span className="department-value">{value.code}</span></td>
+                    }
+                },
+                {
+                    label: 'Status',
+                    key: 'status',
+                    renderCallback: (value) => {
+                        return <td><span className="department-value">{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Purchase Order',
+                    key: 'id',
+                    renderCallback: (value) => {
+                        return <td><button className="btn details-btn" onClick={()=>this.onClickShowGenerateButton(value)}  >Generate</button></td>
+                    }
+                },
 
-                ],
-                data: [
-                    {
-                        SNo: '1.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                    {
-                        SNo: '2.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                    {
-                        SNo: '3.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                    {
-                        SNo: '4.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                    {
-                        SNo: '5.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                    {
-                        SNo: '6.',
-                        RequisitionsNo: '789258 ',
-                        Requestor: 'james',
-                        RequestDepartment: 'Admin and Hr ',
-                        RequestDate: 'Purchase ',
-                        RequisitionsTotal: '20,000.00',
-                        Currency: 'INR',
-                        Status: 'Approved',
-                        Details: 'Generate',
-                    },
-                ]
-            },
+            ],
+        }
+    }
+    componentDidMount() {
+        this.props.dispatch(purchaseOrderAction.searchPurchaseOrder())
+
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let {tableData}=this.state
+        if (this.props.search_purchase_status !== prevProps.search_purchase_status && this.props.search_purchase_status === status.SUCCESS) {
+            if (this.props.searchpurchaseorder ) {
+                tableData= this.props.searchpurchaseorder 
+                this.setState({tableData})
+            }
+            
         }
     }
 
-    onClickShowGenerateButton = () => {
-        const { GenerateButton } = this.state;
-        let Button = GenerateButton;
-        this.setState({
-            GenerateButton: !Button,
-        })
+    onClickShowGenerateButton = (id) => {
+        this.props.history.push(`/postlogin/generatepo/${id}`)
+        console.log("clicked")
     }
     handleStateChange = (e) => {
         const { name, value } = e.target;
@@ -235,8 +179,9 @@ class GeneratePo extends Component {
     };
 
     render() {
-        const { requiData, isSubmitted, GenerateButton } = this.state;
+        const { requiData, isSubmitted, GenerateButton, columns, tableData } = this.state;
         const errorData = this.validate(isSubmitted);
+        console.log(tableData)
         return (
             <div className="main-content">
                 <div className="generate-content">
@@ -345,48 +290,54 @@ class GeneratePo extends Component {
                                         </div>
                                     </SimpleBar>
                                     <div className="viocom-heading">
-                                        <h5>P.O Parameters  </h5>
+                                        <h5>P.O Parameters</h5>
                                     </div>
                                     <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Start Date</label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-form-label">
+                                            Start Date
+                                        </label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                             <DatePicker placeholder="10/28/2021" />
                                             <CalendarTodayTwoToneIcon className="calendar-icon" />
                                         </div>
                                     </div>
                                     <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Dellvery Date</label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-form-label">
+                                            Dellvery Date
+                                        </label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                             <DatePicker placeholder="10/28/2021" />
                                             <CalendarTodayTwoToneIcon className="calendar-icon" />
                                         </div>
                                     </div>
                                     <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Payment Terms</label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-form-label">
+                                            Payment Terms
+                                        </label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                             <TextareaAutosize name="payment" className="payment-text" value={requiData.payment}
                                                 onChange={this.handleStateChange} isvalid={errorData.payment.isValid} placeholder="Payment of total contract sum will be made to you after delivery" />
                                             <span className="d-block w-100 text-danger">{errorData.payment.message}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Other terms and Condition</label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-form-label">
+                                            Other terms and Condition
+                                        </label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                             <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
                                                 onChange={this.handleStateChange} isvalid={errorData.conditionText.isValid} placeholder="" />
                                             <span className="d-block w-100 text-danger">{errorData.conditionText.message}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
-                                            <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
+                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-form-label">
+                                        </label>
+                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-button">
+                                            <Button variant="contained" className="primary-btn generate-btn" disableElevation onClick={this.handleClickMethod}>
                                                 Generate
                                             </Button>
                                         </div>
-                                    </div>
-                                    <div className="select-vendor-button">
-
                                     </div>
                                 </div>
                             </div>
@@ -439,8 +390,8 @@ class GeneratePo extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <Table valueFromData={this.state.vendoreTableData} perPageLimit={6} visiblecheckboxStatus={false}
-                            isLoading={false}
+                            <Table valueFromData={{ 'columns': columns, 'data': tableData }} perPageLimit={6} visiblecheckboxStatus={true}
+                                isLoading={this.props.search_purchase_status === status.IN_PROGRESS}
                                 tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
 
                         </>
@@ -452,5 +403,10 @@ class GeneratePo extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+    const { searchpurchaseorder, search_purchase_status } = state.generatePurchaseOrder;
+    return { searchpurchaseorder, search_purchase_status }
 
-export default GeneratePo;
+}
+
+export default connect(mapStateToProps)(GeneratePo);

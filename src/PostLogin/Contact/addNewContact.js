@@ -84,7 +84,6 @@ class addNewContact extends Component {
     let isValid = true;
     const retData = {
       email: validObj,
-      password: validObj,
       contactNo: validObj,
       firstName: validObj,
       lastName: validObj,
@@ -234,7 +233,6 @@ class addNewContact extends Component {
       isSubmitted,
     } = this.state;
     let errrorMessage = this.validate(isSubmitted);
-    console.log(errrorMessage);
     return (
       <div className="main-content">
         <div className="contact-content">
@@ -380,7 +378,7 @@ class addNewContact extends Component {
                             multiple
                             type="file"
                             name="profile"
-                            
+                            onChange={this.handleChange}
                           />
                           <span>changes photos</span>
                         </Button>

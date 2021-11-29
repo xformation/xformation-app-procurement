@@ -6,19 +6,10 @@ import Table from '../../Table/Table';
 import 'simplebar/dist/simplebar.min.css';
 import MailIcon from '@material-ui/icons/Mail';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import PrintIcon from '@material-ui/icons/Print';
-import Logo from '../../assets/images/logo.png';
-import HuntImg from '../../assets/images/hunt-img.png';
-import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import CheckIcon from '@material-ui/icons/Check';
 import { connect } from 'react-redux';
-import { invoiceServices } from '../../_services/invoice.services';
 import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
 import { commonFunctions} from '../../_utilities';
@@ -80,11 +71,11 @@ class Invoices extends Component {
                         key: 'status',
                         renderCallback: (value, row) => {
                             return <td>
-                                {value === 'Completed' &&
+                                {/* {value === 'Completed' && */}
                                     <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <CheckIcon className="mr-2 bold" />{value}
                                     </Button>
-                                }
+                                {/* } */}
                                 {value === 'Invoices' &&
                                     <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={(id) => this.onClickShowCompletedButton(row.RequisitionsNo)}>
                                         <DoneAllIcon className="mr-2" />{value}
@@ -100,7 +91,7 @@ class Invoices extends Component {
                                         <DoneAllIcon className="mr-2" />{value}
                                     </Button>
                                 }
-                                <IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton>
+                                {/* <IconButton className="ml-4 p-2"><MoreVertIcon /></IconButton> */}
                             </td>
                         }
                     },

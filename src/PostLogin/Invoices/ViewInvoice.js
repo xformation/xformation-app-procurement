@@ -15,7 +15,9 @@ import SimpleBar from 'simplebar-react';
 import { connect } from "react-redux";
 import { invoiceAction } from "../../_actions/invoice.actions"
 import { status } from "../../_constants";
-import Loader from '../../_components/commonLoader'
+import Loader from '../../_components/commonLoader';
+import { commonFunctions } from "../../_utilities";
+
 class ViewInvoice extends Component {
     constructor(props) {
         super(props)
@@ -24,16 +26,40 @@ class ViewInvoice extends Component {
         }
     }
     componentDidMount() {
-        this.props.dispatch(invoiceAction.getInvoice('#INV-0001234'))
+        this.props.dispatch(invoiceAction.getInvoice({ 'id': this.props.match.params.id }))
     }
 
     componentDidUpdate(prevProps, prevState) {
-        let { approvedData } = this.state
         if (prevProps.get_invoice_status !== this.props.get_invoice_status && this.props.get_invoice_status === status.SUCCESS) {
-            approvedData = this.props.getInvoice[0];
-            this.setState({ approvedData })
+            this.setState({
+                approvedData: this.props.getinvoicedata,
+            })
         }
     }
+
+    displayTableData = () => {
+        const { approvedData } = this.state;
+        let retData = [];
+        if (
+            approvedData.invoiceItem &&
+            approvedData.invoiceItem.length > 0
+        ) {
+            for (let i = 0; i < approvedData.invoiceItem.length; i++) {
+                let data = approvedData.invoiceItem[i];
+                retData.push(
+                    <tr key={i}>
+                        <td>{i + 1}</td>
+                        <td>{data.itemDescription}</td>
+                        <td>{data.orderQuantity}</td>
+                        <td>{data.ratePerItem}</td>
+                        <td>{data.price}</td>
+                    </tr>
+                );
+            }
+        }
+        return retData;
+    };
+
     render() {
         const { approvedData } = this.state;
         return (
@@ -46,7 +72,7 @@ class ViewInvoice extends Component {
                                     <KeyboardBackspaceIcon />
                                 </IconButton>
                                 <h4>Invoice</h4>
-                                <p>{approvedData.RequisitionsNo}</p>
+                                <p>#{approvedData.requisitionsNo}</p>
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12">
@@ -97,7 +123,7 @@ class ViewInvoice extends Component {
                                     <h5>Circle Hunt Inc.</h5>
                                     <p>Franklin Avenue Street New  York,ABC 5562 <b>United State</b></p>
                                     <ul>
-                                        <li><a href={approvedData.Requestor}>{approvedData.Requestor}</a></li>
+                                        <li><a href={approvedData.requestor}>{approvedData.requestor}</a></li>
                                         <li><a href="tel:(+91)88859991552">tel:(+91)88859991552</a></li>
                                     </ul>
                                 </div>
@@ -112,36 +138,32 @@ class ViewInvoice extends Component {
                                 <span>PROJECT NAME</span>
                                 <h5>Groceries for Department 1</h5>
                                 <label>DUE DATE</label>
-                                <p>{approvedData.RequestDate}</p>
+                                <p>{commonFunctions.convertDateToString(
+                                    new Date(approvedData.requestDate))}</p>
                             </div>
                         </div>
-                        {approvedData ? (<div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div className="project-right-content">
-                                <SimpleBar>
-                                    <div className="item-detail">
-                                        <table width="100%">
-                                            <thead className="item-content">
-                                                <tr>
-                                                    <th>ITEAM DESCRIPTION </th>
-                                                    <th>Qty</th>
-                                                    <th>RATE</th>
-                                                    <th className="text-right">AMOUNT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th>{approvedData.RequestDepartment}</th>
-                                                    <th>10</th>
-                                                    <th>RATE</th>
-                                                    <th className="text-right">{approvedData.RequisitionsTotal}</th>
-                                                </tr>
-                                                {/* {this.displayTableData()} */}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </SimpleBar>
-                            </div>
-                        </div>) : (<Loader />)}
+                        {approvedData && approvedData.invoiceItem ?
+                            (<div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div className="project-right-content">
+                                    <SimpleBar>
+                                        <div className="item-detail">
+                                            <table width="100%">
+                                                <thead className="item-content">
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>ITEAM DESCRIPTION</th>
+                                                        <th>Quantity</th>
+                                                        <th>Rate</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>{this.displayTableData()}</tbody>
+                                            </table>
+                                        </div>
+                                    </SimpleBar>
+                                </div>
+                            </div>) 
+                              : (<Loader />)}
                     </div>
                 </div>
                 <div className="total-iteam">
@@ -151,15 +173,15 @@ class ViewInvoice extends Component {
                                 <ul>
                                     <li>
                                         <label>SUBTOTAL</label>
-                                        <span>$17,883.00</span>
+                                        <span>${approvedData.requisitionsTotal}</span>
                                     </li>
                                     <li>
                                         <label>TAX</label>
-                                        <span>2%</span>
+                                        <span>{approvedData.tax} %</span>
                                     </li>
                                     <li>
                                         <label>TOTAL</label>
-                                        <span><b>${approvedData.RequisitionsTotal}</b></span>
+                                        <span><b>${(approvedData.requisitionsTotal * approvedData.tax) / 100}</b></span>
                                     </li>
                                 </ul>
                             </div>
@@ -173,10 +195,10 @@ class ViewInvoice extends Component {
 
 const mapStateToProps = (state) => {
     const { get_invoice_status,
-        getInvoice, } = state.invoice;
+        getinvoicedata, } = state.invoice;
     return {
         get_invoice_status,
-        getInvoice,
+        getinvoicedata,
     }
 }
 export default connect(mapStateToProps)(ViewInvoice);

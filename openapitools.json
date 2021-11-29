@@ -204,71 +204,6 @@
                 }
             }
         },
-        "/getRequisition/{requisitionId}": {
-            "parameters": [
-                {
-                    "name": "requisitionId",
-                    "in": "path",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ],
-            "get": {
-                "summary": "Details about a user",
-                "operationId": "",
-                "tags": [
-                    "requisition"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Details about a user",
-                        "headers": {
-                            "x-next": {
-                                "description": "Requisiton List",
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int64",
-                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "object": {
-                                            "$ref": "#/components/schemas/requisition"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/deleteRequisition/{id}": {
             "parameters": [
                 {
@@ -397,6 +332,71 @@
                 }
             }
         },
+        "/getRequisition/{requisitionId}": {
+            "parameters": [
+                {
+                    "name": "requisitionId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "summary": "Details about a user",
+                "operationId": "",
+                "tags": [
+                    "requisition"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a user",
+                        "headers": {
+                            "x-next": {
+                                "description": "Requisiton List",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "$ref": "#/components/schemas/requisition"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/updateRequisition": {
             "post": {
                 "summary": "Edit Requester Detail",
@@ -439,6 +439,644 @@
                                         "message": {
                                             "type": "string",
                                             "default": "Edit Requisition Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/approveRequisition": {
+            "post": {
+                "summary": "Details about Approve Requisition",
+                "operationId": "approverequisition",
+                "requestBody": {
+                    "description": "Request body to approve requisition",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/approveRequisition"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Approved Requisition Success"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/searchRecievedRfp": {
+            "get": {
+                "summary": "Details about a RFP",
+                "operationId": "",
+                "tags": [
+                    "getrfp"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Details about RFP",
+                        "headers": {
+                            "x-next": {
+                                "description": "Requisiton List",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "type": "array",
+                                            "x-count": 13,
+                                            "items": {
+                                                "$ref": "#/components/schemas/requisition"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getRequisitionRfp/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "summary": "Details about a get Requisition by id",
+                "operationId": "",
+                "tags": [
+                    "requisition"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a get Requisition by id",
+                        "headers": {
+                            "x-next": {
+                                "description": "Rqruisition by id",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "$ref": "#/components/schemas/requisition"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addStatusRfp": {
+            "post": {
+                "summary": "Add status to RFP",
+                "operationId": "addstatusRfp",
+                "requestBody": {
+                    "description": "Request body to add status to Rfp",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/addStatusRfp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Add status Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/searchRecievedRfq": {
+            "get": {
+                "summary": "Details about a RFQ",
+                "operationId": "",
+                "tags": [
+                    "getrfq"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Details about RFQ",
+                        "headers": {
+                            "x-next": {
+                                "description": "Requisiton List",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "type": "array",
+                                            "x-count": 13,
+                                            "items": {
+                                                "$ref": "#/components/schemas/requisition"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getRecievedRfq/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "summary": "Details about a get Requisition by id",
+                "operationId": "",
+                "tags": [
+                    "requisition"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a get Requisition by id",
+                        "headers": {
+                            "x-next": {
+                                "description": "Requisition by id",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "$ref": "#/components/schemas/recievedrfq"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addStatusRfq": {
+            "post": {
+                "summary": "Add status to RFP",
+                "operationId": "addstatusRfp",
+                "requestBody": {
+                    "description": "Request body to add status to Rfp",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/addStatusRfp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Add status Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/searchGeneratePo": {
+            "get": {
+                "summary": "Details about a Generate PO",
+                "operationId": "",
+                "tags": [
+                    "generate po"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Details about Purchase order",
+                        "headers": {
+                            "x-next": {
+                                "description": "Generate Purchase Order List",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "type": "array",
+                                            "x-count": 13,
+                                            "items": {
+                                                "$ref": "#/components/schemas/requisition"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getGeneratePo/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "summary": "Details about a purchase order",
+                "operationId": "",
+                "tags": [
+                    "requisition"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details about a purchase order",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "object": {
+                                            "$ref": "#/components/schemas/requisition"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addGeneratePoDetail": {
+            "post": {
+                "summary": "Add generate po detail",
+                "operationId": "generatePoDetail",
+                "requestBody": {
+                    "description": "Request body to add generate po detail",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/generatePoDetail"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string"
                                         },
                                         "type": {
                                             "type": "string",
@@ -890,10 +1528,23 @@
                 }
             }
         },
-        "/viewInvoice": {
+        "/viewInvoice/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "get": {
                 "summary": "Invoice Detail",
                 "operationId": "",
+                "tags": [
+                    "invoice"
+                ],
                 "responses": {
                     "200": {
                         "description": "Invoice detail",
@@ -922,10 +1573,7 @@
                                             "type": "string"
                                         },
                                         "object": {
-                                            "type": "object",
-                                            "items": {
-                                                "$ref": "#/components/schemas/invoicedetail"
-                                            }
+                                            "$ref": "#/components/schemas/invoicedetail"
                                         }
                                     }
                                 }
@@ -982,7 +1630,7 @@
                                         },
                                         "object": {
                                             "type": "array",
-                                            "x-count": "12",
+                                            "x-count": 12,
                                             "items": {
                                                 "$ref": "#/components/schemas/userData"
                                             }
@@ -1258,6 +1906,72 @@
                     }
                 }
             }
+        },
+        "/addVendor": {
+            "post": {
+                "summary": "Details about a vendor",
+                "operationId": "",
+                "requestBody": {
+                    "description": "Request body to set vendor",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/vendorData"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "x-next": {
+                                "description": "",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Add Vendor Successfully"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "SUCCESS"
+                                        },
+                                        "object": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1312,38 +2026,41 @@
                         "format": "date",
                         "x-faker": "datatype.datetime"
                     },
+                    "totalPrice": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "x-faker": "{{lorem.sentence}}"
+                    },
+                    "createdBy": {
+                        "type": "string",
+                        "x-faker": "{{name.firstName}} {{name.lastName}}"
+                    },
+                    "roleName": {
+                        "type": "string",
+                        "x-faker": "{{name.firstName}}"
+                    },
                     "department": {
                         "$ref": "#/components/schemas/department"
                     },
                     "currency": {
                         "$ref": "#/components/schemas/currency"
                     },
-                    "createdBy": {
-                        "type": "string",
-                        "x-faker": "{{name.firstName}} {{name.lastName}}"
-                    },
-                    "totalPrice": {
-                        "type": "integer",
-                        "x-faker": "{{commerce.price}}"
-                    },
                     "status": {
-                        "type": "string",
-                        "x-faker": "{{helpers.randomize(PSC)}}"
-                    },
-                    "dueDate": {
-                        "type": "string",
-                        "format": "date",
-                        "x-faker": "datatype.date"
-                    },
-                    "financialYear": {
                         "type": "string"
                     },
-                    "notes": {
+                    "requisitionType": {
                         "type": "string"
                     },
-                    "requisitionNo": {
-                        "type": "string",
-                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+                    "requistionItem": {
+                        "type": "array",
+                        "x-count": 7,
+                        "items": {
+                            "$ref": "#/components/schemas/requisitionItems"
+                        }
                     }
                 }
             },
@@ -1365,6 +2082,9 @@
                     "currencyId": {
                         "description": "selected currency id",
                         "type": "integer"
+                    },
+                    "requisitionType": {
+                        "type": "string"
                     },
                     "purpose": {
                         "description": "Purpose of the requisition",
@@ -1401,7 +2121,8 @@
                     },
                     "financialYear": {
                         "description": "Year of the requisition raised",
-                        "type": "string"
+                        "type": "string",
+                        "x-faker": "date.past"
                     },
                     "departmentId": {
                         "description": "selected department id",
@@ -1468,34 +2189,6 @@
                     }
                 }
             },
-            "contactData": {
-                "type": "object",
-                "properties": {
-                    "company": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "firstName": {
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "type": "string"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "profile": {
-                        "type": "string"
-                    },
-                    "contactNo": {
-                        "type": "integer",
-                        "format": "int64",
-                        "default": "+1234567859"
-                    }
-                }
-            },
             "invoiceList": {
                 "type": "object",
                 "properties": {
@@ -1531,26 +2224,43 @@
             "invoicedetail": {
                 "type": "object",
                 "properties": {
-                    "RequisitionsNo": {
+                    "requisitionsNo": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
                     },
-                    "RequestDate": {
-                        "type": "string"
+                    "requestDate": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
                     },
-                    "RequestDepartment": {
-                        "type": "string"
+                    "requestDepartment": {
+                        "$ref": "#/components/schemas/department"
                     },
-                    "Requestor": {
-                        "type": "string"
+                    "requestor": {
+                        "type": "string",
+                        "x-faker": "{{name.firstName}}"
                     },
-                    "RequisitionsTotal": {
+                    "requisitionsTotal": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+                    },
+                    "tax": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.float({ \"min\": 1, \"max\": 10 })"
                     },
                     "status": {
                         "type": "string",
                         "default": "completed"
+                    },
+                    "invoiceItem": {
+                        "type": "array",
+                        "x-count": 2,
+                        "items": {
+                            "$ref": "#/components/schemas/requisitionItems"
+                        }
                     }
                 }
             },
@@ -1587,6 +2297,263 @@
                     },
                     "membersId": {
                         "type": "array"
+                    }
+                }
+            },
+            "requisitionItems": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+                    },
+                    "price": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1000, \"max\": 10000 })"
+                    },
+                    "itemDescription": {
+                        "type": "string",
+                        "x-faker": "commerce.productName"
+                    },
+                    "orderQuantity": {
+                        "type": "integer",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+                    },
+                    "ratePerItem": {
+                        "type": "integer",
+                        "x-faker": "datatype.number({ \"min\": 1000, \"max\": 100000 })"
+                    }
+                }
+            },
+            "approveRequisition": {
+                "type": "object",
+                "properties": {
+                    "requisitionId": {
+                        "type": "string"
+                    },
+                    "roleName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "addStatusRfp": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                }
+            },
+            "generatePoDetail": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
+                    },
+                    "deliveryDate": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
+                    },
+                    "paymentTerms": {
+                        "type": "string"
+                    },
+                    "otherTerms": {
+                        "type": "string"
+                    }
+                }
+            },
+            "contactData": {
+                "type": "object",
+                "properties": {
+                    "company": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "profile": {
+                        "type": "string"
+                    },
+                    "contactNo": {
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "+1234567859"
+                    }
+                }
+            },
+            "recievedrfq": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+                    },
+                    "createdOn": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
+                    },
+                    "totalPrice": {
+                        "type": "integer",
+                        "format": "int64",
+                        "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "x-faker": "{{lorem.sentence}}"
+                    },
+                    "createdBy": {
+                        "type": "string",
+                        "x-faker": "{{name.firstName}} {{name.lastName}}"
+                    },
+                    "roleName": {
+                        "type": "string",
+                        "x-faker": "{{name.firstName}}"
+                    },
+                    "department": {
+                        "$ref": "#/components/schemas/department"
+                    },
+                    "currency": {
+                        "$ref": "#/components/schemas/currency"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "requisitionType": {
+                        "type": "string"
+                    },
+                    "requistionItem": {
+                        "type": "array",
+                        "x-count": 7,
+                        "items": {
+                            "$ref": "#/components/schemas/requisitionItems"
+                        }
+                    },
+                    "vendoreDetail": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "x-faker": "{{name.firstName}}"
+                            },
+                            "email": {
+                                "type": "string",
+                                "x-faker": "{{internet.email}}"
+                            },
+                            "nature": {
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "string"
+                            },
+                            "phone": {
+                                "type": "integer",
+                                "format": "int64",
+                                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000000000 })"
+                            },
+                            "relation": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "vendorData": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "fatherName": {
+                        "type": "string"
+                    },
+                    "designation": {
+                        "type": "string"
+                    },
+                    "companyName": {
+                        "type": "string"
+                    },
+                    "directorName": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "business": {
+                        "type": "string"
+                    },
+                    "legalStatus": {
+                        "type": "string"
+                    },
+                    "companyCategory": {
+                        "type": "string"
+                    },
+                    "captcha": {
+                        "type": "string"
+                    },
+                    "panNo": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "string"
+                    },
+                    "phoneNo": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "RegistrationNo": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "brithDate": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
+                    },
+                    "bidder": {
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "establishment": {
+                        "type": "string",
+                        "format": "date",
+                        "x-faker": "datatype.datetime"
                     }
                 }
             },

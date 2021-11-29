@@ -10,7 +10,7 @@ const ViewRequisition = React.lazy(() => import('../PostLogin/Requisition/ViewRe
 const SelectBuyers = React.lazy(() => import('../PostLogin/SelectBuyers'));
 const SetUpCommittee = React.lazy(() => import('../PostLogin/SetUpCommittee'));
 const RecievedRfp = React.lazy(() => import('../PostLogin/RecievedRfp'));
-const SendRfq = React.lazy(() => import('../PostLogin/SendRfq'));
+const RecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq'));
 const GeneratePo = React.lazy(() => import('../PostLogin/GeneratePo/'));
 const Contact = React.lazy(() => import('../PostLogin/Contact'));
 const addNewContact = React.lazy(() => import('../PostLogin/Contact/addNewContact'));
@@ -19,6 +19,9 @@ const Invoices = React.lazy(() => import('../PostLogin/Invoices'));
 const ViewInvoice = React.lazy(() => import('../PostLogin/Invoices/ViewInvoice'))
 const Calender = React.lazy(() => import('../PostLogin/Calender'));
 const selectCommitteeMember = React.lazy(() => import('../PostLogin/SetUpCommittee/selectCommitteeMember'));
+const ViewRecievedRfp = React.lazy(() => import('../PostLogin/RecievedRfp/ViewRecievedRfp'));
+const ViewRecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq/ViewRecievedRfq'));
+const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewPo'));
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
@@ -32,8 +35,9 @@ const routes = [
     { path: '/postlogin/selectbuyers/:id', exact: true, name: 'SelectBuyers', component: SelectBuyers },
     { path: '/postlogin/setupcommittee', exact: true, name: 'SetUpCommittee', component: SetUpCommittee },
     { path: '/postlogin/recivedrfp', exact: true, name: 'RecievedRfp', component: RecievedRfp },
-    { path: '/postlogin/sendrfq', exact: true, name: 'SendRfq', component: SendRfq },
+    { path: '/postlogin/recievedrfq', exact: true, name: 'RecievedRfq', component: RecievedRfq },
     { path: '/postlogin/generatepo', exact: true, name: 'GeneratePo', component: GeneratePo },
+    { path: '/postlogin/generatepo/:id', exact: true, name: 'ViewPurchaseOrder', component: ViewPurchaseOrder },
     { path: '/postlogin/contact', exact: true, name: 'Contact', component: Contact },
     { path: '/postlogin/newcontact', exact: true, name: 'addNewContact', component: addNewContact },
     { path: '/postlogin/newcontact/:id', exact: true, name: 'addNewContact', component: addNewContact },
@@ -43,6 +47,8 @@ const routes = [
     { path: '/postlogin/managerequisition', exact: true, name: 'ManageRequisition', component: ManageRequisition },
     { path: '/postlogin/calender', exact: true, name: 'Calender', component: Calender },
     { path: '/postlogin/selectecommittee', exact: true, name: 'selectCommitteeMember', component: selectCommitteeMember },
+    { path: '/postlogin/recivedrfp/:id', exact: true, name: 'ViewRecievedRfp', component: ViewRecievedRfp },
+    { path: '/postlogin/recivedrfq/:id', exact: true, name: 'ViewRecievedRfq', component: ViewRecievedRfq },
 ]
 
 export default routes;

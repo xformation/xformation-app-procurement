@@ -6,11 +6,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Card from '@material-ui/core/Card';
 import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
 import { connect } from 'react-redux';
 import { committeeAction } from '../../_actions';
 import { status } from '../../_constants';
@@ -32,14 +27,24 @@ class selectCommitteeMember extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.search_committee_status !== this.props.search_committee_status && this.props.search_committee_status === status.SUCCESS) {
-            let committee = this.props.searchCommittee;
-            for (let i = 0; i < committee.length; i++) {
-                committee[i].isSelected = false;
+            if (this.props.selected_member_list && this.props.selected_member_list.committeeMember && this.props.selected_member_list.committeeMember.length > 0) {
+                let committeeMember = this.props.selected_member_list.committeeMember;
+                this.setState({
+                    committeeMember,
+                    isLoading: false,
+                });
+            } else {
+                let committee = this.props.searchCommittee;
+                for (let i = 0; i < committee.length; i++) {
+                    committee[i].isSelected = false;
+                }
+                this.setState({
+                    committeeMember: committee,
+                    isLoading: false,
+                });
             }
-            this.setState({
-                committeeMember: committee,
-            });
-        } if (prevProps.selected_committee_status !== this.props.selected_committee_status && this.props.selected_committee_status === status.SUCCESS) {
+        }
+        if (prevProps.selected_member_list !== this.props.selected_member_list && this.props.selected_committee_status === status.SUCCESS) {
             this.props.history.push('/postlogin/setupcommittee');
         }
     };
@@ -57,6 +62,7 @@ class selectCommitteeMember extends Component {
                 committeeMember,
                 userid: 5,
             };
+            console.log(sendData)
             this.props.dispatch(committeeAction.addSelectedMember(sendData))
         } else {
             alert.error("Please Select Committee Member");
@@ -80,10 +86,10 @@ class selectCommitteeMember extends Component {
             retData.push(
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
                     <div className="member-boxs">
-                        <Card 
+                        <Card
                             className={
                                 activeindex == i ? "members-box active" : "members-box"
-                            } 
+                            }
                             onClick={() => this.setState({ activeindex: i })}
                         >
                             <div className="d-flex justify-content-center align-items-center user-img">
@@ -149,8 +155,6 @@ class selectCommitteeMember extends Component {
                                     Add
                                 </Button>
                             </div>
-                        
-                        
                         </div>
                     </div>
                     <div className="setup-committee-content">

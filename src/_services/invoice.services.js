@@ -26,12 +26,12 @@ function deleteInvoice(id) {
     return fetch(`${apiEndPoint.DELETEINVOICE}/${id}`, requestOptions).then(response => response.json());
 }
 
-function getInvoice(id) {
+function getInvoice(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETEDITINVOICE}/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETINVOICE}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function searchInvoice() {

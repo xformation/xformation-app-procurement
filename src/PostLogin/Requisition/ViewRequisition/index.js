@@ -162,9 +162,9 @@ class ViewRequisition extends Component {
         requisitionData.extraBudgetoryFile =
           editRequisitiondata.extraBudgetoryFile;
         requisitionData.currency = editRequisitiondata.currency;
-        requisitionData.requisitions = editRequisitiondata.requisitions;
+        requisitionData.requisitions = editRequisitiondata.roleName;
         requisitionData.department = editRequisitiondata.department;
-        requisitionData.lineItemList = editRequisitiondata.lineItemList;
+        requisitionData.lineItemList = editRequisitiondata.requistionItem;
         requisitionData.totalPrice = editRequisitiondata.totalPrice;
         requisitionData.status = editRequisitiondata.status;
         this.setState({
@@ -334,7 +334,7 @@ class ViewRequisition extends Component {
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
                   <div className="requisitioner-text">
                     <label>Requisitioner</label>
-                    <span>jameskerieen@mail.com</span>
+                    <span>{requisitionData.requisitions}</span>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
@@ -370,7 +370,7 @@ class ViewRequisition extends Component {
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
                   <div className="requisitioner-text">
                     <label>budget Committee </label>
-                    <span>Approved</span>
+                    <span>{requisitionData.status}</span>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-4">

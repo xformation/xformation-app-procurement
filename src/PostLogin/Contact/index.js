@@ -37,6 +37,7 @@ class Contact extends Component {
       activeindex: 0,
       contactMemberList: [],
       contactUserList: [],
+      duplicateContactUserList:[],
       displayOption: false,
       searchContact: [],
       deletePopup: null,
@@ -68,6 +69,7 @@ class Contact extends Component {
     ) {
       this.setState({
         contactUserList: this.props.getContact,
+        duplicateContactUserList:this.props.getContact
       });
     }
   }
@@ -100,6 +102,24 @@ class Contact extends Component {
     const { checked } = e.target;
     contactUserList[index]["isSelected"] = checked
     this.setState({contactUserList})
+  }
+  onSearchChange=(e)=>{
+const{value}=e.target;
+let{duplicateContactUserList,contactUserList}=this.state;
+let queryResult=[];
+if(duplicateContactUserList && duplicateContactUserList.length>0){
+  for(let i=0 ;i<duplicateContactUserList.length;i++){
+    let approvedData= duplicateContactUserList[i]
+    if(approvedData["email"].toLowerCase().indexOf(value.trim()) !==-1 || approvedData["email"].indexOf(value.trim())!==-1){
+queryResult.push(approvedData);
+    }
+  }
+  contactUserList = queryResult
+}
+else{
+ contactUserList = duplicateContactUserList
+}
+this.setState({contactUserList})
   }
   displayContactUserList = () => {
     const { contactUserList, activeindex, displayOption } = this.state;
@@ -226,6 +246,7 @@ class Contact extends Component {
                           className="form-control"
                           id="exampleFormControlInput1"
                           placeholder="Search here"
+                          onChange={this.onSearchChange}
                         />
                         <button>
                           <SearchIcon />

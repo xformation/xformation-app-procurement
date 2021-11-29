@@ -8,6 +8,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
+
 class Calender extends Component {
     constructor(props) {
         super(props)
@@ -113,6 +114,16 @@ class Calender extends Component {
         }
         return retData;
     }
+
+    renderEventContent = (eventInfo) => {
+        console.log(eventInfo)
+        return (
+            <>
+                <b>{eventInfo.timeText}</b>
+                <i>{eventInfo.event.title}</i>
+            </>
+        )
+    }
     render() {
         return (
             <div className="main-content">
@@ -129,18 +140,33 @@ class Calender extends Component {
                                         <div className="calender-btn">
                                             <FormControl className="select-menu">
                                                 <NativeSelect name="status">
-                                                    <option value="">October</option>
-                                                    <option value={10}>abc</option>
-                                                    <option value={20}>def</option>
-                                                    <option value={30}>abc</option>
+                                                    <option value="january">January</option>
+                                                    <option value="february">February</option>
+                                                    <option value="march">March</option>
+                                                    <option value="april">April</option>
+                                                    <option value="may">May</option>
+                                                    <option value="june">June</option>
+                                                    <option value="july">July</option>
+                                                    <option value="august">August</option>
+                                                    <option value="september">September</option>
+                                                    <option value="october">October</option>
+                                                    <option value="november">November</option>
+                                                    <option value="december">December</option>
                                                 </NativeSelect>
                                             </FormControl>
                                             <FormControl className="select-menu">
                                                 <NativeSelect name="status">
-                                                    <option value="">2020</option>
-                                                    <option value={10}>abc</option>
-                                                    <option value={20}>def</option>
-                                                    <option value={30}>abc</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
                                                 </NativeSelect>
                                             </FormControl>
                                             <Button variant="contained" className="primary-btn"> &#43; New Schedule</Button>
@@ -151,6 +177,11 @@ class Calender extends Component {
                                     <FullCalendar
                                         plugins={[dayGridPlugin]}
                                         initialView="dayGridMonth"
+                                        events={[
+                                            { title: 'Invoice 1', date: '2021-11-13' },
+                                            { title: 'Invoice 2', date: '2021-11-01' },
+                                            { title: 'Invoice 3', date: '2021-12-01' },
+                                        ]}
                                     />
                                 </div>
                             </div>
@@ -164,72 +195,6 @@ class Calender extends Component {
                                 <SimpleBar style={{ height: 598 }}>
                                     <div className="invoices-details">
                                         {this.displayInvoiceDetails()}
-                                        {/* <ul>
-                                        <li>
-                                            <div className="payment-process">
-                                                <div className="graphic studios"></div>
-                                                <div class="payment-content">
-                                                    <a href="#">#INV-0001234</a>
-                                                    <p>Highspeed Studios</p>
-                                                    <span>$700,000.62</span>
-                                                </div>
-                                                <IconButton className="p-2 menu-btn"><MoreVertIcon /></IconButton>
-                                                <div className="pending-content">
-                                                    <i class="fas fa-clock"></i>
-                                                    <span>Due Date 12d left</span>
-                                                    <p>Pending</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="payment-process">
-                                                <div className="graphic online-shop"><i class="fas fa-chevron-down"></i></div>
-                                                <div class="payment-content">
-                                                    <a href="#">#INV-0001234</a>
-                                                    <p>Online Shop</p>
-                                                    <span>$268.45</span>
-                                                </div>
-                                                <IconButton className="p-2 menu-btn"><MoreVertIcon /></IconButton>
-                                                <div className="pending-content">
-                                                    <i class="fas fa-clock"></i>
-                                                    <span>Due Date 12d left</span>
-                                                    <p>Pending</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="payment-process">
-                                                <div className="graphic electronics-agency"> KG</div>
-                                                <div class="payment-content">
-                                                    <a href="#">#INV-0001234</a>
-                                                    <p>Electronics Agency</p>
-                                                    <span>$7,000.00</span>
-                                                </div>
-                                                <IconButton className="p-2 menu-btn"><MoreVertIcon /></IconButton>
-                                                <div className="pending-content">
-                                                    <i class="fas fa-clock"></i>
-                                                    <span>Due Date 12d left</span>
-                                                    <p>Pending</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="payment-process">
-                                                <div className="graphic fullspeedo-crew"><i class="fas fa-bolt"></i></div>
-                                                <div class="payment-content">
-                                                    <a href="#">#INV-0001234</a>
-                                                    <p>Fullspeedo Crew</p>
-                                                    <span>$680.00</span>
-                                                </div>
-                                                <IconButton className="p-2 menu-btn"><MoreVertIcon /></IconButton>
-                                                <div className="pending-content">
-                                                    <i class="fas fa-clock"></i>
-                                                    <span>Due Date 12d left</span>
-                                                    <p>Pending</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul> */}
                                     </div>
                                 </SimpleBar>
                             </div>

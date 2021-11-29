@@ -8,17 +8,11 @@ import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
 import { connect } from 'react-redux';
 import { committeeAction } from '../../_actions';
 import { status } from '../../_constants';
-import { alert } from '../../_utilities';
-
-const options = [
-    'Delete'
-];
 
 class SetUpCommittee extends Component {
     constructor(props) {
@@ -31,13 +25,13 @@ class SetUpCommittee extends Component {
             committeeMember: [],
             comitteeType: [],
             deletePopup: null,
+            displayOption: false
         }
     };
 
     componentDidMount() {
         this.props.dispatch(committeeAction.getCommitteeType());
         if (this.props.selected_member_list && this.props.selected_member_list.committeeMember && this.props.selected_member_list.committeeMember.length > 0) {
-            console.log(this.props.selected_member_list)
             this.setState({
                 committeeMember: this.props.selected_member_list.committeeMember,
             });
@@ -45,28 +39,10 @@ class SetUpCommittee extends Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.selected_committee_status !== this.props.selected_committee_status && this.props.selected_committee_status === status.SUCCESS) {
+        if ((prevProps.selected_committee_status !== this.props.selected_committee_status && this.props.selected_committee_status === status.SUCCESS) || (prevProps.selected_member_list !== this.props.selected_member_list && this.props.selected_committee_status === status.SUCCESS)) {
             this.setState({
                 committeeMember: this.props.selected_member_list.committeeMember,
             });
-        }
-        if (prevProps.delete_committee_status !== this.props.delete_committee_status && this.props.delete_committee_status === status.SUCCESS) {
-            const { deleteCommittee } = this.props;
-            const { committeeMember } = this.state;
-            const length = committeeMember.length;
-            let index = -1;
-            for (let i = 0; i < length; i++) {
-                if (committeeMember[i]._id === deleteCommittee.id) {
-                    index = i;
-                    break;
-                }
-            }
-            committeeMember.splice(index, 1);
-            this.setState({
-                committeeMember,
-                deletePopup: null
-            });
-            alert.success("Committee deleted successfully");
         }
         if (prevProps.get_committee_type_status !== this.props.get_committee_type_status && this.props.get_committee_type_status === status.SUCCESS) {
             if (this.props.getCommitteeType) {
@@ -74,6 +50,13 @@ class SetUpCommittee extends Component {
                     comitteeType: this.props.getCommitteeType,
                 })
             }
+        }
+        if (prevProps.add_committee_status !== this.props.add_committee_status && this.props.add_committee_status === status.SUCCESS) {
+            let sendData = {
+                committeeMember: [],
+                userid: 5,
+            };
+            this.props.dispatch(committeeAction.addSelectedMember(sendData));
         }
     };
 
@@ -116,87 +99,77 @@ class SetUpCommittee extends Component {
         return retData;
     };
 
-    onClickShowDeletePopup = event => {
-        this.setState({ deletePopup: event.currentTarget });
+    onClickShowDeletePopup = () => {
+        this.setState({ displayOption: !this.state.displayOption })
+    }
+
+    onClickCommitteeItemDelete = (i) => {
+        let { committeeMember } = this.state;
+        committeeMember[i].isSelected = false;
+        let sendData = {
+            committeeMember: this.state.committeeMember,
+            userid: 5,
+        };
+        this.props.dispatch(committeeAction.addSelectedMember(sendData))
+        this.setState({ displayOption: !this.state.displayOption })
     };
 
-    onClickCommitteeItemDelete = (deleteCommitee) => {
-        this.setState({ deletePopup: null });
-        if (deleteCommitee) {
-            this.props.dispatch(committeeAction.deleteCommittee(deleteCommitee.id));
-        }
+    toggleDisplayOptions = () => {
+        this.setState({ displayOption: !this.state.displayOption });
     };
 
     displayCommiteeLists = () => {
         let retData = [];
-        const { activeindex, deletePopup, committeeMember } = this.state;
-        const { delete_committee_status } = this.props;
-        const open = Boolean(deletePopup);
+        const { activeindex, deletePopup, committeeMember, displayOption } = this.state;
         for (let i = 0; i < committeeMember.length; i++) {
             let row = committeeMember[i];
             if (row.isSelected == true) {
                 retData.push(
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" key={row.id}>
-                        <Card className={activeindex == i ? "member-box active" : "member-box"} onClick={() => this.setState({ activeindex: i })}>
-                            <div className="d-inline-block menu-icon">
-                                <IconButton
-                                    aria-label="More"
-                                    aria-owns={open ? 'long-menu' : null}
-                                    aria-haspopup="true"
-                                    aria-controls="fade-menu"
-                                    onClick={this.onClickShowDeletePopup}
-                                >
-                                    <MoreVertIcon />
-                                </IconButton>
-                                <Menu
-                                    id="long-menu"
-                                    anchorEl={deletePopup}
-                                    open={open}
-                                    TransitionComponent={Fade}
-                                    // onClose={this.onClickCommitteeItemDelete}
-                                    PaperProps={{
-                                        style: {
-                                            width: 120,
-                                        },
-                                    }}
-                                >
-                                    {options.map(option => (
-                                        <MenuItem
-                                            key={option}
-                                            selected={option === 'Delete'}
-                                            // onClick={() => this.onClickCommitteeItemDelete(row)}
-                                            disabled={delete_committee_status === status.IN_PROGRESS}
-                                        >
-                                            {option}
-                                        </MenuItem>
-                                    ))}
-                                </Menu>
-                            </div>
-                            <div className="d-flex justify-content-center align-items-center user-img">
-                                <div className="d-flex justify-content-center align-items-center image">
-                                    <img src={row.profile} width='50px' height="50px" alt="" />
+                        <div className="member-boxs">
+                            <Card className={
+                                activeindex == i ? "members-box active" : "members-box"
+                            } onClick={() => this.setState({ activeindex: i })}>
+                                <div className="d-inline-block menu-icon" style={{ display: "flex" }}>
+                                    <IconButton aria-label="settings">
+                                        <MoreVertIcon
+                                            onClick={this.toggleDisplayOptions}
+                                        />
+                                    </IconButton>
+                                    <div className="settings-toggle">
+                                        {displayOption && i === activeindex ? (
+                                            <span onClick={(id) => this.onClickCommitteeItemDelete(i)}>
+                                                <HighlightOffIcon /> Delete
+                                            </span>
+                                        ) : null}
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="member-details">
-                                <ul>
-                                    <li><b>{row.name}</b></li>
-                                    <li><span>{row.position}</span></li>
-                                    <li><p>{row.company}</p></li>
-                                </ul>
-                            </div>
-                            <div className="member-contact">
-                                <ul>
-                                    <li>
-                                        <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
-                                        <a href={`tel:${row.contNo}`}>{row.contNo}</a>
-                                    </li>
-                                    <li>
-                                        <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
-                                        <a href={`mailto: ${row.email}`}>{row.email}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </Card>
+                                <div className="d-flex justify-content-center align-items-center user-img">
+                                    <div className="d-flex justify-content-center align-items-center image">
+                                        <img src={row.profile} width='50px' height="50px" alt="" />
+                                    </div>
+                                </div>
+                                <div className="member-details">
+                                    <ul>
+                                        <li><b>{row.name}</b></li>
+                                        <li><span>{row.position}</span></li>
+                                        <li><p>{row.company}</p></li>
+                                    </ul>
+                                </div>
+                                <div className="member-contact">
+                                    <ul>
+                                        <li>
+                                            <Button className="icon-btn"><CallIcon className="phone-icon" /></Button>
+                                            <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                                        </li>
+                                        <li>
+                                            <Button className="icon-btn"><MailIcon className="phone-icon" /></Button>
+                                            <a href={`mailto: ${row.email}`}>{row.email}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </div>
                     </div>
                 );
             }
@@ -247,7 +220,9 @@ class SetUpCommittee extends Component {
                     <div className="setup-committee-content">
                         <div className="add-members">
                             <div className="form-group row col-form-group">
-                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Select Committee Type</label>
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">
+                                    Select Committee Type
+                                </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
                                     <FormControl className="select-menu">
                                         <NativeSelect name="status" value={requiData.status}
@@ -259,7 +234,9 @@ class SetUpCommittee extends Component {
                                 </div>
                             </div>
                             <div className="form-group row col-form-group">
-                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Add Committee Members</label>
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">
+                                    Add Committee Members
+                                </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
                                     <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
                                         <AddCircleIcon className="plus-icon" />
@@ -269,20 +246,20 @@ class SetUpCommittee extends Component {
                             </div>
                         </div>
                         {committeeMember && committeeMember.length > 0 &&
-                            <div className="select-members">
-                                <div className="heading">
+                            <div className="pt-4 select-members">
+                                <div className="mb-4 heading">
                                     <h5>Selected Committee Members</h5>
                                 </div>
-                                <div className="members-boxs">
+                                <div className="membar-list">
                                     <div className="row">
                                         {this.displayCommiteeLists()}
-                                        <div className="committee-btn" >
-                                            <Button variant="contained" className="primary-btn" onClick={this.addCommitteeMember}>
-                                                <i className="fas fa-paper-plane"></i>
-                                                Save &#38; Send Invites
-                                            </Button>
-                                        </div>
                                     </div>
+                                </div>
+                                <div className="d-block text-center committee-btn">
+                                    <Button variant="contained" className="primary-btn" onClick={this.addCommitteeMember}>
+                                        <i className="fas fa-paper-plane"></i>
+                                        Save &#38; Send Invites
+                                    </Button>
                                 </div>
                             </div>
                         }
@@ -294,12 +271,10 @@ class SetUpCommittee extends Component {
 }
 
 function mapStateToProps(state) {
-    const { addCommittee, add_committee_status, delete_committee_status, deleteCommittee, selected_committee_status, selected_member_list, get_committee_type_status, getCommitteeType } = state.committee;
+    const { addCommittee, add_committee_status, selected_committee_status, selected_member_list, get_committee_type_status, getCommitteeType } = state.committee;
     return {
         add_committee_status,
         addCommittee,
-        delete_committee_status,
-        deleteCommittee,
         selected_committee_status,
         selected_member_list,
         get_committee_type_status,

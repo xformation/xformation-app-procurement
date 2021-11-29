@@ -42,19 +42,19 @@ export function invoice(state = {}, action) {
             return {
                 ...state,
                 get_invoice_status: status.IN_PROGRESS,
-                getInvoice: action.data
+                getinvoicedata: action.data
             };
         case invoiceConstants.GET_INVOICE_SUCCESS:
             return {
                 ...state,
                 get_invoice_status: status.SUCCESS,
-                getInvoice: action.data
+                getinvoicedata: action.data
             };
         case invoiceConstants.GET_INVOICE_FAILURE:
             return {
                 ...state,
                 get_invoice_status: status.FAILURE,
-                getInvoice: null
+                getinvoicedata: null
             };
         case invoiceConstants.SEARCH_INVOICE_REQUEST:
             return {

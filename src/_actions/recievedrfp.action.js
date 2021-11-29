@@ -1,98 +1,34 @@
-import { invoiceConstants } from '../_constants';
-import { invoiceServices } from '../_services';
+
+import { recievedrfpConstants } from '../_constants';
+import { recievedrfpServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
-export const invoiceAction = {
-    addInvoice,
-    deleteInvoice,
-    getInvoice,
-    searchInvoice,
-    updateInvoice
+export const recievedrfpAction = {
+    searchRecievedRFP,
+    getRecieveRFP,
+    addRecieveRFP,
+    searchRecievedRFQ,
+    getRecieveRFQ,
+    addRecieveRFQ,
 };
 
-function addInvoice(data) {
+function searchRecievedRFP(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: invoiceConstants.ADD_INVOICE_REQUEST,
+            type: recievedrfpConstants.GET_RECIEVED_RFP_REQUEST,
             data: null
         }));
-        invoiceServices.addInvoice(data)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: invoiceConstants.ADD_INVOICE_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: invoiceConstants.ADD_INVOICE_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: invoiceConstants.ADD_INVOICE_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
-function deleteInvoice(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: invoiceConstants.DELETE_INVOICE_REQUEST,
-            data: null
-        }));
-        invoiceServices.deleteInvoice(id)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: invoiceConstants.DELETE_INVOICE_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: invoiceConstants.DELETE_INVOICE_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: invoiceConstants.DELETE_INVOICE_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
-function getInvoice(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: invoiceConstants.GET_INVOICE_REQUEST,
-            data: null
-        }));
-        invoiceServices.getInvoice(data)
+        recievedrfpServices.searchRecievedRFP(data)
             .then(
                 response => {
                     if (response.code == 200) {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.GET_INVOICE_SUCCESS,
+                            type: recievedrfpConstants.GET_RECIEVED_RFP_SUCCESS,
                             data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.GET_INVOICE_FAILURE,
+                            type: recievedrfpConstants.GET_RECIEVED_RFP_FAILURE,
                             data: response
                         }));
                         alert.error(response.message);
@@ -100,7 +36,7 @@ function getInvoice(data) {
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: invoiceConstants.GET_INVOICE_FAILURE,
+                        type: recievedrfpConstants.GET_RECIEVED_RFP_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);
@@ -109,23 +45,23 @@ function getInvoice(data) {
     };
 }
 
-function searchInvoice(data) {
+function getRecieveRFP(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: invoiceConstants.SEARCH_INVOICE_REQUEST,
+            type: recievedrfpConstants.GET_RECIEVED_RFP_DATA_REQUEST,
             data: null
         }));
-        invoiceServices.searchInvoice(data)
+        recievedrfpServices.getRecieveRFP(data)
             .then(
                 response => {
-                    if (response.code==200) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.SEARCH_INVOICE_SUCCESS,
+                            type: recievedrfpConstants.GET_RECIEVED_RFP_DATA_SUCCESS,
                             data: response.object
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.SEARCH_INVOICE_FAILURE,
+                            type: recievedrfpConstants.GET_RECIEVED_RFP_DATA_FAILURE,
                             data: response
                         }));
                         alert.error(response.message);
@@ -133,7 +69,7 @@ function searchInvoice(data) {
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: invoiceConstants.SEARCH_INVOICE_FAILURE,
+                        type: recievedrfpConstants.GET_RECIEVED_RFP_DATA_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);
@@ -142,23 +78,24 @@ function searchInvoice(data) {
     };
 }
 
-function updateInvoice(id) {
+function addRecieveRFP(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: invoiceConstants.UPDATE_INVOICE_REQUEST,
+            type: recievedrfpConstants.ADD_RECIEVED_RFP_REQUEST,
             data: null
         }));
-        invoiceServices.updateInvoice(id)
+        recievedrfpServices.addRecieveRFP(data)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.UPDATE_INVOICE_SUCCESS,
+                            type: recievedrfpConstants.ADD_RECIEVED_RFP_SUCCESS,
                             data: response.object
                         }));
+                        alert.success(response.message)
                     } else {
                         dispatch(dispatchFunction({
-                            type: invoiceConstants.UPDATE_INVOICE_FAILURE,
+                            type: recievedrfpConstants.ADD_RECIEVED_RFP_FAILURE,
                             data: response
                         }));
                         alert.error(response.message);
@@ -166,7 +103,107 @@ function updateInvoice(id) {
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: invoiceConstants.UPDATE_INVOICE_FAILURE,
+                        type: recievedrfpConstants.ADD_RECIEVED_RFP_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+
+function searchRecievedRFQ(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: recievedrfpConstants.FETCH_RECIEVED_RFQ_REQUEST,
+            data: null
+        }));
+        recievedrfpServices.searchRecievedRFQ()
+            .then(
+                response => {
+                    if (response.code === 200) {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.FETCH_RECIEVED_RFQ_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.FETCH_RECIEVED_RFQ_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: recievedrfpConstants.FETCH_RECIEVED_RFQ_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+
+function getRecieveRFQ(data){
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: recievedrfpConstants.GET_RECIEVED_RFQ_DATA_REQUEST,
+            data: null
+        }));
+        recievedrfpServices.getRecieveRFQ(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.GET_RECIEVED_RFQ_DATA_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.GET_RECIEVED_RFQ_DATA_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: recievedrfpConstants.GET_RECIEVED_RFQ_DATA_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+
+function addRecieveRFQ(data){
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: recievedrfpConstants.ADD_RECIEVED_RFQ_REQUEST,
+            data: null
+        }));
+        recievedrfpServices.addRecieveRFQ(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.ADD_RECIEVED_RFQ_SUCCESS,
+                            data: response.object
+                        }));
+                        alert.success(response.message)
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.ADD_RECIEVED_RFQ_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: recievedrfpConstants.ADD_RECIEVED_RFQ_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

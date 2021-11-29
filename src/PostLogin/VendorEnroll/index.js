@@ -11,14 +11,46 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import LoopIcon from "@material-ui/icons/Loop";
 import IconButton from "@material-ui/core/IconButton";
+import { vendorAction } from "../../_actions";
+import { connect } from "react-redux";
+import { status } from "../../_constants";
 
 class VendorEnroll extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      requiData: {},
+      requiData: {
+        firstName: '',
+        lastName: '',
+        gender: '',
+        fatherName: '',
+        brithDate: '',
+        phoneNo: '',
+        designation: '',
+        companyName: '',
+        RegistrationNo: '',
+        directorName: '',
+        address: '',
+        bidder: '',
+        city: '',
+        establishment: '',
+        state: '',
+        business: '',
+        postalCode: '',
+        legalStatus: '',
+        panNo: '',
+        companyCategory: '',
+        captcha: '',
+      },
     };
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.add_vendor_status !== this.props.add_vendor_status && this.props.add_vendor_status === status.SUCCESS) {
+      window.location.reload();
+    }
+  }
+
   handleStateChange = (e) => {
     const { name, value } = e.target;
     const { requiData } = this.state;
@@ -28,12 +60,15 @@ class VendorEnroll extends Component {
     });
   };
 
-  handleDateChange =(value)=>{
-    const{requiData} =this.state;
-    requiData['brithDate']=value;
-    this.setState({requiData});
+  handleDateChange = (value) => {
+    const { requiData } = this.state;
+    requiData['brithDate'] = value;
+    this.setState({
+      requiData
+    });
 
   }
+
   handleClickMethod = (event) => {
     const { requiData } = this.state;
     event.preventDefault();
@@ -64,7 +99,8 @@ class VendorEnroll extends Component {
         panNo: requiData.panNo,
         companyCategory: requiData.companyCategory,
         captcha: requiData.captcha,
-      };
+      }
+      this.props.dispatch(vendorAction.addVendor(sendReqData));
     }
   };
 
@@ -110,7 +146,7 @@ class VendorEnroll extends Component {
       if (!requiData.lastName) {
         retData.lastName = {
           isValid: false,
-          message: "Last namme is required",
+          message: "Last name is required",
         };
         isValid = false;
       }
@@ -129,7 +165,7 @@ class VendorEnroll extends Component {
         isValid = false;
       }
       if (!requiData.brithDate) {
-        
+
         retData.brithDate = {
           isValid: false,
           message: "D. O. B is required",
@@ -143,11 +179,11 @@ class VendorEnroll extends Component {
         };
         isValid = false;
       }
-      else if (requiData.phoneNo.length > 12  || requiData.phoneNo.length < 10){
+      else if (requiData.phoneNo.length > 12 || requiData.phoneNo.length < 10) {
         console.log(retData.phoneNo)
-        retData.phoneNo ={
-          isValid:false,
-          message :"Phone number is invalid"
+        retData.phoneNo = {
+          isValid: false,
+          message: "Phone number is invalid"
         }
         isValid = false
       }
@@ -505,7 +541,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">City</label>
                   <input
                     type="text"
-                    name="City"
+                    name="city"
                     value={requiData.city}
                     onChange={this.handleStateChange}
                     isvalid={errorData.city.isValid}
@@ -520,7 +556,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">Establishment Year</label>
                   <input
                     type="text"
-                    name="Establishment"
+                    name="establishment"
                     value={requiData.establishment}
                     onChange={this.handleStateChange}
                     isvalid={errorData.establishment.isValid}
@@ -537,7 +573,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">State</label>
                   <input
                     type="text"
-                    name="State"
+                    name="state"
                     value={requiData.state}
                     onChange={this.handleStateChange}
                     isvalid={errorData.state.isValid}
@@ -552,7 +588,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">Nature of Business</label>
                   <input
                     type="text"
-                    name="Business"
+                    name="business"
                     value={requiData.business}
                     onChange={this.handleStateChange}
                     isvalid={errorData.business.isValid}
@@ -569,7 +605,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">Postal Code </label>
                   <input
                     type="text"
-                    name="PostalCode "
+                    name="postalCode"
                     value={requiData.postalCode}
                     onChange={this.handleStateChange}
                     isvalid={errorData.postalCode.isValid}
@@ -586,7 +622,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">Legal Status</label>
                   <input
                     type="text"
-                    name="LegalStatus"
+                    name="legalStatus"
                     value={requiData.legalStatus}
                     onChange={this.handleStateChange}
                     isvalid={errorData.legalStatus.isValid}
@@ -603,7 +639,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">PAN/TAN Number</label>
                   <input
                     type="text"
-                    name="PanNo"
+                    name="panNo"
                     value={requiData.panNo}
                     onChange={this.handleStateChange}
                     isvalid={errorData.panNo.isValid}
@@ -618,7 +654,7 @@ class VendorEnroll extends Component {
                   <label className="d-block">Company Category</label>
                   <input
                     type="text"
-                    name="CompanyCategory"
+                    name="companyCategory"
                     value={requiData.companyCategory}
                     onChange={this.handleStateChange}
                     isvalid={errorData.companyCategory.isValid}
@@ -636,7 +672,7 @@ class VendorEnroll extends Component {
                   <div className="d-flex aline-item-center captcha">
                     <input
                       type="text"
-                      name="Captcha"
+                      name="captcha"
                       value={requiData.captcha}
                       onChange={this.handleStateChange}
                       isvalid={errorData.captcha.isValid}
@@ -677,4 +713,11 @@ class VendorEnroll extends Component {
   }
 }
 
-export default VendorEnroll;
+const mapStateToProps = (state) => {
+  const { add_vendor_status, addVendor } = state.vendor;
+  return {
+    add_vendor_status,
+    addVendor
+  }
+}
+export default connect(mapStateToProps)(VendorEnroll);

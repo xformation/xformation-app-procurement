@@ -515,6 +515,7 @@ select:focus-visible {
                 position: absolute;
                 right: 5px;
                 top: 5px;
+                z-index: 1;
 
                 .MuiButtonBase-root {
                     padding: 8px;

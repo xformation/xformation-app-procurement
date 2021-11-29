@@ -44,20 +44,22 @@ function getRequisition(data) {
         "Content-Type": "application/json"
     };
     let url = "";
-    if (data.status) {
-        url += `?status=${data.status}`;
-    }
-    if (data.requisitionNo) {
-        url += `${url ? '&' : '?'}id=${data.requisitionNo}`;
-    }
-    if (data.department) {
-        url += `${url ? '&' : '?'}departmentId=${data.department}`;
-    }
-    if (data.toDate) {
-        url += `${url ? '&' : '?'}toDate=${data.toDate}`;
-    }
-    if (data.fromDate) {
-        url += `${url ? '&' : '?'}fromDate=${data.fromDate}`;
+    if (data) {
+        if (data.status) {
+            url += `?status=${data.status}`;
+        }
+        if (data.requisitionNo) {
+            url += `${url ? '&' : '?'}id=${data.requisitionNo}`;
+        }
+        if (data.department) {
+            url += `${url ? '&' : '?'}departmentId=${data.department}`;
+        }
+        if (data.toDate) {
+            url += `${url ? '&' : '?'}toDate=${data.toDate}`;
+        }
+        if (data.fromDate) {
+            url += `${url ? '&' : '?'}fromDate=${data.fromDate}`;
+        }
     }
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
     return fetch(`${apiEndPoint.FETCHREQUISTION}${url}`, requestOptions).then(response => response.json());
