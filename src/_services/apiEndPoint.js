@@ -81,4 +81,11 @@ export const apiEndPoint = {
     FETCHRECIEVEDRFQ: `${config.apiUrl}/searchRecievedRfq`,
     GETRECIEVEDRFQ: `${config.apiUrl}/getRecievedRfq`,
     ADDSTATUSRFQ: `${config.apiUrl}/addStatusRfq`,
+
+    // email api url
+    FETCHEMAIL: `${config.apiUrl}/recentCommunication`,
+    FEATCHALLEMAIL: `${config.apiUrl}/fetchAllMail`,
+    SENDEMAIL: `${config.apiUrl}/sendEmail`,
+    GETEMAIL: `${config.apiUrl}/getEmailData`,
+    DELETEMAIL: `${config.apiUrl}/deleteEmail`,
 };

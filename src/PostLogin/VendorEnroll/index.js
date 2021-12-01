@@ -19,6 +19,7 @@ class VendorEnroll extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSubmitted: false,
       requiData: {
         firstName: '',
         lastName: '',
@@ -46,8 +47,33 @@ class VendorEnroll extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const{requiData}=this.state;
     if (prevProps.add_vendor_status !== this.props.add_vendor_status && this.props.add_vendor_status === status.SUCCESS) {
-      window.location.reload();
+      requiData.firstName= '';
+      requiData.lastName= '';
+      requiData.gender= '';
+      requiData.fatherName= '';
+      requiData.brithDate= '';
+      requiData.phoneNo= '';
+      requiData.designation= '';
+      requiData.companyName= '';
+      requiData.RegistrationNo= '';
+      requiData.directorName= '';
+      requiData.address= '';
+      requiData.bidder= '';
+      requiData.city= '';
+      requiData.establishment= '';
+      requiData.state= '';
+      requiData.business= '';
+      requiData.postalCode= '';
+      requiData.legalStatus= '';
+      requiData.panNo= '';
+      requiData.companyCategory= '';
+      requiData.captcha= '';
+      this.setState({
+        requiData,
+        isSubmitted: false,
+      });
     }
   }
 

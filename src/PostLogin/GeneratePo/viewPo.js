@@ -20,17 +20,13 @@ class ViewPurchaseOrder extends Component {
         super(props)
         this.state = {
             requiData: {
-                startDate: '',
-                deliveryDate: '',
-                payment: '',
                 otherTerms: '',
             },
             purchaseOrder: {},
         }
     }
     componentDidMount() {
-        this.props.dispatch(purchaseOrderAction.getPurchaseOrder());
-
+        this.props.dispatch(purchaseOrderAction.getPurchaseOrder({ 'id': this.props.match.params.id }));
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -52,19 +48,8 @@ class ViewPurchaseOrder extends Component {
 
     };
 
-    handleDate = (date, type) => {
-        let { requiData } = this.state;
-        if (type === "start") {
-            requiData.startDate = commonFunctions.convertDateToString(new Date(date))
-        }
-        if (type === "deliver") {
-            requiData.deliveryDate = commonFunctions.convertDateToString(new Date(date))
-        }
-        this.setState({ requiData })
-    }
-
     handleClickMethod = (event) => {
-        const { requiData, } = this.state;
+        const { requiData, purchaseOrder } = this.state;
         event.preventDefault();
         this.setState({
             isSubmitted: true
@@ -72,11 +57,8 @@ class ViewPurchaseOrder extends Component {
         const errorData = this.validate(true);
         if (errorData.isValid) {
             const sendReqData = {
-                status: requiData.status,
-                startDate: requiData.startDate,
-                deliveryDate: requiData.deliveryDate,
-                payment: requiData.payment,
-                conditionText: requiData.conditionText
+                conditionText: requiData.conditionText,
+                id: this.props.match.params.id
             }
             this.props.dispatch(purchaseOrderAction.addPurchaseOrder(sendReqData));
         }
@@ -90,35 +72,11 @@ class ViewPurchaseOrder extends Component {
         };
         let isValid = true;
         const retData = {
-            startDate: validObj,
-            deliveryDate: validObj,
             conditionText: validObj,
-            payment: validObj,
             isValid
         };
         if (isSubmitted) {
             const { requiData } = this.state;
-            if (!requiData.startDate) {
-                retData.startDate = {
-                    isValid: false,
-                    message: "Start date is required"
-                };
-                isValid = false;
-            }
-            if (!requiData.deliveryDate) {
-                retData.deliveryDate = {
-                    isValid: false,
-                    message: "Delivery date is required"
-                };
-                isValid = false;
-            }
-            if (!requiData.payment) {
-                retData.payment = {
-                    isValid: false,
-                    message: "Payment terms is required "
-                };
-                isValid = false;
-            }
             if (!requiData.conditionText) {
                 retData.conditionText = {
                     isValid: false,
@@ -126,13 +84,7 @@ class ViewPurchaseOrder extends Component {
                 };
                 isValid = false;
             }
-            if (new Date(requiData.startDate)>=new Date(requiData.deliveryDate) ){
-                retData.startDate = {
-                    isValid: false,
-                    message: " enter a valid date "
-                };
-                isValid = false;
-            }
+
         }
         retData.isValid = isValid;
         return retData;
@@ -160,8 +112,10 @@ class ViewPurchaseOrder extends Component {
     }
 
     render() {
-        const { requiData, isSubmitted, purchaseOrder, startDate, deliveryDate } = this.state;
+        const { requiData, isSubmitted, purchaseOrder } = this.state;
         const errorData = this.validate(isSubmitted);
+       let startDate=commonFunctions.convertDateToString(new Date(purchaseOrder.startDate));
+       let deliveryDate=commonFunctions.convertDateToString(new Date(purchaseOrder.deliveryDate));
         return (
             <div className="main-content">
                 <div className="generate-content">
@@ -269,9 +223,8 @@ class ViewPurchaseOrder extends Component {
                                     Start Date
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
-                                    <DatePicker startText="Start" placeholder="10/28/2021" onChange={(date) => this.handleDate(date, 'start')} />
+                                    <DatePicker startText="Start" placeholder={deliveryDate} disabled="false"  />
                                     <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                    <span className="d-block w-100 text-danger">{errorData.startDate.message}</span>
                                 </div>
                             </div>
                             <div className="form-group row col-form-group">
@@ -279,9 +232,8 @@ class ViewPurchaseOrder extends Component {
                                     Delivery Date
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
-                                    <DatePicker placeholder="10/28/2021" startText="End" onChange={(date) => this.handleDate(date, 'deliver')} />
+                                    <DatePicker  startText="End"  disabled="false" placeholder={startDate} />
                                     <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                    <span className="d-block w-100 text-danger">{errorData.deliveryDate.message}</span>
                                 </div>
                             </div>
                             <div className="form-group row col-form-group">
@@ -289,9 +241,7 @@ class ViewPurchaseOrder extends Component {
                                     Payment Terms
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
-                                    <TextareaAutosize name="payment" className="payment-text" value={requiData.payment}
-                                        onChange={this.handleStateChange} isvalid={errorData.payment.isValid} placeholder="Payment of total contract sum will be made to you after delivery" />
-                                    <span className="d-block w-100 text-danger">{errorData.payment.message}</span>
+                                    <TextareaAutosize name="payment" className="payment-text" value={purchaseOrder.paymentTerms} placeholder="Payment of total contract sum will be made to you after delivery" disabled />
                                 </div>
                             </div>
                             <div className="form-group row col-form-group">
@@ -300,7 +250,7 @@ class ViewPurchaseOrder extends Component {
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                     <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
-                                        onChange={this.handleStateChange} isvalid={errorData.conditionText.isValid} placeholder="" />
+                                      isvalid={errorData.conditionText.isValid} placeholder="" onChange={this.handleStateChange}/>
                                     <span className="d-block w-100 text-danger">{errorData.conditionText.message}</span>
                                 </div>
                             </div>

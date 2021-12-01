@@ -125,6 +125,13 @@
 
             .item-content {
                 text-align: center;
+                th{
+                    padding-bottom: 5px;
+                }
+                td{
+                    padding-bottom: 5px;
+                    padding-top: 5px;
+                }
             }
 
             input {

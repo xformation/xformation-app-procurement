@@ -11,3 +11,4 @@ export * from './buyer.services';
 export * from './home.services';
 export * from './recievedrfp.services';
 export * from './purchaseOrder.services';
+export * from './email.services';

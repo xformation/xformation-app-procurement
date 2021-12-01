@@ -10,11 +10,11 @@ export const invoiceServices = {
     updateInvoice
 }
 
-function addInvoice() {
+function addInvoice(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
     return fetch(`${apiEndPoint.ADDINVOICE}`, requestOptions).then(response => response.json());
 }
 

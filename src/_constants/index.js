@@ -12,3 +12,4 @@ export * from './buyer.constants';
 export * from './home.constants';
 export * from './recievedrfp.constants';
 export * from './purchaseOrder.constant';
+export * from './email.constant';

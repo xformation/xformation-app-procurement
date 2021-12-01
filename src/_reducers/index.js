@@ -13,7 +13,7 @@ import { buyer } from './buyer.reducers';
 import { home } from './home.reducers';
 import { recievedrfp } from './recievedrfp.reducers';
 import{generatePurchaseOrder} from './purchaseOrder.reducer';
-
+import{email} from'./email.reducers'
 const appReducers = combineReducers({
     auth,
     committee,
@@ -27,7 +27,8 @@ const appReducers = combineReducers({
     buyer,
     home,
     recievedrfp,
-    generatePurchaseOrder
+    generatePurchaseOrder,
+    email
 });
 
 const rootReducer = (state, action) => {

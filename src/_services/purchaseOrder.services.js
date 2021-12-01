@@ -12,7 +12,7 @@ function getPurchaseOrder(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETGPO}/${data}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GETGPO}/${data.id}`, requestOptions).then(response => response.json());
 }
 function searchPurchaseOrder(data) {
     const extraHeaders = {
@@ -22,10 +22,10 @@ function searchPurchaseOrder(data) {
     return fetch(`${apiEndPoint.FETCHGPO}`, requestOptions).then(response => response.json());
 }
 
-function addPurchaseOrder() {
+function addPurchaseOrder(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
     return fetch(`${apiEndPoint.ADDGPODETAIL}`, requestOptions).then(response => response.json());
 }
