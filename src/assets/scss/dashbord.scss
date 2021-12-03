@@ -588,7 +588,12 @@
 
             .chartbar-content {
                 margin-top: 30px;
-                text-align: center;
+                 text-align: center;
+                .recharts-layer{
+                    tspan{
+                        font-size: 12px;
+                    }
+                }
             }
         }
     }
@@ -709,6 +714,8 @@
                     display: inline-block;
                     border-radius: 5px;
                     margin-right: 10px;
+                    margin-top: 5px;
+                    background: linear-gradient(to bottom left, #c9ebfe 0%, #f0b9ef 85%);
                 }
                 .payment-content {
                     display: inline-block;
@@ -758,8 +765,9 @@
             .timing {
                 span {
                     color: #8f8f8f;
-                    font-size: 14px;
-                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 18px;
+                    font-weight: 400;
                 }
             }
         }
@@ -926,16 +934,25 @@
                 vertical-align: middle;
 
                 .user-img {
-                    // margin-right: 10px;
-                    width: 50px;
+                    width: 35px;
+                    height: 35px;
+                    margin-right: 10px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    vertical-align: middle;
 
                     img {
-                        width: 70%;
+                        width: 100%;
+                        height: inherit;
                     }
                 }
 
                 .user-position {
                     vertical-align: middle;
+                    width: 115px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
 
                     p {
                         font-size: 14px;
@@ -943,6 +960,9 @@
                         font-weight: 500;
                         color: #000000;
                         margin-bottom: 0;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
 
                     span {
@@ -1064,6 +1084,7 @@
 
         .recent-list {
             padding-top: 25px;
+            max-height: 412px;
 
             .simplebar-track.simplebar-vertical {
                 right: -20px;
@@ -1078,12 +1099,13 @@
                     margin-bottom: 0;
 
                     li {
-                        display: flex;
                         list-style: none;
-
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: start;
                         .user-id {
-                            width: 160px;
-                            display: inline-block;
+                            // width: 160px;
+                            display: flex;
 
                             .user-box {
                                 width: 49px;
@@ -1094,17 +1116,25 @@
                                 border-radius: 10px;
                                 text-align: center;
                                 border: 1px solid #8f8f8f8c;
+                                &.active {
+                                    color: #ffab2d;
+                                    border-color: #ffab2d;
+                                    background-color: #ffeacb;
+                                }
                             }
+                           
 
                             .user-img {
                                 display: inline-block;
                                 margin-left: 10px;
+                                overflow: hidden;
+                                border-radius: 10px;
                             }
                         }
 
                         .user-content {
-                            display: inline-block;
-
+                            display: block;
+                            width: 100%;
                             span {
                                 font-size: 14px;
                                 line-height: 18px;
@@ -1126,9 +1156,11 @@
                                 margin-bottom: 0;
                             }
 
-                            .social-icon {
+                            .list-icon {
                                 float: right;
-                                padding: 8px;
+                               .MuiIconButton-root{
+                                   padding: 8px;
+                               }
                             }
 
                             ul {
@@ -1140,7 +1172,7 @@
                                     margin-left: 20px;
                                     color: #8f8f8f;
 
-                                    .social-icon {
+                                    .list-icon {
                                         padding: 8px;
                                     }
                                 }

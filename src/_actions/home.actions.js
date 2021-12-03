@@ -3,7 +3,7 @@ import { homeServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
 export const homeAction = {
-    Userdata
+    Userdata,Dashboarddata
 };
 
 function Userdata(data) {
@@ -39,6 +39,39 @@ function Userdata(data) {
     };
 }
 
+
+function Dashboarddata(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: homeConstants.GET_DASHBOARD_REQUEST,
+            data: null
+        }));
+        homeServices.Dashboarddata(data)
+            .then(
+                response => {
+                    if (response.code === 200) {
+                        dispatch(dispatchFunction({
+                            type: homeConstants.GET_DASHBOARD_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: homeConstants.GET_DASHBOARD_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: homeConstants.GET_DASHBOARD_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
 
 function dispatchFunction(data) {
     // if (data.data && data.data.code === 401) {

@@ -21,6 +21,8 @@ import { status } from "../../_constants";
 import Checkbox from "@material-ui/core/Checkbox";
 import Loader from '../../_components/commonLoader';
 import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@material-ui/core';
+import CloseIcon from "@material-ui/icons/Close";
+
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -31,15 +33,19 @@ class Contact extends Component {
         depart: "",
         isSected: '',
       },
-      deleteIndex:'',
-      openDialog:false,
+      deleteIndex: '',
+      openDialog: false,
+      openInviteDialog: false,
       newContact: false,
       activeindex: 0,
       contactMemberList: [],
       contactUserList: [],
-      duplicateContactUserList:[],
+      duplicateContactUserList: [],
       displayOption: false,
       searchContact: [],
+      inviteList: [
+        { email: '', name: '' }
+      ],
       deletePopup: null,
     };
   }
@@ -61,6 +67,9 @@ class Contact extends Component {
       prevProps.delete_contact_status !== this.props.delete_contact_status &&
       this.props.delete_contact_status === status.SUCCESS
     ) {
+      this.setState({
+        openDialog: false,
+      })
       this.props.dispatch(contactAction.fetchContactList());
     }
     if (
@@ -69,7 +78,7 @@ class Contact extends Component {
     ) {
       this.setState({
         contactUserList: this.props.getContact,
-        duplicateContactUserList:this.props.getContact
+        duplicateContactUserList: this.props.getContact
       });
     }
   }
@@ -77,50 +86,52 @@ class Contact extends Component {
     const { openDialog } = this.state;
     let deleteItem = !openDialog;
     this.setState({
-        openDialog: deleteItem,
-        deleteIndex: id,
+      openDialog: deleteItem,
+      deleteIndex: id,
     })
-};
-  removeContact = (id , index) => {
-    // console.log(id)
-    let{openDialog}=this.state
+  };
+
+  removeContact = () => {
     this.props.dispatch(contactAction.deleteContact({ id: this.state.deleteIndex }));
-    openDialog= false;
-    this.setState({openDialog})
+    this.setState({ openDialog: false })
   };
 
   toggleDisplayOptions = () => {
     this.setState({ displayOption: !this.state.displayOption });
-  };
+  }
 
   editContact = (id) => {
     this.props.history.push(`/postlogin/newcontact/${id}`);
-  };
+  }
 
   handleStateChange = (index, e) => {
     let { contactUserList } = this.state;
     const { checked } = e.target;
     contactUserList[index]["isSelected"] = checked
-    this.setState({contactUserList})
+    this.setState({ contactUserList })
   }
-  onSearchChange=(e)=>{
-const{value}=e.target;
-let{duplicateContactUserList,contactUserList}=this.state;
-let queryResult=[];
-if(duplicateContactUserList && duplicateContactUserList.length>0){
-  for(let i=0 ;i<duplicateContactUserList.length;i++){
-    let approvedData= duplicateContactUserList[i]
-    if(approvedData["email"].toLowerCase().indexOf(value.trim()) !==-1 || approvedData["email"].indexOf(value.trim())!==-1){
-queryResult.push(approvedData);
+
+  onSearchChange = (e) => {
+    const { value } = e.target;
+    let { duplicateContactUserList, contactUserList } = this.state;
+    let queryResult = [];
+    if (duplicateContactUserList && duplicateContactUserList.length > 0) {
+      for (let i = 0; i < duplicateContactUserList.length; i++) {
+        let approvedData = duplicateContactUserList[i]
+        if (approvedData["name"].toLowerCase().indexOf(value.trim()) !== -1 || approvedData["name"].indexOf(value.trim()) !== -1) {
+          queryResult.push(approvedData);
+        } else if (approvedData["email"].toLowerCase().indexOf(value.trim()) !== -1 || approvedData["email"].indexOf(value.trim()) !== -1) {
+          queryResult.push(approvedData);
+        }
+      }
+      contactUserList = queryResult
     }
+    else {
+      contactUserList = duplicateContactUserList
+    }
+    this.setState({ contactUserList })
   }
-  contactUserList = queryResult
-}
-else{
- contactUserList = duplicateContactUserList
-}
-this.setState({contactUserList})
-  }
+
   displayContactUserList = () => {
     const { contactUserList, activeindex, displayOption } = this.state;
     let retData = [];
@@ -168,7 +179,7 @@ this.setState({contactUserList})
                         <span onClick={() => this.editContact(row.id)}>
                           <EditTwoToneIcon /> Edit
                         </span>
-                        <span onClick={(id) =>  this.onClickDelete(row.id)}>
+                        <span onClick={(id) => this.onClickDelete(row.id)}>
                           <HighlightOffIcon /> Delete
                         </span>
                       </>
@@ -222,9 +233,47 @@ this.setState({contactUserList})
       retData.push(<Loader />);
     }
     return retData;
-  };
+  }
+
+  openInviteDialog = () => {
+    const { openInviteDialog } = this.state;
+    let dialog = !openInviteDialog;
+    this.setState({
+      openInviteDialog: dialog,
+    })
+  }
+
+  handleStateInviteChange = (event, index) => {
+    let { inviteList } = this.state;
+    const { name, value } = event.target;
+    inviteList[index][name] = value;
+    this.setState({
+      inviteList
+    });
+  }
+
+  addMoreContcat = () => {
+    let { inviteList } = this.state;
+    if (inviteList && inviteList.length < 5) {
+      inviteList.push({ email: '', name: '' });
+      this.setState({
+        inviteList,
+      })
+    }
+  }
+
+  removeinviter = (index) => {
+    let { inviteList } = this.state;
+    if (inviteList && inviteList.length > 1) {
+      inviteList.splice(index, 1);
+      this.setState({
+        inviteList
+      })
+    }
+  }
+
   render() {
-  let {openDialog}=this.state
+    let { openDialog, openInviteDialog, inviteList } = this.state
     return (
       <div className="main-content">
         <div className="contact-content">
@@ -255,25 +304,33 @@ this.setState({contactUserList})
                     </div>
                     <div className="social-buttom">
                       <ul>
-                        {/* <li>
-                                                    <Button
-                                                        variant="contained"
-                                                        className="plus-btn list-icon"
-                                                    >
-                                                        <ReorderIcon />
-                                                    </Button>
-                                                </li>
-                                                <li>
-                                                    <Button variant="contained" className="plus-btn">
-                                                        <ViewModuleIcon />
-                                                    </Button>
-                                                </li> */}
+                        <li>
+                          <Button
+                            variant="contained"
+                            className="plus-btn list-icon"
+                          >
+                            <ReorderIcon />
+                          </Button>
+                        </li>
+                        <li>
+                          <Button variant="contained" className="plus-btn">
+                            <ViewModuleIcon />
+                          </Button>
+                        </li>
+                        <li className="last">
+                          <Button
+                            variant="contained"
+                            className="add-buyres-btn"
+                            onClick={this.openInviteDialog}
+                          >
+                            Invite
+                          </Button>
+                        </li>
                         <li className="last">
                           <Link
                             to="/postlogin/newcontact"
                             variant="contained"
                             className="add-buyres-btn"
-                            onClick={this.onClickShowNewContact}
                           >
                             <PersonAddIcon className="user-icon" />
                             New Contact
@@ -295,21 +352,79 @@ this.setState({contactUserList})
           </div>
         </div>
         <Dialog open={openDialog} onClose={() => this.setState({ openDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
-                    <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
-                        Delete Confirmation
-                    </DialogTitle>
-                    <DialogContent className="dialogSmWidth addNewItemDialogContent">
-                        <p>Are you sure to delete record?</p>
-                    </DialogContent>
-                    <DialogActions className="dialogSmWidth addNewItemDialogActions">
-                        <Button variant="contained" onClick={this.removeContact} className="primary-btn">
-                            Yes
-                        </Button>
-                        <Button variant="contained" onClick={() => this.setState({ openDialog: false })} className="default-btn">
-                            No
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+          <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
+            Delete Confirmation
+          </DialogTitle>
+          <DialogContent className="dialogSmWidth addNewItemDialogContent">
+            <p>Are you sure to delete record?</p>
+          </DialogContent>
+          <DialogActions className="dialogSmWidth addNewItemDialogActions">
+            <Button variant="contained" onClick={this.removeContact} className="primary-btn">
+              Yes
+            </Button>
+            <Button variant="contained" onClick={() => this.setState({ openDialog: false })} className="default-btn">
+              No
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog open={openInviteDialog} onClose={() => this.setState({ openInviteDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
+          <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
+            Invite members to your contact list
+          </DialogTitle>
+          <DialogContent className="dialogSmWidth addNewItemDialogContent">
+            {inviteList && inviteList.length > 0 &&
+              <>
+                <div className="row">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-6">
+                    <label className="d-block">Email Address</label>
+                  </div>
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-6">
+                    <label className="d-block">Name (Optional)</label>
+                  </div>
+                </div>
+                {inviteList.map((invite, index) => {
+                  return (
+                    <div className="row">
+                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-5">
+                        <div className="form-group form-group-common">
+                          <input type="text" value={invite.email} name="email" placeholder="Eg.James@example.com" className="form-control" onChange={(e) => this.handleStateInviteChange(e, index)} />
+                          {/* <span className="text-danger">
+                            {errrorMessage.firstName.message}
+                          </span> */}
+                        </div>
+                      </div>
+                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-5">
+                        <div className="form-group form-group-common">
+                          <input type="text" value={invite.name} name="name" placeholder="Eg.james" className="form-control" onChange={(e) => this.handleStateInviteChange(e, index)} />
+                        </div>
+                      </div>
+                      {inviteList && inviteList.length > 1 &&
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-2" onClick={() => this.removeinviter(index)}>
+                          <CloseIcon />
+                        </div>
+                      }
+                    </div>
+                  )
+                })
+                }
+              </>
+            }
+            {inviteList && inviteList.length < 5 &&
+              <div onClick={this.addMoreContcat}>
+                <PersonAddIcon />
+                <span>
+                  Add New
+                </span>
+              </div>
+            }
+          </DialogContent>
+          <DialogActions className="dialogSmWidth addNewItemDialogActions">
+            <Button variant="contained" className="primary-btn">
+              <PersonAddIcon className="user-icon" />
+              Send Invitation
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

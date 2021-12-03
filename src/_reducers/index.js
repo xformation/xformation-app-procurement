@@ -12,8 +12,10 @@ import { vendor } from './vendor.reducers';
 import { buyer } from './buyer.reducers';
 import { home } from './home.reducers';
 import { recievedrfp } from './recievedrfp.reducers';
-import{generatePurchaseOrder} from './purchaseOrder.reducer';
-import{email} from'./email.reducers'
+import { generatePurchaseOrder } from './purchaseOrder.reducer';
+import { email } from './email.reducers';
+import { kanban } from './kanban.reducers';
+
 const appReducers = combineReducers({
     auth,
     committee,
@@ -28,7 +30,8 @@ const appReducers = combineReducers({
     home,
     recievedrfp,
     generatePurchaseOrder,
-    email
+    email,
+    kanban
 });
 
 const rootReducer = (state, action) => {

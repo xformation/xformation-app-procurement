@@ -52,7 +52,7 @@ class ViewRecievedRfp extends Component {
             <div className="recieved">
                 <div className="recieved-content">
                     <div className="recieved-heading">
-                        <h4>Recieved RFT</h4>
+                        <h4>Recieved RFP</h4>
                     </div>
                     <div className="heading-content">
                         <div className="row">

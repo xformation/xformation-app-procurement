@@ -88,4 +88,10 @@ export const apiEndPoint = {
     SENDEMAIL: `${config.apiUrl}/sendEmail`,
     GETEMAIL: `${config.apiUrl}/getEmailData`,
     DELETEMAIL: `${config.apiUrl}/deleteEmail`,
+
+    //*kanban api url
+    FETCHKANBAN: `${config.apiUrl}/fetchKanbanList`,
+
+    //  dashboardApiURL
+    DASHBOARDDATA: `${config.apiUrl}/getdashboardData`,
 };

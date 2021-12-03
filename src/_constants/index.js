@@ -13,3 +13,4 @@ export * from './home.constants';
 export * from './recievedrfp.constants';
 export * from './purchaseOrder.constant';
 export * from './email.constant';
+export * from './kanban.constants';

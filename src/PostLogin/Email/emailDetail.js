@@ -96,7 +96,7 @@ class EmailDetail extends Component {
                     </div>
                 </div>
                 <div className="d-block mail-reply-content">
-                    <div className="d-block date-time">{emailtime}</div>
+                    {email.time && <div className="d-block date-time">{email.time.split('T')}</div>}
                     {email && email.subject && <div className="d-block name">{email.subject}</div>}
                     {email && email.tags &&
                         <div className="d-block btns">
@@ -139,9 +139,15 @@ class EmailDetail extends Component {
                                             <div className="attach-box" onClick={() => this.fileDownloadHandler(val.url, val.name)}>
                                                 <div className="row justify-content-start align-items-center">
                                                     <div className="col-lg-4 col-md-4 col-sm-6 col-4">
-                                                        {val.type == 'ppt' && <div className="icon file"><i className="fas fa-file"></i></div>}
-                                                        {val.type == 'audio' && <div className="icon music"><i className="fas fa-music"></i></div>}
-                                                        {val.type == 'mp4' && <div className="icon film"><i class="fas fa-film-alt"></i></div>}
+                                                        {val.type == 'ppt' &&
+                                                            <div className="icon file"><i className="fas fa-file"></i></div>
+                                                        }
+                                                        {val.type == 'audio' &&
+                                                            <div className="icon music"><i className="fas fa-music"></i></div>
+                                                        }
+                                                        {val.type == 'mp4' &&
+                                                            <div className="icon film"><i class="fas fa-film-alt"></i></div>
+                                                        }
                                                     </div>
                                                     <div className="col-lg-8 col-md-8 col-sm-6 col-8 pl-ms-0">
                                                         <div className="text">

@@ -30,54 +30,21 @@ import spend from '../../assets/images/spend.png';
 import Approval1 from '../../assets/images/dashbord/approval1.png';
 import Approval2 from '../../assets/images/dashbord/approval2.png';
 import Approval3 from '../../assets/images/dashbord/approval3.png';
-import AngelaImg from '../../assets/images/dashbord/angela-img.png';
-import AndylawImg from '../../assets/images/dashbord/andylaw-img.png';
-import BennykennImg from '../../assets/images/dashbord/bennykenn-img.png';
-import ChynthiaImg from '../../assets/images/dashbord/chynthia-img.png';
-import DellaImg from '../../assets/images/dashbord/della-img.png';
-import EvansjohnImg from '../../assets/images/dashbord/evansjohn-img.png';
 import EmailBackground from '../../assets/images/dashbord/email-background.png';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import "react-circular-progressbar/dist/styles.css";
+import { connect } from 'react-redux';
+import { contactAction, homeAction, invoiceAction } from "../../_actions";
+import { status } from "../../_constants";
 
 class Dashbord extends Component {
   constructor(props) {
     super(props);
     this.state = {
       date: moment,
-      data: [
-        {
-          name: "January",
-          TotalPaid: 90,
-          TotalUnpaid: 100,
-        },
-        {
-          name: "February",
-          TotalPaid: 50,
-          TotalUnpaid: 40,
-        },
-        {
-          name: "March",
-          TotalPaid: 60,
-          TotalUnpaid: 90,
-        },
-        {
-          name: "April",
-          TotalPaid: 70,
-          TotalUnpaid: 100,
-        },
-        {
-          name: "May",
-          TotalPaid: 30,
-          TotalUnpaid: 50,
-        },
-        {
-          name: "June",
-          TotalPaid: 70,
-          TotalUnpaid: 50,
-        }
-      ],
+      dashboardData: {},
+      data: [],
       Linedata: [
         {
           name: "",
@@ -137,65 +104,7 @@ class Dashbord extends Component {
       endDate: new Date(),
       checkedA: true,
       checkedB: true,
-      invoices: [
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "jean Graphic Inc.",
-          shortNameColor: '#efbbf0',
-          invoicePrice: "6,50,000",
-          invoiceLable: "2m ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Highspeed Studios.",
-          shortNameColor: '#99e060',
-          invoicePrice: "245.75",
-          invoiceLable: "12m ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew 1",
-          shortNameColor: '#c5bef4',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo",
-          shortNameColor: '#84da91',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Crew.",
-          shortNameColor: '#4b5ba8',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew 2",
-          shortNameColor: '#99e060',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew 3",
-          shortNameColor: '#c5bef4',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-        {
-          invoiceNo: "INV-0001234",
-          invoiceName: "Fullspeedo Crew 4",
-          shortNameColor: '#efbbf0',
-          invoicePrice: "1,500.00",
-          invoiceLable: "6h ago"
-        },
-
-      ],
+      invoices: [],
       PieChartEmailData: [
         { COLORS: '#0088FE', value: 763, title: 'Total RFP', per: 27 },
         { COLORS: '#00C49F', value: 321, title: 'Todays RFP', per: 11 },
@@ -228,57 +137,58 @@ class Dashbord extends Component {
           img: Approval3,
         },
       ],
-      contactsData: [
-        {
-          contactName: "Angela Moss",
-          contactDes: "department head",
-          contactImg: AngelaImg
-        },
-        {
-          contactName: "Andy Law",
-          contactDes: "department head",
-          contactImg: BennykennImg
-        },
-        {
-          contactName: "Benny Kenn",
-          contactDes: "Supplier",
-          contactImg: ChynthiaImg
-        },
-        {
-          contactName: "Chynthia Lawra",
-          contactDes: "department head",
-          contactImg: DellaImg
-        },
-        {
-          contactName: "Della Samantha",
-          contactDes: "Supplier",
-          contactImg: AndylawImg
-        },
-        {
-          contactName: "Evans John",
-          contactDes: "Accounts Head",
-          contactImg: EvansjohnImg
-        },
-
-      ],
+      contactsData: [],
       contLimt: 5
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(contactAction.fetchContactList());
+    this.props.dispatch(homeAction.Dashboarddata());
+    this.props.dispatch(invoiceAction.searchInvoice());
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.get_contact_status !== this.props.get_contact_status && this.props.get_contact_status === status.SUCCESS) {
+      if (this.props.getContact && this.props.getContact.length > 0) {
+        this.setState({
+          contactsData: this.props.getContact,
+        });
+      }
+    }
+    if (this.props.get_dashboard_data_success !== prevProps.get_dashboard_data_success &&
+      this.props.get_dashboard_data_success === status.SUCCESS) {
+      if (this.props.getdashboarddata) {
+        this.setState({
+          dashboardData: this.props.getdashboarddata,
+          data: this.props.getdashboarddata.requisitionChart
+        });
+      }
+    }
+    if (prevProps.search_invoice_status !== this.props.search_invoice_status && this.props.search_invoice_status === status.SUCCESS) {
+      if (this.props.searchInvoice && this.props.searchInvoice.length > 0) {
+        this.setState({
+          invoices: this.props.searchInvoice,
+        })
+      }
+    }
   }
 
   displayInvoice = () => {
     const { invoices } = this.state;
     let invoiceData = [];
-    if (invoices) {
+    if (invoices && invoices.length > 0) {
       for (let i = 0; i < invoices.length; i++) {
         let element = invoices[i];
         invoiceData.push(
-          <div className="d-flex justify-content-center align-items-center pb-3" key={element.invoiceName}>
+          <div className="d-flex justify-content-center align-items-center pb-3" key={element.RequisitionsNo}>
             <div className="col-xl-5 col-lg-5 col-md-5 col-5 px-0">
               <div className="payment">
                 <div className="graphic" style={{ backgroundColor: `${element.shortNameColor}` }}></div>
                 <div className="payment-content">
-                  <a href="#">&#35;{element.invoiceNo}</a>
-                  <p>{element.invoiceName}</p>
+                  <a href="#">&#35;{element.RequisitionsNo}</a>
+                  <p>{element.RequestDepartment}</p>
                 </div>
               </div>
             </div>
@@ -289,13 +199,13 @@ class Dashbord extends Component {
                 </div>
                 <div className="amount-content">
                   <p>Amount</p>
-                  <span>&#36;{element.invoicePrice}</span>
+                  <span>&#36;{element.RequisitionsTotal}</span>
                 </div>
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-3 px-0 text-right">
               <div className="timing">
-                <span>{element.invoiceLable}</span>
+                <span>{element.RequestDate}</span>
               </div>
             </div>
           </div>
@@ -319,13 +229,13 @@ class Dashbord extends Component {
       let element = contactsData[i]
       if (i < contLimt) {
         retData.push(
-          <div className="user-content" key={element.contactName}>
+          <div className="user-content" key={element.name}>
             <div className="d-inline-block user-img">
-              <img src={element.contactImg} alt="" />
+              <img src={element.profile} alt="" />
             </div>
             <div className="d-inline-block user-position">
-              <p>{element.contactName}</p>
-              <span>{element.contactDes}</span>
+              <p>{element.name}</p>
+              <span>{element.email}</span>
             </div>
             <div className="d-inline-block mail-icon disabled">
               <IconButton className="d-inline-block mail-icon disabled">
@@ -400,7 +310,7 @@ class Dashbord extends Component {
   }
 
   render() {
-    const { Linedata, data, invoices, PieChartEmailData, contactsData } = this.state;
+    const { Linedata, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
     const BorderLinearProgress = withStyles((theme) =>
       createStyles({
         root: {
@@ -447,126 +357,130 @@ class Dashbord extends Component {
               </div>
             </div>
           </div>
-          <div className="progress-rfp-boxs">
-            <div className="row">
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2">
-                <div className="progress-box">
-                  <div className="progress-img">
-                    <img src={rfpImg} alt="" />
-                  </div>
-                  <div className="progress-content">
-                    <h3>215</h3>
-                    <span>Today's RFP</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
-                <div className="progress-box">
-                  <div className="progress-img">
-                    <img src={rfpImg} alt="" />
-                  </div>
-                  <div className="progress-content">
-                    <h3>4685</h3>
-                    <span>Total RFP</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
-                <div className="progress-box">
-                  <div className="progress-img">
-                    <div className="mail-icon"><i className="fa fa-envelope"></i></div>
-                    <span>&#33;</span>
-                  </div>
-                  <div className="progress-content">
-                    <h3>59</h3>
-                    <span>Important Emails</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-lg-2">
-                <div className="progress-box">
-                  <div className="progress-img order">
-                    <div className="in-progress"></div>
-                    <div className="complate-progress"></div>
-                  </div>
-                  <div className="progress-content">
-                    <div className="completed">
-                      <h5>2.041</h5>
-                      <span>Completed Orders</span>
+          {dashboardData &&
+            <div className="progress-rfp-boxs">
+              <div className="row">
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2">
+                  <div className="progress-box">
+                    <div className="progress-img">
+                      <img src={rfpImg} alt="" />
                     </div>
-                    <div className="in-progrss">
-                      <h5>1.456</h5>
-                      <span>In-progrss Orders</span>
+                    <div className="progress-content">
+                      {dashboardData.todayRFP && <h3>{dashboardData.todayRFP}</h3>}
+                      <span>Today's RFP</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
+                  <div className="progress-box">
+                    <div className="progress-img">
+                      <img src={rfpImg} alt="" />
+                    </div>
+                    <div className="progress-content">
+                      {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
+                      <span>Total RFP</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
+                  <div className="progress-box">
+                    <div className="progress-img">
+                      <div className="mail-icon"><i className="fa fa-envelope"></i></div>
+                      <span>&#33;</span>
+                    </div>
+                    <div className="progress-content">
+                      <h3>35</h3>
+                      <span>Important Emails</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-lg-2">
+                  <div className="progress-box">
+                    <div className="progress-img order">
+                      <div className="in-progress"></div>
+                      <div className="complate-progress"></div>
+                    </div>
+                    <div className="progress-content">
+                      <div className="completed">
+                        {dashboardData.completeOrder && <h5>{dashboardData.completeOrder}</h5>}
+                        <span>Completed Orders</span>
+                      </div>
+                      <div className="in-progrss">
+                        {dashboardData.inprogressOrder && <h5>{dashboardData.inprogressOrder}</h5>}
+                        <span>In-progrss Orders</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
           <div className="average-section">
             <div className="row">
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-lg-2">
-                <div className="average-left">
-                  <div className="average-form">
-                    <div className="row justify-content-center align-items-center">
-                      <div className="col-lg-7 col-md-7 col-sm-7">
-                        <div className="total-spend">
-                          <div className="spend-img">
-                            <img src={spend} alt="" />
-                          </div>
-                          <div className="spend-content">
-                            <span>Total Spend</span>
-                            <h4>&#36;21&#44;560&#46;57</h4>
+              {dashboardData &&
+                <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-lg-2">
+                  <div className="average-left">
+                    <div className="average-form">
+                      <div className="row justify-content-center align-items-center">
+                        <div className="col-lg-7 col-md-7 col-sm-7">
+                          <div className="total-spend">
+                            <div className="spend-img">
+                              <img src={spend} alt="" />
+                            </div>
+                            <div className="spend-content">
+                              <span>Total Spend</span>
+                              {dashboardData.totalspent && <h4>${dashboardData.totalspent}</h4>}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-lg-5 col-md-5 col-sm-5">
-                        <div className="last-month">
-                          <span>Average form last month</span>
-                          <p> <strong><TrendingUpIcon />  &#43; 0&#44; 5&#37; </strong> increase</p>
+                        <div className="col-lg-5 col-md-5 col-sm-5">
+                          <div className="last-month">
+                            <span>Average form last month</span>
+                            <p> <strong><TrendingUpIcon />  &#43; 0&#44; 5&#37; </strong> increase</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="requisition-section">
-                    <div className="row">
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                        <div className="Requisition-box">
-                          <div className="Requisition-content">
-                            <span className="d-block">Pendding Requisition</span>
-                            <h4>421</h4>
+                    <div className="requisition-section">
+                      <div className="row">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+                          <div className="Requisition-box">
+                            <div className="Requisition-content">
+                              <span className="d-block">Pendding Requisition</span>
+                              {dashboardData.requisitionPendding && <h4>{dashboardData.requisitionPendding}</h4>}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
-                        <div className="Requisition-box">
-                          <div className="Requisition-content">
-                            <span className="d-block">Invoices</span>
-                            <h4>421</h4>
-                          </div>
-                          <div className="invoices-img">
-                            <img src={invoices} alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                        <div className="Requisition-box">
-                          <div className="Requisition-content">
-                            <span>Total PO&#39;s</span>
-                            <h4>68</h4>
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
+                          <div className="Requisition-box">
+                            <div className="Requisition-content">
+                              <span className="d-block">Invoices</span>
+                              {dashboardData.invoices && <h4>{dashboardData.invoices}</h4>}
+                            </div>
+                            <div className="invoices-img">
+                              <img src={invoices} alt="" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
-                        <div className="Requisition-box">
-                          <div className="Requisition-content">
-                            <span>Pendding PO&#39;s</span>
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+                          <div className="Requisition-box">
+                            <div className="Requisition-content">
+                              <span>Total PO&#39;s</span>
+                              {dashboardData.totalPO && <h4>{dashboardData.totalPO}</h4>}
+                            </div>
                           </div>
-                          <div className="d-block pendding-progress">
-                            <BorderLinearProgress variant="determinate" value={50} className="" />
-                            <h4>421</h4>
-                            <div className="last-month">
-                              <p> <strong>&#8722; 0&#44; 8&#37; </strong> From last month</p>
+                        </div>
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
+                          <div className="Requisition-box">
+                            <div className="Requisition-content">
+                              <span>Pendding PO&#39;s</span>
+                            </div>
+                            <div className="d-block pendding-progress">
+                              <BorderLinearProgress variant="determinate" value={(dashboardData.totalPO / dashboardData.penddingPo) * 100} className="" />
+                              {dashboardData.penddingPo && <h4>{dashboardData.penddingPo}</h4>}
+                              <div className="last-month">
+                                <p> <strong>&#8722; 0&#44; 8&#37; </strong> From last month</p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -574,7 +488,7 @@ class Dashbord extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              }
               <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
                 <div className="average-right">
                   <div className="statistics-graph">
@@ -631,7 +545,7 @@ class Dashbord extends Component {
                     <SimpleBar style={{ maxHeight: '300px' }} className="user-content">
                       <div className="chartbar-content">
                         <BarChart
-                          width={480}
+                          width={550}
                           height={255}
                           data={data}
                           margin={{
@@ -641,7 +555,7 @@ class Dashbord extends Component {
                           <XAxis dataKey="name" />
                           <YAxis tickCount={6} />
                           <Tooltip />
-                          <Legend />
+                          {/* <Legend /> */}
                           <Bar dataKey="TotalUnpaid" fill="#8884d8" />
                           <Bar dataKey="TotalPaid" fill="#82ca9d" />
                         </BarChart>
@@ -717,7 +631,7 @@ class Dashbord extends Component {
                 <div className="cenversation-left">
                   <div className="image"><img src={EmailBackground} alt="" /></div>
                   <div className="cenversation-content">
-                    <h2>8,642</h2>
+                    {dashboardData && dashboardData.email && <h2>{dashboardData.email}</h2>}
                     <b className="d-block">Total emails that you have</b>
                     <span className="d-block">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -856,4 +770,18 @@ class Dashbord extends Component {
   }
 }
 
-export default Dashbord;
+const mapStateToProps = (state) => {
+  const { get_contact_status, getContact } = state.contact
+  const { get_dashboard_data_success, getdashboarddata } = state.home
+  const { search_invoice_status, searchInvoice } = state.invoice;
+  return {
+    get_contact_status,
+    getContact,
+    get_dashboard_data_success,
+    getdashboarddata,
+    search_invoice_status,
+    searchInvoice
+  }
+}
+
+export default connect(mapStateToProps)(Dashbord);

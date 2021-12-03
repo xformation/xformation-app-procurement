@@ -14,7 +14,6 @@ import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
 import { commonFunctions} from '../../_utilities';
 
-
 class Invoices extends Component {
     constructor(props) {
         super(props)

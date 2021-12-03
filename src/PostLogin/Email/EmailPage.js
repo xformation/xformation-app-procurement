@@ -516,19 +516,23 @@ class EmailPage extends Component {
                           {errorData.emaildetail.message}
                         </span>
                       </div>
-                      <div className="col-2 pr-0">
-                        {
-                          sendEmailData.attechment.map((file, indx) =>
-                          (<span>
-                             <a href={URL.createObjectURL(file)} target="_blank" rel="noreferrer">
-                            <div className="file-name" aria-label={file.name} > {file.name}</div></a>
-                            <IconButton className="CancelIcon" onClick={() => this.handleRemoveFile(indx, file)}>
-                              <CancelIcon />
-                            </IconButton>
-                          </span>
-                          )
-                          )
-                        }
+                      <div className="col-4 pr-0">
+                        
+                          {
+                            sendEmailData.attechment.map((file, indx) =>
+                            (<span>
+                              <div className="upload-screenshort">
+                              <a href={URL.createObjectURL(file)} target="_blank" rel="noreferrer">
+                              <div className="file-name" aria-label={file.name} > {file.name}</div></a>
+                              <IconButton className="CancelIcon" onClick={() => this.handleRemoveFile(indx, file)}>
+                                <CancelIcon />
+                              </IconButton>
+                              </div>
+                            </span>
+                            )
+                            )
+                          }
+                       
                       </div>
                     </div>
                   </div>

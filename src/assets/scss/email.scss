@@ -759,6 +759,26 @@
                         height: 150px;
                     }
                 }
+                .upload-screenshort{
+                    border: 1px solid #7924ca;
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    margin-bottom: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .file-name{
+                        display: inline-block;
+                        font-size: 14px;
+                        line-height: 22px;
+                        color: #7924ca;
+                        font-weight: 500;
+                        cursor: pointer;
+                    }
+                    .CancelIcon{
+                        padding: 8px;
+                    }
+                }
 
             }
         }
@@ -837,8 +857,9 @@
 
             .date-time {
                 color: #a5a5a5;
-                font-weight: 600;
+                font-weight: 500;
                 margin-bottom: 5px;
+                font-size: 14px;
             }
 
             .name {
@@ -921,7 +942,7 @@
 
                 .attach-box {
                     border: 1px solid #dfecf2;
-                    padding: 15px;
+                    padding: 10px 12px;
                     border-radius: 10px;
                     margin-bottom: 30px;
 

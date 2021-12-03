@@ -101,6 +101,13 @@
             span {
                 display: inline-block;
                 width: 185px;
+                .MuiLinearProgress-root{
+                    height: 10px;
+                    border-radius: 5px;
+                }
+                .MuiLinearProgress-barColorPrimary {
+                    background-color: #6418c3;
+                }
             }
 
         }
@@ -200,6 +207,13 @@
 
             .get-proses {
                 padding: 30px 0 15px 0;
+                .MuiLinearProgress-barColorPrimary{
+                    background-color: #ffab2e;
+                }
+                .MuiLinearProgress-root{
+                    height: 7px;
+                    border-radius: 5px;
+                } 
             }
 
             .user-text {
