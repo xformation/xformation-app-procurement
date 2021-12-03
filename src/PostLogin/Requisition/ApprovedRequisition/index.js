@@ -27,6 +27,13 @@ class ApprovedRequisition extends Component {
       },
       columns: [
         {
+          label: 'S.No',
+          key: 'sno',
+          renderCallback: (value, index) => {
+              return <td><span className={'s-no'}>{index + 1} </span></td>
+          }
+      },
+        {
           label: "Requisition No",
           key: "id",
           renderCallback: (value) => {

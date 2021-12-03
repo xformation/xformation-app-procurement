@@ -31,6 +31,13 @@ class Invoices extends Component {
             approvedVendoreTableData: {
                 columns: [
                     {
+                        label: 'S.No',
+                        key: 'sno',
+                        renderCallback: (value, index) => {
+                            return <td><span className={'s-no'}>{index + 1} </span></td>
+                        }
+                    },
+                    {
                         label: 'ID invoices',
                         key: 'RequisitionsNo',
                         renderCallback: (value) => {

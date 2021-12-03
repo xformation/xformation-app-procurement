@@ -63,13 +63,18 @@ export class Table extends React.Component {
                         const row = displayData[i];
                         for (let j = 0; j < cLength; j++) {
                             const column = columns[j];
+                            let jsx = {};
                             if (!column.isRemoved) {
                                 let key = column.key;
                                 if (column.isCaseInsensitive) {
                                     key = key.toLowerCase();
                                 }
                                 if (column.renderCallback) {
-                                    const jsx = column.renderCallback(row[key], row);
+                                    if (column.key == 'sno') {
+                                        jsx = column.renderCallback(row[key], i);
+                                    } else {
+                                        jsx = column.renderCallback(row[key], row);
+                                    }
                                     tdJSX.push(jsx);
                                 } else {
                                     tdJSX.push(<td>{row[key]}</td>);
@@ -86,6 +91,7 @@ export class Table extends React.Component {
             retData.push(<tr><td colSpan={cLength} style={{ textAlign: "center" }}><Loader /></td></tr>);
         }
         return retData;
+
     }
 
     componentDidMount() {
@@ -115,12 +121,12 @@ export class Table extends React.Component {
 
     calculateTotalPages(displayData) {
         const { perPageLimit } = this.state;
-        if(displayData.length>0){
-        let indexOfLastData = Math.ceil(displayData.length / perPageLimit);
-        this.setState({
-            totalPages: indexOfLastData,
-        });
-    }
+        if (displayData.length > 0) {
+            let indexOfLastData = Math.ceil(displayData.length / perPageLimit);
+            this.setState({
+                totalPages: indexOfLastData,
+            });
+        }
     }
 
     tableHeader() {

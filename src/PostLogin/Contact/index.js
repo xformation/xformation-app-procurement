@@ -395,10 +395,10 @@ class Contact extends Component {
             {inviteList && inviteList.length > 0 &&
               <>
                 <div className="row">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-6">
+                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-6">
                     <label className="d-block">Email Address</label>
                   </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-6">
+                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-6">
                     <label className="d-block">Name (Optional)</label>
                   </div>
                 </div>
@@ -420,7 +420,7 @@ class Contact extends Component {
                       </div>
                       {inviteList && inviteList.length > 1 &&
                         <div className="col-xl-2 col-lg-2 col-md-2 col-2" onClick={() => this.removeinviter(index)}>
-                          <CloseIcon />
+                          <CloseIcon className="close-icon" />
                         </div>
                       }
                     </div>
@@ -430,16 +430,14 @@ class Contact extends Component {
               </>
             }
             {inviteList && inviteList.length < 5 &&
-              <div onClick={this.addMoreContcat}>
+              <div className="add-multiples" onClick={this.addMoreContcat}>
                 <AddCircleIcon className="plus-icon" />
-                <p>
-                  Add New <span>Or</span> Add Multiples at once
-                </p>
+                <span>Add New </span>
               </div>
             }
           </DialogContent>
-          <DialogActions className="invite-module-header">
-            <Button variant="contained" className="primary-btn" onClick={this.sendInvitation}>
+          <DialogActions className="invite-module-footer">
+            <Button variant="contained" className="invitation-btn" onClick={this.sendInvitation}>
               <PersonAddIcon className="user-icon" />
               Send Invitation
             </Button>

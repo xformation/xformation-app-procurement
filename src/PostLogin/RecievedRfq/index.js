@@ -18,14 +18,15 @@ class RecievedRfq extends Component {
         this.state = {
             requiData: {},
             ViewDetail: false,
+            indx: 0,
             columns: [
-                // {
-                //     label: 'S.No',
-                //     key: 'SNo',
-                //     renderCallback: (value) => {
-                //         return <td><span className={'s-no'}>{value}</span></td>
-                //     }
-                // },
+                {
+                    label: 'S.No',
+                    key: 'sno',
+                    renderCallback: (value, index) => {
+                        return <td><span className={'s-no'}>{index + 1} </span></td>
+                    }
+                },
                 {
                     label: 'Requisition No',
                     key: 'id',
@@ -102,10 +103,11 @@ class RecievedRfq extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.fetch_recieved_rfq_status !== prevProps.fetch_recieved_rfq_status && this.props.fetch_recieved_rfq_status === status.SUCCESS) {
-            if (this.props.recieved_rfq_list && this.props.recieved_rfq_list.length > 0) { 
+            if (this.props.recieved_rfq_list && this.props.recieved_rfq_list.length > 0) {
                 this.setState({
                     tableData: this.props.recieved_rfq_list
                 });
+
             }
         }
     }
@@ -132,7 +134,7 @@ class RecievedRfq extends Component {
     }
 
     render() {
-        const { requiData, isSubmitted, tableData, columns } = this.state;
+        const { requiData, isSubmitted, tableData, columns, indx } = this.state;
         return (
             <div className="main-content">
                 <div className="receivedrfq-content">
@@ -177,7 +179,7 @@ class RecievedRfq extends Component {
                         </div>
                     </div>
                     <Table
-                        valueFromData={{ 'columns': columns, 'data': tableData }}
+                        valueFromData={{ 'columns': columns, 'data': tableData, 'indx': indx }}
                         perPageLimit={6}
                         visiblecheckboxStatus={false}
                         isLoading={this.props.fetch_recieved_rfq_status === status.IN_PROGRESS}

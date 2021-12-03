@@ -340,7 +340,6 @@ class EmailPage extends Component {
     else {
       for (let i = 0; i < files.length; i++) {
         sendEmailData.attechment.push(files[i])
-        // console.log(files[i].name)
       }
       this.setState({ sendEmailData });
     }

@@ -181,11 +181,12 @@ class Dashbord extends Component {
     if (invoices && invoices.length > 0) {
       for (let i = 0; i < invoices.length; i++) {
         let element = invoices[i];
+        let time = element.RequestDate.split('T');
         invoiceData.push(
           <div className="d-flex justify-content-center align-items-center pb-3" key={element.RequisitionsNo}>
             <div className="col-xl-5 col-lg-5 col-md-5 col-5 px-0">
               <div className="payment">
-                <div className="graphic" style={{ backgroundColor: `${element.shortNameColor}` }}></div>
+                <div className="graphic" ></div>
                 <div className="payment-content">
                   <a href="#">&#35;{element.RequisitionsNo}</a>
                   <p>{element.RequestDepartment}</p>
@@ -205,7 +206,7 @@ class Dashbord extends Component {
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-3 px-0 text-right">
               <div className="timing">
-                <span>{element.RequestDate}</span>
+              <span>{time[0]}</span>
               </div>
             </div>
           </div>

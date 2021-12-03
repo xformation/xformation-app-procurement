@@ -386,7 +386,7 @@
 }
 .invite-module{
     .invite-module-header{
-        padding: 20px 20px 15px 20px;
+        padding: 20px 24px 15px 24px;
         h2{
             color: #000000;
         }
@@ -400,6 +400,59 @@
     .invite-module-content{
         label{
             color: #000000;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+        .form-group-common{
+            .form-control{
+                background-color: transparent;
+                font-size: 12px;
+                font-weight: 400;
+                color: #b0b0b0;
+                height: 35px;
+                padding: 8px 15px;
+                border-radius: 5px;
+                border: 1px solid #d8d6d6;
+            }
+        }
+        .close-icon{
+            float: right;
+            color: #c5c5c5;
+            font-size: 1.3rem;
+            margin-top: 6px;
+
+        }
+        .add-multiples{
+            display: inline-block;
+            cursor: pointer;
+            .plus-icon{
+                color: #b620e0;
+                margin-right: 5px;
+            }
+            span{
+                display: inline-block;
+                font-size: 14px;
+                line-height: 20px;
+                color: #b620e0;
+            }
+        }
+    }
+    .invite-module-footer{
+        padding: 15px 24px 20px 24px;
+        .invitation-btn{
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: 400;
+            text-transform: capitalize;
+            background: #6418c3;
+            color: #ffffff;
+            .user-icon{
+                margin-right: 5px;
+                font-size: 16px;
+                line-height: 20px;
+            }
         }
     }
 }

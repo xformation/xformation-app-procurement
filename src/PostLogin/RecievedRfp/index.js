@@ -25,17 +25,17 @@ class RecievedRfp extends Component {
         selectBuyer: false,
       },
       columns: [
-        // {
-        //   label: "S No",
-        //   key: "i",
-        //   renderCallback: (value) => {
-        //     return (
-        //       <td>
-        //         <span className={"s-no"}>{this.state.activeindex += 1}</span>
-        //       </td>
-        //     );
-        //   },
-        // },
+        {
+          label: "S No",
+          key: "sno",
+          renderCallback: (value ,index) => {
+            return (
+              <td>
+                <span className={"s-no"}>{index + 1}</span>
+              </td>
+            );
+          },
+        },
         {
           label: "Requisition No",
           key: "id",
