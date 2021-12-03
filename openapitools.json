@@ -2396,6 +2396,72 @@
           }
         }
       }
+    },
+    "/sendInvitation":{
+      "post": {
+        "summary": "Details about a invite user",
+        "operationId": "",
+        "requestBody": {
+          "description": "Details about a invite user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/invitationData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Send invitation Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3354,6 +3420,17 @@
             }
           }
         }
+      },
+      "invitationData":{
+        "type": "object",
+          "userId": {
+            "description": "sender user id",
+            "type": "integer"
+          },
+          "inviteusers": {
+            "description": "invite user email and name list",
+            "type": "array"
+          }
       },
       "Error": {
         "type": "object",

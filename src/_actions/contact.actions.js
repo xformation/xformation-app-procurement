@@ -7,7 +7,8 @@ export const contactAction = {
     deleteContact,
     fetchContactList,
     getContactData,
-    updateContact
+    updateContact,
+    sendInvitation
 };
 
 function fetchContactList() {
@@ -53,7 +54,7 @@ function addContact(data) {
             .then(
                 response => {
                     console.log(response)
-                    if (response.code==200) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: contactConstants.ADD_CONTACT_SUCCESS,
                             data: response.object
@@ -179,6 +180,40 @@ function updateContact(data) {
                 }
             );
     };
+}
+
+function sendInvitation(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: contactConstants.SEND_INVITATION_REQUEST,
+            data: null
+        }));
+        contactServices.sendInvitation(data)
+            .then(
+                response => {
+                    if (response.code === 200) {
+                        dispatch(dispatchFunction({
+                            type: contactConstants.SEND_INVITATION_SUCCESS,
+                            data: response.object
+                        }));
+                        alert.success(response.message);
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: contactConstants.SEND_INVITATION_FAILURE,
+                            data: response.object
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: contactConstants.SEND_INVITATION_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            )
+    }
 }
 
 function dispatchFunction(data) {

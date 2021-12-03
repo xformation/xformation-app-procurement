@@ -20,6 +20,7 @@ export const apiEndPoint = {
     GETCONTACT: `${config.apiUrl}/getContact`,
     DELETECONTACT: `${config.apiUrl}/deleteContact`,
     UPDATECONTACT: `${config.apiUrl}/editContact`,
+    SENDINVITATION: `${config.apiUrl}/sendInvitation`,
 
     // *Department Api Url
     FETCHDEPARTMENT: `${config.apiUrl}/searchDepartment`,

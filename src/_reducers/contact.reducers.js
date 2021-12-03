@@ -92,6 +92,24 @@ export function contact(state = {}, action) {
                 update_contact_status: status.FAILURE,
                 updateContact: null
             };
+        case contactConstants.SEND_INVITATION_REQUEST:
+            return {
+                ...state,
+                send_invitation_status: status.IN_PROGRESS,
+                invitation_res: action.data
+            }
+        case contactConstants.SEND_INVITATION_SUCCESS:
+            return {
+                ...state,
+                send_invitation_status: status.SUCCESS,
+                invitation_res: action.data
+            }
+        case contactConstants.SEND_INVITATION_FAILURE:
+            return {
+                ...state,
+                send_invitation_status: status.FAILURE,
+                invitation_res: null
+            }
         default:
             return state;
     }

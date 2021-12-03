@@ -7,7 +7,8 @@ export const contactServices = {
     deleteContact,
     fetchContactList,
     getContactData,
-    updateContact
+    updateContact,
+    sendInvitation
 }
 
 function addContact(data) {
@@ -48,4 +49,12 @@ function updateContact(data) {
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
     return fetch(`${apiEndPoint.UPDATECONTACT}`, requestOptions).then(response => response.json());
+}
+
+function sendInvitation(data) {
+    const extraHeaders = {
+        "content-Type": "application/Json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.SENDINVITATION}`, requestOptions).then(response => response.json());
 }

@@ -22,6 +22,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Loader from '../../_components/commonLoader';
 import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@material-ui/core';
 import CloseIcon from "@material-ui/icons/Close";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { alert } from "../../_utilities";
 
 class Contact extends Component {
   constructor(props) {
@@ -55,31 +57,27 @@ class Contact extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.search_contact_status !== this.props.search_contact_status &&
-      this.props.search_contact_status === status.SUCCESS
-    ) {
+    if (prevProps.search_contact_status !== this.props.search_contact_status && this.props.search_contact_status === status.SUCCESS) {
       this.setState({
         searchContact: this.props.searchContact,
       });
     }
-    if (
-      prevProps.delete_contact_status !== this.props.delete_contact_status &&
-      this.props.delete_contact_status === status.SUCCESS
-    ) {
+    if (prevProps.delete_contact_status !== this.props.delete_contact_status && this.props.delete_contact_status === status.SUCCESS) {
       this.setState({
         openDialog: false,
       })
       this.props.dispatch(contactAction.fetchContactList());
     }
-    if (
-      prevProps.get_contact_status !== this.props.get_contact_status &&
-      this.props.get_contact_status === status.SUCCESS
-    ) {
+    if (prevProps.get_contact_status !== this.props.get_contact_status && this.props.get_contact_status === status.SUCCESS) {
       this.setState({
         contactUserList: this.props.getContact,
         duplicateContactUserList: this.props.getContact
       });
+    }
+    if (prevProps.send_invitation_status !== this.props.send_invitation_status && this.props.send_invitation_status === status.SUCCESS) {
+      this.setState({
+        openInviteDialog: false,
+      })
     }
   }
   onClickDelete = (id) => {
@@ -272,6 +270,25 @@ class Contact extends Component {
     }
   }
 
+  sendInvitation = () => {
+    const { inviteList } = this.state;
+    let count = 0;
+    if (inviteList && inviteList.length > 0) {
+      for (let i = 0; i < inviteList.length; i++) {
+        if (inviteList[i].email !== '') {
+          count++;
+        } else {
+          count--;
+        }
+      }
+      if (count == inviteList.length) {
+        this.props.dispatch(contactAction.sendInvitation({ 'userId': 2, 'inviteusers': inviteList }));
+      } else {
+        alert.error('invite user email is required');
+      }
+    }
+  }
+
   render() {
     let { openDialog, openInviteDialog, inviteList } = this.state
     return (
@@ -317,12 +334,13 @@ class Contact extends Component {
                             <ViewModuleIcon />
                           </Button>
                         </li>
-                        <li className="last">
+                        <li>
                           <Button
                             variant="contained"
-                            className="add-buyres-btn"
+                            className="invite-btn"
                             onClick={this.openInviteDialog}
                           >
+                            <PersonAddIcon className="user-icon" />
                             Invite
                           </Button>
                         </li>
@@ -367,11 +385,13 @@ class Contact extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <Dialog open={openInviteDialog} onClose={() => this.setState({ openInviteDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
-          <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
+
+        <Dialog open={openInviteDialog} aria-labelledby="form-dialog-title" className="invite-module">
+          <DialogTitle id="form-dialog-title" className="invite-module-header">
             Invite members to your contact list
+            <CloseIcon className="close-icon" onClick={this.openInviteDialog} />
           </DialogTitle>
-          <DialogContent className="dialogSmWidth addNewItemDialogContent">
+          <DialogContent className="invite-module-content">
             {inviteList && inviteList.length > 0 &&
               <>
                 <div className="row">
@@ -411,15 +431,15 @@ class Contact extends Component {
             }
             {inviteList && inviteList.length < 5 &&
               <div onClick={this.addMoreContcat}>
-                <PersonAddIcon />
-                <span>
-                  Add New
-                </span>
+                <AddCircleIcon className="plus-icon" />
+                <p>
+                  Add New <span>Or</span> Add Multiples at once
+                </p>
               </div>
             }
           </DialogContent>
-          <DialogActions className="dialogSmWidth addNewItemDialogActions">
-            <Button variant="contained" className="primary-btn">
+          <DialogActions className="invite-module-header">
+            <Button variant="contained" className="primary-btn" onClick={this.sendInvitation}>
               <PersonAddIcon className="user-icon" />
               Send Invitation
             </Button>
@@ -442,6 +462,7 @@ function mapStateToProps(state) {
     searchContact,
     update_contact_status,
     updateContact,
+    send_invitation_status
   } = state.contact;
   return {
     add_contact_status,
@@ -454,6 +475,7 @@ function mapStateToProps(state) {
     searchContact,
     update_contact_status,
     updateContact,
+    send_invitation_status
   };
 }
 
