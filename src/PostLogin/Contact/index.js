@@ -297,13 +297,13 @@ class Contact extends Component {
           <div className="user-contact-list">
             <div className="buyers-head">
               <div className="row justify-content-center align-items-center">
-                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 ">
                   <div className="heading">
                     <h4>Contacts</h4>
                     <p>Lorem ipsum dolor sit amet</p>
                   </div>
                 </div>
-                <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 ">
+                <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 ">
                   <div className="head-right justify-content-lg-end align-items-center">
                     <div className="search-bar">
                       <div className="form-group">
@@ -395,17 +395,17 @@ class Contact extends Component {
             {inviteList && inviteList.length > 0 &&
               <>
                 <div className="row">
-                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-6">
+                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
                     <label className="d-block">Email Address</label>
                   </div>
-                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-6">
+                  <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
                     <label className="d-block">Name (Optional)</label>
                   </div>
                 </div>
                 {inviteList.map((invite, index) => {
                   return (
                     <div className="row">
-                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-5">
+                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
                         <div className="form-group form-group-common">
                           <input type="text" value={invite.email} name="email" placeholder="Eg.James@example.com" className="form-control" onChange={(e) => this.handleStateInviteChange(e, index)} />
                           {/* <span className="text-danger">
@@ -413,7 +413,7 @@ class Contact extends Component {
                           </span> */}
                         </div>
                       </div>
-                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-5">
+                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
                         <div className="form-group form-group-common">
                           <input type="text" value={invite.name} name="name" placeholder="Eg.james" className="form-control" onChange={(e) => this.handleStateInviteChange(e, index)} />
                         </div>

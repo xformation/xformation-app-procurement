@@ -182,6 +182,7 @@ class EmailPage extends Component {
                       {row.isRead == "true" && <IconButton><DirectionsRailwayIcon /></IconButton>}
                       {row.isSnooze == "true" && <IconButton><WatchLaterIcon /></IconButton>}
                       {row.attechment && row.attechment.length > 0 && <IconButton><AttachFileIcon /></IconButton>}
+                      <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton>
                     </ButtonGroup>}
                   </div>
                 </div>
@@ -230,7 +231,7 @@ class EmailPage extends Component {
 
   showIcon = (index) => {
     let { emailData } = this.state;
-    emailData[index].showIcon = true;
+    emailData[index].showIcon = !emailData[index].showIcon;
     this.setState({
       emailData
     })
@@ -516,22 +517,22 @@ class EmailPage extends Component {
                         </span>
                       </div>
                       <div className="col-4 pr-0">
-                        
-                          {
-                            sendEmailData.attechment.map((file, indx) =>
-                            (<span>
-                              <div className="upload-screenshort">
+
+                        {
+                          sendEmailData.attechment.map((file, indx) =>
+                          (<span>
+                            <div className="upload-screenshort">
                               <a href={URL.createObjectURL(file)} target="_blank" rel="noreferrer">
-                              <div className="file-name" aria-label={file.name} > {file.name}</div></a>
+                                <div className="file-name" aria-label={file.name} > {file.name}</div></a>
                               <IconButton className="CancelIcon" onClick={() => this.handleRemoveFile(indx, file)}>
                                 <CancelIcon />
                               </IconButton>
-                              </div>
-                            </span>
-                            )
-                            )
-                          }
-                       
+                            </div>
+                          </span>
+                          )
+                          )
+                        }
+
                       </div>
                     </div>
                   </div>

@@ -509,6 +509,21 @@
 
     }
 }
+@media only screen and (max-width: 767px){
+    .contact-content{
+        .user-contact-list{
+            .buyers-head{
+                .head-right{
+                    display: block;
+                    .search-bar{
+                        margin-right: 0;
+                        margin-bottom: 15px;
+                    }
+                }
+            } 
+        } 
+    } 
+}
 
 @media only screen and (max-width: 540px) {
     .contact-content {
@@ -521,6 +536,10 @@
                         ul {
                             li {
                                 margin-right: 10px;
+                                margin-bottom: 25px;
+                            }
+                            .last{
+                                margin-bottom: 0;
                             }
                         }
                     }
@@ -576,5 +595,19 @@
                 }
             }
         }
+    }
+    .invite-module{
+        .invite-module-header{
+            h2{
+                font-size: 16px;
+            }
+        }
+        .invite-module-content{
+            label{
+                font-size: 12px;
+                line-height: 18px;
+            }
+        } 
+
     }
 }

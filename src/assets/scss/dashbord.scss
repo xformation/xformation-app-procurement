@@ -1771,8 +1771,19 @@
         .production-progress-right {
             height: auto;
         }
-    }    
+    } 
+    .contact-section{
+        .contact-left{
+            .contect-list{
+                .user-content{
+                    .user-position {
+                      width: auto;
+                    }
+                } 
+            }  
+        }  
 
+    } 
 }
 @media only screen and (max-width: 992px) {
     .dashbord-top-section {
@@ -1902,6 +1913,7 @@
             }
         }
     }
+   
 }
 
 @media only screen and (max-width: 767px) {

@@ -14,6 +14,10 @@ import { emailActions } from '../../_actions/email.actions'
 import { connect } from 'react-redux'
 import { status } from "../../_constants";
 import { commonFunctions } from '../../_utilities/commonFunctions'
+import DirectionsRailwayIcon from '@material-ui/icons/DirectionsRailway';
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 class RecentEmails extends Component {
   constructor(props) {
     super(props)
@@ -126,6 +130,14 @@ class RecentEmails extends Component {
     this.props.dispatch(emailActions.searchallemails({ 'search': type }));
   }
 
+  showIcon = (index) => {
+    let { recentEmailData } = this.state;
+    recentEmailData[index].showIcon = !recentEmailData[index].showIcon;
+    this.setState({
+      recentEmailData
+    })
+  }
+
   displyRecentEmails = () => {
     const { recentEmailData } = this.state;
     let retData = [];
@@ -155,14 +167,15 @@ class RecentEmails extends Component {
                     <div className="col-3 pr-0">
                       {!data.showIcon &&
                         <div className="list-icon">
-                          <IconButton className="menu-icon"><MoreVertIcon /></IconButton>
+                          <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton>
                         </div>
                       }
-                      {/* {data.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
+                      {data.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
                         {data.isRead == "true" && <IconButton><DirectionsRailwayIcon /></IconButton>}
                         {data.isSnooze == "true" && <IconButton><WatchLaterIcon /></IconButton>}
                         {data.attechment && data.attechment.length > 0 && <IconButton><AttachFileIcon /></IconButton>}
-                      </ButtonGroup>} */}
+                        <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton>
+                      </ButtonGroup>}
                     </div>
                   </div>
                 </div>
