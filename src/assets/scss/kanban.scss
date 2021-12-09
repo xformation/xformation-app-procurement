@@ -235,6 +235,22 @@
 }
 
 
+.suppliers-section {
+    .suppliers-list {
+        .suppliers-content {
+            .user-text {
+                .user-images {
+                    .MuiAvatar-root{
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 @media only screen and (max-width: 1200px) {
     .kanban-head {
         .head-bottom {

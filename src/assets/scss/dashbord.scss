@@ -246,7 +246,7 @@
         }
 
         .progress-content {
-            width: 140px;
+            width: auto;
             display: inline-block;
             white-space: nowrap;
             overflow: hidden;
@@ -433,7 +433,7 @@
                     margin: 10px 0 0 0;
 
                     .MuiLinearProgress-root {
-                        width: 80%;
+                        width: 75%;
                     }
 
                     h4 {
@@ -445,6 +445,7 @@
 
                     .last-month {
                         margin-top: 8px;
+                        width: 75%;
 
                         p {
                             margin-bottom: 0;
@@ -949,7 +950,7 @@
 
                 .user-position {
                     vertical-align: middle;
-                    width: 115px;
+                    width: calc(100% - 90px);
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -1466,14 +1467,43 @@
     .latest-invoices-secton{
         .production-progress-left{
             .production-progress{
-                height: 200px;
+                height: auto;
                 .CircularProgressbar {
-                    width: 137px;
+                    max-width: 150px;
                 }
             } 
         } 
     } 
 }
+
+@media only screen and (min-width: 992px)and(max-width: 1500px){
+    .average-section {
+        .average-left {
+            .requisition-section {
+                .Requisition-box {
+                    .pendding-progress {
+                        .last-month {
+                            p{
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .average-right {
+            .statistics-graph {
+                .requistions-heading {
+                    h5 {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 @media only screen and (min-width: 992px)and(max-width: 1200px){
     .dashbord-top-section{
         .calender{
@@ -1489,6 +1519,7 @@
             }
         } 
     }
+    
 }
 
 @media only screen and (max-width: 1200px) {

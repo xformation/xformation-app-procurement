@@ -84,9 +84,9 @@ class Calender extends Component {
         for (let i = 0; i < invoiceDetails.length; i++) {
             let row = invoiceDetails[i];
             retData.push(
-                <ul key={row.name}>
-                    <li>
-                        <div className={activeindex == i ? "payment-process active" : "payment-process"} onClick={() => this.setState({ activeindex: i })}>
+                <li key={row.name}>
+                    <div className={activeindex == i ? "payment-process active" : "payment-process"} onClick={() => this.setState({ activeindex: i })}>
+                        <div className="d-flex w-100 justify-content-between align-items-start">
                             <div className="graphic" style={{ backgroundColor: `${row.shortNameColor}` }}>
                                 {row.shortNameIcon ?
                                     <i className={row.shortNameIcon}></i>
@@ -102,14 +102,14 @@ class Calender extends Component {
                                 <span>{row.invoicePrice}</span>
                             </div>
                             <IconButton className="p-2 menu-btn"><MoreVertIcon /></IconButton>
-                            <div className="pending-content">
-                                <i class="fas fa-clock"></i>
-                                <span>{row.invoiceLable}</span>
-                                <p style={{ color: `${row.pendiingColor}` }}>{row.pendiing}</p>
-                            </div>
                         </div>
-                    </li>
-                </ul>
+                        <div className="pending-content">
+                            <i class="fas fa-clock"></i>
+                            <span>{row.invoiceLable}</span>
+                            <p style={{ color: `${row.pendiingColor}` }}>{row.pendiing}</p>
+                        </div>
+                    </div>
+                </li>
             )
         }
         return retData;
@@ -129,7 +129,7 @@ class Calender extends Component {
             <div className="main-content">
                 <div className="calender-content">
                     <div className="row">
-                        <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="calender-content-left">
                                 <div className="row justify-content-center align-items-center">
                                     <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -186,7 +186,7 @@ class Calender extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="calender-content-right">
                                 <div className="heading">
                                     <h5>Invoice Details</h5>
@@ -194,7 +194,9 @@ class Calender extends Component {
                                 </div>
                                 <SimpleBar style={{ height: 598 }}>
                                     <div className="invoices-details">
-                                        {this.displayInvoiceDetails()}
+                                        <ul>
+                                            {this.displayInvoiceDetails()}
+                                        </ul>
                                     </div>
                                 </SimpleBar>
                             </div>

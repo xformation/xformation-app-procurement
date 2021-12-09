@@ -495,7 +495,7 @@ class Dashbord extends Component {
                   <div className="statistics-graph">
                     <div className="requistions-heading">
                       <div className="row">
-                        <div className="col-lg-7 col-md-6 col-sm-6 ">
+                        <div className="col-lg-6 col-md-6 col-sm-6 ">
                           <h5 className="d-block">Requistions Spend Overview</h5>
                           <div className="totalpaid">
                             <div className="paid-content">
@@ -508,7 +508,7 @@ class Dashbord extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="col-lg-5 col-md-6 col-sm-6">
+                        <div className="col-lg-6 col-md-6 col-sm-6">
                           <div className="requistions-dropdown">
                             <div className="opensens-dropdown">
                               <FormControl className="opensens-content">
@@ -571,11 +571,11 @@ class Dashbord extends Component {
             <div className="row">
               <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
                 <div className="production-progress-left">
-                  <div className="row justify-content-center align-items-center pb-5">
-                    <div className="col-xl-5 col-lg-4 col-md-4 col-sm-6 col-12">
+                  <div className="row justify-content-center align-items-center pb-3">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                       <div className="heading">Statistics</div>
                     </div>
-                    <div className="col-xl-7 col-lg-8 col-md-8 col-sm-6 col-12">
+                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12">
                       <div className="show-value">
                         <ul>
                           <li className="frist">

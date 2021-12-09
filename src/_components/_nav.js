@@ -16,39 +16,39 @@ const _nav = [
         activeArr: ['/postlogin/email'],
         open: false,
         icon: <i className="fas fa-envelope"></i>,
-        children: [
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Email 1',
-                to: '/',
-            },
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Email 2',
-                to: '/',
-            },
-        ]
+        // children: [
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Email 1',
+        //         to: '/',
+        //     },
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Email 2',
+        //         to: '/',
+        //     },
+        // ]
     },
-    {
-        _tag: 'SidebarNavItem',
-        name: 'Chat',
-        to: '/postlogin/chat',
-        activeArr: ['/postlogin/chat'],
-        open: false,
-        icon: <i className="fas fa-comments"></i>,
-        children: [
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Chat 1',
-                to: '/',
-            },
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Chat 2',
-                to: '/',
-            },
-        ]
-    },
+    // {
+    //     _tag: 'SidebarNavItem',
+    //     name: 'Chat',
+    //     to: '/postlogin/chat',
+    //     activeArr: ['/postlogin/chat'],
+    //     open: false,
+    //     icon: <i className="fas fa-comments"></i>,
+    //     children: [
+    //         {
+    //             _tag: 'CSidebarNavItem',
+    //             name: 'Chat 1',
+    //             to: '/',
+    //         },
+    //         {
+    //             _tag: 'CSidebarNavItem',
+    //             name: 'Chat 2',
+    //             to: '/',
+    //         },
+    //     ]
+    // },
     {
         _tag: 'SidebarNavItem',
         name: 'Kanban',
@@ -56,18 +56,18 @@ const _nav = [
         activeArr: ['/postlogin/kanban'],
         open: false,
         icon: <i className="fab fa-microsoft"></i>,
-        children: [
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Kanban 1',
-                to: '/',
-            },
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Kanban 2',
-                to: '/',
-            },
-        ]
+        // children: [
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Kanban 1',
+        //         to: '/',
+        //     },
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Kanban 2',
+        //         to: '/',
+        //     },
+        // ]
     },
     {
         _tag: 'SidebarNavItem',
@@ -140,18 +140,18 @@ const _nav = [
         activeArr: ['/postlogin/invoices'],
         open: false,
         icon: <i className="fas fa-receipt"></i>,
-        children: [
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Kanban 1',
-                to: '/',
-            },
-            {
-                _tag: 'CSidebarNavItem',
-                name: 'Kanban 2',
-                to: '/',
-            },
-        ]
+        // children: [
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Kanban 1',
+        //         to: '/',
+        //     },
+        //     {
+        //         _tag: 'CSidebarNavItem',
+        //         name: 'Kanban 2',
+        //         to: '/',
+        //     },
+        // ]
     },
     {
         _tag: 'SidebarNavItem',

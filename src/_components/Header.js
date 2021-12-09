@@ -119,6 +119,14 @@ class Header extends Component {
     })
   }
 
+  openModelClose = () => {
+    this.setState({
+      profile: false,
+      notification: false,
+      profileOnClick: false
+    })
+  }
+
   notificationDisplay = () => {
     const { notificationData } = this.state;
     let retData = [];
@@ -172,18 +180,24 @@ class Header extends Component {
                     <Badge onClick={this.openNotificationModel} badgeContent={5} className="d-none d-md-inline-block">
                       <NotificationsIcon onClick={this.openNotificationModel} />
                     </Badge>
-                    {notification && (<div className="user-list">
-                      <div className="noti-tittle">
-                        <h5>Notification</h5>
-                        <span><a href="#">Clear All</a></span>
+                    {notification && (<>
+                      <div
+                        style={{ position: "fixed", width: "100%", height: "100%", left: "0", top: "0"}}
+                        onClick={this.openModelClose}
+                      ></div>
+                      <div className="user-list">
+                        <div className="noti-tittle">
+                          <h5>Notification</h5>
+                          <span><a href="#">Clear All</a></span>
+                        </div>
+                        <SimpleBar style={{ maxHeight: '300px' }} className="user-content">
+                          {this.notificationDisplay()}
+                        </SimpleBar>
+                        <div className="view-btn">
+                          <Button className="noti-btn">View All</Button>
+                        </div>
                       </div>
-                      <SimpleBar style={{ maxHeight: '300px' }} className="user-content">
-                        {this.notificationDisplay()}
-                      </SimpleBar>
-                      <div className="view-btn">
-                        <Button className="noti-btn">View All</Button>
-                      </div>
-                    </div>)}
+                    </>)}
                     <Badge badgeContent={5} className="d-none d-md-inline-block">
                       <CardGiftcardOutlinedIcon />
                     </Badge>
@@ -215,15 +229,21 @@ class Header extends Component {
                         <ArrowDropDownIcon className=".sort-down" />
                       </li>
                     </ul>
-                    {profile && (<div className="profile-menu">
-                      <ul>
-                        <li><AccountCircleIcon className="menu-icon" />Account</li>
-                        <li><SettingsIcon className="menu-icon" />Settings</li>
-                        <li><SportsSoccerIcon className="menu-icon" />Support</li>
-                        <li><LockOutlinedIcon className="menu-icon" />Lock</li>
-                        <li><ExitToAppOutlinedIcon className="menu-icon" />Logout</li>
-                      </ul>
-                    </div>)}
+                    {profile && (<>
+                      <div
+                        style={{ position: "fixed", width: "100%", height: "100%", left: "0", top: "0" }}
+                        onClick={this.openModelClose}
+                      ></div>
+                      <div className="profile-menu">
+                        <ul>
+                          <li><AccountCircleIcon className="menu-icon" />Account</li>
+                          <li><SettingsIcon className="menu-icon" />Settings</li>
+                          <li><SportsSoccerIcon className="menu-icon" />Support</li>
+                          <li><LockOutlinedIcon className="menu-icon" />Lock</li>
+                          <li><ExitToAppOutlinedIcon className="menu-icon" />Logout</li>
+                        </ul>
+                      </div>
+                    </>)}
                   </div>
                 </div>
               </div>
