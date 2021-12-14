@@ -3,7 +3,8 @@ import { homeServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
 export const homeAction = {
-    Userdata,Dashboarddata
+    Userdata, Dashboarddata,
+    Notificationdata
 };
 
 function Userdata(data) {
@@ -65,6 +66,38 @@ function Dashboarddata(data) {
                 error => {
                     dispatch(dispatchFunction({
                         type: homeConstants.GET_DASHBOARD_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+function Notificationdata(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: homeConstants.GET_NOTIFICATION_DATA_REQUEST,
+            data: null
+        }));
+        homeServices.Notificationdata(data)
+            .then(
+                response => {
+                    if (response.code === 200) {
+                        dispatch(dispatchFunction({
+                            type: homeConstants.GET_NOTIFICATION_DATA_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: homeConstants.GET_NOTIFICATION_DATA_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: homeConstants.GET_NOTIFICATION_DATA_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

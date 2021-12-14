@@ -20,6 +20,7 @@ const ViewInvoice = React.lazy(() => import('../PostLogin/Invoices/ViewInvoice')
 const Calender = React.lazy(() => import('../PostLogin/Calender'));
 const selectCommitteeMember = React.lazy(() => import('../PostLogin/SetUpCommittee/selectCommitteeMember'));
 const ViewRecievedRfp = React.lazy(() => import('../PostLogin/RecievedRfp/ViewRecievedRfp'));
+const TrackRfp = React.lazy(() => import('../PostLogin/RecievedRfp/TrackRfp'));
 const ViewRecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq/ViewRecievedRfq'));
 const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewPo'));
 
@@ -48,6 +49,7 @@ const routes = [
     { path: '/postlogin/calender', exact: true, name: 'Calender', component: Calender },
     { path: '/postlogin/selectecommittee', exact: true, name: 'selectCommitteeMember', component: selectCommitteeMember },
     { path: '/postlogin/recivedrfp/:id', exact: true, name: 'ViewRecievedRfp', component: ViewRecievedRfp },
+    { path: '/postlogin/trackrfp/:id', exact: true, name: 'TrackRfp', component: TrackRfp },
     { path: '/postlogin/recivedrfq/:id', exact: true, name: 'ViewRecievedRfq', component: ViewRecievedRfq },
 ]
 

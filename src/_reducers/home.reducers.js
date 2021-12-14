@@ -20,24 +20,42 @@ export function home(state = {}, action) {
                 userdata_status: status.FAILURE,
                 addUserdata: null
             };
-            case homeConstants.GET_DASHBOARD_REQUEST:
-                return{
-                    ...state,
-                    get_dashboard_data_success: status.IN_PROGRESS,
-                    getdashboarddata:action.data
-                }
-                case homeConstants.GET_DASHBOARD_SUCCESS:
-                    return{
-                        ...state,
-                        get_dashboard_data_success: status.SUCCESS,
-                        getdashboarddata:action.data
-                    }
-                    case homeConstants.GET_DASHBOARD_FAILURE:
-                        return{
-                            ...state,
-                            get_dashboard_data_success: status.FAILURE,
-                            getdashboarddata:null
-                        }
+        case homeConstants.GET_DASHBOARD_REQUEST:
+            return {
+                ...state,
+                get_dashboard_data_success: status.IN_PROGRESS,
+                getdashboarddata: action.data
+            }
+        case homeConstants.GET_DASHBOARD_SUCCESS:
+            return {
+                ...state,
+                get_dashboard_data_success: status.SUCCESS,
+                getdashboarddata: action.data
+            }
+        case homeConstants.GET_DASHBOARD_FAILURE:
+            return {
+                ...state,
+                get_dashboard_data_success: status.FAILURE,
+                getdashboarddata: null
+            }
+        case homeConstants.GET_NOTIFICATION_DATA_REQUEST:
+            return {
+                ...state,
+                get_notification_status: status.IN_PROGRESS,
+                get_notification_data: action.data
+            }
+        case homeConstants.GET_NOTIFICATION_DATA_SUCCESS:
+            return {
+                ...state,
+                get_notification_status: status.SUCCESS,
+                get_notification_data: action.data
+            }
+        case homeConstants.GET_NOTIFICATION_DATA_FAILURE:
+            return {
+                ...state,
+                get_notification_status: status.FAILURE,
+                get_notification_data: null
+            }
         default:
             return state;
     }

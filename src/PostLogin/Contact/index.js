@@ -321,7 +321,7 @@ class Contact extends Component {
                     </div>
                     <div className="social-buttom">
                       <ul>
-                        <li>
+                        {/* <li>
                           <Button
                             variant="contained"
                             className="plus-btn list-icon"
@@ -333,7 +333,7 @@ class Contact extends Component {
                           <Button variant="contained" className="plus-btn">
                             <ViewModuleIcon />
                           </Button>
-                        </li>
+                        </li> */}
                         <li>
                           <Button
                             variant="contained"

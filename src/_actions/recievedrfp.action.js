@@ -10,6 +10,7 @@ export const recievedrfpAction = {
     searchRecievedRFQ,
     getRecieveRFQ,
     addRecieveRFQ,
+    getTrackRfpData
 };
 
 function searchRecievedRFP(data) {
@@ -145,7 +146,7 @@ function searchRecievedRFQ(data) {
     };
 }
 
-function getRecieveRFQ(data){
+function getRecieveRFQ(data) {
     return dispatch => {
         dispatch(dispatchFunction({
             type: recievedrfpConstants.GET_RECIEVED_RFQ_DATA_REQUEST,
@@ -178,7 +179,7 @@ function getRecieveRFQ(data){
     };
 }
 
-function addRecieveRFQ(data){
+function addRecieveRFQ(data) {
     return dispatch => {
         dispatch(dispatchFunction({
             type: recievedrfpConstants.ADD_RECIEVED_RFQ_REQUEST,
@@ -187,7 +188,7 @@ function addRecieveRFQ(data){
         recievedrfpServices.addRecieveRFQ(data)
             .then(
                 response => {
-                    if (response.code == 200) {
+                    if (response.code === 200) {
                         dispatch(dispatchFunction({
                             type: recievedrfpConstants.ADD_RECIEVED_RFQ_SUCCESS,
                             data: response.object
@@ -196,7 +197,7 @@ function addRecieveRFQ(data){
                     } else {
                         dispatch(dispatchFunction({
                             type: recievedrfpConstants.ADD_RECIEVED_RFQ_FAILURE,
-                            data: response
+                            data: response.message
                         }));
                         alert.error(response.message);
                     }
@@ -204,6 +205,39 @@ function addRecieveRFQ(data){
                 error => {
                     dispatch(dispatchFunction({
                         type: recievedrfpConstants.ADD_RECIEVED_RFQ_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+
+function getTrackRfpData(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: recievedrfpConstants.GET_TRACK_RFP_REQUEST,
+            data: null
+        }));
+        recievedrfpServices.getTrackRfpData(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.GET_TRACK_RFP_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: recievedrfpConstants.GET_TRACK_RFP_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: recievedrfpConstants.GET_TRACK_RFP_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

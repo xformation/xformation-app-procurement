@@ -95,4 +95,10 @@ export const apiEndPoint = {
 
     //  dashboardApiURL
     DASHBOARDDATA: `${config.apiUrl}/getdashboardData`,
+
+    // frp track Api url
+    TRACKFRPDATA: `${config.apiUrl}/gettrackfrpdata`,
+
+    //GET NOTIFICATION DATA
+    GETNOTIFICATIONDATA: `${config.apiUrl}/getNotificationData`,
 };

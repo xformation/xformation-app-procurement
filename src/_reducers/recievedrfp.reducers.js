@@ -110,6 +110,24 @@ export function recievedrfp(state = {}, action) {
                 add_recieved_rfq_status: status.FAILURE,
                 recieved_rfq_res: null
             };
+        case recievedrfpConstants.GET_TRACK_RFP_REQUEST:
+            return {
+                ...state,
+                track_frp_status: status.IN_PROGRESS,
+                track_frp_data: action.data
+            };
+        case recievedrfpConstants.GET_TRACK_RFP_SUCCESS:
+            return {
+                ...state,
+                track_frp_status: status.SUCCESS,
+                track_frp_data: action.data
+            };
+        case recievedrfpConstants.GET_TRACK_RFP_FAILURE:
+            return {
+                ...state,
+                track_frp_status: status.FAILURE,
+                track_frp_data: null
+            };
         default:
             return state;
     }

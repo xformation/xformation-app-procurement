@@ -23,7 +23,9 @@ import Approval1 from '../assets/images/dashbord/approval1.png'
 import Approval2 from '../assets/images/dashbord/approval2.png'
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
-
+import { homeAction } from '../_actions'
+import { connect } from 'react-redux'
+import { status } from '../_constants';
 
 class Header extends Component {
   constructor(props) {
@@ -34,39 +36,17 @@ class Header extends Component {
       profile: false,
       profileOnClick: false,
       searchToggle: false,
-      notificationData: [
-        {
-          title: "Caleb Flakelar",
-          des: "1 min ago",
-          img: EvansjohnImg
-        },
-        {
-          title: "New User registered",
-          des: "5 hours ago",
-          img: Kevin
-        },
-        {
-          title: "Cristin Pride",
-          des: "Hi, How are you? what about our next metting",
-          img: Joannah
-        },
-        {
-          title: "Caleb Flakelar",
-          des: "4 days ago",
-          img: Machel
-        },
-        {
-          title: "Karen Robinson",
-          des: "Wow! this admin looks good and awesome design",
-          img: Approval1
-
-        },
-        {
-          title: "Carlos Crouch",
-          des: "13 days ago",
-          img: Approval2
-        }
-      ]
+      notificationData: []
+    }
+  }
+  componentDidMount() {
+    this.props.dispatch(homeAction.Notificationdata());
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.get_notification_status !== prevProps.get_notification_status && this.props.get_notification_status === status.SUCCESS) {
+      if (this.props.get_notification_data && this.props.get_notification_data.length > 0) {
+        this.setState({ notificationData: this.props.get_notification_data })
+      }
     }
   }
 
@@ -139,7 +119,7 @@ class Header extends Component {
               <Avatar alt="Remy Sharp" src={data.img} className="user-image" />
               <div className="user-massage">
                 <p style={{ margin: 0 }}>{data.title}</p>
-                <span style={{ margin: 0 }}>{data.des}</span>
+                <span style={{ margin: 0 }}>{data.description.substring(0,40)}</span>
               </div>
             </li>
           </ul>
@@ -182,7 +162,7 @@ class Header extends Component {
                     </Badge>
                     {notification && (<>
                       <div
-                        style={{ position: "fixed", width: "100%", height: "100%", left: "0", top: "0"}}
+                        style={{ position: "fixed", width: "100%", height: "100%", left: "0", top: "0" }}
                         onClick={this.openModelClose}
                       ></div>
                       <div className="user-list">
@@ -256,5 +236,11 @@ class Header extends Component {
   }
 
 }
+const mapStateToProps = (state) => {
+  const { get_notification_status, get_notification_data } = state.home;
+  return {
+    get_notification_status, get_notification_data
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps)(Header);

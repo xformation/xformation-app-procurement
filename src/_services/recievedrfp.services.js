@@ -8,7 +8,8 @@ export const recievedrfpServices = {
     addRecieveRFP,
     searchRecievedRFQ,
     getRecieveRFQ,
-    addRecieveRFQ
+    addRecieveRFQ,
+    getTrackRfpData
 }
 
 function searchRecievedRFP(data) {
@@ -57,4 +58,12 @@ function addRecieveRFQ(data) {
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
     return fetch(`${apiEndPoint.ADDSTATUSRFQ}`, requestOptions).then(response => response.json());
+}
+
+function getTrackRfpData(data) {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
+    return fetch(`${apiEndPoint.TRACKFRPDATA}/${data.id}`, requestOptions).then(response => response.json());
 }
