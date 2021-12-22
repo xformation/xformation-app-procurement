@@ -114,8 +114,8 @@ class ViewPurchaseOrder extends Component {
     render() {
         const { requiData, isSubmitted, purchaseOrder } = this.state;
         const errorData = this.validate(isSubmitted);
-       let startDate=commonFunctions.convertDateToString(new Date(purchaseOrder.startDate));
-       let deliveryDate=commonFunctions.convertDateToString(new Date(purchaseOrder.deliveryDate));
+        let startDate = commonFunctions.convertDateToString(new Date(purchaseOrder.startDate));
+        let deliveryDate = commonFunctions.convertDateToString(new Date(purchaseOrder.deliveryDate));
         return (
             <div className="main-content">
                 <div className="generate-content">
@@ -223,7 +223,7 @@ class ViewPurchaseOrder extends Component {
                                     Start Date
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
-                                    <DatePicker startText="Start" placeholder={deliveryDate} disabled="false"  />
+                                    <DatePicker startText="Start" placeholder={deliveryDate} disabled="false" />
                                     <CalendarTodayTwoToneIcon className="calendar-icon" />
                                 </div>
                             </div>
@@ -232,7 +232,7 @@ class ViewPurchaseOrder extends Component {
                                     Delivery Date
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
-                                    <DatePicker  startText="End"  disabled="false" placeholder={startDate} />
+                                    <DatePicker startText="End" disabled="false" placeholder={startDate} />
                                     <CalendarTodayTwoToneIcon className="calendar-icon" />
                                 </div>
                             </div>
@@ -250,7 +250,7 @@ class ViewPurchaseOrder extends Component {
                                 </label>
                                 <div className="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-form-field">
                                     <TextareaAutosize name="conditionText" className="other-condition-text" value={requiData.conditionText}
-                                      isvalid={errorData.conditionText.isValid} placeholder="" onChange={this.handleStateChange}/>
+                                        isvalid={errorData.conditionText.isValid} placeholder="" onChange={this.handleStateChange} />
                                     <span className="d-block w-100 text-danger">{errorData.conditionText.message}</span>
                                 </div>
                             </div>

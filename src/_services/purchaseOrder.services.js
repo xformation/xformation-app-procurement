@@ -5,7 +5,8 @@ import { apiEndPoint } from "./apiEndPoint";
 export const purchaseOrderServices = {
     getPurchaseOrder,
     searchPurchaseOrder,
-    addPurchaseOrder
+    addPurchaseOrder,
+    approvePurchaseOrder
 }
 function getPurchaseOrder(data) {
     const extraHeaders = {
@@ -20,6 +21,13 @@ function searchPurchaseOrder(data) {
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
     return fetch(`${apiEndPoint.FETCHGPO}`, requestOptions).then(response => response.json());
+}
+function approvePurchaseOrder(data) {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
+    return fetch(`${apiEndPoint.FETCHGAPPROVEPO}`, requestOptions).then(response => response.json());
 }
 
 function addPurchaseOrder(data) {

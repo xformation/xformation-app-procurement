@@ -971,6 +971,66 @@
         }
       }
     },
+    "/searchApprovePo": {
+      "get": {
+        "summary": "Details about a Approve PO",
+        "operationId": "",
+        "tags": [
+          "approve po"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Details about approveorder",
+            "headers": {
+              "x-next": {
+                "description": "Generate Approve Purchase Order List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 13,
+                      "items": {
+                        "$ref": "#/components/schemas/requisition"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/getGeneratePo/{id}": {
       "parameters": [
         {
@@ -1458,6 +1518,59 @@
                       "items": {
                         "$ref": "#/components/schemas/invoiceList"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fetchNewInvoice": {
+      "get": {
+        "summary": "Invoice Detail",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Invoice detail",
+            "headers": {
+              "x-next": {
+                "description": "Invoice List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/newinvoiceList"
                     }
                   }
                 }
@@ -2847,6 +2960,51 @@
           "status": {
             "type": "string",
             "default": "completed"
+          }
+        }
+      },
+      "newinvoiceList": {
+        "type": "object",
+        "properties": {
+          "Address": {
+            "type": "string",
+            "x-faker": "{{address.streetName}} {{address.state}},{{address.zipCodeByState}} {{address.country}}"
+          },
+          "ComapanyName": {
+            "type": "string",
+            "x-faker": "{{company.companyName}}"
+          },
+          "Email": {
+            "type": "string",
+            "x-faker": "{{internet.email}}"
+          },
+          "ContactNumber": {
+            "type": "integer",
+            "format": "int64",
+            "x-faker": "phone.phoneNumber"
+          },
+          "ItemDesription": {
+            "type": "array",
+            "x-count": "7",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ItemDescription": {
+                  "type": "string",
+                  "x-faker": "{{commerce.productName}}"
+                },
+                "Quantity": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })"
+                },
+                "Price": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "finance.amount"
+                }
+              }
+            }
           }
         }
       },

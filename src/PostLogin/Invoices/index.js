@@ -12,7 +12,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import { connect } from 'react-redux';
 import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
-import { commonFunctions} from '../../_utilities';
+import { commonFunctions } from '../../_utilities';
 
 class Invoices extends Component {
     constructor(props) {
@@ -78,9 +78,9 @@ class Invoices extends Component {
                         renderCallback: (value, row) => {
                             return <td>
                                 {/* {value === 'Completed' && */}
-                                    <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.onClickShowCompletedButton(row.RequisitionsNo)}>
-                                        <CheckIcon className="mr-2 bold" />{value}
-                                    </Button>
+                                <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.onClickShowCompletedButton(row.RequisitionsNo)}>
+                                    <CheckIcon className="mr-2 bold" />{value}
+                                </Button>
                                 {/* } */}
                                 {value === 'Invoices' &&
                                     <Button variant="contained" className="invoices-list-btn invoices-btn" onClick={(id) => this.onClickShowCompletedButton(row.RequisitionsNo)}>
@@ -176,8 +176,7 @@ class Invoices extends Component {
     }
 
     onClickShowCompletedButton = (id) => {
-        this.props.history.push(`/postlogin/viewinvoice/3`)
-
+        this.props.history.push(`/postlogin/viewinvoice/${id}`)
     }
 
     handleStateChange = (e) => {
@@ -208,6 +207,9 @@ class Invoices extends Component {
                                         <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
                                         <button><i className="fas fa-search"></i></button>
                                     </div>
+                                    <div> <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.props.history.push(`/postlogin/invoices/newinvoice`)}>
+                                    Create NewInvoice
+                                </Button></div>
                                 </div>
                             </div>
                         </div>

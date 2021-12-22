@@ -171,11 +171,27 @@ const _nav = [
     },
     {
         _tag: 'SidebarNavItem',
+        name: 'Reports',
+        to: '/postlogin/reports',
+        activeArr: ['/postlogin/reports'],
+        open: false,
+        icon: <i class="fas fa-file-signature"></i>,
+    },
+    {
+        _tag: 'SidebarNavItem',
         name: ' Vendor Enroll',
         to: '/postlogin/vendorenroll',
         activeArr: ['/postlogin/vendorenroll'],
         open: false,
         icon: <i className="fas fa-shekel-sign"></i>,
+    },
+    {
+        _tag: 'SidebarNavItem',
+        name: 'Budget Overview',
+        to: '/postlogin/budgetoverview',
+        activeArr: ['/postlogin/budgetoverview'],
+        open: false,
+        icon: <i className="fas fa-users"></i>,
     }
 ]
 

@@ -6,7 +6,8 @@ import { alert, commonFunctions } from '../_utilities';
 export const purchaseOrderAction = {
     addPurchaseOrder,
     getPurchaseOrder,
-    searchPurchaseOrder
+    searchPurchaseOrder,
+    searchApprovePurchaseOrder
 }
 
 function searchPurchaseOrder(data) {
@@ -34,6 +35,38 @@ function searchPurchaseOrder(data) {
                 error => {
                     dispatch(dispatchFunction({
                         type: purchaseOrderConstants.SEARCH_PURCHASE_ORDER_FALIURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+function searchApprovePurchaseOrder(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_REQUEST,
+            data: null
+        }));
+        purchaseOrderServices.approvePurchaseOrder(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);
@@ -73,10 +106,10 @@ function getPurchaseOrder(data) {
             );
     };
 }
-function addPurchaseOrder (data) {
+function addPurchaseOrder(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type:purchaseOrderConstants.ADD_PURCHASE_ORDER_REQUEST,
+            type: purchaseOrderConstants.ADD_PURCHASE_ORDER_REQUEST,
             data: null
         }));
         purchaseOrderServices.addPurchaseOrder(data)

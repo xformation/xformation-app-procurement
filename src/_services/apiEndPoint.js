@@ -31,6 +31,7 @@ export const apiEndPoint = {
     GETINVOICE: `${config.apiUrl}/viewInvoice`,
     DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
     UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
+    FETCHNEWINVOICE:`${config.apiUrl}/fetchNewInvoice`,
 
     // Requisition Api Url
     ADDREQUISTION: `${config.apiUrl}/addRequisition`,
@@ -76,6 +77,7 @@ export const apiEndPoint = {
     FETCHGPO: `${config.apiUrl}/searchGeneratePo`,
     GETGPO: `${config.apiUrl}/getGeneratePo`,
     ADDGPODETAIL: `${config.apiUrl}/addGeneratePoDetail`,
+    FETCHGAPPROVEPO: `${config.apiUrl}/searchApprovePo`,
 
     //recievedefq api url
 

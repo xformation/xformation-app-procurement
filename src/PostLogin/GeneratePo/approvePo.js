@@ -14,7 +14,7 @@ import 'simplebar/dist/simplebar.min.css';
 import { connect } from 'react-redux';
 import { purchaseOrderAction } from "../../_actions/purchaseOrder.action";
 import { status } from "../../_constants";
-class GeneratePo extends Component {
+class ApprovePo extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -86,7 +86,7 @@ class GeneratePo extends Component {
                     label: 'Purchase Order',
                     key: 'id',
                     renderCallback: (value) => {
-                        return <td><button className="btn details-btn" onClick={() => this.onClickShowGenerateButton(value)}  >Generate</button></td>
+                        return <td><button className="btn details-btn" onClick={() => this.onClickShowGenerateButton(value)}  >Approve</button></td>
                     }
                 },
 
@@ -94,15 +94,16 @@ class GeneratePo extends Component {
         }
     }
     componentDidMount() {
-        this.props.dispatch(purchaseOrderAction.searchPurchaseOrder())
+        this.props.dispatch(purchaseOrderAction.searchApprovePurchaseOrder())
 
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log(this.props.get_approvepo_status, this.props.approvePo)
         let { tableData } = this.state
-        if (this.props.search_purchase_status !== prevProps.search_purchase_status && this.props.search_purchase_status === status.SUCCESS) {
-            if (this.props.searchpurchaseorder) {
-                tableData = this.props.searchpurchaseorder
+        if (this.props.get_approvepo_status !== prevProps.get_approvepo_status && this.props.get_approvepo_status === status.SUCCESS) {
+            if (this.props.approvePo) {
+                tableData = this.props.approvePo
                 this.setState({ tableData })
             }
 
@@ -110,7 +111,7 @@ class GeneratePo extends Component {
     }
 
     onClickShowGenerateButton = (id) => {
-        this.props.history.push(`/postlogin/generatepo/${id}`)
+        this.props.history.push(`/postlogin/approvepo/${id}`)
         console.log("clicked")
     }
     handleStateChange = (e) => {
@@ -190,7 +191,7 @@ class GeneratePo extends Component {
                         <>
                             <div className="generate-order">
                                 <div className="heading">
-                                    <h4>Generate Purchase Order</h4>
+                                    <h4>Approve Purchase Order</h4>
                                     <span>Lorem ipsum dolor sit amet</span>
                                 </div>
                                 <div className="row">
@@ -347,11 +348,7 @@ class GeneratePo extends Component {
                         <>
                             <div className="generate-purchase">
                                 <div className="heading">
-                                    <h4>Generate Purchase Order</h4>
-                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
-                                        <Button variant="contained" className="primary-btn" disableElevation onClick={() => this.props.history.push('/postlogin/approvepo')}>
-                                            Approve
-                                        </Button></div>
+                                    <h4>Approve Purchase Order</h4>
                                 </div>
                                 <div className="requisitions-filter">
                                     <div className="form">
@@ -388,9 +385,6 @@ class GeneratePo extends Component {
                                             <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
                                                 Search
                                             </Button>
-                                            <Button variant="contained" className="default-btn ml-2">
-                                                Clear
-                                            </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -409,9 +403,9 @@ class GeneratePo extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { searchpurchaseorder, search_purchase_status } = state.generatePurchaseOrder;
-    return { searchpurchaseorder, search_purchase_status }
+    const { approvePo, get_approvepo_status } = state.generatePurchaseOrder;
+    return { approvePo, get_approvepo_status }
 
 }
 
-export default connect(mapStateToProps)(GeneratePo);
+export default connect(mapStateToProps)(ApprovePo);

@@ -23,6 +23,11 @@ const ViewRecievedRfp = React.lazy(() => import('../PostLogin/RecievedRfp/ViewRe
 const TrackRfp = React.lazy(() => import('../PostLogin/RecievedRfp/TrackRfp'));
 const ViewRecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq/ViewRecievedRfq'));
 const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewPo'));
+const AddInvoices = React.lazy(() => import('../PostLogin/Invoices/AddNewInvoice'));
+const ApprovePo = React.lazy(() => import('../PostLogin/GeneratePo/approvePo'));
+const BudgetOverview = React.lazy(() => import('../PostLogin/budgetOverView/index'));
+const Reports = React.lazy(() => import('../PostLogin/reports/reports'));
+const PurchaseOrder =React.lazy(()=>import('../PostLogin/GeneratePo/purchaseOrder'))
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
@@ -51,6 +56,11 @@ const routes = [
     { path: '/postlogin/recivedrfp/:id', exact: true, name: 'ViewRecievedRfp', component: ViewRecievedRfp },
     { path: '/postlogin/trackrfp/:id', exact: true, name: 'TrackRfp', component: TrackRfp },
     { path: '/postlogin/recivedrfq/:id', exact: true, name: 'ViewRecievedRfq', component: ViewRecievedRfq },
+    { path: '/postlogin/invoices/newinvoice', exact: true, name: 'AddInvoices', component: AddInvoices },
+    { path: '/postlogin/approvepo', exact: true, name: 'ApprovePo', component: ApprovePo },
+    { path: '/postlogin/budgetoverview', exact: true, name: 'BudgetOverview', component: BudgetOverview },
+    { path: '/postlogin/reports', exact: true, name: 'Reports', component: Reports },
+    {path: '/postlogin/approvepo/:id', exact:true, name: 'PurchaseOrder' , component:PurchaseOrder},
 ]
 
 export default routes;

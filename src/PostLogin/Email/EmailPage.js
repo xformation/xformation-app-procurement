@@ -38,6 +38,8 @@ import { isThisWeek } from 'date-fns';
 import EmailDetail from './emailDetail';
 import CancelIcon from "@material-ui/icons/Cancel";
 import Tooltip from "@material-ui/core/Tooltip";
+import Pagination from '../../_components/Pagination';
+
 class EmailPage extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +50,6 @@ class EmailPage extends Component {
       activeindex: 0,
       isSelectAll: false,
       perPageLimit: 5,
-      noOfRecordPerPage: 5,
-      totalPages: '',
       currentPage: 0,
       emailData: [],
       isSubmitted: false,
@@ -85,6 +85,8 @@ class EmailPage extends Component {
         { name: 'efg', email: 'efg@a.com', id: 5 },
       ]
     }
+
+    this.paginationRef = React.createRef();
   }
 
   onClickShowCompos = () => {
@@ -132,8 +134,12 @@ class EmailPage extends Component {
           }
           let indexOfLastData = Math.ceil(data.length / perPageLimit);
           this.setState({
-            emailData: data,
+            emailData: data
+          });
+          this.paginationRef.current.setOptions({
             totalPages: indexOfLastData,
+            perPageLimit,
+            totalRecords: data.length
           });
         }
       }
@@ -235,46 +241,6 @@ class EmailPage extends Component {
     this.setState({
       emailData
     })
-  }
-
-  peginationOfTable() {
-    const { currentPage, totalPages, emailData } = this.state;
-    let rows = [];
-    if (emailData.length > 0) {
-      for (let i = 0; i < totalPages; i++) {
-        rows.push(<li key={i}><a className={currentPage === i ? 'active' : ''} href="#" onClick={(e) => this.navigatePage('btn-click', e, i)}>{i + 1}</a></li >);
-      }
-      return (
-        <ul className="d-block" key={rows}>
-          <div>
-            {rows}
-          </div>
-        </ul>
-      );
-    }
-  }
-
-  navigatePage(target, e, i) {
-    let { totalPages, currentPage } = this.state;
-    e.preventDefault();
-    switch (target) {
-      case 'pre':
-        if (currentPage !== 0) {
-          currentPage = currentPage - 1;
-        }
-        break;
-      case 'next':
-        if (currentPage !== totalPages - 1) {
-          currentPage = currentPage + 1;
-        }
-        break;
-      case 'btn-click':
-        currentPage = i;
-        break;
-    }
-    this.setState({
-      currentPage
-    });
   }
 
   displayEmail = () => {
@@ -399,16 +365,15 @@ class EmailPage extends Component {
     }
   }
 
+  onChangeCurrentPage = (currentPage) => {
+    this.setState({
+      currentPage
+    });
+  };
+
   render() {
-    const { composEmail, isSelectAll, isSubmitted, currentPage, options, contacts, selectedValue, preselectValue, detailEmail, emailData, perPageLimit, searchemail, sendEmailData } = this.state;
+    const { composEmail, isSelectAll, isSubmitted, options, contacts, selectedValue, preselectValue, detailEmail, searchemail, sendEmailData } = this.state;
     const errorData = this.validate(isSubmitted);
-    let startIndex = perPageLimit * currentPage + 1;
-    let endIndex = perPageLimit * (currentPage + 1);
-    if (emailData && emailData.length) {
-      if (endIndex > emailData.length) {
-        endIndex = emailData.length;
-      }
-    }
     return (
       <div className="main-content">
         <div className="compose-email-section">
@@ -428,12 +393,12 @@ class EmailPage extends Component {
                     <span><ChevronRightIcon /></span>
                   </div>
                   <ul>
-                    <li className="active"><button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
-                    <li><button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
-                    <li><button className="btn"><span><DraftsIcon /></span>Draft</button></li>
-                    <li><button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
-                    <li><button className="btn"><span><StarIcon /></span>Favourites</button></li>
-                    <li><button className="btn"><span><CreateNewFolderIcon /></span>Spam</button></li>
+                    <li className={searchemail === "inbox" ? "active" : ""} onClick={() => this.setEmailType('inbox')}><button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
+                    <li className={searchemail === "sent" ? "active" : ""} onClick={() => this.setEmailType('sent')}><button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
+                    <li className={searchemail === "draft" ? "active" : ""} onClick={() => this.setEmailType('draft')}><button className="btn"><span><DraftsIcon /></span>Draft</button></li>
+                    <li className={searchemail === "archived" ? "active" : ""} onClick={() => this.setEmailType('archived')}><button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
+                    <li className={searchemail === "favorite" ? "active" : ""} onClick={() => this.setEmailType('favorite')}><button className="btn"><span><StarIcon /></span>Favourites</button></li>
+                    <li className={searchemail === "spam" ? "active" : ""} onClick={() => this.setEmailType('spam')}><button className="btn"><span><CreateNewFolderIcon /></span>Spam</button></li>
                   </ul>
                 </div>
                 <div className="recent-content">
@@ -586,9 +551,9 @@ class EmailPage extends Component {
                                 />
                               </div>
                               <ul>
-                                <li onClick={() => this.setEmailType('important')}><a className={searchemail == 'important' ? "active" : ""}><span><MailIcon /></span>Important</a></li>
-                                <li onClick={() => this.setEmailType('social')}><a className={searchemail == 'social' ? "active" : ""}><span><SupervisorAccountIcon /></span>Socials</a></li>
-                                <li onClick={() => this.setEmailType('promotion')}><a className={searchemail == 'promotion' ? "active" : ""}><span><ConfirmationNumberIcon /></span>Promotion</a></li>
+                                <li onClick={() => this.emailType("important")}><a href="#" className ={searchemail === "important" ? "active" :""} ><span><MailIcon /></span>Important</a></li>
+                                <li onClick={() => this.emailType("socials")}><a href="#" className ={searchemail === "socials" ? "active" :""} ><span><SupervisorAccountIcon /></span>Socials</a></li>
+                                <li onClick={() => this.emailType("promotion")}><a href="#" className ={searchemail === "promotion" ? "active" :""}><span><ConfirmationNumberIcon /></span>Promotion</a></li>
                               </ul>
                             </div>
                           </div>
@@ -612,28 +577,7 @@ class EmailPage extends Component {
                           </ul>
                         </SimpleBar>
                       </div>
-                      {emailData.length > perPageLimit &&
-                        <div className="footer-bottom">
-                          <div className="row justify-content-center align-items-center">
-                            <div className="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-12">
-                              <div className="pagination-text">Showing <strong>{startIndex}&#8722;{endIndex}</strong> From <strong> {emailData.length} </strong> data </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-12 text-right">
-                              <div className="pagination-section">
-                                <div className={currentPage === 0 ? "d-inline-block btn-left desable" : "d-inline-block btn-left enable"} onClick={(e) => this.navigatePage('pre', e, '')}>
-                                  <Button><span><ArrowBackIosIcon /></span></Button>
-                                </div>
-                                <div className="d-inline-block pagination-icon">
-                                  {this.peginationOfTable()}
-                                </div>
-                                <div className={currentPage === this.state.totalPages - 1 ? "d-inline-block btn-right" : "d-inline-block btn-right"} onClick={(e) => this.navigatePage('next', e, '')}>
-                                  <Button><span><ArrowForwardIosIcon /></span></Button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      }
+                      <Pagination ref={this.paginationRef} changeCurrentPage={this.onChangeCurrentPage} />
                     </div>
                   }
                 </>

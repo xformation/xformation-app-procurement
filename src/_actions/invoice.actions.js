@@ -7,7 +7,8 @@ export const invoiceAction = {
     deleteInvoice,
     getInvoice,
     searchInvoice,
-    updateInvoice
+    updateInvoice,
+    getNewInvoice
 };
 
 function addInvoice(data) {
@@ -167,6 +168,40 @@ function updateInvoice(id) {
                 error => {
                     dispatch(dispatchFunction({
                         type: invoiceConstants.UPDATE_INVOICE_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+
+function getNewInvoice(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: invoiceConstants.GET_NEW_INVOICE_REQUEST,
+            data: null
+        }));
+        invoiceServices.getNewInvoice(data)
+            .then(
+               
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: invoiceConstants.GET_NEW_INVOICE_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: invoiceConstants.GET_NEW_INVOICE_FAILUER,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: invoiceConstants.GET_NEW_INVOICE_FAILUER,
                         data: error.message
                     }));
                     alert.error(error.message);

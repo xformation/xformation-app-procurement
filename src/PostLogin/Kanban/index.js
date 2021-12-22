@@ -16,9 +16,17 @@ import ChatIcon from '@material-ui/icons/Chat';
 import AddIcon from '@material-ui/icons/Add';
 import { ReactSortable } from "react-sortablejs";
 import IconButton from '@material-ui/core/IconButton';
+
+
+import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@material-ui/core';
+import CloseIcon from "@material-ui/icons/Close";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+// import {Dialog} from '@material-ui/core';
+
 import { kanbanActions } from '../../_actions/kanban.actions';
 import { connect } from 'react-redux';
 import { status } from "../../_constants";
+
 
 class Kanban extends Component {
     constructor(props) {
@@ -139,7 +147,7 @@ class Kanban extends Component {
                             </div>
                             <div className="department">{row.title}</div>
                             <div className="get-proses">
-                                <LinearProgress variant="determinate"  value={row.progressPer} bar="#ffab2e" style={{ backgroundColor: '#dadada' }} />
+                                <LinearProgress variant="determinate" value={row.progressPer} bar="#ffab2e" style={{ backgroundColor: '#dadada' }} />
                             </div>
                             <div className="user-text">
                                 {row.users && row.users.length > 0 &&
@@ -164,8 +172,21 @@ class Kanban extends Component {
         return retData;
     }
 
+    //  invite poople onclick
+    invitePeoples = () => {
+        // alert("wroking")
+        const { invitePeoples } = this.state;
+        let dialog = !invitePeoples;
+        this.setState({
+            invitePeoples: dialog,
+        })
+    }
+
+    // dilog  
+
+
     render() {
-        const { quatationList, onProgressCount, completedCount } = this.state;
+        const { quatationList, invitePeoples, onProgressCount, completedCount } = this.state;
         return (
             <div className="main-content">
                 <div className="kanban-head">
@@ -195,8 +216,8 @@ class Kanban extends Component {
                                         </AvatarGroup>
                                     </div>
                                     <div className="head-btn">
-                                        <Button variant="contained" className="invite-btn"><PersonAddIcon className="btn-icon" />Invite People</Button>
-                                        <Button variant="outlined" className="private-btn">Private</Button>
+                                        <Button variant="contained" className="invite-btn" onClick={this.invitePeoples}><PersonAddIcon className="btn-icon" />Invite People</Button>
+                                        <Button variant="outlined" className="private-btn" >Private</Button>
                                         <Button variant="contained" className="edit-btn">Edit</Button>
                                         <Button variant="outlined" className="comments-btn"><ChatIcon className="btn-icon" />45 Comments</Button>
                                     </div>
@@ -211,6 +232,67 @@ class Kanban extends Component {
                         </div>
                     </div>
                 </div>
+
+
+                {/* invite friends ---------------*/}
+
+                <Dialog open={invitePeoples} aria-labelledby="form-dialog-title" className="invite-module">
+                    <DialogTitle id="form-dialog-title" className="invite-module-header">
+                        Invite members to your contact list
+                        <CloseIcon className="close-icon" onClick={this.invitePeoples} />
+                    </DialogTitle>
+                    <DialogContent className="invite-module-content">
+
+                        <>
+                            <div className="row">
+                                <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+                                    <label className="d-block">Email Address</label>
+                                </div>
+                                <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+                                    <label className="d-block">Name (Optional)</label>
+                                </div>
+                            </div>
+
+
+                            <div className="row">
+                                <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+                                    <div className="form-group form-group-common">
+                                        <input type="text" name="email" placeholder="Eg.James@example.com" className="form-control" />
+
+                                    </div>
+                                </div>
+                                <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+                                    <div className="form-group form-group-common">
+                                        <input type="text" name="name" placeholder="Eg.james" className="form-control" />
+                                    </div>
+                                </div>
+
+                                <div className="col-xl-2 col-lg-2 col-md-2 col-2">
+                                    <CloseIcon className="close-icon" />
+                                </div>
+
+                            </div>
+
+                        </>
+
+                        <div className="add-multiples" onClick={this.addMoreContcat}>
+                            <AddCircleIcon className="plus-icon" />
+                            <span>Add New </span>
+                        </div>
+
+                    </DialogContent>
+                    <DialogActions className="invite-module-footer">
+                        <Button variant="contained" className="invitation-btn" onClick={this.sendInvitation}>
+                            <PersonAddIcon className="user-icon" />
+                            Send Invitation
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+
+
+
                 <div className="suppliers-section">
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">

@@ -68,11 +68,11 @@ class SideMenu extends Component {
       openedSubMenus
     });
   };
- 
- 
-handelSideNav=()=>{
-  if(window.innerWidth < 922) {this.handleDrawerOpenClose()} {}
-}
+
+
+  handelSideNav = () => {
+    if (window.innerWidth < 922) { this.handleDrawerOpenClose() } { }
+  }
 
   displaySidebarMenu = () => {
     const { activeTab, openedSubMenus } = this.state;
@@ -80,7 +80,7 @@ handelSideNav=()=>{
     for (let i = 0; i < navigation.length; i++) {
       let nav = navigation[i];
       retData.push(
-        <li className="sidebar-menu" key={nav.name} onClick={ this.handelSideNav }>
+        <li className="sidebar-menu" key={nav.name} onClick={this.handelSideNav}>
           <ListItem className={activeTab === i ? "active" : ""} tabIndex="0" component={Link} to={nav.to} onClick={() => this.setActiveTab(i)}>
             <ListItemIcon className="icon">
               {nav.icon}

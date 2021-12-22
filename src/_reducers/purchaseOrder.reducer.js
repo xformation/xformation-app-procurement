@@ -1,3 +1,4 @@
+import approvePo from '../PostLogin/GeneratePo/approvePo';
 import { purchaseOrderConstants, status } from '../_constants';
 
 export function generatePurchaseOrder(state = {}, action) {
@@ -38,24 +39,42 @@ export function generatePurchaseOrder(state = {}, action) {
                 search_purchase_status: status.IN_PROGRESS,
                 searchpurchaseorder: null
             }
-            case purchaseOrderConstants.ADD_PURCHASE_ORDER_REQUEST:
-                return{
-                    ...state,
-                    add_purchase_order_status:status.IN_PROGRESS,
-                    addPurchaseOrder:action.data,
-                }
-                case purchaseOrderConstants.ADD_PURCHASE_ORDER_SUCCESS:
-                return{
-                    ...state,
-                    add_purchase_order_status:status.SUCCESS,
-                    addPurchaseOrder:action.data,
-                }
-                case purchaseOrderConstants.ADD_PURCHASE_ORDER_FALIURE:
-                return{
-                    ...state,
-                    add_purchase_order_status:status.FAILURE,
-                    addPurchaseOrder:null,
-                }
+        case purchaseOrderConstants.ADD_PURCHASE_ORDER_REQUEST:
+            return {
+                ...state,
+                add_purchase_order_status: status.IN_PROGRESS,
+                addPurchaseOrder: action.data,
+            }
+        case purchaseOrderConstants.ADD_PURCHASE_ORDER_SUCCESS:
+            return {
+                ...state,
+                add_purchase_order_status: status.SUCCESS,
+                addPurchaseOrder: action.data,
+            }
+        case purchaseOrderConstants.ADD_PURCHASE_ORDER_FALIURE:
+            return {
+                ...state,
+                add_purchase_order_status: status.FAILURE,
+                addPurchaseOrder: null,
+            }
+        case purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_REQUEST:
+            return {
+                ...state,
+                get_approvepo_status: status.IN_PROGRESS,
+                approvePo: action.data
+            }
+        case purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_SUCCESS:
+            return {
+                ...state,
+                get_approvepo_status: status.SUCCESS,
+                approvePo: action.data
+            }
+        case purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_FAILURE:
+            return {
+                ...state,
+                get_approvepo_status: status.FAILURE,
+                approvePo: null
+            }
         default:
             return state;
     }

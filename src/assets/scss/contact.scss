@@ -79,7 +79,8 @@
                                 //     color: #ffffff;
                                 // }
                             }
-                            .invite-btn{
+
+                            .invite-btn {
                                 background: #6418c3;
                                 color: #ffffff;
                                 min-width: 0;
@@ -91,6 +92,7 @@
                                 line-height: 1.80;
                                 letter-spacing: 0.02857em;
                                 min-height: 44px;
+
                                 .user-icon {
                                     margin-right: 8px;
                                     vertical-align: top;
@@ -200,7 +202,7 @@
                     .image {
                         width: 100%;
                         border: 2px dotted #6318c3;
-                        height: 200px;
+                        height: 192px;
                         border-radius: 10px;
                         overflow: hidden;
                         display: flex;
@@ -232,7 +234,7 @@
                             top: 0;
                             opacity: 0;
                             cursor: pointer;
-                            height:100%;
+                            height: 100%;
                         }
 
                         .camera-icon {
@@ -383,30 +385,136 @@
         }
     }
 
+    .member-box {
+        padding: 20px 15px;
+        position: relative;
+        box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        margin-bottom: 15px;
+
+        .user-img {
+            .image {
+                width: 72px;
+                height: 72px;
+                border-radius: 5px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .menu-icon {
+                position: absolute;
+                right: 15px;
+                top: 20px;
+                z-index: 1;
+
+                .MuiButtonBase-root {
+                    padding: 8px;
+                }
+
+                .settings-toggle {
+                    position: absolute;
+                    top: 35px;
+                    right: 0;
+                    width: 90px;
+                    background-color: #ffffff;
+                    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+                    -webkit-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 15%);
+                    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+                    span {
+                        display: block;
+                        cursor: pointer;
+                        padding: 5px 10px;
+                        font-size: 14px;
+                        line-height: 18px;
+                        color: #6318c3;
+                        background-color: #ffffff;
+                        border-bottom: 1px solid #202020;
+
+                        .MuiSvgIcon-root {
+                            font-size: 1rem;
+                            vertical-align: top;
+                            margin-top: 2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .member-name {
+            font-size: 18px;
+            line-height: 24px;
+            color: #202020;
+            font-weight: 600;
+            padding-top: 15px;
+            padding-bottom: 10px;
+        }
+
+        .member-details {
+            p {
+                margin-bottom: 0;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 500;
+
+                strong {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #6318c3;
+                    display: block;
+                }
+            }
+        }
+
+        .member-position {
+            background-color: #5ed1a7;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            font-weight: 500;
+            color: #ffff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 8px;
+            float: right;
+            margin-top: 5px;
+        }
+    }
+
 }
-.invite-module{
-    .invite-module-header{
+
+.invite-module {
+    .invite-module-header {
         padding: 20px 24px 15px 24px;
-        h2{
+
+        h2 {
             color: #000000;
         }
-        .close-icon{
+
+        .close-icon {
             float: right;
             color: #5f5f5f;
             font-weight: 400;
-            
+
         }
     }
-    .invite-module-content{
-        label{
+
+    .invite-module-content {
+        label {
             color: #000000;
             font-size: 16px;
             line-height: 20px;
             font-weight: 500;
             margin-bottom: 0.8rem;
         }
-        .form-group-common{
-            .form-control{
+
+        .form-group-common {
+            .form-control {
                 background-color: transparent;
                 font-size: 12px;
                 font-weight: 400;
@@ -417,21 +525,25 @@
                 border: 1px solid #d8d6d6;
             }
         }
-        .close-icon{
+
+        .close-icon {
             float: right;
             color: #c5c5c5;
             font-size: 1.3rem;
             margin-top: 6px;
 
         }
-        .add-multiples{
+
+        .add-multiples {
             display: inline-block;
             cursor: pointer;
-            .plus-icon{
+
+            .plus-icon {
                 color: #b620e0;
                 margin-right: 5px;
             }
-            span{
+
+            span {
                 display: inline-block;
                 font-size: 14px;
                 line-height: 20px;
@@ -439,16 +551,19 @@
             }
         }
     }
-    .invite-module-footer{
+
+    .invite-module-footer {
         padding: 15px 24px 20px 24px;
-        .invitation-btn{
+
+        .invitation-btn {
             font-size: 12px;
             line-height: 20px;
             font-weight: 400;
             text-transform: capitalize;
             background: #6418c3;
             color: #ffffff;
-            .user-icon{
+
+            .user-icon {
                 margin-right: 5px;
                 font-size: 16px;
                 line-height: 20px;
@@ -509,20 +624,22 @@
 
     }
 }
-@media only screen and (max-width: 767px){
-    .contact-content{
-        .user-contact-list{
-            .buyers-head{
-                .head-right{
+
+@media only screen and (max-width: 767px) {
+    .contact-content {
+        .user-contact-list {
+            .buyers-head {
+                .head-right {
                     display: block;
-                    .search-bar{
+
+                    .search-bar {
                         margin-right: 0;
                         margin-bottom: 15px;
                     }
                 }
-            } 
-        } 
-    } 
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 540px) {
@@ -538,7 +655,8 @@
                                 margin-right: 10px;
                                 margin-bottom: 25px;
                             }
-                            .last{
+
+                            .last {
                                 margin-bottom: 0;
                             }
                         }
@@ -596,18 +714,20 @@
             }
         }
     }
-    .invite-module{
-        .invite-module-header{
-            h2{
+
+    .invite-module {
+        .invite-module-header {
+            h2 {
                 font-size: 16px;
             }
         }
-        .invite-module-content{
-            label{
+
+        .invite-module-content {
+            label {
                 font-size: 12px;
                 line-height: 18px;
             }
-        } 
+        }
 
     }
 }

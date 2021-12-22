@@ -7,7 +7,8 @@ export const invoiceServices = {
     deleteInvoice,
     getInvoice,
     searchInvoice,
-    updateInvoice
+    updateInvoice,
+    getNewInvoice
 }
 
 function addInvoice(data) {
@@ -40,6 +41,14 @@ function searchInvoice() {
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
     return fetch(`${apiEndPoint.FETCHINVOICE}`, requestOptions).then(response => response.json());
+}
+
+function getNewInvoice() {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
+    return fetch(`${apiEndPoint.FETCHNEWINVOICE}`, requestOptions).then(response => response.json());
 }
 
 function updateInvoice() {

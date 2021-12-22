@@ -72,7 +72,7 @@ class ViewInvoice extends Component {
                                     <KeyboardBackspaceIcon />
                                 </IconButton>
                                 <h4>Invoice</h4>
-                                <p>#{approvedData.requisitionsNo}</p>
+                                <p>#INV-{approvedData.requisitionsNo}</p>
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-12">
@@ -162,8 +162,8 @@ class ViewInvoice extends Component {
                                         </div>
                                     </SimpleBar>
                                 </div>
-                            </div>) 
-                              : (<Loader />)}
+                            </div>)
+                            : (<Loader />)}
                     </div>
                 </div>
                 <div className="total-iteam">

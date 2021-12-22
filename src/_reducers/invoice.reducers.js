@@ -92,6 +92,21 @@ export function invoice(state = {}, action) {
                 update_invoice_status: status.FAILURE,
                 updateInvoice: null
             };
+        case invoiceConstants.GET_NEW_INVOICE_REQUEST:
+            return {
+                get_new_invoice_status: status.IN_PROGRESS,
+                newInvoiceData: action.data
+            };
+        case invoiceConstants.GET_NEW_INVOICE_SUCCESS:
+            return {
+                get_new_invoice_status: status.SUCCESS,
+                newInvoiceData: action.data
+            };
+        case invoiceConstants.GET_NEW_INVOICE_FAILUER:
+            return {
+                get_new_invoice_status: status.FAILURE,
+                newInvoiceData: null
+            }
         default:
             return state;
     }
