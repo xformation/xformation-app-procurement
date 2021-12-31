@@ -91,7 +91,6 @@ class RecievedRfq extends Component {
                         return <td><Button className="btn details-btn" onClick={() => this.onClickShowViewDetails(value)} style={{ color: '#6417c5', textTransform: 'capitalize' }}>View Details</Button></td>
                     }
                 },
-
             ],
             tableData: [],
         }

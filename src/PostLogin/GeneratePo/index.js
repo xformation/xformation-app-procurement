@@ -111,7 +111,6 @@ class GeneratePo extends Component {
 
     onClickShowGenerateButton = (id) => {
         this.props.history.push(`/postlogin/generatepo/${id}`)
-        console.log("clicked")
     }
     handleStateChange = (e) => {
         const { name, value } = e.target;
@@ -348,10 +347,11 @@ class GeneratePo extends Component {
                             <div className="generate-purchase">
                                 <div className="heading">
                                     <h4>Generate Purchase Order</h4>
-                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
+                                    <div className="approve-button">
                                         <Button variant="contained" className="primary-btn" disableElevation onClick={() => this.props.history.push('/postlogin/approvepo')}>
                                             Approve
-                                        </Button></div>
+                                        </Button>
+                                    </div>
                                 </div>
                                 <div className="requisitions-filter">
                                     <div className="form">

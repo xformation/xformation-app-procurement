@@ -1010,7 +1010,7 @@
                       "type": "array",
                       "x-count": 13,
                       "items": {
-                        "$ref": "#/components/schemas/requisition"
+                        "$ref": "#/components/schemas/approverquisition"
                       }
                     }
                   }
@@ -1077,6 +1077,71 @@
                     },
                     "object": {
                       "$ref": "#/components/schemas/requisition"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getApprovePo/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Details about a purchase order",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about a purchase order",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/approvePo"
                     }
                   }
                 }
@@ -2702,6 +2767,193 @@
           }
         }
       }
+    },
+    "/getBugetOverviewData": {
+      "get": {
+        "summary": "Details of BudgetOverview",
+        "operationId": "",
+        "tags": [
+          "BudgetOverview"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Details of BudgetOverview",
+            "headers": {
+              "x-next": {
+                "description": "BudgetOverview List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Fetch BudgetOverview Successfully"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 7,
+                      "items": {
+                        "$ref": "#/components/schemas/bugetOverview"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getBudgetAlloceted/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Details about a get track FRP by id",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about a get track FRP by id",
+            "headers": {
+              "x-next": {
+                "description": "FRP by id",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/budgetAllocated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getReorts": {
+      "get": {
+        "summary": "Details of Reports",
+        "operationId": "",
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Details of Reports",
+            "headers": {
+              "x-next": {
+                "description": " Reports List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Fetch BudgetOverview Successfully"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 7,
+                      "items": {
+                        "$ref": "#/components/schemas/reports"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2717,6 +2969,57 @@
           "name": {
             "type": "string",
             "x-faker": "{{commerce.department}}"
+          }
+        }
+      },
+      "budgetAllocated": {
+        "type": "object",
+        "properties": {
+          "budget": {
+            "$ref": "#/components/schemas/bugetOverview"
+          },
+          "depTableData": {
+            "type": "array",
+            "x-count": "7",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ItemDescription": {
+                  "type": "string",
+                  "x-faker": "{{commerce.productName}}"
+                },
+                "requisitionType": {
+                  "type": "string"
+                },
+                "Price": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "finance.amount"
+                },
+                "RqNo": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+                },
+                "dep": {
+                  "type": "string",
+                  "x-faker": "{{commerce.department}}"
+                },
+                "Images": {
+                  "type": "array",
+                  "x-count": "8",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "MembersProfile": {
+                        "type": "string",
+                        "x-faker": "{{image.imageUrl}}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -2744,6 +3047,142 @@
         }
       },
       "requisition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date",
+            "x-faker": "datatype.datetime"
+          },
+          "totalPrice": {
+            "type": "integer",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+          },
+          "notes": {
+            "type": "string",
+            "x-faker": "{{lorem.sentence}}"
+          },
+          "startDate": {
+            "type": "string",
+            "x-faker": "{{date.past}}"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "x-faker": "{{date.future}}"
+          },
+          "paymentTerms": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string",
+            "x-faker": "{{name.firstName}} {{name.lastName}}"
+          },
+          "roleName": {
+            "type": "string",
+            "x-faker": "{{name.firstName}}"
+          },
+          "department": {
+            "$ref": "#/components/schemas/department"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          },
+          "status": {
+            "type": "string"
+          },
+          "requisitionType": {
+            "type": "string",
+            "x-faker": "{{lorem.word}}"
+          },
+          "requistionItem": {
+            "type": "array",
+            "x-count": 7,
+            "items": {
+              "$ref": "#/components/schemas/requisitionItems"
+            }
+          }
+        }
+      },
+      "approvePo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "DeliveryStatus": {
+            "type": "string"
+          },
+          "PaymentStatus": {
+            "type": "string"
+          },
+          "ContactNumber": {
+            "type": "string",
+            "x-faker": "{{phone.phoneNumber }}"
+          },
+          "Department": {
+            "type": "string",
+            "x-faker": "{{commerce.department}}"
+          },
+          "RequestorAvatar": {
+            "type": "string",
+            "x-faker": "{{image.imageUrl}}"
+          },
+          "RequestorName": {
+            "type": "string",
+            "x-faker": "{{internet.userName}}"
+          },
+          "Item": {
+            "type": "string",
+            "x-faker": "{{commerce.productName}}"
+          },
+          "CreationOn": {
+            "type": "string",
+            "format": "date",
+            "x-faker": "datatype.datetime"
+          },
+          "vendorName": {
+            "type": "string",
+            "x-faker": "{{internet.userName}}"
+          },
+          "VendorEmail": {
+            "type": "string",
+            "x-faker": "{{internet.email}}"
+          },
+          "NatureOfBusiness": {
+            "type": "string",
+            "x-faker": "{{commerce.product}}"
+          },
+          "VendorAvatar": {
+            "type": "string",
+            "x-faker": "{{image.imageUrl}}"
+          },
+          "VendorName": {
+            "type": "string",
+            "x-faker": "{{internet.userName}}"
+          },
+          "Comment": {
+            "type": "text",
+            "x-faker": "{{lorem.sentences}}"
+          },
+          "Limit": {
+            "type": "integer",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 10000, \"max\": 100000 })"
+          }
+        }
+      },
+      "approverquisition": {
         "type": "object",
         "properties": {
           "id": {
@@ -2970,9 +3409,22 @@
             "type": "string",
             "x-faker": "{{address.streetName}} {{address.state}},{{address.zipCodeByState}} {{address.country}}"
           },
-          "ComapanyName": {
-            "type": "string",
-            "x-faker": "{{company.companyName}}"
+          "CompanyDesription": {
+            "type": "array",
+            "x-count": "7",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ComapanyName": {
+                  "type": "string",
+                  "x-faker": "{{company.companyName}}"
+                },
+                "ComapanyType": {
+                  "type": "string",
+                  "x-faker": "{{commerce.productName}}"
+                }
+              }
+            }
           },
           "Email": {
             "type": "string",
@@ -3765,6 +4217,45 @@
           }
         }
       },
+      "bugetOverview": {
+        "type": "object",
+        "properties": {
+          "TotalBudget": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })"
+          },
+          "UsedBudget": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 2000, \"max\": 20000 })"
+          },
+          "UsedBudgetPercentage": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 50 })"
+          },
+          "CommitedBudgetPercentage": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 60, \"max\": 80})"
+          },
+          "AvaliableBudget": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })"
+          },
+          "CommitedBudget": {
+            "type": "string",
+            "format": "int64",
+            "x-faker": "datatype.number({ \"min\": 20000, \"max\": 200000 })"
+          },
+          "Department": {
+            "type": "string",
+            "x-faker": "{{commerce.department}}"
+          }
+        }
+      },
       "notificationData": {
         "type": "object",
         "properties": {
@@ -3779,6 +4270,53 @@
           "description": {
             "type": "string",
             "x-faker": "{{lorem.text}}"
+          }
+        }
+      },
+      "reports": {
+        "type": "object",
+        "properties": {
+          "requisitionDepartment": {
+            "type": "string",
+            "x-faker": "{{commerce.department}}"
+          },
+          "requisitionTypes": {
+            "type": "string"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date",
+            "x-faker": "{{date.past}}"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "x-faker": "{{date.past}}"
+          },
+          "profile": {
+            "type": "array",
+            "x-count": 10,
+            "items": {
+              "type": "object",
+              "properties": {
+                "userProfile": {
+                  "type": "string",
+                  "x-faker": "{{image.imageUrl}}"
+                }
+              }
+            }
+          },
+          "notifications": {
+            "type": "array",
+            "x-count": 4,
+            "items": {
+              "type": "object",
+              "properties": {
+                "notification": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },

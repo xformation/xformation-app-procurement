@@ -269,6 +269,44 @@ class RecievedRfp extends Component {
               </div>
             </div>
           </div>
+
+          <div className="form-group row col-form-group">
+              <label >
+               Show
+              </label>
+              <div >
+                <FormControl >
+                  <NativeSelect
+                    name="status"
+                    value={"10"}
+                    onChange={this.handleStateChange}
+                    isvalid={errorData.status.isValid}
+                  >
+                    <option value="">-Select-</option>
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={30}>30</option>
+                  </NativeSelect>
+                </FormControl>
+                <span className="d-block w-100 text-danger">
+                </span>
+                <FormControl>
+                  <NativeSelect
+                    name="status"
+                    value={"panding"}
+                    onChange={this.handleStateChange}
+                    isvalid={errorData.status.isValid}
+                  >
+                    <option value="">-panding-</option>
+                    <option value={10}>panding</option>
+                    <option value={20}>success</option>
+                    <option value={30}>failed</option>
+                  </NativeSelect>
+                </FormControl>
+                <span className="d-block w-100 text-danger">
+                </span>
+              </div>
+            </div>
           <Table
             valueFromData={{ 'columns': columns, 'data': tableData }}
             perPageLimit={6}

@@ -25,13 +25,18 @@ const ViewRecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq/ViewRe
 const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewPo'));
 const AddInvoices = React.lazy(() => import('../PostLogin/Invoices/AddNewInvoice'));
 const ApprovePo = React.lazy(() => import('../PostLogin/GeneratePo/approvePo'));
-const BudgetOverview = React.lazy(() => import('../PostLogin/budgetOverView/index'));
+const BudgetOverview = React.lazy(() => import('../PostLogin/BudgetOverview/index'));
 const Reports = React.lazy(() => import('../PostLogin/reports/reports'));
-const PurchaseOrder =React.lazy(()=>import('../PostLogin/GeneratePo/purchaseOrder'))
+const PurchaseOrder =React.lazy(()=>import('../PostLogin/GeneratePo/purchaseOrder'));
+const BudgetAllocate =React.lazy(()=>import('../PostLogin/BudgetOverview/allocatedBudget'));
+const BudgetAllocation = React.lazy(()=>import("../PostLogin/BudgetOverview/budgetAllocation"));
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
     { path: '/postlogin/email', exact: true, name: 'EmailPage', component: EmailPage },
+    { path: '/postlogin/email/:type', exact: true, name: 'EmailPage', component: EmailPage },
+    { path: '/postlogin/email/:type/:id', exact: true, name: 'EmailPage', component: EmailPage },
+    { path: '/postlogin/email/draft/:draftId', exact: true, name: 'EmailPage', component: EmailPage },
     { path: '/postlogin/kanban', exact: true, name: 'Kanban', component: Kanban },
     { path: '/postlogin/requisitiontracker', exact: true, name: 'RequisitionTracker', component: RequisitionTracker },
     { path: '/postlogin/newrequisition', exact: true, name: 'NewRequisition', component: NewRequisition },
@@ -61,6 +66,8 @@ const routes = [
     { path: '/postlogin/budgetoverview', exact: true, name: 'BudgetOverview', component: BudgetOverview },
     { path: '/postlogin/reports', exact: true, name: 'Reports', component: Reports },
     {path: '/postlogin/approvepo/:id', exact:true, name: 'PurchaseOrder' , component:PurchaseOrder},
+   { path: '/postlogin/budgetoverview/:id', exact:true, name:'BudgetAllocate' ,component:BudgetAllocate},
+   {path: "/postlogin/budgetallocation", exact:true, name:"BudgetAllocation", component: BudgetAllocation}
 ]
 
 export default routes;

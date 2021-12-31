@@ -25,13 +25,21 @@ class Pagination extends Component {
         let rows = [];
         if (totalRecords > 0) {
             for (let i = 0; i < totalPages; i++) {
-                rows.push(<li key={i}><a className={currentPage === i ? 'active' : ''} href="#" onClick={(e) => this.navigatePage('btn-click', e, i)}>{i + 1}</a></li >);
+                rows.push(
+                    <li key={i}>
+                        <a
+                            className={currentPage === i ? 'active' : ''}
+                            href=""
+                            onClick={(e) => this.navigatePage('btn-click', e, i)}
+                        >
+                            {i + 1}
+                        </a>
+                    </li >
+                );
             }
             return (
                 <ul className="d-block" key={rows}>
-                    <div>
-                        {rows}
-                    </div>
+                    {rows}
                 </ul>
             );
         }
@@ -74,18 +82,36 @@ class Pagination extends Component {
             <div className="pagination-container">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-xl-6 col-lg-6 col-md-5 col-sm-5 col-12">
-                        <div className="pagination-text">Showing <strong>{startIndex}&#8722;{endIndex}</strong> From <strong> {totalRecords} </strong></div>
+                        <div className="pagination-text">
+                            Showing&nbsp;
+                            <strong>
+                                {startIndex}&#8722;{endIndex}&nbsp;
+                            </strong>
+                            From&nbsp;
+                            <strong>
+                                {totalRecords}
+                            </strong>
+                        </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-12 text-right">
                         <div className="pagination-section">
-                            <div className={currentPage === 0 ? "d-inline-block btn-left desable" : "d-inline-block btn-left enable"} onClick={(e) => this.navigatePage('pre', e, '')}>
-                                <Button><span><ArrowBackIosIcon /></span></Button>
+                            <div
+                                className={currentPage === 0 ? "d-inline-block btn-left desable" : "d-inline-block btn-left enable"}
+                                onClick={(e) => this.navigatePage('pre', e, '')}
+                            >
+                                <Button>
+                                    <ArrowBackIosIcon />
+                                </Button>
                             </div>
                             <div className="d-inline-block pagination-icon">
                                 {this.peginationOfTable()}
                             </div>
-                            <div className={currentPage === this.state.totalPages - 1 ? "d-inline-block btn-right" : "d-inline-block btn-right"} onClick={(e) => this.navigatePage('next', e, '')}>
-                                <Button><span><ArrowForwardIosIcon /></span></Button>
+                            <div
+                                className={currentPage === this.state.totalPages - 1 ? "d-inline-block btn-right" : "d-inline-block btn-right"} onClick={(e) => this.navigatePage('next', e, '')}
+                            >
+                                <Button>
+                                    <ArrowForwardIosIcon />
+                                </Button>
                             </div>
                         </div>
                     </div>

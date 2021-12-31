@@ -12,48 +12,32 @@ import Checkbox from '@material-ui/core/Checkbox';
 import MailIcon from '@material-ui/icons/Mail';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import SaveIcon from '@material-ui/icons/Save';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
-import ReplyIcon from '@material-ui/icons/Reply';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import WatchLaterIcon from '@material-ui/icons/WatchLater';
-import DirectionsRailwayIcon from '@material-ui/icons/DirectionsRailway';
-import { Multiselect } from 'multiselect-react-dropdown';
 import { IconButton } from '@material-ui/core';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import { emailActions } from '../../_actions/email.actions'
 import { connect } from 'react-redux'
 import { status } from "../../_constants";
-import { commonFunctions } from '../../_utilities';
-import { isThisWeek } from 'date-fns';
 import EmailDetail from './emailDetail';
-import CancelIcon from "@material-ui/icons/Cancel";
-import Tooltip from "@material-ui/core/Tooltip";
 import Pagination from '../../_components/Pagination';
-
+import EmailsPage from './EmailsPage'
+import ComposeEmail from './ComposeEmail';
+import CancelIcon from '@material-ui/icons/Cancel';
 class EmailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       emails: [],
       composEmail: false,
-      detailEmail: false,
+      detailEmail: "",
       activeindex: 0,
       isSelectAll: false,
       perPageLimit: 5,
       currentPage: 0,
       emailData: [],
       isSubmitted: false,
-      searchemail: 'important',
+      searchemail: '',
       sendEmailData: {
         subject: '',
         emaildetail: '',
@@ -62,28 +46,6 @@ class EmailPage extends Component {
         senderId: '2',
         attechment: [],
       },
-      selectedValue: [
-        //     { name: 'evanernest', email: 'evanernest@mail.com', id: 1 },
-        //     { name: 'evanernest2', email: 'evanernest2@mail.com', id: 2 },
-      ],
-      preselectValue: [
-        { name: 'Olivia Johnson', email: 'oliviaJohnson@mail.com', id: 1 },
-        { name: 'Marteens', email: 'marteen404@mail.com', id: 2 },
-      ],
-      options: [
-        { name: 'Olivia Johnson', email: 'oliviaJohnson@mail.com', id: 1 },
-        { name: 'Marteens', email: 'marteen404@mail.com', id: 2 },
-        { name: 'evanernest', email: 'evanernest@mail.com', id: 3 },
-        { name: 'ddd', email: 'ddd@a.com', id: 4 },
-        { name: 'efg', email: 'efg@a.com', id: 5 },
-      ],
-      contacts: [
-        { name: 'evanernest', email: 'evanernest@mail.com', id: 1 },
-        { name: 'evanernest2', email: 'evanernest2@mail.com', id: 2 },
-        { name: 'evanernest3', email: 'evanernest3@mail.com', id: 3 },
-        { name: 'ddd', email: 'ddd@a.com', id: 4 },
-        { name: 'efg', email: 'efg@a.com', id: 5 },
-      ]
     }
 
     this.paginationRef = React.createRef();
@@ -91,39 +53,48 @@ class EmailPage extends Component {
 
   onClickShowCompos = () => {
     const { composEmail } = this.state;
-    let compos = composEmail;
     this.setState({
-      composEmail: !compos,
+      composEmail: !composEmail,
     })
   }
 
-  onClickShowMailDetail = () => {
-    const { detailEmail } = this.state;
-    let detail = detailEmail;
-    this.setState({
-      detailEmail: !detail,
-    })
+  closeDetailPage = () => {
+    this.props.history.push('/postlogin/email');
   }
 
   componentDidMount() {
-    let { sendEmailData, preselectValue } = this.state;
-    this.props.dispatch(emailActions.recentcommunication());
-    this.props.dispatch(emailActions.searchallemails({ 'search': this.state.searchemail }));
-    sendEmailData.to = preselectValue;
-    this.setState({ sendEmailData })
 
+    const { id, draftId } = this.props.match.params;
+    if (this.props && this.props.match && this.props.match.params && this.props.match.params.type) { this.setState({ searchemail: this.props.match.params.type }) }
+
+    if (id) {
+      this.setState({
+        detailEmail: id
+      });
+    }
+    else if (draftId) {
+    }
+    else {
+      let { sendEmailData, preselectValue } = this.state;
+      this.props.dispatch(emailActions.recentcommunication());
+      this.props.dispatch(emailActions.searchallemails({ 'search': this.state.searchemail }));
+      sendEmailData.to = preselectValue;
+      this.setState({ sendEmailData })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { perPageLimit } = this.state;
-    if (this.props.search_email_status !== prevProps.search_email_status && this.props.search_email_status === status.SUCCESS) {
+    if (this.props.search_email_status !== prevProps.search_email_status &&
+      this.props.search_email_status === status.SUCCESS) {
       if (this.props.searchemail && this.props.searchemail.length > 0) {
         this.setState({
           emails: this.props.searchemail
         })
       }
     }
-    if (this.props.search_all_email_status !== prevProps.search_all_email_status && this.props.search_all_email_status === status.SUCCESS) {
+    if (this.props.search_all_email_status !== prevProps.search_all_email_status
+      && this.props.search_all_email_status === status.SUCCESS) {
       if (this.props.searchallemail && this.props.searchallemail.length > 0) {
         let data = this.props.searchallemail;
         if (data && data.length > 0) {
@@ -135,12 +106,14 @@ class EmailPage extends Component {
           let indexOfLastData = Math.ceil(data.length / perPageLimit);
           this.setState({
             emailData: data
-          });
-          this.paginationRef.current.setOptions({
-            totalPages: indexOfLastData,
-            perPageLimit,
-            totalRecords: data.length
-          });
+          })
+          if (this.paginationRef && this.paginationRef.current) {
+            this.paginationRef.current.setOptions({
+              totalPages: indexOfLastData,
+              perPageLimit,
+              totalRecords: data.length
+            });
+          }
         }
       }
     }
@@ -150,10 +123,12 @@ class EmailPage extends Component {
         sendEmailData: {}
       })
     }
+    // this.setState({searchemail:this.props.params})
   }
 
   displayEmailList = () => {
-    const { emailData, activeindex, currentPage, perPageLimit } = this.state;
+    const { emailData, activeindex, currentPage, perPageLimit, searchemail } = this.state;
+    let otherData = {};
     let retData = [];
     if (emailData && emailData.length > 0) {
       for (let i = 0; i < emailData.length; i++) {
@@ -161,50 +136,21 @@ class EmailPage extends Component {
           let row = emailData[i];
           let time = row.time.split('T');
           time = time[1].split('.');
+          otherData = { perPageLimit, currentPage, i, history: this.props.history, searchemail }
           retData.push(
-            <li className={activeindex == i ? "active" : ""} onClick={() => this.setState({ activeindex: i })}>
-              <div className="user-id">
-                <div className="check-box">
-                  <FormControlLabel
-                    control={
-                      <Checkbox name="checkedB" color="primary" checked={row.isChecked} onChange={(e) => this.setSelectedMail(e, i)} />
-                    }
-                  />
-                </div>
-                <div className={`user-box ${row.isStar == "true" ? "active" : ""}`}><StarIcon /></div>
-                <div className="user-img"><img src={row.sender.profilePic} alt="" height="50px" width="50px" /></div>
-              </div>
-              <div className="user-content">
-                <div className="d-flex">
-                  <div className="col-9" onClick={this.onClickShowMailDetail} key={row.body}>
-                    <span>{row.sender.email} {time[0]}</span>
-                    <h5>{row.subject}</h5>
-                    <p>{row.body}</p>
-                  </div>
-                  <div className="col-3 pr-0">
-                    {!row.showIcon && <div className="list-icon">
-                      <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton></div>}
-                    {row.showIcon && <ButtonGroup variant="text" aria-label="text primary button group">
-                      {row.isRead == "true" && <IconButton><DirectionsRailwayIcon /></IconButton>}
-                      {row.isSnooze == "true" && <IconButton><WatchLaterIcon /></IconButton>}
-                      {row.attechment && row.attechment.length > 0 && <IconButton><AttachFileIcon /></IconButton>}
-                      <IconButton onClick={() => this.showIcon(i)} className="menu-icon"><MoreVertIcon /></IconButton>
-                    </ButtonGroup>}
-                  </div>
-                </div>
-              </div>
-            </li>
+            <div className={activeindex == emailData.i ? "active" : ""}>
+              <EmailsPage row={row} otherData={otherData} setSelectedMail={this.setSelectedMail} />
+            </div>
           );
         }
       }
     }
     return retData;
   }
-
-  setSelectedMail = (e, index) => {
+  setSelectedMail = (e, index, value) => {
     let { emailData, isSelectAll } = this.state;
     let count = 0;
-    emailData[index].isChecked = e.target.checked;
+    emailData[index].isChecked = value;
     for (let i = 0; i < emailData.length; i++) {
       if (emailData[i].isChecked) {
         count++;
@@ -212,7 +158,7 @@ class EmailPage extends Component {
         count--;
       }
     }
-    if (count == emailData.length) {
+    if (count === emailData.length) {
       isSelectAll = true;
     } else {
       isSelectAll = false;
@@ -235,13 +181,7 @@ class EmailPage extends Component {
     })
   }
 
-  showIcon = (index) => {
-    let { emailData } = this.state;
-    emailData[index].showIcon = !emailData[index].showIcon;
-    this.setState({
-      emailData
-    })
-  }
+
 
   displayEmail = () => {
     const { emails } = this.state;
@@ -264,7 +204,6 @@ class EmailPage extends Component {
     }
     return retData
   }
-
   countryToFlag = (isoCode) => {
     return typeof String.fromCodePoint !== 'undefined'
       ? isoCode
@@ -276,93 +215,17 @@ class EmailPage extends Component {
   setEmailType = (type) => {
     this.setState({
       searchemail: type,
+      composEmail:false
     });
+    this.props.history.push(`/postlogin/email/${type}`)
     this.props.dispatch(emailActions.searchallemails({ 'search': type }));
   }
 
-  handleStateChange = (e) => {
-    let { sendEmailData } = this.state;
-    const { name, value } = e.target;
-    sendEmailData[name] = value;
+  emailType = (type) => {
     this.setState({
-      sendEmailData,
-    })
-  }
-
-  setSelectedEmailUser = (val, type) => {
-    let { sendEmailData } = this.state;
-    sendEmailData[type] = val;
-    this.setState({
-      sendEmailData,
-    })
-  }
-
-  handleFile = (e) => {
-    const { files } = e.target;
-    let { sendEmailData } = this.state;
-    if (files && files.length === 1) {
-      sendEmailData.attechment.push(files[0])
-      this.setState({ sendEmailData });
-    }
-    else {
-      for (let i = 0; i < files.length; i++) {
-        sendEmailData.attechment.push(files[i])
-      }
-      this.setState({ sendEmailData });
-    }
-  }
-
-  handleRemoveFile = (indx) => {
-    let { sendEmailData } = this.state
-    sendEmailData.attechment.splice(indx, 1);
-    this.setState({ sendEmailData })
-  }
-  validate = (isSubmitted) => {
-    const validObj = {
-      isValid: true,
-      message: "",
-    };
-    let isValid = true;
-    const retData = {
-      emaildetail: validObj,
-      to: validObj,
-      isValid,
-    };
-    if (isSubmitted) {
-      const { sendEmailData } = this.state;
-      if (!sendEmailData.emaildetail) {
-        retData.emaildetail = {
-          isValid: false,
-          message: "Email details is required",
-        };
-        isValid = false;
-      }
-      if (sendEmailData.to && sendEmailData.to.length == 0) {
-        retData.to = {
-          isValid: false,
-          message: "TO is Required",
-        };
-        isValid = false;
-      }
-    }
-    retData.isValid = isValid;
-    return retData;
-  };
-
-  sendEmail = () => {
-    const { sendEmailData } = this.state;
-    this.setState({ isSubmitted: true })
-    const errorData = this.validate(true);
-    let sendData = {
-      subject: sendEmailData.subject,
-      emaildetail: sendEmailData.emaildetail,
-      to: sendEmailData.to,
-      bcc: sendEmailData.bcc,
-      senderId: '2',
-    }
-    if (errorData.isValid) {
-      this.props.dispatch(emailActions.sendEmail({ 'obj': sendData, 'attechment': sendEmailData.attechment }));
-    }
+      searchemail: type,
+    });
+    this.props.dispatch(emailActions.searchallemails({ 'search': type }));
   }
 
   onChangeCurrentPage = (currentPage) => {
@@ -372,8 +235,9 @@ class EmailPage extends Component {
   };
 
   render() {
-    const { composEmail, isSelectAll, isSubmitted, options, contacts, selectedValue, preselectValue, detailEmail, searchemail, sendEmailData } = this.state;
-    const errorData = this.validate(isSubmitted);
+    const { composEmail, isSelectAll, detailEmail,
+      searchemail } = this.state;
+
     return (
       <div className="main-content">
         <div className="compose-email-section">
@@ -382,8 +246,8 @@ class EmailPage extends Component {
               <div className="compose-left">
                 <div className="compose-btn">
                   <Button type="button" onClick={this.onClickShowCompos} className="compose active">
+                    ComposEmail
                     <CreateIcon />
-                    Compos Email
                   </Button>
                 </div>
                 <div className="compose-tabs">
@@ -393,12 +257,18 @@ class EmailPage extends Component {
                     <span><ChevronRightIcon /></span>
                   </div>
                   <ul>
-                    <li className={searchemail === "inbox" ? "active" : ""} onClick={() => this.setEmailType('inbox')}><button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
-                    <li className={searchemail === "sent" ? "active" : ""} onClick={() => this.setEmailType('sent')}><button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
-                    <li className={searchemail === "draft" ? "active" : ""} onClick={() => this.setEmailType('draft')}><button className="btn"><span><DraftsIcon /></span>Draft</button></li>
-                    <li className={searchemail === "archived" ? "active" : ""} onClick={() => this.setEmailType('archived')}><button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
-                    <li className={searchemail === "favorite" ? "active" : ""} onClick={() => this.setEmailType('favorite')}><button className="btn"><span><StarIcon /></span>Favourites</button></li>
-                    <li className={searchemail === "spam" ? "active" : ""} onClick={() => this.setEmailType('spam')}><button className="btn"><span><CreateNewFolderIcon /></span>Spam</button></li>
+                    <li className={searchemail === "inbox" ? "active" : ""} onClick={() => this.setEmailType('inbox')}>
+                      <button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
+                    <li className={searchemail === "sent" ? "active" : ""} onClick={() => this.setEmailType('sent')}>
+                      <button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
+                    <li className={searchemail === "draft" ? "active" : ""} onClick={() => this.setEmailType('draft')}>
+                      <button className="btn"><span><DraftsIcon /></span>Draft</button></li>
+                    <li className={searchemail === "archived" ? "active" : ""} onClick={() => this.setEmailType('archived')}>
+                      <button className="btn"><span><ArchiveIcon /></span>Archived</button></li>
+                    <li className={searchemail == "favorites" ? "active" : ""} onClick={() => this.setEmailType('favorites')}>
+                      <button className="btn"><span><StarIcon /></span>Favourites</button></li>
+                    <li className={searchemail === "spam" ? "active" : ""} onClick={() => this.setEmailType('spam')}>
+                      <button className="btn"><span><CreateNewFolderIcon /></span>Spam</button></li>
                   </ul>
                 </div>
                 <div className="recent-content">
@@ -418,120 +288,11 @@ class EmailPage extends Component {
             </div>
             <div className="col-xl-9 col-lg-8 col-md-8 col-sm-12">
               {composEmail === true ?
-                <div className="compose-right">
-                  <div className="head-top progress-form">
-                    <div className="row justify-content-center align-items-center">
-                      <div className="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-12">
-                        <div className="heading"><span onClick={this.onClickShowCompos}><KeyboardBackspaceIcon /></span>
-                          <h4>Compose Email</h4>
-                        </div>
-                      </div>
-                      <div className="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-12">
-                        <div className="progress-draft-btn">
-                          <Button variant="outlined" className="draft-btn">
-                            <span><SaveIcon className="btn-icon" /></span>
-                            Save to Draft
-                          </Button>
-                          <Button variant="outlined" className="delete-btn">
-                            <span><DeleteForeverIcon className="btn-icon" /></span>
-                            Delete
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="progress-content">
-                    <div className="email-section">
-                      <div className="d-inline-block heading">to</div>
-                      <Multiselect
-                        options={options}
-                        selectedValues={preselectValue}
-                        displayValue="email"
-                        placeholder=''
-                        onSelect={(val) => this.setSelectedEmailUser(val, 'to')}
-                        onRemove={(value) => this.setSelectedEmailUser(value, 'to')}
-                      />
-                      <span className="text-danger">
-                        {errorData.to.message}
-                      </span>
-                    </div>
-                    <div className="email-bcc">
-                      <div className="d-inline-block heading">bcc</div>
-                      <Multiselect
-                        options={contacts}
-                        selectedValues={selectedValue}
-                        displayValue="email"
-                        placeholder=''
-                        onSelect={(val) => this.setSelectedEmailUser(val, 'bcc')}
-                      />
-                    </div>
-                    <div className="email-subject">
-                      <div className="d-inline-block heading">subject</div>
-                      <div className="content">
-                        {/* <span>Follow Up Progress From Order &#35;0001241251</span> */}
-                        <input type="text" name="subject" onChange={this.handleStateChange} value={sendEmailData.subject} />
-                      </div>
-                    </div>
-                    <div className="email-massage">
-                      <div className="d-inline-block heading">massage</div>
-                      <div className="content">
-                        <textarea placeholder="Hello guys Lorem ipsum dolor sit amet ,consectetur adipiscing elit, sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua." name="emaildetail" value={sendEmailData.emaildetail} onChange={this.handleStateChange} >
-                        </textarea>
-                        <span className="text-danger">
-                          {errorData.emaildetail.message}
-                        </span>
-                      </div>
-                      <div className="col-4 pr-0">
-
-                        {
-                          sendEmailData.attechment.map((file, indx) =>
-                          (<span>
-                            <div className="upload-screenshort">
-                              <a href={URL.createObjectURL(file)} target="_blank" rel="noreferrer">
-                                <div className="file-name" aria-label={file.name} > {file.name}</div></a>
-                              <IconButton className="CancelIcon" onClick={() => this.handleRemoveFile(indx, file)}>
-                                <CancelIcon />
-                              </IconButton>
-                            </div>
-                          </span>
-                          )
-                          )
-                        }
-
-                      </div>
-                    </div>
-                  </div>
-                  <div className="footer-bottom">
-                    <div className="footer-section-inner">
-                      <Button variant="contained" className="send-email-btn" onClick={this.sendEmail}><i class="fas fa-paper-plane"></i>send email</Button>
-                      <IconButton className="attache-icon" ><input type="file" id="attechment" name="attechment" accept="image/png, image/jpeg" multiple onChange={this.handleFile} /><AttachFileIcon /></IconButton>
-                      <IconButton className="reply-icon"><ReplyIcon /></IconButton>
-                      <IconButton className="symbols-icon">T</IconButton>
-                      <div className="opensens-dropdown">
-                        <FormControl className="opensens-content">
-                          <NativeSelect >
-                            <option value="">Open sens</option>
-                            <option value={10}>Ten</option>
-                            <option value={20}>Twenty</option>
-                            <option value={30}>Thirty</option>
-                          </NativeSelect>
-                        </FormControl>
-                      </div>
-                      <div className="symbols">
-                        <ul>
-                          <li><IconButton className="symbols-icon">B</IconButton></li>
-                          <li><IconButton className="symbols-icon">I</IconButton></li>
-                          <li><IconButton className="symbols-icon">U</IconButton></li>
-                          <li ><IconButton className="symbols-icon"><TagFacesIcon /></IconButton></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ComposeEmail onClickShowCompos={this.onClickShowCompos} />
                 :
                 <>
-                  {detailEmail === true ?
-                    <EmailDetail closeDetailPage={this.onClickShowMailDetail} />
+                  {detailEmail !== "" ?
+                    <EmailDetail closeDetailPage={this.closeDetailPage} emailid={detailEmail} />
                     :
                     <div className="compose-right">
                       <div className="head-top">
@@ -551,9 +312,12 @@ class EmailPage extends Component {
                                 />
                               </div>
                               <ul>
-                                <li onClick={() => this.emailType("important")}><a href="#" className ={searchemail === "important" ? "active" :""} ><span><MailIcon /></span>Important</a></li>
-                                <li onClick={() => this.emailType("socials")}><a href="#" className ={searchemail === "socials" ? "active" :""} ><span><SupervisorAccountIcon /></span>Socials</a></li>
-                                <li onClick={() => this.emailType("promotion")}><a href="#" className ={searchemail === "promotion" ? "active" :""}><span><ConfirmationNumberIcon /></span>Promotion</a></li>
+                                <li onClick={() => this.emailType("important")}><a href="#" className={searchemail === "important" ? "active" : ""} >
+                                  <span><MailIcon /></span>Important</a></li>
+                                <li onClick={() => this.emailType("socials")}><a href="#" className={searchemail === "socials" ? "active" : ""} >
+                                  <span><SupervisorAccountIcon /></span>Socials</a></li>
+                                <li onClick={() => this.emailType("promotion")}><a href="#" className={searchemail === "promotion" ? "active" : ""}>
+                                  <span><ConfirmationNumberIcon /></span>Promotion</a></li>
                               </ul>
                             </div>
                           </div>

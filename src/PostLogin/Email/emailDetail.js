@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import Kevin from '../../assets/images/dashbord/kevin.png'
 import StarIcon from '@material-ui/icons/Star';
 import { emailActions } from '../../_actions/email.actions';
 import { connect } from 'react-redux';
@@ -28,12 +27,12 @@ class EmailDetail extends Component {
             }
         }
         if (prevProps.delete_email_status !== this.props.delete_email_status && this.props.delete_email_status === status.SUCCESS) {
-            this.props.closeDetailPage(this.props.emailid);
+            this.props.closeDetailPage();
         }
     }
 
     onClickShowMailDetail = () => {
-        this.props.closeDetailPage(this.props.emailid);
+        this.props.closeDetailPage();
     }
 
     deleteEmail = () => {

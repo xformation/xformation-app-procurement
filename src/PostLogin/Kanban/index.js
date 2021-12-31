@@ -32,72 +32,10 @@ class Kanban extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            quatationList: [
-                // {
-                //     title: 'Get Quotation for Department 1',
-                //     time: '4 days',
-                //     progressPer: 80,
-                //     progressPerColor: '#ffab2e',
-                //     type: 'Important',
-                //     color: 'ffab2e',
-                // },
-                // {
-                //     title: 'Contact Suppliers for Products',
-                //     time: '5 days',
-                //     progressPer: 50,
-                //     type: 'Supplier',
-                //     color: '5fcfff',
-                // },
-                // {
-                //     title: 'Received Products for Department',
-                //     time: '3 days',
-                //     progressPer: 40,
-                //     type: 'Products',
-                //     color: 'ff4955',
-                // },
-                // {
-                //     title: 'Create Invoice for Supplier 003',
-                //     time: '7 days',
-                //     progressPer: 30,
-                //     type: 'Invoice',
-                //     color: 'e328af',
-                // },
-                // {
-                //     title: 'Get Approval from Accounts Dept',
-                //     time: '6 days',
-                //     progressPer: 70,
-                //     type: 'Accounts',
-                //     color: '38e25c',
-                // },
-                // {
-                //     title: 'Products Received',
-                //     time: '2 days',
-                //     progressPer: 100,
-                //     type: 'Received',
-                //     color: '000000',
-                // },
-                // {
-                //     title: 'Follow up with Supplier for',
-                //     time: '4 days',
-                //     progressPer: 60,
-                //     type: 'Follow up',
-                //     color: 'ffab2e',
-                // },
-                // {
-                //     title: 'Received Quotation form Supplier',
-                //     time: '5 days',
-                //     progressPer: 25,
-                //     type: 'Quotation',
-                //     color: 'ff4955',
-                // },
-                // {
-                //     title: 'Get Quotation for Department 2',
-                //     time: '3 days',
-                //     progressPer: 75,
-                //     type: 'Important',
-                //     color: '38e25c',
-                // },
-            ],
+            quatationList: [],
+            onProgress: [],
+            completed: [],
+            revised: [],
             onProgressCount: 0,
             completedCount: 0,
         }
@@ -122,6 +60,9 @@ class Kanban extends Component {
                 }
                 this.setState({
                     quatationList: this.props.kanban_list,
+                    onProgress: this.props.kanban_list,
+                    completed: this.props.kanban_list,
+                    revised: this.props.kanban_list,
                     completedCount,
                     onProgressCount
                 })
@@ -129,45 +70,48 @@ class Kanban extends Component {
         }
     }
 
-    displayQuatation = () => {
-        const { quatationList } = this.state;
+    displayQuatation = (quatationList) => {
+        // const { quatationList } = this.state;
         let retData = [];
-        for (let i = 0; i < quatationList.length; i++) {
-            let row = quatationList[i];
-            let time = row.time.split('T');
-            let emailtime = time[1].split('.');
-            retData.push(
-                <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12" key={row.title}>
-                    <div className="suppliers-list">
-                        <div className="suppliers-content">
-                            <div className={`heading ${row.color}`} style={{ color: `#ffab2e` }}>
-                                <span className="icon" style={{ backgroundColor: `#ffab2e` }}></span>
-                                {row.type}
-                                <IconButton className="float-right right-icon"><MoreHorizIcon /></IconButton>
-                            </div>
-                            <div className="department">{row.title}</div>
-                            <div className="get-proses">
-                                <LinearProgress variant="determinate" value={row.progressPer} bar="#ffab2e" style={{ backgroundColor: '#dadada' }} />
-                            </div>
-                            <div className="user-text">
-                                {row.users && row.users.length > 0 &&
-                                    <div className="user-images">
-                                        <AvatarGroup max={4} >
-                                            {row.users.map((val) => {
-                                                return (
-                                                    <Avatar alt="Remy Sharp" src={val.url} />
-                                                );
-                                            })
-                                            }
-                                        </AvatarGroup>
-                                    </div>
-                                }
-                                <span>Due in {emailtime[0]}</span>
+        if (quatationList && quatationList.length > 0) {
+
+            for (let i = 0; i < quatationList.length; i++) {
+                let row = quatationList[i];
+                let time = row.time.split('T');
+                let emailtime = time[1].split('.');
+                retData.push(
+                    <div className="col-12" key={row.title}>
+                        <div className="suppliers-list">
+                            <div className="suppliers-content">
+                                <div className={`heading ${row.color}`} style={{ color: `#ffab2e` }}>
+                                    <span className="icon" style={{ backgroundColor: `#ffab2e` }}></span>
+                                    {row.type}
+                                    <IconButton className="float-right right-icon"><MoreHorizIcon /></IconButton>
+                                </div>
+                                <div className="department">{row.title}</div>
+                                <div className="get-proses">
+                                    <LinearProgress variant="determinate" value={row.progressPer} bar="#ffab2e" style={{ backgroundColor: '#dadada' }} />
+                                </div>
+                                <div className="user-text">
+                                    {row.users && row.users.length > 0 &&
+                                        <div className="user-images">
+                                            <AvatarGroup max={4} >
+                                                {row.users.map((val) => {
+                                                    return (
+                                                        <Avatar alt="Remy Sharp" src={val.url} />
+                                                    );
+                                                })
+                                                }
+                                            </AvatarGroup>
+                                        </div>
+                                    }
+                                    <span>Due in {emailtime[0]}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div >
-            );
+                    </div >
+                );
+            }
         }
         return retData;
     }
@@ -186,7 +130,8 @@ class Kanban extends Component {
 
 
     render() {
-        const { quatationList, invitePeoples, onProgressCount, completedCount } = this.state;
+        const { invitePeoples, onProgressCount, completedCount } = this.state;
+        let { quatationList, onProgress, revised, completed } = this.state
         return (
             <div className="main-content">
                 <div className="kanban-head">
@@ -203,7 +148,7 @@ class Kanban extends Component {
                         </IconButton>
                     </div>
                     <div className="head-bottom">
-                        <div className="row  justify-content-center align-items-center">
+                        <div className="row justify-content-center align-items-center">
                             <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12">
                                 <div className="head-left">
                                     <div className="group-imags">
@@ -288,11 +233,6 @@ class Kanban extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-
-
-
-
-
                 <div className="suppliers-section">
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -328,18 +268,8 @@ class Kanban extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                            <ReactSortable
-                                list={quatationList}
-                                setList={(newState) => this.setState({ quatationList: newState })}
-                                className="row"
-                            >
-                                {this.displayQuatation()}
-
-                            </ReactSortable>
-                        </div>
-                        <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <div className="row justify-content-end mb-4">
+                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div className="suppliers-list">
                                 <div className="suppliers-content important">
                                     <div className="dragdrop-file">
@@ -348,6 +278,66 @@ class Kanban extends Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <strong>To−Do List</strong>
+                            <ReactSortable
+                                list={quatationList}
+                                setList={(newState) => this.setState({ quatationList: newState })}
+                                className="row"
+                                group="cards"
+                                onChange={(order, sortable, evt) => { }}
+                                onEnd={evt => { }}
+                            >
+                                {quatationList && quatationList.length > 0 && this.displayQuatation(quatationList)}
+
+                            </ReactSortable>
+                        </div>
+                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <strong>On Progress</strong>
+                            <ReactSortable
+                                list={onProgress}
+                                setList={(newState) => this.setState({ onProgress: newState })}
+                                className="row"
+                                group="cards"
+                                onChange={(order, sortable, evt) => { }}
+                                onEnd={evt => { }}
+                            >
+                                {onProgress && onProgress.length > 0 && this.displayQuatation(onProgress)}
+
+                            </ReactSortable>
+                        </div>
+                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <strong>Completed</strong>
+                            <ReactSortable
+                                list={completed}
+                                setList={(newState) => this.setState({ completed: newState })}
+                                className="row"
+                                group="cards"
+                                onChange={(order, sortable, evt) => { }}
+                                onEnd={evt => { }}
+                            >
+                                {completed && completed.length > 0 && this.displayQuatation(completed)}
+
+                            </ReactSortable>
+                        </div>
+
+                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <strong>Revised</strong>
+                            <ReactSortable
+                                list={revised}
+                                setList={(newState) => this.setState({ revised: newState })}
+                                className="row"
+                                group="cards"
+                                onChange={(order, sortable, evt) => { }}
+                                onEnd={evt => { }}
+                            >
+                                {revised && revised.length > 0 && this.displayQuatation(revised)}
+
+                            </ReactSortable>
+                        </div>
+
                     </div>
                 </div>
             </div>

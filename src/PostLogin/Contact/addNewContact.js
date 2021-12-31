@@ -33,6 +33,8 @@ class addNewContact extends Component {
       profile: "",
       sendData: {},
       errors: {},
+      contacts:[],
+      duplicateContacts:[],
       isSubmitted: false,
       profileUrl: "",
       activeindex: 0,
@@ -41,12 +43,25 @@ class addNewContact extends Component {
   }
 
   componentDidMount() {
+    this.props.dispatch(contactAction.fetchContactList());
     if (this.props.match.params.id) {
       this.props.dispatch(contactAction.getContactData({ 'id': this.props.match.params.id }));
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.get_contact_status!==
+       this.props.get_contact_status 
+      && this.props.get_contact_status===
+       status.SUCCESS){
+         if (this.props.getContact && this.props.getContact.length>0)
+         {
+           this.setState({
+             contacts:this.props.getContact,
+             duplicateContacts:this.props.getContact
+           })
+         }
+       }
     if (
       prevProps.get_edit_contact_status !==
       this.props.get_edit_contact_status &&
@@ -69,6 +84,7 @@ class addNewContact extends Component {
 
         });
       }
+      
     }
     if (
       prevProps.add_contact_status !== this.props.add_contact_status &&
@@ -234,8 +250,17 @@ class addNewContact extends Component {
     this.setState({ displayOption: !this.state.displayOption });
   }
 
+  editContact = (index,id) => {
+    this.props.history.push(`/postlogin/newcontact/${id}`);
+  }
+  deleteEmailContact =(index)=>{
+    let {contacts}=this.state
+    contacts.splice(index,1);
+    this.setState({contacts});
+  }
   render() {
     const {
+      contacts,
       firstName,
       lastName,
       title,
@@ -255,7 +280,58 @@ class addNewContact extends Component {
             <div className="col-md-3">
               <div className="heading"><h4>Contacts</h4><p>Lorem ipsum dolor sit amet</p></div>
               <SimpleBar style={{ maxHeight: 'calc(450px)' }} >
-                <Card className="member-box">
+                {contacts && contacts.length > 0 && contacts.map((contact , index)=>
+                <Card className="member-box" key={index}>
+                  <div className="d-block w-100 user-img">
+                    <div className="d-inline-block image">
+                      <img src={contact.profile} alt="" />
+                    </div>
+                    <div
+                      className="d-inline-block menu-icon"
+                      style={{ display: "flex" }}
+                    >
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon
+                          onClick={
+                            this.toggleDisplayOptions
+                          }
+                        />
+                      </IconButton>
+                      <div className="settings-toggle">
+                        {displayOption &&
+                          <>
+                            <span onClick={()=>this.editContact(index ,contact.id)}>
+                              <EditTwoToneIcon /> Edit
+                            </span>
+                            <span onClick={()=>this.deleteEmailContact(index)}>
+                              <HighlightOffIcon /> Delete
+                            </span>
+                          </>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="d-block w-100 member-name"
+                  >
+                    {contact.name}
+                  </div>
+                  <div className="d-block w-100 member-details">
+                    <div className="row">
+                      <div className="col-md-9">
+                        <p>
+                          {contact.company}
+                          <strong>{contact.position}</strong>
+                        </p>
+                      </div>
+                      <div className="col-md-3">
+                        <div class="member-position">JH</div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>)}
+              
+                {/* <Card className="member-box">
                   <div className="d-block w-100 user-img">
                     <div className="d-inline-block image">
                       <img src={memberImg} alt="" />
@@ -401,56 +477,7 @@ class addNewContact extends Component {
                       </div>
                     </div>
                   </div>
-                </Card>
-                <Card className="member-box">
-                  <div className="d-block w-100 user-img">
-                    <div className="d-inline-block image">
-                      <img src={memberImg} alt="" />
-                    </div>
-                    <div
-                      className="d-inline-block menu-icon"
-                      style={{ display: "flex" }}
-                    >
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon
-                          onClick={
-                            this.toggleDisplayOptions
-                          }
-                        />
-                      </IconButton>
-                      <div className="settings-toggle">
-                        {displayOption &&
-                          <>
-                            <span>
-                              <EditTwoToneIcon /> Edit
-                            </span>
-                            <span>
-                              <HighlightOffIcon /> Delete
-                            </span>
-                          </>
-                        }
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="d-block w-100 member-name"
-                  >
-                    {'Angela Moss'}
-                  </div>
-                  <div className="d-block w-100 member-details">
-                    <div className="row">
-                      <div className="col-md-9">
-                        <p>
-                          Photographer at
-                          <strong>Audio Video Teams</strong>
-                        </p>
-                      </div>
-                      <div className="col-md-3">
-                        <div class="member-position">JH</div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
+                </Card> */}
               </SimpleBar>
             </div>
             <div className="col-md-9">
@@ -629,12 +656,16 @@ function mapStateToProps(state) {
   const {
     get_edit_contact_status,
     contactData,
+    getContact,
+    get_contact_status,
     add_contact_status,
     update_contact_status,
   } = state.contact;
   return {
     get_edit_contact_status,
     contactData,
+    getContact,
+    get_contact_status,
     add_contact_status,
     update_contact_status,
   };

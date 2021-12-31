@@ -30,9 +30,9 @@ class ApprovedRequisition extends Component {
           label: 'S.No',
           key: 'sno',
           renderCallback: (value, index) => {
-              return <td><span className={'s-no'}>{index + 1} </span></td>
+            return <td><span className={'s-no'}>{index + 1} </span></td>
           }
-      },
+        },
         {
           label: "Requisition No",
           key: "id",
@@ -313,6 +313,21 @@ class ApprovedRequisition extends Component {
               </div>
             </div>
           </div>
+
+          <div className="d-flex">
+            <lebel>Show</lebel>
+            <select>
+              <option>10</option>
+            </select>
+            <lebel>Pending</lebel>
+            <select>
+              <option></option>
+              <option>ABC</option>
+            </select>
+
+          </div>
+
+
           <Table
             valueFromData={{
               columns: this.state.columns,

@@ -31,7 +31,7 @@ export const apiEndPoint = {
     GETINVOICE: `${config.apiUrl}/viewInvoice`,
     DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
     UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
-    FETCHNEWINVOICE:`${config.apiUrl}/fetchNewInvoice`,
+    FETCHNEWINVOICE: `${config.apiUrl}/fetchNewInvoice`,
 
     // Requisition Api Url
     ADDREQUISTION: `${config.apiUrl}/addRequisition`,
@@ -78,6 +78,7 @@ export const apiEndPoint = {
     GETGPO: `${config.apiUrl}/getGeneratePo`,
     ADDGPODETAIL: `${config.apiUrl}/addGeneratePoDetail`,
     FETCHGAPPROVEPO: `${config.apiUrl}/searchApprovePo`,
+    GETAPO: `${config.apiUrl}/getApprovePo`,
 
     //recievedefq api url
 
@@ -103,4 +104,15 @@ export const apiEndPoint = {
 
     //GET NOTIFICATION DATA
     GETNOTIFICATIONDATA: `${config.apiUrl}/getNotificationData`,
+
+    // GET BUDGETOVERVIEW DATA
+    GETBUDGET: `${config.apiUrl}/getBugetOverviewData`,
+    GETBUDGETALLOCATED: `${config.apiUrl}/getBudgetAlloceted`,
+
+    //GET REPORTS DATA 
+    GETREPORTS: `${config.apiUrl}/getReorts`,
+
+
+    //   Add Budget Allocation
+    ADDBUDGETALLOCATION: `${config.apiUrl}/addbudgetallocation`,
 };

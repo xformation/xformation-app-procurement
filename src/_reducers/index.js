@@ -15,6 +15,8 @@ import { recievedrfp } from './recievedrfp.reducers';
 import { generatePurchaseOrder } from './purchaseOrder.reducer';
 import { email } from './email.reducers';
 import { kanban } from './kanban.reducers';
+import { budget } from './budgetOverview.reducer';
+import { reports } from './reports.reducers';
 
 const appReducers = combineReducers({
     auth,
@@ -31,7 +33,9 @@ const appReducers = combineReducers({
     recievedrfp,
     generatePurchaseOrder,
     email,
-    kanban
+    kanban,
+    budget,
+    reports,
 });
 
 const rootReducer = (state, action) => {

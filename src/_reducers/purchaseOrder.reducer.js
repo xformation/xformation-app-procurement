@@ -75,6 +75,24 @@ export function generatePurchaseOrder(state = {}, action) {
                 get_approvepo_status: status.FAILURE,
                 approvePo: null
             }
+        case purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_REQUEST:
+            return {
+                ...state,
+                search_approvepo_status: status.IN_PROGRESS,
+                search_pprovepo: action.data
+            }
+        case purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_SUCCESS:
+            return {
+                ...state,
+                search_approvepo_status: status.SUCCESS,
+                search_pprovepo: action.data
+            }
+        case purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_FAILURE:
+            return {
+                ...state,
+                search_approvepo_status: status.FAILURE,
+                search_pprovepo: null
+            }
         default:
             return state;
     }

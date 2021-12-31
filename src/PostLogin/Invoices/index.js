@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { invoiceAction } from '../../_actions/invoice.actions';
 import { status } from "../../_constants";
 import { commonFunctions } from '../../_utilities';
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 class Invoices extends Component {
     constructor(props) {
@@ -194,22 +195,31 @@ class Invoices extends Component {
             <div className="main-content">
                 <div className="invoices-content">
                     <div className="invoices-head-section">
-                        <div className="row">
-                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="row d-flex justify-content-center align-items-center ">
+                            <div className="col-xl-6 col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div className="heading">
                                     <h3>Invoices List</h3>
                                     <span>Lorem ipsum dolor sit amet</span>
                                 </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div className="search-bar">
-                                    <div className="form-group">
-                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
-                                        <button><i className="fas fa-search"></i></button>
+                            <div className="col-xl-6 col-lg-8 col-md-8 col-sm-6 col-12">
+                                <div className="row d-flex justify-content-center align-items-center ">
+                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div className="search-bar">
+                                            <div className="form-group">
+                                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
+                                                <button><i className="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div> <Button variant="contained" className="invoices-list-btn completed-btn" onClick={() => this.props.history.push(`/postlogin/invoices/newinvoice`)}>
-                                    Create NewInvoice
-                                </Button></div>
+                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div className="new-invoices-btn">
+                                            <Button variant="contained" className="primary-btn invoices-button" onClick={() => this.props.history.push(`/postlogin/invoices/newinvoice`)}>
+                                            <PersonAddIcon className="user-icon" />
+                                                Create NewInvoice
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

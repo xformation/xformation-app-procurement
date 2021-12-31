@@ -24,7 +24,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@mat
 import CloseIcon from "@material-ui/icons/Close";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { alert } from "../../_utilities";
-
+import Pagination from "../../_components/Pagination"
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +35,8 @@ class Contact extends Component {
         depart: "",
         isSected: '',
       },
+      perPageLimit: 4,
+      currentPage: 0,
       deleteIndex: '',
       openDialog: false,
       openInviteDialog: false,
@@ -50,12 +52,11 @@ class Contact extends Component {
       ],
       deletePopup: null,
     };
+    this.paginationRef = React.createRef();
   }
-
   componentDidMount() {
     this.props.dispatch(contactAction.fetchContactList());
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.search_contact_status !== this.props.search_contact_status && this.props.search_contact_status === status.SUCCESS) {
       this.setState({
@@ -69,6 +70,26 @@ class Contact extends Component {
       this.props.dispatch(contactAction.fetchContactList());
     }
     if (prevProps.get_contact_status !== this.props.get_contact_status && this.props.get_contact_status === status.SUCCESS) {
+      const { perPageLimit } = this.state
+      if (this.props.getContact && this.props.getContact.length > 0) {  
+        let data = this.props.getContact;
+        if (data && data.length > 0) {
+          for (let i = 0; i < data.length; i++) {
+            data[i].isChecked = false;
+            data[i].isRead = false;
+            data[i].showIcon = false;
+          }
+          let indexOfLastData = Math.ceil(data.length / perPageLimit);
+          this.setState({
+            contactUserList: data
+          });
+          this.paginationRef.current.setOptions({
+            totalPages: indexOfLastData,
+            perPageLimit,
+            totalRecords: data.length
+          });
+        }
+      }
       this.setState({
         contactUserList: this.props.getContact,
         duplicateContactUserList: this.props.getContact
@@ -88,27 +109,27 @@ class Contact extends Component {
       deleteIndex: id,
     })
   };
-
+  onChangeCurrentPage = (currentPage) => {
+    this.setState({
+      currentPage
+    });
+  };
   removeContact = () => {
     this.props.dispatch(contactAction.deleteContact({ id: this.state.deleteIndex }));
     this.setState({ openDialog: false })
   };
-
   toggleDisplayOptions = () => {
     this.setState({ displayOption: !this.state.displayOption });
   }
-
   editContact = (id) => {
     this.props.history.push(`/postlogin/newcontact/${id}`);
   }
-
   handleStateChange = (index, e) => {
     let { contactUserList } = this.state;
     const { checked } = e.target;
     contactUserList[index]["isSelected"] = checked
     this.setState({ contactUserList })
   }
-
   onSearchChange = (e) => {
     const { value } = e.target;
     let { duplicateContactUserList, contactUserList } = this.state;
@@ -129,102 +150,82 @@ class Contact extends Component {
     }
     this.setState({ contactUserList })
   }
-
+  //  display contact list -----------------------------------------
   displayContactUserList = () => {
-    const { contactUserList, activeindex, displayOption } = this.state;
+    const { contactUserList, activeindex, displayOption, currentPage, perPageLimit } = this.state;
+    // console.log(contactUserList, activeindex, displayOption, currentPage, perPageLimit)
     let retData = [];
     let isloading = this.props.get_contact_status === status.IN_PROGRESS;
     if (!isloading) {
       for (let i = 0; i < contactUserList.length; i++) {
-        let row = contactUserList[i];
-        retData.push(
-          <div
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12"
-            key={row.name}
-          >
-            <div className="member-boxs">
-              <Card
-                className={
-                  activeindex == i ? "members-box active" : "members-box"
-                }
-                onClick={() => this.setState({ activeindex: i })}
-              >
-                <div className="d-flex justify-content-center align-items-center user-img">
-                  <div className="d-flex justify-content-center align-items-center image">
-                    <img src={row.profile} alt="" />
-                    <div
-                      className="member-position"
-                      style={{ backgroundColor: `${row.shortNameColor}` }}
-                    >
-                      {row.name.match(/\b(\w)/g)}
+        if (i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) {
+          let row = contactUserList[i];
+          retData.push(
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" key={row.name} >
+              <div className="member-boxs">
+                <Card
+                  className={activeindex == i ? "members-box active" : "members-box"}
+                  onClick={() => this.setState({ activeindex: i })}
+                >
+                  <div className="d-flex justify-content-center align-items-center user-img">
+                    <div className="d-flex justify-content-center align-items-center image">
+                      <img src={row.profile} alt="" />
+                      <div className="member-position" style={{ backgroundColor: `${row.shortNameColor}` }} >{row.name.match(/\b(\w)/g)} </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="d-inline-block menu-icon"
-                  style={{ display: "flex" }}
-                >
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon
-                      onClick={
-                        i === activeindex ? this.toggleDisplayOptions : null
-                      }
-                    />
-                  </IconButton>
-                  <div className="settings-toggle">
-                    {displayOption && i === activeindex ? (
-                      <>
-                        <span onClick={() => this.editContact(row.id)}>
-                          <EditTwoToneIcon /> Edit
-                        </span>
-                        <span onClick={(id) => this.onClickDelete(row.id)}>
-                          <HighlightOffIcon /> Delete
-                        </span>
-                      </>
-                    ) : null}
+                  <div className="d-inline-block menu-icon" style={{ display: "flex" }} >
+                    <IconButton aria-label="settings">
+                      <MoreVertIcon onClick={i === activeindex ? this.toggleDisplayOptions : null} />
+                    </IconButton>
+                    <div className="settings-toggle">
+                      {displayOption && i === activeindex ? (
+                        <>
+                          <span onClick={() => this.editContact(row.id)}>
+                            <EditTwoToneIcon /> Edit
+                          </span>
+                          <span onClick={(id) => this.onClickDelete(row.id)}>
+                            <HighlightOffIcon /> Delete
+                          </span>
+                        </>
+                      ) : null}
+                    </div>
                   </div>
-                </div>
-                <div className="requisition">
-                  <Checkbox
-                    name="saveReq"
-                    color="primary"
-                    checked={row.isSelected}
-                    onChange={(e) => this.handleStateChange(i, e)}
-                  />
-                </div>
-                <div className="member-details">
-                  <ul>
-                    <li>
-                      <b>{row.name}</b>
-                    </li>
-                    <li>
-                      <span>{row.position}</span>
-                    </li>
-                    <li>
-                      <p>{row.company}</p>
-                    </li>
-                  </ul>
-                </div>
-                <div className="member-contact">
-                  <ul>
-                    <li>
-                      <Button className="icon-btn">
-                        <CallIcon className="phone-icon" />
-                      </Button>
-                      <a href={`tel:${row.contNo}`}>{row.contNo}</a>
-                    </li>
-                    <li>
-                      <Button className="icon-btn">
-                        <MailIcon className="phone-icon" />
-                      </Button>
-                      <a href={`mailto: ${row.email}`}>{row.email}</a>
-                    </li>
-                  </ul>
-                </div>
-              </Card>
+                  <div className="requisition">
+                    <Checkbox
+                      name="saveReq"
+                      color="primary"
+                      checked={row.isSelected}
+                      onChange={(e) => this.handleStateChange(i, e)}
+                    />
+                  </div>
+                  <div className="member-details">
+                    <ul>
+                      <li> <b>{row.name}</b></li>
+                      <li> <span>{row.position}</span> </li>
+                      <li> <p>{row.company}</p></li>
+                    </ul>
+                  </div>
+                  <div className="member-contact">
+                    <ul>
+                      <li>
+                        <Button className="icon-btn">
+                          <CallIcon className="phone-icon" />
+                        </Button>
+                        <a href={`tel:${row.contNo}`}>{row.contNo}</a>
+                      </li>
+                      <li>
+                        <Button className="icon-btn">
+                          <MailIcon className="phone-icon" />
+                        </Button>
+                        <a href={`mailto: ${row.email}`}>{row.email}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </Card>
+              </div>
             </div>
-          </div>
-        );
+          );
+        }
       }
     }
     else {
@@ -369,7 +370,7 @@ class Contact extends Component {
             </div>
           </div>
         </div>
-        
+
         <Dialog open={openDialog} onClose={() => this.setState({ openDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
           <DialogTitle id="form-dialog-title" className="dialogSmWidth addNewItemDialogTitle">
             Delete Confirmation
@@ -444,6 +445,7 @@ class Contact extends Component {
             </Button>
           </DialogActions>
         </Dialog>
+        <Pagination ref={this.paginationRef} changeCurrentPage={this.onChangeCurrentPage} />
       </div>
     );
   }

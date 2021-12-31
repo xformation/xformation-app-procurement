@@ -12,6 +12,8 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Button from "@material-ui/core/Button";
+import InputLabel from "@material-ui/core/InputLabel";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import bigWindIcon from '../../assets/images/big-wind-icon.png';
 import { connect } from 'react-redux';
@@ -25,7 +27,9 @@ class AddInvoices extends Component {
             invoiceData: {},
             invoiceFile: {},
             amount: '',
-            description:''
+            description: '',
+            toggleDropown: false,
+            index: 0,
 
         }
     }
@@ -72,24 +76,33 @@ class AddInvoices extends Component {
         console.log(invoiceFile)
     }
     handleChange = (e) => {
-        let{description , amount}=this.state;
-        const { value , name } = e.target;
-        if (name === "description"){
-            description = value 
+        let { description, amount } = this.state;
+        const { value, name } = e.target;
+        if (name === "description") {
+            description = value
         }
-        else{ amount = value }
-        this.setState({description, amount})
+        else { amount = value }
+        this.setState({ description, amount })
     }
+
+    handleCompany = (indx, e) => {
+        let { index, toggleDropown } = this.state;
+        index = indx;
+        toggleDropown = !toggleDropown;
+        this.setState({ index, toggleDropown });
+
+    }
+
     render() {
-        const { invoiceData, invoiceFile } = this.state
-        if (invoiceFile.length>0){
-        }
+        const { invoiceData, invoiceFile, index } = this.state
+        let { toggleDropown } = this.state
+        console.log(invoiceData)
         return (
             <div className="main-content">
                 <div className="d-block add-invoices-content">
                     <div className="d-block heading">
                         <div className="row">
-                            <div className="col-md-9">
+                            <div className="col-9">
                                 <div className="d-flex justify-content-start align-items-center">
                                     <div className="d-inline-block mr-3">
                                         <IconButton>
@@ -99,7 +112,7 @@ class AddInvoices extends Component {
                                     <h4 className="d-inline-block mb-0">New Invoices</h4>
                                 </div>
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-3">
                                 <div className="d-flex justify-content-end align-items-center">
                                     <IconButton>
                                         <MoreVertIcon />
@@ -110,7 +123,7 @@ class AddInvoices extends Component {
                     </div>
                     <div className="d-block px-3 py-4">
                         <div className="row">
-                            <div className="col-md-3">
+                            <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
                                 <div className="d-flex w-100 flex-wrap select-client">
                                     <div className="d-block w-100 heading">
                                         <h5>Select Client</h5>
@@ -120,18 +133,29 @@ class AddInvoices extends Component {
                                             <img src={bigWindIcon} alt='' />
                                         </div>
                                         <div className="d-flex flex-wrap text">
-                                            {invoiceData && invoiceData.ComapanyName && <strong>{invoiceData.ComapanyName}</strong>}
-                                            <p>Online Shop</p>
+                                            {invoiceData && invoiceData.CompanyDesription
+                                                && invoiceData.CompanyDesription.length > 0 &&
+                                                <strong>{invoiceData.CompanyDesription[index].ComapanyName}</strong>}
+                                            {invoiceData && invoiceData.CompanyDesription &&
+                                                invoiceData.CompanyDesription.length > 0 &&
+                                                <p>{invoiceData.CompanyDesription[index].ComapanyType}</p>}
                                         </div>
                                         <div className="d-flex buttons">
                                             <IconButton className="CreateIcon">
                                                 <CreateIcon />
                                             </IconButton>
                                             <IconButton className="ExpandMoreIcon">
-                                                <ExpandMoreIcon />
+                                                <div> <ExpandMoreIcon onClick={() => this.setState({ toggleDropown: !toggleDropown })} /></div>
                                             </IconButton>
                                         </div>
                                     </div>
+                                    {toggleDropown ?
+                                        <div className="big-wind-dropdown">
+                                            {invoiceData.CompanyDesription.map((value, index) =>
+                                                <option value={index} onClick={() => this.handleCompany(index)}>{value.ComapanyName}</option>)
+                                            }
+                                        </div>
+                                        : ""}
                                     <div className="d-flex justify-content-start align-items-center flex-wrap w-100 client-contant">
                                         <div className="d-flex justify-content-start align-items-start w-100 contant">
                                             <div className="d-flex justify-content-center align-items-center icon">
@@ -161,7 +185,7 @@ class AddInvoices extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="d-flex justify-content-start align-items-center flex-wrap w-100 due-date">
+                                    <div className="d-flex justify-content-between align-items-center flex-wrap w-100 due-date">
                                         <div className="d-flex icon">
                                             <InsertInvitationIcon className="InsertInvitationIcon" />
                                         </div>
@@ -177,10 +201,10 @@ class AddInvoices extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-9">
-                                <div className="d-block w-100 pl-5">
+                            <div className="col-xl-8 col-lg-12 col-md-12 col-sm12 col-12">
+                                <div className="d-block w-100 invoice-acount">
                                     <div className="row">
-                                        <div className="col-md-6">
+                                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                             <div className="d-flex flex-wrap invoiceno-box">
                                                 <div className="d-flex w-100 heading">
                                                     <h5>Invoice No</h5>
@@ -190,7 +214,7 @@ class AddInvoices extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                             <div className="d-flex flex-wrap invoiceno-box">
                                                 <div className="d-flex w-100 heading">
                                                     <h5>Amount (USD)</h5>
@@ -202,7 +226,7 @@ class AddInvoices extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="d-block w-100 pl-5 pt-4 item-desription">
+                                <div className="d-block w-100 pt-4 item-desription">
                                     <div className="d-block w-100 heading">
                                         Item desription
                                     </div>
@@ -222,12 +246,12 @@ class AddInvoices extends Component {
                                         </table>
                                     </div>
                                     <div className="d-block w-100 type-desription">
-                                        <textarea placeholder="Type desription hare..." name ="description"onChange={this.handleChange}>
-                                            
+                                        <textarea placeholder="Type desription hare..." name="description" onChange={this.handleChange}>
+
                                         </textarea>
                                     </div>
                                 </div>
-                                <div className="d-block w-100 pl-5 pt-4 attach-file">
+                                <div className="d-block w-100 pt-4 attach-file">
                                     <div className="d-block w-100 heading">
                                         Attach File
                                     </div>
@@ -247,13 +271,13 @@ class AddInvoices extends Component {
                                             </div>
                                         </div>
                                         <div className="d-inline-block attach-files">
-                                        { invoiceFile.length>0 &&<ul>
+                                            {invoiceFile.length > 0 && <ul>
                                                 <li>
                                                     <div className="icon">
                                                         <InsertDriveFileIcon />
                                                     </div>
                                                     <div className="attach-name-size">
-                                                   <p>{invoiceFile[0].name}</p>
+                                                        <p>{invoiceFile[0].name}</p>
                                                         <span>{invoiceFile[0].size}</span>
                                                     </div>
                                                     <div className="CancelIcon">
@@ -264,7 +288,7 @@ class AddInvoices extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="d-block w-100 pl-5 pt-5 invoice-buttons">
+                                <div className="d-block w-100 pt-4 invoice-buttons">
                                     <Button
                                         variant="contained"
                                         className="primary-btn"

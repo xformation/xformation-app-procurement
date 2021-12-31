@@ -7,7 +7,8 @@ export const purchaseOrderAction = {
     addPurchaseOrder,
     getPurchaseOrder,
     searchPurchaseOrder,
-    searchApprovePurchaseOrder
+    searchApprovePurchaseOrder,
+    getApprovePurchaseOrder
 }
 
 function searchPurchaseOrder(data) {
@@ -45,7 +46,7 @@ function searchPurchaseOrder(data) {
 function searchApprovePurchaseOrder(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_REQUEST,
+            type: purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_REQUEST,
             data: null
         }));
         purchaseOrderServices.approvePurchaseOrder(data)
@@ -67,6 +68,38 @@ function searchApprovePurchaseOrder(data) {
                 error => {
                     dispatch(dispatchFunction({
                         type: purchaseOrderConstants.SEARCH_APPROVE_PURCHASE_ORDER_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
+function getApprovePurchaseOrder(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_REQUEST,
+            data: null
+        }));
+        purchaseOrderServices.getApprovePo(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: purchaseOrderConstants.GET_APPROVE_PURCHASE_ORDER_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

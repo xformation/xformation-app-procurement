@@ -642,29 +642,8 @@
     }
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 600px) {
     .contact-content {
-        .user-contact-list {
-            .buyers-head {
-                .head-right {
-                    .social-buttom {
-                        float: left;
-
-                        ul {
-                            li {
-                                margin-right: 10px;
-                                margin-bottom: 25px;
-                            }
-
-                            .last {
-                                margin-bottom: 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         .general-contect {
             .contact-left {
                 .user-list {
@@ -729,5 +708,12 @@
             }
         }
 
+    }
+
+    .pagination-container {
+        .pagination-section {
+            padding-top: 20px;
+            text-align: left;
+        }
     }
 }
