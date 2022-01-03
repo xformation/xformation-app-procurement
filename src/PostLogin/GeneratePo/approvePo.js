@@ -24,7 +24,6 @@ class ApprovePo extends Component {
                 depart: "",
                 GenerateButton: false,
             },
-            tableData: [],
             columns: [
                 {
                     label: 'S.No',
@@ -91,28 +90,28 @@ class ApprovePo extends Component {
                 },
 
             ],
+            tableData: [],
         }
     }
     componentDidMount() {
-        this.props.dispatch(purchaseOrderAction.searchApprovePurchaseOrder())
-
+        if(this.props.approvePo && this.props.approvePo.length > 0){
+            this.setState({ tableData: this.props.approvePo })
+        }else{
+        this.props.dispatch(purchaseOrderAction.searchApprovePurchaseOrder())}
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // console.log(this.props.get_approvepo_status, this.props.approvePo)
-        // let { tableData } = this.state
-        if (this.props.get_approvepo_status !== prevProps.get_approvepo_status && this.props.get_approvepo_status === status.SUCCESS) {
-            if (this.props.approvePo && this.props.approvePo.length>0 ) {
-                
-                this.setState({ tableData :this.props.approvePo})
+    
+        if (prevProps.get_approvepo_status !== this.props.get_approvepo_status && this.props.get_approvepo_status === status.SUCCESS) {
+            if (this.props.approvePo && this.props.approvePo.length > 0) {
+                this.setState({ tableData: this.props.approvePo })
             }
-
         }
     }
 
+
     onClickShowGenerateButton = (id) => {
         this.props.history.push(`/postlogin/approvepo/${id}`)
-        console.log("clicked")
     }
     handleStateChange = (e) => {
         const { name, value } = e.target;
@@ -187,60 +186,61 @@ class ApprovePo extends Component {
         return (
             <div className="main-content">
                 <div className="generate-content">
-                            <div className="generate-purchase">
-                                <div className="heading">
-                                    <h4>Approve Purchase Order</h4>
+                    <div className="generate-purchase">
+                        <div className="heading">
+                            <h4>Approve Purchase Order</h4>
+                        </div>
+                        <div className="requisitions-filter">
+                            <div className="form">
+                                <div className="form-group row col-form-group">
+                                    <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Filter By Status</label>
+                                    <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                        <FormControl className="select-menu">
+                                            <NativeSelect name="status" value={requiData.status} onChange={this.handleStateChange}
+                                                isValid={errorData.status.isValid} >
+                                                <option value="">-Select-</option>
+                                                <option value={10}>abc</option>
+                                                <option value={20}>def</option>
+                                                <option value={30}>abc</option>
+                                            </NativeSelect>
+                                        </FormControl>
+                                        <span className="d-block w-100 text-danger">{errorData.status.message}</span>
+                                    </div>
                                 </div>
-                                <div className="requisitions-filter">
-                                    <div className="form">
-                                        <div className="form-group row col-form-group">
-                                            <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Filter By Status</label>
-                                            <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
-                                                <FormControl className="select-menu">
-                                                    <NativeSelect name="status" value={requiData.status} onChange={this.handleStateChange}
-                                                        isValid={errorData.status.isValid} >
-                                                        <option value="">-Select-</option>
-                                                        <option value={10}>abc</option>
-                                                        <option value={20}>def</option>
-                                                        <option value={30}>abc</option>
-                                                    </NativeSelect>
-                                                </FormControl>
-                                                <span className="d-block w-100 text-danger">{errorData.status.message}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Date Range</label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
-                                            <div className="d-flex align-items-center">
-                                                <div className="d-flex align-items-center date-picker">
-                                                    <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
-                                                    <CalendarTodayTwoToneIcon className="calendar-icon" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group row col-form-group">
-                                        <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
-                                        <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
-                                            <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
-                                                Search
-                                            </Button>
+                            </div>
+                            <div className="form-group row col-form-group">
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">Date Range</label>
+                                <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-field">
+                                    <div className="d-flex align-items-center">
+                                        <div className="d-flex align-items-center date-picker">
+                                            <RangeDatePicker startPlaceholder="2021-06-01" endPlaceholder="2021-06-10" />
+                                            <CalendarTodayTwoToneIcon className="calendar-icon" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                          {  tableData&& tableData.length>0 && <Table valueFromData={{ 'columns': columns, 'data': tableData }} perPageLimit={6} visiblecheckboxStatus={true}
-                                isLoading={this.props.search_purchase_status === status.IN_PROGRESS}
-                                tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
-                    }
+                            <div className="form-group row col-form-group">
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
+                                <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
+                                    <Button variant="contained" className="primary-btn" disableElevation onClick={this.handleClickMethod}>
+                                        Search
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* {tableData&& tableData.length>0 &&  */}
+                    <Table valueFromData={{ 'columns': columns, 'data': tableData }} perPageLimit={6} visiblecheckboxStatus={true}
+                        isLoading={this.props.search_purchase_status === status.IN_PROGRESS}
+                        tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }}
+                        searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
+                    {/* } */}
                 </div>
             </div>
         )
     }
 
 }
-
 const mapStateToProps = (state) => {
     const { approvePo, get_approvepo_status } = state.generatePurchaseOrder;
     return { approvePo, get_approvepo_status }

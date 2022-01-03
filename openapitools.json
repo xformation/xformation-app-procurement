@@ -31,7 +31,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details of department",
+            "description": "searchDepartment is used to get the list of the departments.",
             "headers": {
               "x-next": {
                 "description": "Department List",
@@ -92,7 +92,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details of currency",
+            "description": "searchCurrency is used to get the list of the Currencies",
             "headers": {
               "x-next": {
                 "description": "Currency List",
@@ -154,7 +154,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details about a user",
+            "description": "searchRequisition is use to get list of requisitions",
             "headers": {
               "x-next": {
                 "description": "Requisiton List",
@@ -216,14 +216,14 @@
         }
       ],
       "delete": {
-        "summary": "Delete Requisition",
+        "summary": "detail about deleteRequisition",
         "operationId": "",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Delete Requisition is use for delete requisition by id",
             "headers": {
               "x-next": {
-                "description": "Delete Requisition List",
+                "description": "deleteRequisition ",
                 "schema": {
                   "type": "string"
                 }
@@ -286,7 +286,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "addRequisition use for creating new",
             "headers": {
               "x-next": {
                 "description": "Delete Requisition List",
@@ -351,7 +351,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details about a user",
+            "description": "getRequisition/{requistionId} is used for get requisition by id",
             "headers": {
               "x-next": {
                 "description": "Requisiton List",
@@ -402,7 +402,7 @@
         "summary": "Edit Requester Detail",
         "operationId": "",
         "requestBody": {
-          "description": "Edit Requisition",
+          "description": "updateRequisition is used for modifing requisition",
           "required": true,
           "content": {
             "application/json": {
@@ -468,7 +468,7 @@
         "summary": "Details about Approve Requisition",
         "operationId": "approverequisition",
         "requestBody": {
-          "description": "Request body to approve requisition",
+          "description": "approveRequisition used for get approve requisition list",
           "required": true,
           "content": {
             "application/json": {
@@ -539,7 +539,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details about RFP",
+            "description": "searchRecivedRFP used for get recievedRFP list",
             "headers": {
               "x-next": {
                 "description": "Requisiton List",
@@ -608,7 +608,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details about a get Requisition by id",
+            "description": "getRequisitionRfp/{id} used for get requisitionRFP by id ",
             "headers": {
               "x-next": {
                 "description": "Rqruisition by id",
@@ -659,7 +659,7 @@
         "summary": "Add status to RFP",
         "operationId": "addstatusRfp",
         "requestBody": {
-          "description": "Request body to add status to Rfp",
+          "description": "addStatusRfp add status to frp like approved , wating etc",
           "required": true,
           "content": {
             "application/json": {
@@ -730,7 +730,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details about RFQ",
+            "description": "searchRecievedRfq is used for get list of RecievedRfq",
             "headers": {
               "x-next": {
                 "description": "Requisiton List",
@@ -792,7 +792,7 @@
         }
       ],
       "get": {
-        "summary": "Details about a get Requisition by id",
+        "summary": "getRecievedRfq/{id} used for get recievedRfq by id from list",
         "operationId": "",
         "tags": [
           "requisition"
@@ -850,7 +850,7 @@
         "summary": "Add status to RFP",
         "operationId": "addstatusRfp",
         "requestBody": {
-          "description": "Request body to add status to Rfp",
+          "description":  "addStatusRfq add status to frq like approved , wating etc",
           "required": true,
           "content": {
             "application/json": {
@@ -921,7 +921,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details about Purchase order",
+            "description": "/searchGeneratePo used for get Generate Purchase Order list",
             "headers": {
               "x-next": {
                 "description": "Generate Purchase Order List",
@@ -981,7 +981,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details about approveorder",
+            "description": "/searchApprovePo used for get list of Approve Purchase Order",
             "headers": {
               "x-next": {
                 "description": "Generate Approve Purchase Order List",
@@ -1050,7 +1050,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details about a purchase order",
+            "description": "/getGeneratePo/{id} used to get Generated PurchaseOrder by id",
             "headers": {
               "x-next": {
                 "description": "",
@@ -1115,7 +1115,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details about a purchase order",
+            "description": "/getApprovePo/{id} used for get Approved Purchase Order by id from list",
             "headers": {
               "x-next": {
                 "description": "",
@@ -1166,7 +1166,7 @@
         "summary": "Add generate po detail",
         "operationId": "generatePoDetail",
         "requestBody": {
-          "description": "Request body to add generate po detail",
+          "description": "/addGeneratePoDetails used Create or add new Generate Purchse Order",
           "required": true,
           "content": {
             "application/json": {
@@ -1236,7 +1236,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "contact detail",
+            "description": "getContacts used for get contacts list",
             "headers": {
               "x-next": {
                 "description": "contact List",
@@ -1304,7 +1304,7 @@
             "description": "",
             "headers": {
               "x-next": {
-                "description": "Delete Contact List",
+                "description": "deleteContact/{id} used for delete the contact from contact list",
                 "schema": {
                   "type": "string"
                 }
@@ -1352,7 +1352,7 @@
         "summary": "Details about a Contact",
         "operationId": "createContact",
         "requestBody": {
-          "description": "Request body to create contact",
+          "description": "addContact used for add new contact in list of contacts ",
           "required": true,
           "content": {
             "application/json": {
@@ -1418,7 +1418,7 @@
         "summary": "Edit contact",
         "operationId": "editContact",
         "requestBody": {
-          "description": "Request body to edit contact",
+          "description": "editContact used for update contact from contacts list ",
           "required": true,
           "content": {
             "application/json": {
@@ -1491,7 +1491,7 @@
         }
       ],
       "get": {
-        "summary": "Get Edit Contact Detail",
+        "summary": "getContact used for get contact from contact list by id",
         "operationId": "",
         "tags": [
           "contactdetail"
@@ -1552,7 +1552,7 @@
         "operationId": "",
         "responses": {
           "200": {
-            "description": "Invoice detail",
+            "description": "fetchInvoice used for get invoices list",
             "headers": {
               "x-next": {
                 "description": "Invoice List",
@@ -1655,7 +1655,7 @@
         }
       }
     },
-    "/deleteInvoice/1": {
+    "/deleteInvoice/{id}": {
       "delete": {
         "summary": "Delete invoice List",
         "responses": {
@@ -1663,7 +1663,7 @@
             "description": "",
             "headers": {
               "x-next": {
-                "description": "Delete invoice List",
+                "description": "/deleteInvoice/{id} used for delete Invoice from Invoice list",
                 "schema": {
                   "type": "string"
                 }
@@ -1725,7 +1725,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Invoice detail",
+            "description": "viewInviocs/{id} used for get invoice frominvoices list",
             "headers": {
               "x-next": {
                 "description": "Invoice detail",
@@ -1781,7 +1781,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Buyer detail",
+            "description": "getBuyers used for get list of buyers",
             "headers": {
               "x-next": {
                 "description": "Buyer List",
@@ -1836,7 +1836,7 @@
         "summary": "Details about a buyer",
         "operationId": "setbuyer",
         "requestBody": {
-          "description": "Request body to create contact",
+          "description": "setBuyers used for add new buyer in buyers list",
           "required": true,
           "content": {
             "application/json": {
@@ -1907,7 +1907,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "committee detail",
+            "description": "searchCommittee used for get Committee list",
             "headers": {
               "x-next": {
                 "description": "committee List",
@@ -1967,7 +1967,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Detail of Committee Type",
+            "description": "getCommittee used for get Committee type",
             "headers": {
               "x-next": {
                 "description": "Committee Type",
@@ -2024,7 +2024,7 @@
         "summary": "Details about a set committee members",
         "operationId": "setbuyer",
         "requestBody": {
-          "description": "Request body to set committee memberse",
+          "description": "addCommittee used for add new Committee in committee list",
           "required": true,
           "content": {
             "application/json": {
@@ -2090,7 +2090,7 @@
         "summary": "Details about a vendor",
         "operationId": "",
         "requestBody": {
-          "description": "Request body to set vendor",
+          "description": "addVendor used for add new vendor in vendors list",
           "required": true,
           "content": {
             "application/json": {
@@ -2161,7 +2161,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Detail of recently mail",
+            "description": "recentCommunication used to get reacent mail from communication list",
             "headers": {
               "x-next": {
                 "description": "recently mail",
@@ -2214,7 +2214,7 @@
     },
     "/fetchAllMail": {
       "get": {
-        "summary": "Detail of mail",
+        "summary": "Detail of All mail",
         "operationId": "",
         "tags": [
           "mail"
@@ -2222,10 +2222,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Detail of mail",
+            "description": "featchAllMail used for get all mails list",
             "headers": {
               "x-next": {
-                "description": "recently mail detail",
+                "description": "",
                 "schema": {
                   "type": "string"
                 }
@@ -2293,10 +2293,10 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "sendEmail used for send email from the contact list",
             "headers": {
               "x-next": {
-                "description": "addemail",
+                "description": "",
                 "schema": {
                   "type": "string"
                 }
@@ -2355,7 +2355,7 @@
         "operationId": "",
         "responses": {
           "200": {
-            "description": "Details about an Email",
+            "description": "getEmailData/{id} used from get email data by emails id",
             "headers": {
               "x-next": {
                 "description": "Email detail",
@@ -2420,7 +2420,7 @@
             "description": "",
             "headers": {
               "x-next": {
-                "description": "Delete Email",
+                "description": "deleteEmail/{id} used for delete email by id from emails table",
                 "schema": {
                   "type": "string"
                 }
@@ -2509,7 +2509,7 @@
             }
           },
           "default": {
-            "description": "unexpected error",
+            "description": "fetchKanbanList used for get kanban table",
             "content": {
               "application/json": {
                 "schema": {
@@ -2527,7 +2527,7 @@
         "operationId": "",
         "responses": {
           "200": {
-            "description": "Dashboard Detail",
+            "description": "getdashboardData used for get entire dashboard data",
             "headers": {
               "x-next": {
                 "description": "Dashboard Detail",
@@ -2580,7 +2580,7 @@
         "summary": "Details about a invite user",
         "operationId": "",
         "requestBody": {
-          "description": "Details about a invite user",
+          "description": "sendInvitation used for send invitaion to the contact list members",
           "required": true,
           "content": {
             "application/json": {
@@ -2660,7 +2660,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Details about a get track FRP by id",
+            "description": "gettrackfrpdata{id} used from get details of particular frp from frp table ",
             "headers": {
               "x-next": {
                 "description": "FRP by id",
@@ -2719,7 +2719,7 @@
             "description": "",
             "headers": {
               "x-next": {
-                "description": "get notification data",
+                "description": "getNotificationData used for get list of notifications",
                 "schema": {
                   "type": "string"
                 }
@@ -2778,7 +2778,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details of BudgetOverview",
+            "description": "getBudgetOverviewData used for get budgetOverview list or table",
             "headers": {
               "x-next": {
                 "description": "BudgetOverview List",
@@ -2841,7 +2841,7 @@
         }
       ],
       "get": {
-        "summary": "Details about a get track FRP by id",
+        "summary": "getBudgetAllocated/{id} used for get particular budget details from budgetOverview list",
         "operationId": "",
         "tags": [
           "requisition"
@@ -2904,7 +2904,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Details of Reports",
+            "description": "getReports used for get list of reports",
             "headers": {
               "x-next": {
                 "description": " Reports List",
@@ -2964,62 +2964,13 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+            "description":"id of the department"
           },
           "name": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
-          }
-        }
-      },
-      "budgetAllocated": {
-        "type": "object",
-        "properties": {
-          "budget": {
-            "$ref": "#/components/schemas/bugetOverview"
-          },
-          "depTableData": {
-            "type": "array",
-            "x-count": "7",
-            "items": {
-              "type": "object",
-              "properties": {
-                "ItemDescription": {
-                  "type": "string",
-                  "x-faker": "{{commerce.productName}}"
-                },
-                "requisitionType": {
-                  "type": "string"
-                },
-                "Price": {
-                  "type": "integer",
-                  "format": "int64",
-                  "x-faker": "finance.amount"
-                },
-                "RqNo": {
-                  "type": "integer",
-                  "format": "int64",
-                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
-                },
-                "dep": {
-                  "type": "string",
-                  "x-faker": "{{commerce.department}}"
-                },
-                "Images": {
-                  "type": "array",
-                  "x-count": "8",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "MembersProfile": {
-                        "type": "string",
-                        "x-faker": "{{image.imageUrl}}"
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            "x-faker": "{{commerce.department}}",
+            "description":"name of the depertment"
           }
         }
       },
@@ -3029,20 +2980,24 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+            "descriprtion":"Id of the currencies"
           },
           "countryName": {
             "type": "string",
             "default": "Reactive secured line",
-            "x-faker": "{{address.country}}"
+            "x-faker": "{{address.country}}",
+            "descriprtion":"CountryName of the currencies"
           },
           "countryCode": {
             "type": "string",
-            "x-faker": "{{address.countryCode}}"
+            "x-faker": "{{address.countryCode}}",
+            "descriprtion":"CountryCode of the currencies"
           },
           "code": {
             "type": "string",
-            "x-faker": "{{finance.currencyCode}}"
+            "x-faker": "{{finance.currencyCode}}",
+            "descriprtion":"Code of the currencies"
           }
         }
       },
@@ -3052,59 +3007,143 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"id of the Requisition"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"created date of the Requisition"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"total amount of the Requisition"
           },
           "notes": {
             "type": "string",
-            "x-faker": "{{lorem.sentence}}"
+            "x-faker": "{{lorem.sentence}}",
+            "description":"note for the Requisition"
           },
           "startDate": {
             "type": "string",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"startDate use for start working on Requisition"
           },
           "deliveryDate": {
             "type": "string",
-            "x-faker": "{{date.future}}"
+            "x-faker": "{{date.future}}",
+            "description":"deliveryDate of Requisition"
           },
           "paymentTerms": {
             "type": "string"
           },
           "createdBy": {
             "type": "string",
-            "x-faker": "{{name.firstName}} {{name.lastName}}"
+            "x-faker": "{{name.firstName}} {{name.lastName}}",
+            "description":"createdBy use for requester of  Requisition"
           },
           "roleName": {
             "type": "string",
-            "x-faker": "{{name.firstName}}"
+            "x-faker": "{{name.firstName}}",
+            "description":"roleName use for requester name of  Requisition"
           },
           "department": {
-            "$ref": "#/components/schemas/department"
+            "$ref": "#/components/schemas/department",
+            "description":"department list for requisition"
           },
           "currency": {
-            "$ref": "#/components/schemas/currency"
+            "$ref": "#/components/schemas/currency",
+            "description":"currency details for requisition"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description":"status of the requisition"
           },
           "requisitionType": {
             "type": "string",
-            "x-faker": "{{lorem.word}}"
+            "x-faker": "{{lorem.word}}",
+            "description":"requisitionType type of the requisition"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
-              "$ref": "#/components/schemas/requisitionItems"
+              "$ref": "#/components/schemas/requisitionItems",
+              "description":"requisitionItem of the requisition"
+            }
+          }
+        }
+      },
+      "approveRequisition": {
+        "type": "object",
+        "properties": {
+          "requisitionId": {
+            "type": "string",
+            "description":"requisitionId id of approved requisition"
+          },
+          "roleName": {
+            "type": "string",
+            "description":"rolename of approved requisition"
+          }
+        }
+      },
+      "budgetAllocated": {
+        "type": "object",
+        "properties": {
+          "budget": {
+            "$ref": "#/components/schemas/bugetOverview",
+            "description":"budget of particular request from list"
+          },
+          "depTableData": {
+            "type": "array",
+            "x-count": "7",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ItemDescription": {
+                  "type": "string",
+                  "x-faker": "{{commerce.productName}}",
+                  "description":"ItemDescription of department table"
+                },
+                "requisitionType": {
+                  "type": "string",
+                  "description":"requisitiontype of department table"
+                },
+                "Price": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "finance.amount",
+                  "description":"price of department table"
+                },
+                "RqNo": {
+                  "type": "integer",
+                  "format": "int64",
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+                  "description":"RqNo of department table"
+                },
+                "dep": {
+                  "type": "string",
+                  "x-faker": "{{commerce.department}}",
+                  "description":"dep of department table"
+                },
+                "Images": {
+                  "type": "array",
+                  "x-count": "8",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "MembersProfile": {
+                        "type": "string",
+                        "x-faker": "{{image.imageUrl}}",
+                        "description":"images of department table contacts"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -3118,67 +3157,78 @@
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
           },
           "Status": {
-            "type": "string"
+            "type": "string",
+            "description":"status of  approve purchase order Requester"
           },
           "DeliveryStatus": {
-            "type": "string"
+            "type": "string",
+            "description":"DeliveryStatus of  approve purchase order Requester"
           },
           "PaymentStatus": {
-            "type": "string"
+            "type": "string",
+            "description":"PaymentStatus of  approve purchase order Requester"
           },
           "ContactNumber": {
             "type": "string",
-            "x-faker": "{{phone.phoneNumber }}"
+            "x-faker": "{{phone.phoneNumber }}",
+            "description":"contactNumber of approve purchase order Requester"
           },
           "Department": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
+            "x-faker": "{{commerce.department}}",
+            "description":"Department of approve purchase order Requester"
           },
           "RequestorAvatar": {
             "type": "string",
-            "x-faker": "{{image.imageUrl}}"
+            "x-faker": "{{image.imageUrl}}",
+            "description":"image of approve purchase order Requester"
           },
           "RequestorName": {
             "type": "string",
-            "x-faker": "{{internet.userName}}"
+            "x-faker": "{{internet.userName}}",
+            "description":"Name of approve purchase order Requester"
           },
           "Item": {
             "type": "string",
-            "x-faker": "{{commerce.productName}}"
+            "x-faker": "{{commerce.productName}}",
+            "description":"Item of approve purchase order Requester"
           },
           "CreationOn": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
-          },
-          "vendorName": {
-            "type": "string",
-            "x-faker": "{{internet.userName}}"
+            "x-faker": "datatype.datetime",
+            "description":"Created date of approve purchase order Requester"
           },
           "VendorEmail": {
             "type": "string",
-            "x-faker": "{{internet.email}}"
+            "x-faker": "{{internet.email}}",
+            "description":"vendorEmail of approve purchase order Requester"
           },
           "NatureOfBusiness": {
             "type": "string",
-            "x-faker": "{{commerce.product}}"
+            "x-faker": "{{commerce.product}}",
+            "description":"vendorName of approve purchase order Requester"
           },
           "VendorAvatar": {
             "type": "string",
-            "x-faker": "{{image.imageUrl}}"
+            "x-faker": "{{image.imageUrl}}",
+            "description":"image or profilePic of approve purchase order Requester"
           },
           "VendorName": {
             "type": "string",
-            "x-faker": "{{internet.userName}}"
+            "x-faker": "{{internet.userName}}",
+            "description":"vendorName of approve purchase order Requester"
           },
           "Comment": {
             "type": "text",
-            "x-faker": "{{lorem.sentences}}"
+            "x-faker": "{{lorem.sentences}}",
+            "description":"conmment on approve purchase order by Requester"
           },
           "Limit": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10000, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 10000, \"max\": 100000 })",
+            "description":"limit of approve purchase order Requester"
           }
         }
       },
@@ -3188,59 +3238,73 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"id of approve purchase order"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"created date of approve purchase order"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"total Price of approve purchase order"
           },
           "notes": {
             "type": "string",
-            "x-faker": "{{lorem.sentence}}"
+            "x-faker": "{{lorem.sentence}}",
+            "description":"note of approve purchase order"
           },
           "startDate": {
             "type": "string",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"process statrted date of approve purchase order"
           },
           "deliveryDate": {
             "type": "string",
-            "x-faker": "{{date.future}}"
+            "x-faker": "{{date.future}}",
+            "description":"delivery date of approve purchase order"
           },
           "paymentTerms": {
-            "type": "string"
+            "type": "string",
+            "description":"payment terms of approve purchase order"
           },
           "createdBy": {
             "type": "string",
-            "x-faker": "{{name.firstName}} {{name.lastName}}"
+            "x-faker": "{{name.firstName}} {{name.lastName}}",
+            "description":"requester name of approve purchase order"
           },
           "roleName": {
             "type": "string",
-            "x-faker": "{{name.firstName}}"
+            "x-faker": "{{name.firstName}}",
+            "description":"role name of approve purchase order"
           },
           "department": {
-            "$ref": "#/components/schemas/department"
+            "$ref": "#/components/schemas/department",
+            "description":"department of approve purchase order list department "
           },
           "currency": {
-            "$ref": "#/components/schemas/currency"
+            "$ref": "#/components/schemas/currency",
+            "description":"curreny of approve purchase order payment"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description":"status of approve purchase order"
           },
           "requisitionType": {
             "type": "string",
-            "x-faker": "{{lorem.word}}"
+            "x-faker": "{{lorem.word}}",
+            "description":"type of approve purchase order requisition"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
-              "$ref": "#/components/schemas/requisitionItems"
+              "$ref": "#/components/schemas/requisitionItems",
+              "description":"array of approve purchase order requisition items"
             }
           }
         }
@@ -3341,32 +3405,39 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"id of user"
           },
           "company": {
             "type": "string",
-            "x-faker": "{{company.companyName}}"
+            "x-faker": "{{company.companyName}}",
+            "description":"comapany name of user or contact "
           },
           "email": {
             "type": "string",
-            "x-faker": "{{internet.email}}"
+            "x-faker": "{{internet.email}}",
+            "description":"email of user or contact"
           },
           "name": {
             "type": "string",
-            "x-faker": "{{name.firstName}} {{name.lastName}}"
+            "x-faker": "{{name.firstName}} {{name.lastName}}",
+            "description":"name of user or contact"
           },
           "position": {
             "type": "string",
-            "x-faker": "{{company.catchPhrase}}"
+            "x-faker": "{{company.catchPhrase}}",
+            "description":"position of user or contact"
           },
           "profile": {
             "type": "string",
-            "x-faker": "{{image.imageUrl}}"
+            "x-faker": "{{image.imageUrl}}",
+            "description":"profile picture of user or contact"
           },
           "contNo": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1000000000, \"max\": 9999999999 })"
+            "x-faker": "datatype.number({ \"min\": 1000000000, \"max\": 9999999999 })",
+            "description":"phone number of user or contact"
           }
         }
       },
@@ -3376,29 +3447,35 @@
           "RequisitionsNo": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+            "description":"id of requisition"
           },
           "RequestDate": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"date of requisition raised"
           },
           "RequestDepartment": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
+            "x-faker": "{{commerce.department}}",
+            "description":"department of requisition"
           },
           "Requestor": {
             "type": "string",
-            "x-faker": "{{internet.email}}"
+            "x-faker": "{{internet.email}}",
+            "description":"name of requisition requestor"
           },
           "RequisitionsTotal": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "{{commerce.price}}"
+            "x-faker": "{{commerce.price}}",
+            "description":"date of requisition raised"
           },
           "status": {
             "type": "string",
-            "default": "completed"
+            "default": "completed",
+            "description":"status of requisition"
           }
         }
       },
@@ -3407,7 +3484,8 @@
         "properties": {
           "Address": {
             "type": "string",
-            "x-faker": "{{address.streetName}} {{address.state}},{{address.zipCodeByState}} {{address.country}}"
+            "x-faker": "{{address.streetName}} {{address.state}},{{address.zipCodeByState}} {{address.country}}",
+            "description":"address for new invoice"
           },
           "CompanyDesription": {
             "type": "array",
@@ -3417,23 +3495,27 @@
               "properties": {
                 "ComapanyName": {
                   "type": "string",
-                  "x-faker": "{{company.companyName}}"
+                  "x-faker": "{{company.companyName}}",
+                  "description":"description of company for new invoice"
                 },
                 "ComapanyType": {
                   "type": "string",
-                  "x-faker": "{{commerce.productName}}"
+                  "x-faker": "{{commerce.productName}}",
+                  "description":"type of company fro new invoice"
                 }
               }
             }
           },
           "Email": {
             "type": "string",
-            "x-faker": "{{internet.email}}"
+            "x-faker": "{{internet.email}}",
+            "description":"email of new invoice"
           },
           "ContactNumber": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "phone.phoneNumber"
+            "x-faker": "phone.phoneNumber",
+            "description":"phone number of new invoice"
           },
           "ItemDesription": {
             "type": "array",
@@ -3443,17 +3525,20 @@
               "properties": {
                 "ItemDescription": {
                   "type": "string",
-                  "x-faker": "{{commerce.productName}}"
+                  "x-faker": "{{commerce.productName}}",
+                  "description":"item description of new invoive"
                 },
                 "Quantity": {
                   "type": "integer",
                   "format": "int64",
-                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })"
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
+                  "description":"qunatity of item for new invoice"
                 },
                 "Price": {
                   "type": "integer",
                   "format": "int64",
-                  "x-faker": "finance.amount"
+                  "x-faker": "finance.amount",
+                  "description":"price of item for new invoice"
                 }
               }
             }
@@ -3466,39 +3551,48 @@
           "requisitionsNo": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"id or requisition number of particular invoice"
           },
           "requestDate": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"date of particular invoice created"
           },
           "requestDepartment": {
             "$ref": "#/components/schemas/department"
+            ,
+            "description":"department of particular invoice"
           },
           "requestor": {
             "type": "string",
-            "x-faker": "{{name.firstName}}"
+            "x-faker": "{{name.firstName}}",
+            "description":"name of requester"
           },
           "requisitionsTotal": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"total sum of amount for invoice"
           },
           "tax": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.float({ \"min\": 1, \"max\": 10 })"
+            "x-faker": "datatype.float({ \"min\": 1, \"max\": 10 })",
+            "description":"total tax of amount for invoice"
           },
           "status": {
             "type": "string",
-            "default": "completed"
+            "default": "completed",
+            "description":" status of invoice"
           },
           "invoiceItem": {
             "type": "array",
             "x-count": 2,
             "items": {
-              "$ref": "#/components/schemas/requisitionItems"
+              "$ref": "#/components/schemas/requisitionItems",
+              "description":"items of invoice"
             }
           }
         }
@@ -3507,10 +3601,13 @@
         "type": "object",
         "properties": {
           "requisitionID": {
-            "type": "string"
+            "type": "string",
+            "description":"request id of selected buyer "
           },
           "buyersId": {
             "type": "array"
+            ,
+              "description":"id of buyers id"
           }
         }
       },
@@ -3520,11 +3617,13 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+            "description":"id of committee"
           },
           "name": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
+            "x-faker": "{{commerce.department}}",
+            "description":"name of committee"
           }
         }
       },
@@ -3532,10 +3631,12 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "string"
+            "type": "string",
+            "description":"id of committee"
           },
           "membersId": {
-            "type": "array"
+            "type": "array",
+            "description":"id of committee members"
           }
         }
       },
@@ -3545,49 +3646,29 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
+            "description":"id of requisition item"
           },
           "price": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1000, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 1000, \"max\": 10000 })",
+            "description":"price of requisition item"
           },
           "itemDescription": {
             "type": "string",
-            "x-faker": "commerce.productName"
+            "x-faker": "commerce.productName",
+            "description":"description of requisition item"
           },
           "orderQuantity": {
             "type": "integer",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+            "description":"order quantity of requisition item"
           },
           "ratePerItem": {
             "type": "integer",
-            "x-faker": "datatype.number({ \"min\": 1000, \"max\": 100000 })"
-          }
-        }
-      },
-      "approveRequisition": {
-        "type": "object",
-        "properties": {
-          "requisitionId": {
-            "type": "string"
-          },
-          "roleName": {
-            "type": "string"
-          }
-        }
-      },
-      "addStatusRfp": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "comment": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
+            "x-faker": "datatype.number({ \"min\": 1000, \"max\": 100000 })",
+            "description":"price of requisition item"
           }
         }
       },
@@ -3595,23 +3676,28 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id of generate purcahse order"
           },
           "startDate": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"date of genertate Purcahse Order"
           },
           "deliveryDate": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"delivery date of generate purchase order"
           },
           "paymentTerms": {
-            "type": "string"
+            "type": "string",
+            "description":"payment terms of generate purchase order"
           },
           "otherTerms": {
-            "type": "string"
+            "type": "string",
+            "description":"other terms of generate purchase order"
           }
         }
       },
@@ -3619,27 +3705,34 @@
         "type": "object",
         "properties": {
           "company": {
-            "type": "string"
+            "type": "string",
+            "description":"comapany name of contact person"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description":"email of contact person"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description":"first name of contact person"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description":"last name of contact person"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description":"title of contact person"
           },
           "profile": {
-            "type": "string"
+            "type": "string",
+            "description":"profile of contact person"
           },
           "contactNo": {
             "type": "integer",
             "format": "int64",
-            "default": "+1234567859"
+            "default": "+1234567859",
+            "description":"contact Number of contact person"
           }
         }
       },
@@ -3649,47 +3742,58 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"id of recieved RFP"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"created or generated date of recieved RFP"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
+            "description":"total price of recieved RFP"
           },
           "notes": {
             "type": "string",
-            "x-faker": "{{lorem.sentence}}"
+            "x-faker": "{{lorem.sentence}}",
+            "description":"notes related to recieved RFP"
           },
           "createdBy": {
             "type": "string",
-            "x-faker": "{{name.firstName}} {{name.lastName}}"
+            "x-faker": "{{name.firstName}} {{name.lastName}}",
+            "description":"name of person who created recieved RFP"
           },
           "roleName": {
             "type": "string",
-            "x-faker": "{{name.firstName}}"
+            "x-faker": "{{name.firstName}}",
+            "description":"role name of person recieved RFP"
           },
           "department": {
-            "$ref": "#/components/schemas/department"
+            "$ref": "#/components/schemas/department",
+            "description":"department of recieved RFP"
           },
           "currency": {
-            "$ref": "#/components/schemas/currency"
+            "$ref": "#/components/schemas/currency",
+            "description":"currency details of recieved RFP"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description":"status of recieved RFP"
           },
           "requisitionType": {
-            "type": "string"
+            "type": "string",
+            "description":"requisition type of recieved RFP"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
-              "$ref": "#/components/schemas/requisitionItems"
+              "$ref": "#/components/schemas/requisitionItems",
+              "description":"requistition type array of recieved RFP"
             }
           },
           "vendoreDetail": {
@@ -3697,25 +3801,31 @@
             "properties": {
               "name": {
                 "type": "string",
-                "x-faker": "{{name.firstName}}"
+                "x-faker": "{{name.firstName}}",
+                "description":"name of Vendor"
               },
               "email": {
                 "type": "string",
-                "x-faker": "{{internet.email}}"
+                "x-faker": "{{internet.email}}",
+                "description":"email of Vendor"
               },
               "nature": {
-                "type": "string"
+                "type": "string",
+                "description":"nature of Vendor"
               },
               "location": {
-                "type": "string"
+                "type": "string",
+                "description":"location of Vendor"
               },
               "phone": {
                 "type": "integer",
                 "format": "int64",
-                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000000000 })"
+                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000000000 })",
+                "description":"contact number of vendor"
               },
               "relation": {
-                "type": "string"
+                "type": "string",
+                "description":"relation of Vendor"
               }
             }
           }
@@ -3725,74 +3835,95 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description":"first name of particular Vendor"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description":"last name of particular Vendor"
           },
           "fatherName": {
-            "type": "string"
+            "type": "string",
+            "description":"father name of particular Vendor"
           },
           "designation": {
-            "type": "string"
+            "type": "string",
+            "description":"designation of particular Vendor"
           },
           "companyName": {
-            "type": "string"
+            "type": "string",
+            "description":"company name of particular Vendor"
           },
           "directorName": {
-            "type": "string"
+            "type": "string",
+            "description":"director name of particular Vendor"
           },
           "address": {
-            "type": "string"
+            "type": "string",
+            "description":"address of particular Vendor"
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "description":"city of particular Vendor"
           },
           "state": {
-            "type": "string"
+            "type": "string",
+            "description":"state of particular Vendor"
           },
           "business": {
-            "type": "string"
+            "type": "string",
+            "description":"business of particular Vendor"
           },
           "legalStatus": {
-            "type": "string"
+            "type": "string",
+            "description":"legal status of particular Vendor"
           },
           "companyCategory": {
-            "type": "string"
+            "type": "string",
+            "description":"company Category of particular Vendor"
           },
           "captcha": {
-            "type": "string"
+            "type": "string",
+            "description":"captcha for particular Vendor"
           },
           "panNo": {
-            "type": "string"
+            "type": "string",
+            "description":"panNumber of particular Vendor"
           },
           "gender": {
-            "type": "string"
+            "type": "string",
+            "description":"gender of particular Vendor"
           },
           "phoneNo": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description":"phone number of particular Vendor"
           },
           "RegistrationNo": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description":"registration number of particular Vendor"
           },
           "brithDate": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"DOB or birth date of particular Vendor"
           },
           "bidder": {
-            "type": "string"
+            "type": "string",
+            "description":"bidder name of particular Vendor"
           },
           "postalCode": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description":"PostalCode or PinCode of particular Vendor"
           },
           "establishment": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"establishment of particular Vendor"
           }
         }
       },
@@ -3801,11 +3932,13 @@
         "properties": {
           "profile": {
             "type": "string",
-            "x-faker": "{{image.imageUrl}}"
+            "x-faker": "{{image.imageUrl}}",
+            "description":"profile of recent mail"
           },
           "name": {
             "type": "string",
-            "x-faker": "{{internet.userName}}"
+            "x-faker": "{{internet.userName}}",
+            "description":"name of user in recent mail"
           }
         }
       },
@@ -3813,7 +3946,8 @@
         "type": "object",
         "properties": {
           "requestorId": {
-            "type": "integer"
+            "type": "integer",
+            "description":"requestor id of email"
           },
           "to": {
             "type": "array",
@@ -3821,10 +3955,12 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"array of requestor type for email"
                 },
                 "sentTo": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"person who recieved email"
                 }
               }
             }
@@ -3835,16 +3971,19 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"bcc type of email"
                 },
                 "toBcc": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"to bcc type of email"
                 }
               }
             }
           },
           "subject": {
-            "type": "string"
+            "type": "string",
+            "description":"subject of email"
           },
           "message": {
             "type": "string"
@@ -3855,10 +3994,12 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"file type for email"
                 },
                 "fileName": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"file name for email"
                 }
               }
             }
@@ -3872,47 +4013,57 @@
             "type": "object",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "description":"name of recent mail"
               },
               "profilePic": {
                 "type": "string",
-                "x-faker": "{{image.imageUrl}}"
+                "x-faker": "{{image.imageUrl}}",
+                "description":"image url of recent mail user profile"
               },
               "email": {
                 "type": "string",
-                "x-faker": "{{internet.email}}"
+                "x-faker": "{{internet.email}}",
+                "description":"email of recent mail"
               },
               "id": {
                 "type": "integer",
-                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+                "description":"id of recent mail user"
               }
             }
           },
           "subject": {
             "type": "string",
-            "x-faker": "{{lorem.sentence}}"
+            "x-faker": "{{lorem.sentence}}",
+            "description":"subject of recent mail"
           },
           "type": {
             "type": "string",
-            "default": "important"
+            "default": "important",
+            "description":"type of recent mail"
           },
           "time": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"time of recent mail created"
           },
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+            "description":"id of user"
           },
           "body": {
             "type": "string",
-            "x-faker": "{{lorem.sentences}}"
+            "x-faker": "{{lorem.sentences}}",
+            "description":"body or paragraph of recent mail"
           },
           "isSnooze": {
             "type": "boolean",
-            "x-faker": "{{random.boolean}}"
+            "x-faker": "{{random.boolean}}",
+            "description":"name of recent mail"
           },
           "isStar": {
             "type": "boolean",
@@ -3926,7 +4077,8 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "x-faker": "{{name.jobDescriptor}}"
+                  "x-faker": "{{name.jobDescriptor}}",
+                  "description":"list of recent mail type"
                 }
               }
             }
@@ -3969,19 +4121,23 @@
             "type": "object",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "description":"name of mail senders"
               },
               "profilePic": {
                 "type": "string",
-                "x-faker": "{{image.imageUrl}}"
+                "x-faker": "{{image.imageUrl}}",
+                "description":"profile pic of mail senders"
               },
               "email": {
                 "type": "string",
-                "x-faker": "{{internet.email}}"
+                "x-faker": "{{internet.email}}",
+                "description":"email of mail senders"
               },
               "id": {
                 "type": "integer",
-                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+                "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+                "description":"id of mail senders"
               }
             }
           },
@@ -4040,30 +4196,36 @@
         "properties": {
           "title": {
             "type": "string",
-            "x-faker": "{{lorem.words}}"
+            "x-faker": "{{lorem.words}}",
+            "description":"type of kanban"
           },
           "time": {
             "type": "string",
             "format": "date",
-            "x-faker": "datatype.datetime"
+            "x-faker": "datatype.datetime",
+            "description":"time of kanban created"
           },
           "id": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+            "description":"id of kanban"
           },
           "progressPer": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })"
+            "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
+            "description":"percentage of completed kanban for progressbar"
           },
           "type": {
             "type": "string",
-            "x-faker": "{{lorem.word}}"
+            "x-faker": "{{lorem.word}}",
+            "description":"type of kanban"
           },
           "isPined": {
             "type": "boolean",
-            "x-faker": "{{random.boolean}}"
+            "x-faker": "{{random.boolean}}",
+            "description":"pined kanban"
           },
           "users": {
             "type": "array",
@@ -4073,7 +4235,8 @@
               "properties": {
                 "url": {
                   "type": "string",
-                  "x-faker": "{{image.imageUrl}}"
+                  "x-faker": "{{image.imageUrl}}",
+                  "description":"image of profile pic url of requester"
                 }
               }
             }
@@ -4086,72 +4249,86 @@
           "totalRFP": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"total RFP fro dashboard"
           },
           "todayRFP": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
+            "description":"today RFP for dashboard"
           },
           "email": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
+            "description":"email id for dashboard"
           },
           "completeOrder": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
+            "description":"completed orders of RFP for dashboard"
           },
           "inprogressOrder": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"inprogress order of RFP for dashboard"
           },
           "totalspent": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 100000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 100000 })",
+            "description":"total spent amount of RFP"
           },
           "requisitionPendding": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"pendding requisition of frp"
           },
           "invoices": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"invoices of frp"
           },
           "totalPO": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"total of Purchase Orders"
           },
           "penddingPo": {
             "type": "integer",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
+            "description":"total of Pendding Purchase Orders"
           },
           "requisitionChart": {
             "type": "array",
             "x-count": 6,
+            "description":"list of requisition chart data",
             "items": {
               "type": "object",
               "properties": {
                 "name": {
                   "type": "string",
-                  "x-faker": "{{date.month}}"
+                  "x-faker": "{{date.month}}",
+                  "description":"name of the month"
                 },
                 "TotalPaid": {
                   "type": "integer",
                   "format": "int64",
-                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })"
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
+                  "description":"total Paid amount"
                 },
                 "TotalUnpaid": {
                   "type": "integer",
                   "format": "int64",
-                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })"
+                  "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
+                  "description":"total unpaid amount or balance"
                 }
               }
             }
@@ -4176,41 +4353,50 @@
         "properties": {
           "orderedDate": {
             "type": "string",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"order date of track FRP"
           },
           "approvedDate": {
             "type": "string",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"approved date of FRP"
           },
           "poGenerateDate": {
             "type": "string",
-            "x-faker": "{{date.recent}}"
+            "x-faker": "{{date.recent}}",
+            "description":"date of Purcahsed order created or generated"
           },
           "deliveryDate": {
             "type": "string",
-            "x-faker": "{{date.future}}"
+            "x-faker": "{{date.future}}",
+            "description":"delivery date of FRP"
           },
           "trackUpdates": {
             "type": "array",
             "x-count": 6,
+            "description":"lsit of FRP details ",
             "items": {
               "type": "object",
               "properties": {
                 "deliveryDate": {
                   "type": "string",
-                  "x-faker": "{{date.future}}"
+                  "x-faker": "{{date.future}}",
+                  "description":"delivery date of particular FRP"
                 },
                 "location": {
                   "type": "string",
-                  "x-faker": "{{address.county}}"
+                  "x-faker": "{{address.county}}",
+                  "description":"location of created FRP"
                 },
                 "department": {
                   "type": "string",
-                  "x-faker": "{{commerce.department}}"
+                  "x-faker": "{{commerce.department}}",
+                  "description":"department of Created FRP"
                 },
                 "orderedDate": {
                   "type": "string",
-                  "x-faker": "{{date.past}}"
+                  "x-faker": "{{date.past}}",
+                  "description":"ordered date of FRP"
                 }
               }
             }
@@ -4223,36 +4409,43 @@
           "TotalBudget": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })"
+            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })",
+            "description":"total budget allocated for Rquisition"
           },
           "UsedBudget": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 2000, \"max\": 20000 })"
+            "x-faker": "datatype.number({ \"min\": 2000, \"max\": 20000 })",
+            "description":"total used budget for Rquisition"
           },
           "UsedBudgetPercentage": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 10, \"max\": 50 })"
+            "x-faker": "datatype.number({ \"min\": 10, \"max\": 50 })",
+            "description":"percentage of used budget"
           },
           "CommitedBudgetPercentage": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 60, \"max\": 80})"
+            "x-faker": "datatype.number({ \"min\": 60, \"max\": 80})",
+            "description":"total commited budget in percentage"
           },
           "AvaliableBudget": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })"
+            "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })",
+            "description":"Avaliable or remaing budget for Rquisition"
           },
           "CommitedBudget": {
             "type": "string",
             "format": "int64",
-            "x-faker": "datatype.number({ \"min\": 20000, \"max\": 200000 })"
+            "x-faker": "datatype.number({ \"min\": 20000, \"max\": 200000 })",
+            "description":"commited budget for requisitiuon"
           },
           "Department": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
+            "x-faker": "{{commerce.department}}",
+            "description":"department who created or rised requisition"
           }
         }
       },
@@ -4261,15 +4454,18 @@
         "properties": {
           "title": {
             "type": "string",
-            "x-faker": "{{internet.userName}}"
+            "x-faker": "{{internet.userName}}",
+            "description":"title of any notification"
           },
           "img": {
             "type": "string",
-            "x-faker": "{{image.imageUrl}}"
+            "x-faker": "{{image.imageUrl}}",
+            "description":"image of any notification"
           },
           "description": {
             "type": "string",
-            "x-faker": "{{lorem.text}}"
+            "x-faker": "{{lorem.text}}",
+            "description":"description of any notification"
           }
         }
       },
@@ -4278,30 +4474,36 @@
         "properties": {
           "requisitionDepartment": {
             "type": "string",
-            "x-faker": "{{commerce.department}}"
+            "x-faker": "{{commerce.department}}",
+            "description":"department of report"
           },
           "requisitionTypes": {
-            "type": "string"
+            "type": "string",
+            "description":"type of requisition for report"
           },
           "lastUpdated": {
             "type": "string",
             "format": "date",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"last updated date of report"
           },
           "createdAt": {
             "type": "string",
             "format": "date",
-            "x-faker": "{{date.past}}"
+            "x-faker": "{{date.past}}",
+            "description":"created date of report"
           },
           "profile": {
             "type": "array",
             "x-count": 10,
+            "description":"list of profiles",
             "items": {
               "type": "object",
               "properties": {
                 "userProfile": {
                   "type": "string",
-                  "x-faker": "{{image.imageUrl}}"
+                  "x-faker": "{{image.imageUrl}}",
+                  "description":"user profile picture"
                 }
               }
             }
@@ -4313,7 +4515,8 @@
               "type": "object",
               "properties": {
                 "notification": {
-                  "type": "string"
+                  "type": "string",
+                  "description":"typr of notifications"
                 }
               }
             }

@@ -37,7 +37,8 @@ class EmailPage extends Component {
       currentPage: 0,
       emailData: [],
       isSubmitted: false,
-      searchemail: '',
+      searchemail: "inbox",
+      priorty:'social',
       sendEmailData: {
         subject: '',
         emaildetail: '',

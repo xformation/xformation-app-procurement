@@ -18,7 +18,7 @@ import { ReactSortable } from "react-sortablejs";
 import IconButton from '@material-ui/core/IconButton';
 
 
-import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip } from '@material-ui/core';
+import { Dialog, DialogContent, DialogTitle, DialogActions, Tooltip, ThemeProvider } from '@material-ui/core';
 import CloseIcon from "@material-ui/icons/Close";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import {Dialog} from '@material-ui/core';
@@ -60,21 +60,16 @@ class Kanban extends Component {
                 }
                 this.setState({
                     quatationList: this.props.kanban_list,
-                    onProgress: this.props.kanban_list,
-                    completed: this.props.kanban_list,
-                    revised: this.props.kanban_list,
                     completedCount,
                     onProgressCount
                 })
             }
         }
     }
-
     displayQuatation = (quatationList) => {
         // const { quatationList } = this.state;
         let retData = [];
         if (quatationList && quatationList.length > 0) {
-
             for (let i = 0; i < quatationList.length; i++) {
                 let row = quatationList[i];
                 let time = row.time.split('T');
@@ -112,10 +107,21 @@ class Kanban extends Component {
                     </div >
                 );
             }
+        } else {
+            retData.push(<div className="row">
+                <div className="col-12">
+                    <div className="suppliers-list">
+                        <div className="suppliers-content important">
+                            <div className="dragdrop-file">
+                                <span>Move card hare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>)
         }
         return retData;
     }
-
     //  invite poople onclick
     invitePeoples = () => {
         // alert("wroking")
@@ -125,10 +131,7 @@ class Kanban extends Component {
             invitePeoples: dialog,
         })
     }
-
     // dilog  
-
-
     render() {
         const { invitePeoples, onProgressCount, completedCount } = this.state;
         let { quatationList, onProgress, revised, completed } = this.state
@@ -177,17 +180,13 @@ class Kanban extends Component {
                         </div>
                     </div>
                 </div>
-
-
                 {/* invite friends ---------------*/}
-
                 <Dialog open={invitePeoples} aria-labelledby="form-dialog-title" className="invite-module">
                     <DialogTitle id="form-dialog-title" className="invite-module-header">
                         Invite members to your contact list
                         <CloseIcon className="close-icon" onClick={this.invitePeoples} />
                     </DialogTitle>
                     <DialogContent className="invite-module-content">
-
                         <>
                             <div className="row">
                                 <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
@@ -197,8 +196,6 @@ class Kanban extends Component {
                                     <label className="d-block">Name (Optional)</label>
                                 </div>
                             </div>
-
-
                             <div className="row">
                                 <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
                                     <div className="form-group form-group-common">
@@ -211,15 +208,11 @@ class Kanban extends Component {
                                         <input type="text" name="name" placeholder="Eg.james" className="form-control" />
                                     </div>
                                 </div>
-
                                 <div className="col-xl-2 col-lg-2 col-md-2 col-2">
                                     <CloseIcon className="close-icon" />
                                 </div>
-
                             </div>
-
                         </>
-
                         <div className="add-multiples" onClick={this.addMoreContcat}>
                             <AddCircleIcon className="plus-icon" />
                             <span>Add New </span>
@@ -237,7 +230,7 @@ class Kanban extends Component {
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div className="heading d-block">
-                                To&#8722;Do List &#40;24&#41;
+                                To&#8722;Do List &#40;{quatationList.length}&#41;
                                 <div className="count-btn">
                                     <Button variant="contained" className="plus-btn"><AddIcon /></Button>
                                 </div>
@@ -245,7 +238,7 @@ class Kanban extends Component {
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div className="heading d-block">
-                                On Progress &#40;{onProgressCount}&#41;
+                                On Progress &#40;{onProgress.length}&#41;
                                 <div className="count-btn">
                                     <Button variant="contained" className="plus-btn"><AddIcon /></Button>
                                 </div>
@@ -253,7 +246,7 @@ class Kanban extends Component {
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div className="heading d-block">
-                                Completed &#40;{completedCount}&#41;
+                                Completed &#40;{completed.length}&#41;
                                 <div className="count-btn">
                                     <Button variant="contained" className="plus-btn"><AddIcon /></Button>
                                 </div>
@@ -261,32 +254,23 @@ class Kanban extends Component {
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div className="heading d-block">
-                                Revised &#40;0&#41;
+                                Revised &#40;{revised.length}&#41;
                                 <div className="count-btn">
                                     <Button variant="contained" className="plus-btn"><AddIcon /></Button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="row justify-content-end mb-4">
-                        <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div className="suppliers-list">
-                                <div className="suppliers-content important">
-                                    <div className="dragdrop-file">
-                                        <span>Move card hare</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/* {this.movecardHerr()} */}
                     <div className="row">
                         <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <strong>To−Do List</strong>
+                            {quatationList.length === 0 && this.displayQuatation(quatationList)}
                             <ReactSortable
                                 list={quatationList}
                                 setList={(newState) => this.setState({ quatationList: newState })}
                                 className="row"
                                 group="cards"
+                                style={{ position: `${quatationList <= 0 ? 'absolute' : 'relative'}`, height: `${quatationList <= 0 ? '112px' : 'auto'}`, top: '0', width: `${quatationList <= 0 ? '100%' : 'auto'}`,}}
                                 onChange={(order, sortable, evt) => { }}
                                 onEnd={evt => { }}
                             >
@@ -295,12 +279,13 @@ class Kanban extends Component {
                             </ReactSortable>
                         </div>
                         <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <strong>On Progress</strong>
+                            {onProgress.length === 0 && this.displayQuatation(onProgress)}
                             <ReactSortable
                                 list={onProgress}
                                 setList={(newState) => this.setState({ onProgress: newState })}
                                 className="row"
                                 group="cards"
+                                style={{ position: `${onProgress <= 0 ? 'absolute' : 'relative'}`, height: `${onProgress <= 0 ? '112px' : 'auto'}`, top: '0', width: `${onProgress <= 0 ? '100%' : 'auto'}`,}}
                                 onChange={(order, sortable, evt) => { }}
                                 onEnd={evt => { }}
                             >
@@ -309,32 +294,32 @@ class Kanban extends Component {
                             </ReactSortable>
                         </div>
                         <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <strong>Completed</strong>
+                            {completed.length === 0 && this.displayQuatation(completed)}
                             <ReactSortable
                                 list={completed}
                                 setList={(newState) => this.setState({ completed: newState })}
                                 className="row"
                                 group="cards"
+                                style={{ position: `${completed <= 0 ? 'absolute' : 'relative'}`, height: `${completed <= 0 ? '112px' : 'auto'}`, top: '0', width: `${completed <= 0 ? '100%' : 'auto'}`,}}
                                 onChange={(order, sortable, evt) => { }}
                                 onEnd={evt => { }}
                             >
                                 {completed && completed.length > 0 && this.displayQuatation(completed)}
-
                             </ReactSortable>
                         </div>
 
                         <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <strong>Revised</strong>
+                            {revised.length === 0 && this.displayQuatation(revised)}
                             <ReactSortable
                                 list={revised}
                                 setList={(newState) => this.setState({ revised: newState })}
                                 className="row"
                                 group="cards"
+                                style={{ position: `${revised <= 0 ? 'absolute' : 'relative'}`, height: `${revised <= 0 ? '112px' : 'auto'}`, top: '0', width: `${revised <= 0 ? '100%' : 'auto'}`,}}
                                 onChange={(order, sortable, evt) => { }}
                                 onEnd={evt => { }}
                             >
                                 {revised && revised.length > 0 && this.displayQuatation(revised)}
-
                             </ReactSortable>
                         </div>
 
