@@ -25,7 +25,7 @@ const ViewRecievedRfq = React.lazy(() => import('../PostLogin/RecievedRfq/ViewRe
 const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewPo'));
 const AddInvoices = React.lazy(() => import('../PostLogin/Invoices/AddNewInvoice'));
 const ApprovePo = React.lazy(() => import('../PostLogin/GeneratePo/approvePo'));
-const BudgetOverview = React.lazy(() => import('../PostLogin/BudgetOverview/index'));
+const BudgetOverview = React.lazy(() => import('../PostLogin/BudgetOverview'));
 const Reports = React.lazy(() => import('../PostLogin/reports/reports'));
 const PurchaseOrder =React.lazy(()=>import('../PostLogin/GeneratePo/purchaseOrder'));
 const BudgetAllocate =React.lazy(()=>import('../PostLogin/BudgetOverview/allocatedBudget'));
