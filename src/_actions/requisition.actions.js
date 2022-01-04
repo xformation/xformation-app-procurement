@@ -10,7 +10,6 @@ export const requistionAction = {
     getCurrency,
     deleteRequitionData,
     approveRequisition,
-    getbuyerList,
     changeAddBuyerState,
     setRequisitionBuyers
 };
@@ -240,39 +239,6 @@ function approveRequisition(data) {
                 error => {
                     dispatch(dispatchFunction({
                         type: requisitionConstants.APPROVE_REQUISITION_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
-function getbuyerList(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: requisitionConstants.GET_BUYER_REQUEST,
-            data: null
-        }));
-        requisitionServices.getbuyerList(data)
-            .then(
-                response => {
-                    if (response.code == 200) {
-                        dispatch(dispatchFunction({
-                            type: requisitionConstants.GET_BUYER_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: requisitionConstants.GET_BUYER_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: requisitionConstants.GET_BUYER_FAILURE,
                         data: error.message
                     }));
                     alert.error(error.message);

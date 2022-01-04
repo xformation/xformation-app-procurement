@@ -66,12 +66,13 @@ class Contact extends Component {
     if (prevProps.delete_contact_status !== this.props.delete_contact_status && this.props.delete_contact_status === status.SUCCESS) {
       this.setState({
         openDialog: false,
+        displayOption: false,
       })
       this.props.dispatch(contactAction.fetchContactList());
     }
     if (prevProps.get_contact_status !== this.props.get_contact_status && this.props.get_contact_status === status.SUCCESS) {
       const { perPageLimit } = this.state
-      if (this.props.getContact && this.props.getContact.length > 0) {  
+      if (this.props.getContact && this.props.getContact.length > 0) {
         let data = this.props.getContact;
         if (data && data.length > 0) {
           for (let i = 0; i < data.length; i++) {

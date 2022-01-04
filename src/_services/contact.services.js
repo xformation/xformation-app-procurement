@@ -16,7 +16,7 @@ function addContact(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDCONTACT}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.CONTACT}`, requestOptions).then(response => response.json());
 }
 
 function deleteContact(data) {
@@ -24,7 +24,7 @@ function deleteContact(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETECONTACT}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.CONTACT}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function fetchContactList() {
@@ -32,7 +32,7 @@ function fetchContactList() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHCONTACT}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.CONTACT}`, requestOptions).then(response => response.json());
 }
 
 function getContactData(data) {
@@ -40,15 +40,15 @@ function getContactData(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETCONTACT}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.CONTACT}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function updateContact(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.UPDATECONTACT}`, requestOptions).then(response => response.json());
+    const requestOptions = commonFunctions.getRequestOptions("PATCH", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.CONTACT}`, requestOptions).then(response => response.json());
 }
 
 function sendInvitation(data) {
@@ -56,5 +56,5 @@ function sendInvitation(data) {
         "content-Type": "application/Json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.SENDINVITATION}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.INVITATION}`, requestOptions).then(response => response.json());
 }

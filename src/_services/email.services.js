@@ -13,7 +13,7 @@ function recentCommunication(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHEMAIL}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.CHATS}`, requestOptions).then(response => response.json());
 }
 
 function searchallemails(data) {
@@ -23,7 +23,7 @@ function searchallemails(data) {
     let url = "";
     url += `?search=${data.search}`;
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FEATCHALLEMAIL}${url}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.EMAIL}${url}`, requestOptions).then(response => response.json());
 }
 
 function sendEmail(data) {
@@ -34,7 +34,7 @@ function sendEmail(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, formData);
-    return fetch(`${apiEndPoint.SENDEMAIL}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.EMAIL}`, requestOptions).then(response => response.json());
 }
 
 function getEmailDetail(data) {
@@ -42,7 +42,7 @@ function getEmailDetail(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETEMAIL}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.EMAIL}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function deleteEmail(data) {
@@ -50,5 +50,5 @@ function deleteEmail(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETEMAIL}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.EMAIL}/${data.id}`, requestOptions).then(response => response.json());
 }

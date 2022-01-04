@@ -10,6 +10,6 @@ function fetchKanbanList(data) {
         "Content-Type": "application/json"
     }
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHKANBAN}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.KANBAN}`, requestOptions).then(response => response.json());
 
 }

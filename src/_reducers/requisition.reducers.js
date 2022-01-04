@@ -114,22 +114,6 @@ export function requisition(state = {}, action) {
                 ...state,
                 approve_requisition_status: status.FAILURE,
             };
-        case requisitionConstants.GET_BUYER_REQUEST:
-            return {
-                ...state,
-                get_buyer_status: status.IN_PROGRESS,
-            };
-        case requisitionConstants.GET_BUYER_SUCCESS:
-            return {
-                ...state,
-                get_buyer_status: status.SUCCESS,
-                get_buyer_list: action.data
-            };
-        case requisitionConstants.GET_BUYER_FAILURE:
-            return {
-                ...state,
-                get_buyer_status: status.FAILURE,
-            };
         case requisitionConstants.SET_BUYER_REQUEST:
             return {
                 ...state,

@@ -82,7 +82,8 @@ function sendBudghetAllocation(data) {
             data: null
         }));
 
-        budgetServices.sendBudgeAllocation(data).then(response => {
+        budgetServices.sendBudgeAllocation(data)
+        .then(response => {
             if (response.code === 200) {
                 dispatch(dispatchFunction({
                     type: budgetConstant.POST_BUDGET_ALLOCATION_SUCCESS,

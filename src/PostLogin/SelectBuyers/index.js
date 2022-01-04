@@ -14,7 +14,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from "react-redux";
-import { requistionAction } from "../../_actions";
+import { buyerAction, requistionAction } from "../../_actions";
 import { status } from "../../_constants";
 import { alert } from "../../_utilities";
 import Loader from "../../_components/commonLoader";
@@ -34,7 +34,7 @@ class SelectBuyers extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(requistionAction.getbuyerList());
+    this.props.dispatch(buyerAction.getBuyer());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -49,15 +49,15 @@ class SelectBuyers extends Component {
           });
         } else {
           this.setState({
-            approvedMemberList: this.props.get_buyer_list,
-            duplicateData: this.props.get_buyer_list,
+            approvedMemberList: this.props.getBuyer,
+            duplicateData: this.props.getBuyer,
             isLoading: false,
           });
         }
       } else {
         this.setState({
-          approvedMemberList: this.props.get_buyer_list,
-          duplicateData: this.props.get_buyer_list,
+          approvedMemberList: this.props.getBuyer,
+          duplicateData: this.props.getBuyer,
           isLoading: false,
         });
       }
@@ -80,7 +80,7 @@ class SelectBuyers extends Component {
     //this.props.history.push(`/postlogin/newcontact/${id}`);
   };
 
-  removeContact = (id , index) => {
+  removeContact = (id, index) => {
     //this.props.dispatch(requistionAction.deleteContact({ id: id }));
   };
 
@@ -110,7 +110,7 @@ class SelectBuyers extends Component {
               </div>
               <div className="d-inline-block menu-icon">
                 <IconButton aria-label="settings">
-                  <MoreVertIcon 
+                  <MoreVertIcon
                     onClick={
                       i === activeindex ? this.toggleDisplayOptions : null
                     }
@@ -298,14 +298,11 @@ class SelectBuyers extends Component {
 
 function mapStateToProps(state) {
   const {
-    get_buyer_status,
-    get_buyer_list,
-    selected_buyer_list,
-    selected_buyer_status,
-  } = state.requisition;
+    get_buyer_status, getBuyer } = state.buyer;
+  const { selected_buyer_list, selected_buyer_status } = state.requisition;
   return {
     get_buyer_status,
-    get_buyer_list,
+    getBuyer,
     selected_buyer_list,
     selected_buyer_status,
   };

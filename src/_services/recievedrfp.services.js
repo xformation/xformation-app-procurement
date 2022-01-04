@@ -17,7 +17,7 @@ function searchRecievedRFP(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHRECIEVEDRFP}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFP}`, requestOptions).then(response => response.json());
 }
 
 function getRecieveRFP(data) {
@@ -25,7 +25,7 @@ function getRecieveRFP(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETRECIEVEDRFP}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFP}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function addRecieveRFP(data) {
@@ -33,7 +33,7 @@ function addRecieveRFP(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDSTATUSRFP}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFP}`, requestOptions).then(response => response.json());
 }
 
 function searchRecievedRFQ() {
@@ -41,7 +41,7 @@ function searchRecievedRFQ() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHRECIEVEDRFQ}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFQ}`, requestOptions).then(response => response.json());
 }
 
 function getRecieveRFQ(data) {
@@ -49,7 +49,7 @@ function getRecieveRFQ(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETRECIEVEDRFQ}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFQ}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function addRecieveRFQ(data) {
@@ -57,7 +57,7 @@ function addRecieveRFQ(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDSTATUSRFQ}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RECIEVEDRFQ}`, requestOptions).then(response => response.json());
 }
 
 function getTrackRfpData(data) {

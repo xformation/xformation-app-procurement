@@ -26,10 +26,10 @@ const ViewPurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/viewP
 const AddInvoices = React.lazy(() => import('../PostLogin/Invoices/AddNewInvoice'));
 const ApprovePo = React.lazy(() => import('../PostLogin/GeneratePo/approvePo'));
 const BudgetOverview = React.lazy(() => import('../PostLogin/BudgetOverview'));
-const Reports = React.lazy(() => import('../PostLogin/reports/reports'));
-const PurchaseOrder =React.lazy(()=>import('../PostLogin/GeneratePo/purchaseOrder'));
-const BudgetAllocate =React.lazy(()=>import('../PostLogin/BudgetOverview/allocatedBudget'));
-const BudgetAllocation = React.lazy(()=>import("../PostLogin/BudgetOverview/budgetAllocation"));
+const Reports = React.lazy(() => import('../PostLogin/Reports'));
+const PurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/purchaseOrder'));
+const BudgetAllocate = React.lazy(() => import('../PostLogin/BudgetOverview/allocatedBudget'));
+const BudgetAllocation = React.lazy(() => import("../PostLogin/BudgetOverview/BudgetAllocation"));
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
@@ -65,9 +65,9 @@ const routes = [
     { path: '/postlogin/approvepo', exact: true, name: 'ApprovePo', component: ApprovePo },
     { path: '/postlogin/budgetoverview', exact: true, name: 'BudgetOverview', component: BudgetOverview },
     { path: '/postlogin/reports', exact: true, name: 'Reports', component: Reports },
-    {path: '/postlogin/approvepo/:id', exact:true, name: 'PurchaseOrder' , component:PurchaseOrder},
-   { path: '/postlogin/budgetoverview/:id', exact:true, name:'BudgetAllocate' ,component:BudgetAllocate},
-   {path: "/postlogin/budgetallocation", exact:true, name:"BudgetAllocation", component: BudgetAllocation}
+    { path: '/postlogin/approvepo/:id', exact: true, name: 'PurchaseOrder', component: PurchaseOrder },
+    { path: '/postlogin/budgetoverview/:id', exact: true, name: 'BudgetAllocate', component: BudgetAllocate },
+    { path: "/postlogin/budgetallocation", exact: true, name: "BudgetAllocation", component: BudgetAllocation }
 ]
 
 export default routes;

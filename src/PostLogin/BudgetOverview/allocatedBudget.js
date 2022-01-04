@@ -10,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 class BudgetAllocate extends Component {
     constructor(props) {
@@ -109,6 +110,11 @@ class BudgetAllocate extends Component {
         }
     }
 
+    backToBudgetOverview = (e) => {
+        e.preventDefault();
+        this.props.history.push('/postlogin/budgetoverview');
+    }
+
     render() {
         const { columns, tableData, allotedDudget } = this.state;
         return (
@@ -117,7 +123,12 @@ class BudgetAllocate extends Component {
                     <div className="budget-content-section">
                         <div className="row d-flex justify-content-center align-items-center">
                             <div className="col-md-8 col-12">
-                                <div className="d-block w-100 heading"><h4>Budget Overview</h4></div>
+                                {allotedDudget && allotedDudget.Department &&
+                                    <div className="d-block w-100 heading">
+                                        <span onClick={this.backToBudgetOverview}><KeyboardBackspaceIcon /></span>
+                                        <h4>{allotedDudget.Department}</h4>
+                                    </div>
+                                }
                                 {allotedDudget.CommitedBudget && <div className="d-block w-100 limit-text">Approved Budget limit:
                                     <span>${allotedDudget.CommitedBudget}</span></div>}
                             </div>
@@ -175,10 +186,10 @@ class BudgetAllocate extends Component {
                             </div>
                         </div>
                         <div>
-                        <div className="form-group row col-form-group">
-                            <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">
-                               <strong>Used</strong>|<p>Month:</p>
-                            </label>
+                            <div className="form-group row col-form-group">
+                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">
+                                    <strong>Used</strong>|<p>Month:</p>
+                                </label>
                                 <FormControl >
                                     <NativeSelect
                                         name="status"

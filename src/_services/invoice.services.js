@@ -3,20 +3,10 @@ import { commonFunctions } from "../_utilities";
 import { apiEndPoint } from "./apiEndPoint";
 
 export const invoiceServices = {
-    addInvoice,
     deleteInvoice,
     getInvoice,
     searchInvoice,
-    updateInvoice,
     getNewInvoice
-}
-
-function addInvoice(data) {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDINVOICE}`, requestOptions).then(response => response.json());
 }
 
 function deleteInvoice(id) {
@@ -24,7 +14,7 @@ function deleteInvoice(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETEINVOICE}/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.INVOICE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getInvoice(data) {
@@ -32,7 +22,7 @@ function getInvoice(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETINVOICE}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.INVOICE}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function searchInvoice() {
@@ -40,7 +30,7 @@ function searchInvoice() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHINVOICE}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.INVOICE}`, requestOptions).then(response => response.json());
 }
 
 function getNewInvoice() {
@@ -48,13 +38,5 @@ function getNewInvoice() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHNEWINVOICE}`, requestOptions).then(response => response.json());
-}
-
-function updateInvoice() {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${apiEndPoint.UPDATEINVOICE}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.NEWINVOICE}`, requestOptions).then(response => response.json());
 }

@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { budgetActions } from '../../_actions';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import { status } from "../../_constants";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 class BudgetAllocation extends Component {
     constructor(props) {
@@ -19,6 +21,13 @@ class BudgetAllocation extends Component {
             IssuedOn: ""
         }
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(this.props.budgetAllocation_status)
+        if (prevProps.budgetAllocation_status !== this.props.budgetAllocation_status && this.props.budgetAllocation_status === status.SUCCESS) {
+            this.props.history.push('/postlogin/budgetoverview')
+        }
+    }
     onchaneHandeler = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value })
@@ -26,22 +35,21 @@ class BudgetAllocation extends Component {
     onchangeDate = (value) => {
         this.setState({ IssuedOn: value })
     }
+
     submitForm = (e) => {
         const { Employee, FinancialYear, Amount, Priorty, IssuedOn, isSubmitted } = this.state
-        e.preventDefault()
+        // e.preventDefault()
         this.setState({ isSubmitted: true })
         const errorData = this.validate(true);
-        if (isSubmitted) {
-            if (errorData.isValid) {
-                const sendData = {
-                    employee: Employee,
-                    financialYear: FinancialYear,
-                    amount: Amount,
-                    priorty: Priorty,
-                    issuedOn: IssuedOn
-                }
-                this.props.dispatch(budgetActions.sendBudghetAllocation(sendData));
+        if (errorData.isValid) {
+            const sendData = {
+                employee: Employee,
+                financialYear: FinancialYear,
+                amount: Amount,
+                priorty: Priorty,
+                issuedOn: IssuedOn
             }
+            this.props.dispatch(budgetActions.sendBudghetAllocation(sendData));
         }
     }
     validate = (isSubmited) => {
@@ -60,7 +68,6 @@ class BudgetAllocation extends Component {
         }
         let isValid = true;
         if (isSubmited) {
-
             if (!Employee) {
                 retData.Employee = {
                     isValid: false,
@@ -103,16 +110,21 @@ class BudgetAllocation extends Component {
         retData.isValid = isValid;
         return retData;
     }
+
+    cancelBudgetAllocation = (e) => {
+        e.preventDefault();
+        this.props.history.push('/postlogin/budgetoverview');
+    }
+
     render() {
-        // console.log(this.props.budgetAllocation_status)
         const { Employee, FinancialYear, Amount, Priorty, IssuedOn, isSubmitted } = this.state
         const errorMessage = this.validate(isSubmitted)
-        // console.log(errorMessage)
         return (
             <div className="main-content">
                 <div className="budget-allocation-section">
                     <div className="budget-allocation-content">
                         <div className="heading">
+                            <span onClick={this.cancelBudgetAllocation}><KeyboardBackspaceIcon /></span>
                             <h4>Budget Allocation</h4>
                         </div>
                         <div className="budget-allocation-filter">
@@ -151,7 +163,7 @@ class BudgetAllocation extends Component {
                                             <div className="form-group">
                                                 <label>Amount</label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     name="Amount"
                                                     placeholder="0000000000"
                                                     value={Amount}
@@ -186,15 +198,6 @@ class BudgetAllocation extends Component {
                                                         // isvalid={errorData.brithDate.isValid}
                                                         placeholder="DD/MM/YYYY"
                                                     />
-
-                                                    {/* <NativeSelect
-                                                name="departmentId"
-                                                onChange={this.onchaneHandeler}
-
-                                            >
-                                                <option value={this.state.IssuedOn}>Date</option>
-
-                                            </NativeSelect> */}
                                                 </FormControl>
                                                 {errorMessage && errorMessage.IssuedOn && errorMessage.IssuedOn.message && <span className="text-danger">{errorMessage.IssuedOn.message} </span>}
                                             </div>
@@ -204,7 +207,7 @@ class BudgetAllocation extends Component {
                                                 <CheckCircleIcon className="approve-icon" />
                                                 Approve
                                             </Button>
-                                            <Button variant="contained" className="cancel-button" disabled >
+                                            <Button variant="contained" className="cancel-button" onClick={this.cancelBudgetAllocation} >
                                                 <NotInterestedIcon className="cancel-icon" />
                                                 Cancel
                                             </Button>
@@ -221,10 +224,10 @@ class BudgetAllocation extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { budgetAllocation_status, addData } = state.budget;
+    const { budgetAllocation_status, budgetAllocation_data } = state.budget;
     return {
         budgetAllocation_status,
-        addData
+        budgetAllocation_data
     }
 }
 

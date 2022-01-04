@@ -11,5 +11,5 @@ function getDepartment() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHDEPARTMENT}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.DEPARTMENT}`, requestOptions).then(response => response.json());
 }

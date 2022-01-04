@@ -2,42 +2,6 @@ import { buyerConstants, status } from '../_constants';
 
 export function buyer(state = {}, action) {
     switch (action.type) {
-        case buyerConstants.ADD_BUYER_REQUEST:
-            return {
-                ...state,
-                add_buyer_status: status.IN_PROGRESS,
-                addBuyer: action.data
-            };
-        case buyerConstants.ADD_BUYER_SUCCESS:
-            return {
-                ...state,
-                add_buyer_status: status.SUCCESS,
-                addBuyer: action.data
-            };
-        case buyerConstants.ADD_BUYER_FAILURE:
-            return {
-                ...state,
-                add_buyer_status: status.FAILURE,
-                addBuyer: null
-            };
-        case buyerConstants.DELETE_BUYER_REQUEST:
-            return {
-                ...state,
-                delete_buyer_status: status.IN_PROGRESS,
-                deleteBuyer: action.data
-            };
-        case buyerConstants.DELETE_BUYER_SUCCESS:
-            return {
-                ...state,
-                delete_buyer_status: status.SUCCESS,
-                deleteBuyer: action.data
-            };
-        case buyerConstants.DELETE_BUYER_FAILURE:
-            return {
-                ...state,
-                delete_buyer_status: status.FAILURE,
-                deleteBuyer: null
-            };
         case buyerConstants.GET_BUYER_REQUEST:
             return {
                 ...state,

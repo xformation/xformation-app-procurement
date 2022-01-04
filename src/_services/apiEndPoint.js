@@ -4,115 +4,74 @@ export const apiEndPoint = {
     LOGIN: `${config.apiUrl}/auth/login`,
 
     // *Buyer Api Url
-    ADDBUYER: `${config.apiUrl}/addBuyer`,
-    GETEDITBUYER: `${config.apiUrl}/getBuyers`,
-    DELETEBUYER: `${config.apiUrl}/deleteBuyer`,
-    UPDATEBUYER: `${config.apiUrl}/setBuyers`,
+    BUYER: `${config.apiUrl}/buyers`,
 
     // *Committee Api Url
-    ADDCOMMITTEE: `${config.apiUrl}/addCommittee`,
-    FETCHCOMMITTEE: `${config.apiUrl}/searchCommittee`,
-    GETCOMMITTEETYPE: `${config.apiUrl}/getCommitteeType`,
+    COMMITTEE: `${config.apiUrl}/committee`,
+    COMMITTEETYPE: `${config.apiUrl}/committeeType`,
 
     // *Contact Api Url
-    ADDCONTACT: `${config.apiUrl}/addContact`,
-    FETCHCONTACT: `${config.apiUrl}/getContacts`,
-    GETCONTACT: `${config.apiUrl}/getContact`,
-    DELETECONTACT: `${config.apiUrl}/deleteContact`,
-    UPDATECONTACT: `${config.apiUrl}/editContact`,
-    SENDINVITATION: `${config.apiUrl}/sendInvitation`,
+    CONTACT: `${config.apiUrl}/contacts`,
+
+    INVITATION: `${config.apiUrl}/invitation`,
 
     // *Department Api Url
-    FETCHDEPARTMENT: `${config.apiUrl}/searchDepartment`,
+    DEPARTMENT: `${config.apiUrl}/department`,
 
     // *Contact Api Url
-    ADDINVOICE: `${config.apiUrl}/addInvoice`,
-    FETCHINVOICE: `${config.apiUrl}/fetchInvoice`,
-    GETINVOICE: `${config.apiUrl}/viewInvoice`,
-    DELETEINVOICE: `${config.apiUrl}/deleteInvoice`,
-    UPDATEINVOICE: `${config.apiUrl}/updateInvoice`,
-    FETCHNEWINVOICE: `${config.apiUrl}/fetchNewInvoice`,
+    INVOICE: `${config.apiUrl}/invoice`,
+    NEWINVOICE: `${config.apiUrl}/newInvoice`,
 
     // Requisition Api Url
-    ADDREQUISTION: `${config.apiUrl}/addRequisition`,
-    FETCHREQUISTION: `${config.apiUrl}/searchRequisition`,
-    GETEDITREQUISTION: `${config.apiUrl}/getRequisition`,
-    DELETEREQUISTION: `${config.apiUrl}/deleteRequisition`,
-    UPDATEREQUISTION: `${config.apiUrl}/updateRequisition`,
-    SEARCHREQUISITION: `${config.apiUrl}/searchRequisition`,
+    REQUISTION: `${config.apiUrl}/requisition`,
     APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
 
 
-    GETCURRENCY: `${config.apiUrl}/searchCurrency`,
+    CURRENCY: `${config.apiUrl}/currency`,
 
     // *Role Api Url
-    ADDROLE: `${config.apiUrl}/addRoles`,
-    FETCHROLE: `${config.apiUrl}/searchRoles`,
-    GETEDITROLE: `${config.apiUrl}/getRoles`,
-    DELETEROLE: `${config.apiUrl}/deleteRoles`,
-    UPDATEROLE: `${config.apiUrl}/updateRoles`,
+    ROLE: `${config.apiUrl}/roles`,
 
     // *Vendor Api Url
     ADDVENDOR: `${config.apiUrl}/addVendor`,
-    FETCHVENDOR: `${config.apiUrl}/searchVendor`,
-    GETEDITVENDOR: `${config.apiUrl}/getVendor`,
-    DELETEVENDOR: `${config.apiUrl}/deleteVendor`,
-    UPDATEVENDOR: `${config.apiUrl}/updateVendor`,
 
     // *Rules Api Url
-    ADDRULES: `${config.apiUrl}/addRules`,
-    FETCHRULES: `${config.apiUrl}/searchRules`,
-    GETEDITRULES: `${config.apiUrl}/getRulesByName`,
-    DELETERULES: `${config.apiUrl}/deleteRules`,
-    UPDATERULES: `${config.apiUrl}/updateRules`,
+    RULES: `${config.apiUrl}/rules`,
 
     // *recievedrfp api url
 
-    FETCHRECIEVEDRFP: `${config.apiUrl}/searchRecievedRfp`,
-    GETRECIEVEDRFP: `${config.apiUrl}/getRequisitionRfp`,
-    ADDSTATUSRFP: `${config.apiUrl}/addStatusRfp`,
+    RECIEVEDRFP: `${config.apiUrl}/recievedRfp`,
 
     //*generate po api url
 
-    FETCHGPO: `${config.apiUrl}/searchGeneratePo`,
-    GETGPO: `${config.apiUrl}/getGeneratePo`,
-    ADDGPODETAIL: `${config.apiUrl}/addGeneratePoDetail`,
-    FETCHGAPPROVEPO: `${config.apiUrl}/searchApprovePo`,
-    GETAPO: `${config.apiUrl}/getApprovePo`,
+    GENERATEPO: `${config.apiUrl}/generatePo`,
+
+    APPROVEPO: `${config.apiUrl}/generateApprovePo`,
 
     //recievedefq api url
 
-    FETCHRECIEVEDRFQ: `${config.apiUrl}/searchRecievedRfq`,
-    GETRECIEVEDRFQ: `${config.apiUrl}/getRecievedRfq`,
-    ADDSTATUSRFQ: `${config.apiUrl}/addStatusRfq`,
+    RECIEVEDRFQ: `${config.apiUrl}/recievedRfq`,
 
     // email api url
-    FETCHEMAIL: `${config.apiUrl}/recentCommunication`,
-    FEATCHALLEMAIL: `${config.apiUrl}/fetchAllMail`,
-    SENDEMAIL: `${config.apiUrl}/sendEmail`,
-    GETEMAIL: `${config.apiUrl}/getEmailData`,
-    DELETEMAIL: `${config.apiUrl}/deleteEmail`,
+    CHATS: `${config.apiUrl}/chat`,
+    EMAIL: `${config.apiUrl}/mailList`,
 
     //*kanban api url
-    FETCHKANBAN: `${config.apiUrl}/fetchKanbanList`,
+    KANBAN: `${config.apiUrl}/kanbanList`,
 
     //  dashboardApiURL
-    DASHBOARDDATA: `${config.apiUrl}/getdashboardData`,
+    DASHBOARDDATA: `${config.apiUrl}/dashboardData`,
 
     // frp track Api url
-    TRACKFRPDATA: `${config.apiUrl}/gettrackfrpdata`,
+    TRACKFRPDATA: `${config.apiUrl}/trackfrpdata`,
 
     //GET NOTIFICATION DATA
-    GETNOTIFICATIONDATA: `${config.apiUrl}/getNotificationData`,
+    NOTIFICATIONS: `${config.apiUrl}/notifications`,
 
     // GET BUDGETOVERVIEW DATA
-    GETBUDGET: `${config.apiUrl}/getBugetOverviewData`,
-    GETBUDGETALLOCATED: `${config.apiUrl}/getBudgetAlloceted`,
+    BUDGET: `${config.apiUrl}/bugetOverviewData`,
 
     //GET REPORTS DATA 
     GETREPORTS: `${config.apiUrl}/getReorts`,
 
-
-    //   Add Budget Allocation
-    ADDBUDGETALLOCATION: `${config.apiUrl}/addbudgetallocation`,
 };

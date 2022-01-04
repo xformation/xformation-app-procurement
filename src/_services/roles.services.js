@@ -15,7 +15,7 @@ function addRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${apiEndPoint.ADDROLE}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ROLE}`, requestOptions).then(response => response.json());
 }
 
 function deleteRoles(id) {
@@ -23,7 +23,7 @@ function deleteRoles(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETEROLE}/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ROLE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function getRoles(id) {
@@ -31,7 +31,7 @@ function getRoles(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETEDITROLE}/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ROLE}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchRoles() {
@@ -39,7 +39,7 @@ function searchRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHROLE}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ROLE}`, requestOptions).then(response => response.json());
 }
 
 function updateRoles() {
@@ -47,5 +47,5 @@ function updateRoles() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${apiEndPoint.UPDATEROLE}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.ROLE}`, requestOptions).then(response => response.json());
 }

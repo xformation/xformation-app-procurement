@@ -52,7 +52,7 @@ export function budget(state = initialState, action) {
                 budgetAllocation_data: action.data
             }
 
-        case budgetConstant.GET_ALLOCATED_BUDGET_SUCCESS:
+        case budgetConstant.POST_BUDGET_ALLOCATION_SUCCESS:
             return {
                 ...state,
                 budgetAllocation_status: status.SUCCESS,
@@ -61,7 +61,7 @@ export function budget(state = initialState, action) {
         case budgetConstant.POST_BUDGET_ALLOCATION_FAILURE:
             return {
                 ...state,
-                budgetALlocation_status: status.FAILURE,
+                budgetAllocation_status: status.FAILURE,
                 budgetAllocation_data: null
             }
 

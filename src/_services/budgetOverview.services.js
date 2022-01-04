@@ -12,7 +12,7 @@ function getBudgetOverview(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, JSON.stringify(data), null);
-    return fetch(`${apiEndPoint.GETBUDGET}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.BUDGET}`, requestOptions).then(response => response.json());
 };
 
 function getBudgetAllocated(data) {
@@ -20,7 +20,7 @@ function getBudgetAllocated(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETBUDGETALLOCATED}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.BUDGET}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 
@@ -31,5 +31,5 @@ function sendBudgeAllocation(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data), true);
-    return fetch(`${apiEndPoint.ADDBUDGETALLOCATION}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.BUDGET}`, requestOptions).then(response => response.json());
 }

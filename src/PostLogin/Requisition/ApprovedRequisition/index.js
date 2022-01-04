@@ -313,21 +313,6 @@ class ApprovedRequisition extends Component {
               </div>
             </div>
           </div>
-
-          <div className="d-flex">
-            <lebel>Show</lebel>
-            <select>
-              <option>10</option>
-            </select>
-            <lebel>Pending</lebel>
-            <select>
-              <option></option>
-              <option>ABC</option>
-            </select>
-
-          </div>
-
-
           <Table
             valueFromData={{
               columns: this.state.columns,

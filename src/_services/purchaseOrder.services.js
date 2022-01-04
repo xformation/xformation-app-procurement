@@ -14,21 +14,30 @@ function getPurchaseOrder(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETGPO}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GENERATEPO}/${data.id}`, requestOptions).then(response => response.json());
 }
 function searchPurchaseOrder(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHGPO}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.GENERATEPO}`, requestOptions).then(response => response.json());
 }
+
+function addPurchaseOrder(data) {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.GENERATEPO}`, requestOptions).then(response => response.json());
+}
+
 function approvePurchaseOrder(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHGAPPROVEPO}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.APPROVEPO}`, requestOptions).then(response => response.json());
 }
 
 function getApprovePo(data) {
@@ -36,12 +45,5 @@ function getApprovePo(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETAPO}/${data.id}`, requestOptions).then(response => response.json());
-}
-function addPurchaseOrder(data) {
-    const extraHeaders = {
-        "Content-Type": "application/json"
-    };
-    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDGPODETAIL}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.APPROVEPO}/${data.id}`, requestOptions).then(response => response.json());
 }

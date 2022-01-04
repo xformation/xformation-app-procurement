@@ -15,7 +15,7 @@ function addRules() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${apiEndPoint.ADDRULES}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RULES}`, requestOptions).then(response => response.json());
 }
 
 function deleteRules(id) {
@@ -23,7 +23,7 @@ function deleteRules(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.DELETERULES}/${id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RULES}/${id}`, requestOptions).then(response => response.json());
 }
 
 function searchRules(id) {
@@ -31,7 +31,7 @@ function searchRules(id) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.FETCHRULES}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RULES}`, requestOptions).then(response => response.json());
 }
 
 function getRulesByName(name) {
@@ -39,7 +39,7 @@ function getRulesByName(name) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETEDITRULES}/${name}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RULES}/${name}`, requestOptions).then(response => response.json());
 }
 
 function updateRules() {
@@ -47,5 +47,5 @@ function updateRules() {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, null);
-    return fetch(`${apiEndPoint.UPDATERULES}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.RULES}`, requestOptions).then(response => response.json());
 }

@@ -3,77 +3,9 @@ import { buyerServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
 export const buyerAction = {
-    addBuyer,
-    deleteBuyer,
     getBuyer,
     updateBuyer
 };
-
-function addBuyer(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: buyerConstants.ADD_BUYER_REQUEST,
-            data: null
-        }));
-        buyerServices.addBuyer(data)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.ADD_BUYER_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.ADD_BUYER_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: buyerConstants.ADD_BUYER_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
-
-function deleteBuyer(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: buyerConstants.DELETE_BUYER_REQUEST,
-            data: null
-        }));
-        buyerServices.deleteBuyer(id)
-            .then(
-                response => {
-                    if (response.status) {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.DELETE_BUYER_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.DELETE_BUYER_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: buyerConstants.DELETE_BUYER_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
 
 function getBuyer(id) {
     return dispatch => {
@@ -84,7 +16,7 @@ function getBuyer(id) {
         buyerServices.getBuyer(id)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code == 200) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.GET_BUYER_SUCCESS,
                             data: response.object
@@ -117,7 +49,7 @@ function updateBuyer(id) {
         buyerServices.updateBuyer(id)
             .then(
                 response => {
-                    if (response.status) {
+                    if (response.code===200) {
                         dispatch(dispatchFunction({
                             type: buyerConstants.UPDATE_BUYER_SUCCESS,
                             data: response.object

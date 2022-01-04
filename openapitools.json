@@ -21,7 +21,7 @@
     }
   ],
   "paths": {
-    "/searchDepartment": {
+    "/department": {
       "get": {
         "summary": "Details of department",
         "operationId": "",
@@ -82,7 +82,7 @@
         }
       }
     },
-    "/searchCurrency": {
+    "/currency": {
       "get": {
         "summary": "Details of currency",
         "operationId": "",
@@ -144,7 +144,7 @@
         }
       }
     },
-    "/searchRequisition": {
+    "/requisition": {
       "get": {
         "summary": "Details about a user",
         "operationId": "",
@@ -202,71 +202,7 @@
             }
           }
         }
-      }
-    },
-    "/deleteRequisition/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "delete": {
-        "summary": "detail about deleteRequisition",
-        "operationId": "",
-        "responses": {
-          "200": {
-            "description": "Delete Requisition is use for delete requisition by id",
-            "headers": {
-              "x-next": {
-                "description": "deleteRequisition ",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Delete Requisition Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/addRequisition": {
+      },
       "post": {
         "summary": "Details about a Requester",
         "operationId": "createRequisition",
@@ -330,75 +266,8 @@
             }
           }
         }
-      }
-    },
-    "/getRequisition/{requisitionId}": {
-      "parameters": [
-        {
-          "name": "requisitionId",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Details about a user",
-        "operationId": "",
-        "tags": [
-          "requisition"
-        ],
-        "responses": {
-          "200": {
-            "description": "getRequisition/{requistionId} is used for get requisition by id",
-            "headers": {
-              "x-next": {
-                "description": "Requisiton List",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "$ref": "#/components/schemas/requisition"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/updateRequisition": {
-      "post": {
+      },
+      "patch": {
         "summary": "Edit Requester Detail",
         "operationId": "",
         "requestBody": {
@@ -445,6 +314,121 @@
                       "default": "SUCCESS"
                     },
                     "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/requisition/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "detail about deleteRequisition",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Delete Requisition is use for delete requisition by id",
+            "headers": {
+              "x-next": {
+                "description": "deleteRequisition ",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Delete Requisition Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Details about a user",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "getRequisition/{id} is used for get requisition by id",
+            "headers": {
+              "x-next": {
+                "description": "Requisiton List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/requisition"
+                    }
                   }
                 }
               }
@@ -529,7 +513,7 @@
         }
       }
     },
-    "/searchRecievedRfp": {
+    "/recievedRfp": {
       "get": {
         "summary": "Details about a RFP",
         "operationId": "",
@@ -587,74 +571,7 @@
             }
           }
         }
-      }
-    },
-    "/getRequisitionRfp/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Details about a get Requisition by id",
-        "operationId": "",
-        "tags": [
-          "requisition"
-        ],
-        "responses": {
-          "200": {
-            "description": "getRequisitionRfp/{id} used for get requisitionRFP by id ",
-            "headers": {
-              "x-next": {
-                "description": "Rqruisition by id",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "$ref": "#/components/schemas/requisition"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/addStatusRfp": {
+      },
       "post": {
         "summary": "Add status to RFP",
         "operationId": "addstatusRfp",
@@ -720,7 +637,72 @@
         }
       }
     },
-    "/searchRecievedRfq": {
+    "/recievedRfp/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Details about a get Requisition by id",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "getRequisitionRfp/{id} used for get requisitionRFP by id ",
+            "headers": {
+              "x-next": {
+                "description": "Rqruisition by id",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/requisition"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recievedRfq": {
       "get": {
         "summary": "Details about a RFQ",
         "operationId": "",
@@ -778,9 +760,73 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Add status to RFP",
+        "operationId": "addstatusRfp",
+        "requestBody": {
+          "description": "addStatusRfq add status to frq like approved , wating etc",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/addStatusRfp"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Add status Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/getRecievedRfq/{id}": {
+    "/recievedRfq/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -845,73 +891,7 @@
         }
       }
     },
-    "/addStatusRfq": {
-      "post": {
-        "summary": "Add status to RFP",
-        "operationId": "addstatusRfp",
-        "requestBody": {
-          "description":  "addStatusRfq add status to frq like approved , wating etc",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "items": {
-                  "$ref": "#/components/schemas/addStatusRfp"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {
-              "x-next": {
-                "description": "",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Add status Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/searchGeneratePo": {
+    "/generatePo": {
       "get": {
         "summary": "Details about a Generate PO",
         "operationId": "",
@@ -969,199 +949,7 @@
             }
           }
         }
-      }
-    },
-    "/searchApprovePo": {
-      "get": {
-        "summary": "Details about a Approve PO",
-        "operationId": "",
-        "tags": [
-          "approve po"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "/searchApprovePo used for get list of Approve Purchase Order",
-            "headers": {
-              "x-next": {
-                "description": "Generate Approve Purchase Order List",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "array",
-                      "x-count": 13,
-                      "items": {
-                        "$ref": "#/components/schemas/approverquisition"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getGeneratePo/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Details about a purchase order",
-        "operationId": "",
-        "tags": [
-          "requisition"
-        ],
-        "responses": {
-          "200": {
-            "description": "/getGeneratePo/{id} used to get Generated PurchaseOrder by id",
-            "headers": {
-              "x-next": {
-                "description": "",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "$ref": "#/components/schemas/requisition"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getApprovePo/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Details about a purchase order",
-        "operationId": "",
-        "tags": [
-          "requisition"
-        ],
-        "responses": {
-          "200": {
-            "description": "/getApprovePo/{id} used for get Approved Purchase Order by id from list",
-            "headers": {
-              "x-next": {
-                "description": "",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "$ref": "#/components/schemas/approvePo"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/addGeneratePoDetail": {
+      },
       "post": {
         "summary": "Add generate po detail",
         "operationId": "generatePoDetail",
@@ -1226,7 +1014,197 @@
         }
       }
     },
-    "/getContacts": {
+    "/generatePo/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Details about a purchase order",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "/getGeneratePo/{id} used to get Generated PurchaseOrder by id",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/requisition"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generateApprovePo": {
+      "get": {
+        "summary": "Details about a Approve PO",
+        "operationId": "",
+        "tags": [
+          "approve po"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "/searchApprovePo used for get list of Approve Purchase Order",
+            "headers": {
+              "x-next": {
+                "description": "Generate Approve Purchase Order List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 13,
+                      "items": {
+                        "$ref": "#/components/schemas/approverquisition"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generateApprovePo/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Details about a purchase order",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "/getApprovePo/{id} used for get Approved Purchase Order by id from list",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/approvePo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts": {
       "get": {
         "summary": "Contact Detail",
         "operationId": "",
@@ -1284,70 +1262,7 @@
             }
           }
         }
-      }
-    },
-    "/deleteContact/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "delete": {
-        "summary": "Delete Contact List",
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {
-              "x-next": {
-                "description": "deleteContact/{id} used for delete the contact from contact list",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "delete contact successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/addContact": {
+      },
       "post": {
         "summary": "Details about a Contact",
         "operationId": "createContact",
@@ -1411,10 +1326,8 @@
             }
           }
         }
-      }
-    },
-    "/editContact": {
-      "post": {
+      },
+      "patch": {
         "summary": "Edit contact",
         "operationId": "editContact",
         "requestBody": {
@@ -1479,7 +1392,7 @@
         }
       }
     },
-    "/getContact/{id}": {
+    "/contacts/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -1490,6 +1403,55 @@
           }
         }
       ],
+      "delete": {
+        "summary": "Delete Contact List",
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "deleteContact/{id} used for delete the contact from contact list",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "delete contact successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "getContact used for get contact from contact list by id",
         "operationId": "",
@@ -1546,7 +1508,73 @@
         }
       }
     },
-    "/fetchInvoice": {
+    "/invitation": {
+      "post": {
+        "summary": "Details about a invite user",
+        "operationId": "",
+        "requestBody": {
+          "description": "sendInvitation used for send invitaion to the contact list members",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/invitationData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Send invitation Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoice": {
       "get": {
         "summary": "Invoice Detail",
         "operationId": "",
@@ -1602,60 +1630,7 @@
         }
       }
     },
-    "/fetchNewInvoice": {
-      "get": {
-        "summary": "Invoice Detail",
-        "operationId": "",
-        "responses": {
-          "200": {
-            "description": "Invoice detail",
-            "headers": {
-              "x-next": {
-                "description": "Invoice List",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/newinvoiceList"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/deleteInvoice/{id}": {
+    "/invoice/{id}": {
       "delete": {
         "summary": "Delete invoice List",
         "responses": {
@@ -1704,19 +1679,7 @@
             }
           }
         }
-      }
-    },
-    "/viewInvoice/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
+      },
       "get": {
         "summary": "Invoice Detail",
         "operationId": "",
@@ -1771,7 +1734,60 @@
         }
       }
     },
-    "/getBuyers": {
+    "/newInvoice": {
+      "get": {
+        "summary": "Invoice Detail",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Invoice detail",
+            "headers": {
+              "x-next": {
+                "description": "Invoice List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/newinvoiceList"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buyers": {
       "get": {
         "summary": "Buyer Detail",
         "operationId": "",
@@ -1829,10 +1845,8 @@
             }
           }
         }
-      }
-    },
-    "/setBuyers": {
-      "post": {
+      },
+      "patch": {
         "summary": "Details about a buyer",
         "operationId": "setbuyer",
         "requestBody": {
@@ -1897,7 +1911,7 @@
         }
       }
     },
-    "/searchCommittee": {
+    "/committee": {
       "get": {
         "summary": "Committee Detail",
         "operationId": "",
@@ -1955,71 +1969,7 @@
             }
           }
         }
-      }
-    },
-    "/getCommitteeType": {
-      "get": {
-        "summary": "Detail of Committee Type",
-        "operationId": "",
-        "tags": [
-          "committeetype"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "getCommittee used for get Committee type",
-            "headers": {
-              "x-next": {
-                "description": "Committee Type",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Fetch committee type Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {
-                      "type": "array",
-                      "x-count": 7,
-                      "items": {
-                        "$ref": "#/components/schemas/committee"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/addCommittee": {
+      },
       "post": {
         "summary": "Details about a set committee members",
         "operationId": "setbuyer",
@@ -2067,6 +2017,68 @@
                       "default": "SUCCESS"
                     },
                     "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committeeType": {
+      "get": {
+        "summary": "Detail of Committee Type",
+        "operationId": "",
+        "tags": [
+          "committeetype"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "getCommittee used for get Committee type",
+            "headers": {
+              "x-next": {
+                "description": "Committee Type",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Fetch committee type Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 7,
+                      "items": {
+                        "$ref": "#/components/schemas/committee"
+                      }
+                    }
                   }
                 }
               }
@@ -2151,7 +2163,7 @@
         }
       }
     },
-    "/recentCommunication": {
+    "/chat": {
       "get": {
         "summary": "Detail of recently mail",
         "operationId": "",
@@ -2212,7 +2224,7 @@
         }
       }
     },
-    "/fetchAllMail": {
+    "/mailList": {
       "get": {
         "summary": "Detail of All mail",
         "operationId": "",
@@ -2271,9 +2283,7 @@
             }
           }
         }
-      }
-    },
-    "/sendEmail": {
+      },
       "post": {
         "summary": "Details about a add emails",
         "operationId": "createEmail",
@@ -2339,7 +2349,7 @@
         }
       }
     },
-    "/getEmailData/{id}": {
+    "/mailList/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -2399,19 +2409,7 @@
             }
           }
         }
-      }
-    },
-    "/deleteEmail/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
+      },
       "delete": {
         "summary": "Delete Email",
         "operationId": "",
@@ -2463,7 +2461,197 @@
         }
       }
     },
-    "/fetchKanbanList": {
+    "/bugetOverviewData": {
+      "get": {
+        "summary": "Details of BudgetOverview",
+        "operationId": "",
+        "tags": [
+          "BudgetOverview"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "getBudgetOverviewData used for get budgetOverview list or table",
+            "headers": {
+              "x-next": {
+                "description": "BudgetOverview List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Fetch BudgetOverview Successfully"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "array",
+                      "x-count": 7,
+                      "items": {
+                        "$ref": "#/components/schemas/bugetOverview"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Details about a Requester",
+        "operationId": "createRequisition",
+        "requestBody": {
+          "description": "Request body to create requistion",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/requisitionData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "Delete Requisition List",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Add Requisition Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bugetOverviewData/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "getBudgetAllocated/{id} used for get particular budget details from budgetOverview list",
+        "operationId": "",
+        "tags": [
+          "requisition"
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about a get track FRP by id",
+            "headers": {
+              "x-next": {
+                "description": "FRP by id",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "$ref": "#/components/schemas/budgetAllocated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kanbanList": {
       "get": {
         "summary": "kanban list",
         "operationId": "",
@@ -2521,7 +2709,7 @@
         }
       }
     },
-    "/getdashboardData": {
+    "/dashboardData": {
       "get": {
         "summary": "Dashboard Detail",
         "operationId": "",
@@ -2575,73 +2763,7 @@
         }
       }
     },
-    "/sendInvitation": {
-      "post": {
-        "summary": "Details about a invite user",
-        "operationId": "",
-        "requestBody": {
-          "description": "sendInvitation used for send invitaion to the contact list members",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "items": {
-                  "$ref": "#/components/schemas/invitationData"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {
-              "x-next": {
-                "description": "",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Send invitation Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/gettrackfrpdata/{id}": {
+    "/trackfrpdata/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -2706,7 +2828,7 @@
         }
       }
     },
-    "/getNotificationData": {
+    "/notifications": {
       "get": {
         "summary": "get notification data",
         "operationId": "",
@@ -2749,132 +2871,6 @@
                       "items": {
                         "$ref": "#/components/schemas/notificationData"
                       }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getBugetOverviewData": {
-      "get": {
-        "summary": "Details of BudgetOverview",
-        "operationId": "",
-        "tags": [
-          "BudgetOverview"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "getBudgetOverviewData used for get budgetOverview list or table",
-            "headers": {
-              "x-next": {
-                "description": "BudgetOverview List",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Fetch BudgetOverview Successfully"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "array",
-                      "x-count": 7,
-                      "items": {
-                        "$ref": "#/components/schemas/bugetOverview"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getBudgetAlloceted/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "getBudgetAllocated/{id} used for get particular budget details from budgetOverview list",
-        "operationId": "",
-        "tags": [
-          "requisition"
-        ],
-        "responses": {
-          "200": {
-            "description": "Details about a get track FRP by id",
-            "headers": {
-              "x-next": {
-                "description": "FRP by id",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "$ref": "#/components/schemas/budgetAllocated"
                     }
                   }
                 }
@@ -2965,12 +2961,12 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-            "description":"id of the department"
+            "description": "id of the department"
           },
           "name": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"name of the depertment"
+            "description": "name of the depertment"
           }
         }
       },
@@ -2981,23 +2977,23 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-            "descriprtion":"Id of the currencies"
+            "descriprtion": "Id of the currencies"
           },
           "countryName": {
             "type": "string",
             "default": "Reactive secured line",
             "x-faker": "{{address.country}}",
-            "descriprtion":"CountryName of the currencies"
+            "descriprtion": "CountryName of the currencies"
           },
           "countryCode": {
             "type": "string",
             "x-faker": "{{address.countryCode}}",
-            "descriprtion":"CountryCode of the currencies"
+            "descriprtion": "CountryCode of the currencies"
           },
           "code": {
             "type": "string",
             "x-faker": "{{finance.currencyCode}}",
-            "descriprtion":"Code of the currencies"
+            "descriprtion": "Code of the currencies"
           }
         }
       },
@@ -3008,34 +3004,34 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"id of the Requisition"
+            "description": "id of the Requisition"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"created date of the Requisition"
+            "description": "created date of the Requisition"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"total amount of the Requisition"
+            "description": "total amount of the Requisition"
           },
           "notes": {
             "type": "string",
             "x-faker": "{{lorem.sentence}}",
-            "description":"note for the Requisition"
+            "description": "note for the Requisition"
           },
           "startDate": {
             "type": "string",
             "x-faker": "{{date.past}}",
-            "description":"startDate use for start working on Requisition"
+            "description": "startDate use for start working on Requisition"
           },
           "deliveryDate": {
             "type": "string",
             "x-faker": "{{date.future}}",
-            "description":"deliveryDate of Requisition"
+            "description": "deliveryDate of Requisition"
           },
           "paymentTerms": {
             "type": "string"
@@ -3043,36 +3039,36 @@
           "createdBy": {
             "type": "string",
             "x-faker": "{{name.firstName}} {{name.lastName}}",
-            "description":"createdBy use for requester of  Requisition"
+            "description": "createdBy use for requester of  Requisition"
           },
           "roleName": {
             "type": "string",
             "x-faker": "{{name.firstName}}",
-            "description":"roleName use for requester name of  Requisition"
+            "description": "roleName use for requester name of  Requisition"
           },
           "department": {
             "$ref": "#/components/schemas/department",
-            "description":"department list for requisition"
+            "description": "department list for requisition"
           },
           "currency": {
             "$ref": "#/components/schemas/currency",
-            "description":"currency details for requisition"
+            "description": "currency details for requisition"
           },
           "status": {
             "type": "string",
-            "description":"status of the requisition"
+            "description": "status of the requisition"
           },
           "requisitionType": {
             "type": "string",
             "x-faker": "{{lorem.word}}",
-            "description":"requisitionType type of the requisition"
+            "description": "requisitionType type of the requisition"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
               "$ref": "#/components/schemas/requisitionItems",
-              "description":"requisitionItem of the requisition"
+              "description": "requisitionItem of the requisition"
             }
           }
         }
@@ -3082,11 +3078,11 @@
         "properties": {
           "requisitionId": {
             "type": "string",
-            "description":"requisitionId id of approved requisition"
+            "description": "requisitionId id of approved requisition"
           },
           "roleName": {
             "type": "string",
-            "description":"rolename of approved requisition"
+            "description": "rolename of approved requisition"
           }
         }
       },
@@ -3095,7 +3091,7 @@
         "properties": {
           "budget": {
             "$ref": "#/components/schemas/bugetOverview",
-            "description":"budget of particular request from list"
+            "description": "budget of particular request from list"
           },
           "depTableData": {
             "type": "array",
@@ -3106,28 +3102,28 @@
                 "ItemDescription": {
                   "type": "string",
                   "x-faker": "{{commerce.productName}}",
-                  "description":"ItemDescription of department table"
+                  "description": "ItemDescription of department table"
                 },
                 "requisitionType": {
                   "type": "string",
-                  "description":"requisitiontype of department table"
+                  "description": "requisitiontype of department table"
                 },
                 "Price": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "finance.amount",
-                  "description":"price of department table"
+                  "description": "price of department table"
                 },
                 "RqNo": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-                  "description":"RqNo of department table"
+                  "description": "RqNo of department table"
                 },
                 "dep": {
                   "type": "string",
                   "x-faker": "{{commerce.department}}",
-                  "description":"dep of department table"
+                  "description": "dep of department table"
                 },
                 "Images": {
                   "type": "array",
@@ -3138,7 +3134,7 @@
                       "MembersProfile": {
                         "type": "string",
                         "x-faker": "{{image.imageUrl}}",
-                        "description":"images of department table contacts"
+                        "description": "images of department table contacts"
                       }
                     }
                   }
@@ -3158,77 +3154,77 @@
           },
           "Status": {
             "type": "string",
-            "description":"status of  approve purchase order Requester"
+            "description": "status of  approve purchase order Requester"
           },
           "DeliveryStatus": {
             "type": "string",
-            "description":"DeliveryStatus of  approve purchase order Requester"
+            "description": "DeliveryStatus of  approve purchase order Requester"
           },
           "PaymentStatus": {
             "type": "string",
-            "description":"PaymentStatus of  approve purchase order Requester"
+            "description": "PaymentStatus of  approve purchase order Requester"
           },
           "ContactNumber": {
             "type": "string",
             "x-faker": "{{phone.phoneNumber }}",
-            "description":"contactNumber of approve purchase order Requester"
+            "description": "contactNumber of approve purchase order Requester"
           },
           "Department": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"Department of approve purchase order Requester"
+            "description": "Department of approve purchase order Requester"
           },
           "RequestorAvatar": {
             "type": "string",
             "x-faker": "{{image.imageUrl}}",
-            "description":"image of approve purchase order Requester"
+            "description": "image of approve purchase order Requester"
           },
           "RequestorName": {
             "type": "string",
             "x-faker": "{{internet.userName}}",
-            "description":"Name of approve purchase order Requester"
+            "description": "Name of approve purchase order Requester"
           },
           "Item": {
             "type": "string",
             "x-faker": "{{commerce.productName}}",
-            "description":"Item of approve purchase order Requester"
+            "description": "Item of approve purchase order Requester"
           },
           "CreationOn": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"Created date of approve purchase order Requester"
+            "description": "Created date of approve purchase order Requester"
           },
           "VendorEmail": {
             "type": "string",
             "x-faker": "{{internet.email}}",
-            "description":"vendorEmail of approve purchase order Requester"
+            "description": "vendorEmail of approve purchase order Requester"
           },
           "NatureOfBusiness": {
             "type": "string",
             "x-faker": "{{commerce.product}}",
-            "description":"vendorName of approve purchase order Requester"
+            "description": "vendorName of approve purchase order Requester"
           },
           "VendorAvatar": {
             "type": "string",
             "x-faker": "{{image.imageUrl}}",
-            "description":"image or profilePic of approve purchase order Requester"
+            "description": "image or profilePic of approve purchase order Requester"
           },
           "VendorName": {
             "type": "string",
             "x-faker": "{{internet.userName}}",
-            "description":"vendorName of approve purchase order Requester"
+            "description": "vendorName of approve purchase order Requester"
           },
           "Comment": {
             "type": "text",
             "x-faker": "{{lorem.sentences}}",
-            "description":"conmment on approve purchase order by Requester"
+            "description": "conmment on approve purchase order by Requester"
           },
           "Limit": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10000, \"max\": 100000 })",
-            "description":"limit of approve purchase order Requester"
+            "description": "limit of approve purchase order Requester"
           }
         }
       },
@@ -3239,72 +3235,72 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"id of approve purchase order"
+            "description": "id of approve purchase order"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"created date of approve purchase order"
+            "description": "created date of approve purchase order"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"total Price of approve purchase order"
+            "description": "total Price of approve purchase order"
           },
           "notes": {
             "type": "string",
             "x-faker": "{{lorem.sentence}}",
-            "description":"note of approve purchase order"
+            "description": "note of approve purchase order"
           },
           "startDate": {
             "type": "string",
             "x-faker": "{{date.past}}",
-            "description":"process statrted date of approve purchase order"
+            "description": "process statrted date of approve purchase order"
           },
           "deliveryDate": {
             "type": "string",
             "x-faker": "{{date.future}}",
-            "description":"delivery date of approve purchase order"
+            "description": "delivery date of approve purchase order"
           },
           "paymentTerms": {
             "type": "string",
-            "description":"payment terms of approve purchase order"
+            "description": "payment terms of approve purchase order"
           },
           "createdBy": {
             "type": "string",
             "x-faker": "{{name.firstName}} {{name.lastName}}",
-            "description":"requester name of approve purchase order"
+            "description": "requester name of approve purchase order"
           },
           "roleName": {
             "type": "string",
             "x-faker": "{{name.firstName}}",
-            "description":"role name of approve purchase order"
+            "description": "role name of approve purchase order"
           },
           "department": {
             "$ref": "#/components/schemas/department",
-            "description":"department of approve purchase order list department "
+            "description": "department of approve purchase order list department "
           },
           "currency": {
             "$ref": "#/components/schemas/currency",
-            "description":"curreny of approve purchase order payment"
+            "description": "curreny of approve purchase order payment"
           },
           "status": {
             "type": "string",
-            "description":"status of approve purchase order"
+            "description": "status of approve purchase order"
           },
           "requisitionType": {
             "type": "string",
             "x-faker": "{{lorem.word}}",
-            "description":"type of approve purchase order requisition"
+            "description": "type of approve purchase order requisition"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
               "$ref": "#/components/schemas/requisitionItems",
-              "description":"array of approve purchase order requisition items"
+              "description": "array of approve purchase order requisition items"
             }
           }
         }
@@ -3406,38 +3402,38 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"id of user"
+            "description": "id of user"
           },
           "company": {
             "type": "string",
             "x-faker": "{{company.companyName}}",
-            "description":"comapany name of user or contact "
+            "description": "comapany name of user or contact "
           },
           "email": {
             "type": "string",
             "x-faker": "{{internet.email}}",
-            "description":"email of user or contact"
+            "description": "email of user or contact"
           },
           "name": {
             "type": "string",
             "x-faker": "{{name.firstName}} {{name.lastName}}",
-            "description":"name of user or contact"
+            "description": "name of user or contact"
           },
           "position": {
             "type": "string",
             "x-faker": "{{company.catchPhrase}}",
-            "description":"position of user or contact"
+            "description": "position of user or contact"
           },
           "profile": {
             "type": "string",
             "x-faker": "{{image.imageUrl}}",
-            "description":"profile picture of user or contact"
+            "description": "profile picture of user or contact"
           },
           "contNo": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1000000000, \"max\": 9999999999 })",
-            "description":"phone number of user or contact"
+            "description": "phone number of user or contact"
           }
         }
       },
@@ -3448,34 +3444,34 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-            "description":"id of requisition"
+            "description": "id of requisition"
           },
           "RequestDate": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"date of requisition raised"
+            "description": "date of requisition raised"
           },
           "RequestDepartment": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"department of requisition"
+            "description": "department of requisition"
           },
           "Requestor": {
             "type": "string",
             "x-faker": "{{internet.email}}",
-            "description":"name of requisition requestor"
+            "description": "name of requisition requestor"
           },
           "RequisitionsTotal": {
             "type": "integer",
             "format": "int64",
             "x-faker": "{{commerce.price}}",
-            "description":"date of requisition raised"
+            "description": "date of requisition raised"
           },
           "status": {
             "type": "string",
             "default": "completed",
-            "description":"status of requisition"
+            "description": "status of requisition"
           }
         }
       },
@@ -3485,7 +3481,7 @@
           "Address": {
             "type": "string",
             "x-faker": "{{address.streetName}} {{address.state}},{{address.zipCodeByState}} {{address.country}}",
-            "description":"address for new invoice"
+            "description": "address for new invoice"
           },
           "CompanyDesription": {
             "type": "array",
@@ -3496,12 +3492,12 @@
                 "ComapanyName": {
                   "type": "string",
                   "x-faker": "{{company.companyName}}",
-                  "description":"description of company for new invoice"
+                  "description": "description of company for new invoice"
                 },
                 "ComapanyType": {
                   "type": "string",
                   "x-faker": "{{commerce.productName}}",
-                  "description":"type of company fro new invoice"
+                  "description": "type of company fro new invoice"
                 }
               }
             }
@@ -3509,13 +3505,13 @@
           "Email": {
             "type": "string",
             "x-faker": "{{internet.email}}",
-            "description":"email of new invoice"
+            "description": "email of new invoice"
           },
           "ContactNumber": {
             "type": "integer",
             "format": "int64",
             "x-faker": "phone.phoneNumber",
-            "description":"phone number of new invoice"
+            "description": "phone number of new invoice"
           },
           "ItemDesription": {
             "type": "array",
@@ -3526,19 +3522,19 @@
                 "ItemDescription": {
                   "type": "string",
                   "x-faker": "{{commerce.productName}}",
-                  "description":"item description of new invoive"
+                  "description": "item description of new invoive"
                 },
                 "Quantity": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
-                  "description":"qunatity of item for new invoice"
+                  "description": "qunatity of item for new invoice"
                 },
                 "Price": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "finance.amount",
-                  "description":"price of item for new invoice"
+                  "description": "price of item for new invoice"
                 }
               }
             }
@@ -3552,47 +3548,46 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"id or requisition number of particular invoice"
+            "description": "id or requisition number of particular invoice"
           },
           "requestDate": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"date of particular invoice created"
+            "description": "date of particular invoice created"
           },
           "requestDepartment": {
-            "$ref": "#/components/schemas/department"
-            ,
-            "description":"department of particular invoice"
+            "$ref": "#/components/schemas/department",
+            "description": "department of particular invoice"
           },
           "requestor": {
             "type": "string",
             "x-faker": "{{name.firstName}}",
-            "description":"name of requester"
+            "description": "name of requester"
           },
           "requisitionsTotal": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"total sum of amount for invoice"
+            "description": "total sum of amount for invoice"
           },
           "tax": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.float({ \"min\": 1, \"max\": 10 })",
-            "description":"total tax of amount for invoice"
+            "description": "total tax of amount for invoice"
           },
           "status": {
             "type": "string",
             "default": "completed",
-            "description":" status of invoice"
+            "description": " status of invoice"
           },
           "invoiceItem": {
             "type": "array",
             "x-count": 2,
             "items": {
               "$ref": "#/components/schemas/requisitionItems",
-              "description":"items of invoice"
+              "description": "items of invoice"
             }
           }
         }
@@ -3602,12 +3597,11 @@
         "properties": {
           "requisitionID": {
             "type": "string",
-            "description":"request id of selected buyer "
+            "description": "request id of selected buyer "
           },
           "buyersId": {
-            "type": "array"
-            ,
-              "description":"id of buyers id"
+            "type": "array",
+            "description": "id of buyers id"
           }
         }
       },
@@ -3618,12 +3612,12 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-            "description":"id of committee"
+            "description": "id of committee"
           },
           "name": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"name of committee"
+            "description": "name of committee"
           }
         }
       },
@@ -3632,11 +3626,11 @@
         "properties": {
           "userID": {
             "type": "string",
-            "description":"id of committee"
+            "description": "id of committee"
           },
           "membersId": {
             "type": "array",
-            "description":"id of committee members"
+            "description": "id of committee members"
           }
         }
       },
@@ -3647,28 +3641,43 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000 })",
-            "description":"id of requisition item"
+            "description": "id of requisition item"
           },
           "price": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1000, \"max\": 10000 })",
-            "description":"price of requisition item"
+            "description": "price of requisition item"
           },
           "itemDescription": {
             "type": "string",
             "x-faker": "commerce.productName",
-            "description":"description of requisition item"
+            "description": "description of requisition item"
           },
           "orderQuantity": {
             "type": "integer",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-            "description":"order quantity of requisition item"
+            "description": "order quantity of requisition item"
           },
           "ratePerItem": {
             "type": "integer",
             "x-faker": "datatype.number({ \"min\": 1000, \"max\": 100000 })",
-            "description":"price of requisition item"
+            "description": "price of requisition item"
+          }
+        }
+      },
+      "addStatusRfp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "status of RFP"
           }
         }
       },
@@ -3677,27 +3686,27 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description":"id of generate purcahse order"
+            "description": "id of generate purcahse order"
           },
           "startDate": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"date of genertate Purcahse Order"
+            "description": "date of genertate Purcahse Order"
           },
           "deliveryDate": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"delivery date of generate purchase order"
+            "description": "delivery date of generate purchase order"
           },
           "paymentTerms": {
             "type": "string",
-            "description":"payment terms of generate purchase order"
+            "description": "payment terms of generate purchase order"
           },
           "otherTerms": {
             "type": "string",
-            "description":"other terms of generate purchase order"
+            "description": "other terms of generate purchase order"
           }
         }
       },
@@ -3706,33 +3715,33 @@
         "properties": {
           "company": {
             "type": "string",
-            "description":"comapany name of contact person"
+            "description": "comapany name of contact person"
           },
           "email": {
             "type": "string",
-            "description":"email of contact person"
+            "description": "email of contact person"
           },
           "firstName": {
             "type": "string",
-            "description":"first name of contact person"
+            "description": "first name of contact person"
           },
           "lastName": {
             "type": "string",
-            "description":"last name of contact person"
+            "description": "last name of contact person"
           },
           "title": {
             "type": "string",
-            "description":"title of contact person"
+            "description": "title of contact person"
           },
           "profile": {
             "type": "string",
-            "description":"profile of contact person"
+            "description": "profile of contact person"
           },
           "contactNo": {
             "type": "integer",
             "format": "int64",
             "default": "+1234567859",
-            "description":"contact Number of contact person"
+            "description": "contact Number of contact person"
           }
         }
       },
@@ -3743,57 +3752,57 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"id of recieved RFP"
+            "description": "id of recieved RFP"
           },
           "createdOn": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"created or generated date of recieved RFP"
+            "description": "created or generated date of recieved RFP"
           },
           "totalPrice": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 100000 })",
-            "description":"total price of recieved RFP"
+            "description": "total price of recieved RFP"
           },
           "notes": {
             "type": "string",
             "x-faker": "{{lorem.sentence}}",
-            "description":"notes related to recieved RFP"
+            "description": "notes related to recieved RFP"
           },
           "createdBy": {
             "type": "string",
             "x-faker": "{{name.firstName}} {{name.lastName}}",
-            "description":"name of person who created recieved RFP"
+            "description": "name of person who created recieved RFP"
           },
           "roleName": {
             "type": "string",
             "x-faker": "{{name.firstName}}",
-            "description":"role name of person recieved RFP"
+            "description": "role name of person recieved RFP"
           },
           "department": {
             "$ref": "#/components/schemas/department",
-            "description":"department of recieved RFP"
+            "description": "department of recieved RFP"
           },
           "currency": {
             "$ref": "#/components/schemas/currency",
-            "description":"currency details of recieved RFP"
+            "description": "currency details of recieved RFP"
           },
           "status": {
             "type": "string",
-            "description":"status of recieved RFP"
+            "description": "status of recieved RFP"
           },
           "requisitionType": {
             "type": "string",
-            "description":"requisition type of recieved RFP"
+            "description": "requisition type of recieved RFP"
           },
           "requistionItem": {
             "type": "array",
             "x-count": 7,
             "items": {
               "$ref": "#/components/schemas/requisitionItems",
-              "description":"requistition type array of recieved RFP"
+              "description": "requistition type array of recieved RFP"
             }
           },
           "vendoreDetail": {
@@ -3802,30 +3811,30 @@
               "name": {
                 "type": "string",
                 "x-faker": "{{name.firstName}}",
-                "description":"name of Vendor"
+                "description": "name of Vendor"
               },
               "email": {
                 "type": "string",
                 "x-faker": "{{internet.email}}",
-                "description":"email of Vendor"
+                "description": "email of Vendor"
               },
               "nature": {
                 "type": "string",
-                "description":"nature of Vendor"
+                "description": "nature of Vendor"
               },
               "location": {
                 "type": "string",
-                "description":"location of Vendor"
+                "description": "location of Vendor"
               },
               "phone": {
                 "type": "integer",
                 "format": "int64",
                 "x-faker": "datatype.number({ \"min\": 1, \"max\": 10000000000 })",
-                "description":"contact number of vendor"
+                "description": "contact number of vendor"
               },
               "relation": {
                 "type": "string",
-                "description":"relation of Vendor"
+                "description": "relation of Vendor"
               }
             }
           }
@@ -3836,94 +3845,94 @@
         "properties": {
           "firstName": {
             "type": "string",
-            "description":"first name of particular Vendor"
+            "description": "first name of particular Vendor"
           },
           "lastName": {
             "type": "string",
-            "description":"last name of particular Vendor"
+            "description": "last name of particular Vendor"
           },
           "fatherName": {
             "type": "string",
-            "description":"father name of particular Vendor"
+            "description": "father name of particular Vendor"
           },
           "designation": {
             "type": "string",
-            "description":"designation of particular Vendor"
+            "description": "designation of particular Vendor"
           },
           "companyName": {
             "type": "string",
-            "description":"company name of particular Vendor"
+            "description": "company name of particular Vendor"
           },
           "directorName": {
             "type": "string",
-            "description":"director name of particular Vendor"
+            "description": "director name of particular Vendor"
           },
           "address": {
             "type": "string",
-            "description":"address of particular Vendor"
+            "description": "address of particular Vendor"
           },
           "city": {
             "type": "string",
-            "description":"city of particular Vendor"
+            "description": "city of particular Vendor"
           },
           "state": {
             "type": "string",
-            "description":"state of particular Vendor"
+            "description": "state of particular Vendor"
           },
           "business": {
             "type": "string",
-            "description":"business of particular Vendor"
+            "description": "business of particular Vendor"
           },
           "legalStatus": {
             "type": "string",
-            "description":"legal status of particular Vendor"
+            "description": "legal status of particular Vendor"
           },
           "companyCategory": {
             "type": "string",
-            "description":"company Category of particular Vendor"
+            "description": "company Category of particular Vendor"
           },
           "captcha": {
             "type": "string",
-            "description":"captcha for particular Vendor"
+            "description": "captcha for particular Vendor"
           },
           "panNo": {
             "type": "string",
-            "description":"panNumber of particular Vendor"
+            "description": "panNumber of particular Vendor"
           },
           "gender": {
             "type": "string",
-            "description":"gender of particular Vendor"
+            "description": "gender of particular Vendor"
           },
           "phoneNo": {
             "type": "integer",
             "format": "int64",
-            "description":"phone number of particular Vendor"
+            "description": "phone number of particular Vendor"
           },
           "RegistrationNo": {
             "type": "integer",
             "format": "int64",
-            "description":"registration number of particular Vendor"
+            "description": "registration number of particular Vendor"
           },
           "brithDate": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"DOB or birth date of particular Vendor"
+            "description": "DOB or birth date of particular Vendor"
           },
           "bidder": {
             "type": "string",
-            "description":"bidder name of particular Vendor"
+            "description": "bidder name of particular Vendor"
           },
           "postalCode": {
             "type": "integer",
             "format": "int64",
-            "description":"PostalCode or PinCode of particular Vendor"
+            "description": "PostalCode or PinCode of particular Vendor"
           },
           "establishment": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"establishment of particular Vendor"
+            "description": "establishment of particular Vendor"
           }
         }
       },
@@ -3933,12 +3942,12 @@
           "profile": {
             "type": "string",
             "x-faker": "{{image.imageUrl}}",
-            "description":"profile of recent mail"
+            "description": "profile of recent mail"
           },
           "name": {
             "type": "string",
             "x-faker": "{{internet.userName}}",
-            "description":"name of user in recent mail"
+            "description": "name of user in recent mail"
           }
         }
       },
@@ -3947,7 +3956,7 @@
         "properties": {
           "requestorId": {
             "type": "integer",
-            "description":"requestor id of email"
+            "description": "requestor id of email"
           },
           "to": {
             "type": "array",
@@ -3956,11 +3965,11 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "description":"array of requestor type for email"
+                  "description": "array of requestor type for email"
                 },
                 "sentTo": {
                   "type": "string",
-                  "description":"person who recieved email"
+                  "description": "person who recieved email"
                 }
               }
             }
@@ -3972,18 +3981,18 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "description":"bcc type of email"
+                  "description": "bcc type of email"
                 },
                 "toBcc": {
                   "type": "string",
-                  "description":"to bcc type of email"
+                  "description": "to bcc type of email"
                 }
               }
             }
           },
           "subject": {
             "type": "string",
-            "description":"subject of email"
+            "description": "subject of email"
           },
           "message": {
             "type": "string"
@@ -3995,11 +4004,11 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "description":"file type for email"
+                  "description": "file type for email"
                 },
                 "fileName": {
                   "type": "string",
-                  "description":"file name for email"
+                  "description": "file name for email"
                 }
               }
             }
@@ -4014,56 +4023,56 @@
             "properties": {
               "name": {
                 "type": "string",
-                "description":"name of recent mail"
+                "description": "name of recent mail"
               },
               "profilePic": {
                 "type": "string",
                 "x-faker": "{{image.imageUrl}}",
-                "description":"image url of recent mail user profile"
+                "description": "image url of recent mail user profile"
               },
               "email": {
                 "type": "string",
                 "x-faker": "{{internet.email}}",
-                "description":"email of recent mail"
+                "description": "email of recent mail"
               },
               "id": {
                 "type": "integer",
                 "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-                "description":"id of recent mail user"
+                "description": "id of recent mail user"
               }
             }
           },
           "subject": {
             "type": "string",
             "x-faker": "{{lorem.sentence}}",
-            "description":"subject of recent mail"
+            "description": "subject of recent mail"
           },
           "type": {
             "type": "string",
             "default": "important",
-            "description":"type of recent mail"
+            "description": "type of recent mail"
           },
           "time": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"time of recent mail created"
+            "description": "time of recent mail created"
           },
           "id": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-            "description":"id of user"
+            "description": "id of user"
           },
           "body": {
             "type": "string",
             "x-faker": "{{lorem.sentences}}",
-            "description":"body or paragraph of recent mail"
+            "description": "body or paragraph of recent mail"
           },
           "isSnooze": {
             "type": "boolean",
             "x-faker": "{{random.boolean}}",
-            "description":"name of recent mail"
+            "description": "name of recent mail"
           },
           "isStar": {
             "type": "boolean",
@@ -4078,7 +4087,7 @@
                 "name": {
                   "type": "string",
                   "x-faker": "{{name.jobDescriptor}}",
-                  "description":"list of recent mail type"
+                  "description": "list of recent mail type"
                 }
               }
             }
@@ -4122,22 +4131,22 @@
             "properties": {
               "name": {
                 "type": "string",
-                "description":"name of mail senders"
+                "description": "name of mail senders"
               },
               "profilePic": {
                 "type": "string",
                 "x-faker": "{{image.imageUrl}}",
-                "description":"profile pic of mail senders"
+                "description": "profile pic of mail senders"
               },
               "email": {
                 "type": "string",
                 "x-faker": "{{internet.email}}",
-                "description":"email of mail senders"
+                "description": "email of mail senders"
               },
               "id": {
                 "type": "integer",
                 "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-                "description":"id of mail senders"
+                "description": "id of mail senders"
               }
             }
           },
@@ -4197,35 +4206,35 @@
           "title": {
             "type": "string",
             "x-faker": "{{lorem.words}}",
-            "description":"type of kanban"
+            "description": "type of kanban"
           },
           "time": {
             "type": "string",
             "format": "date",
             "x-faker": "datatype.datetime",
-            "description":"time of kanban created"
+            "description": "time of kanban created"
           },
           "id": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-            "description":"id of kanban"
+            "description": "id of kanban"
           },
           "progressPer": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 1, \"max\": 10 })",
-            "description":"percentage of completed kanban for progressbar"
+            "description": "percentage of completed kanban for progressbar"
           },
           "type": {
             "type": "string",
             "x-faker": "{{lorem.word}}",
-            "description":"type of kanban"
+            "description": "type of kanban"
           },
           "isPined": {
             "type": "boolean",
             "x-faker": "{{random.boolean}}",
-            "description":"pined kanban"
+            "description": "pined kanban"
           },
           "users": {
             "type": "array",
@@ -4236,7 +4245,7 @@
                 "url": {
                   "type": "string",
                   "x-faker": "{{image.imageUrl}}",
-                  "description":"image of profile pic url of requester"
+                  "description": "image of profile pic url of requester"
                 }
               }
             }
@@ -4250,85 +4259,85 @@
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"total RFP fro dashboard"
+            "description": "total RFP fro dashboard"
           },
           "todayRFP": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
-            "description":"today RFP for dashboard"
+            "description": "today RFP for dashboard"
           },
           "email": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
-            "description":"email id for dashboard"
+            "description": "email id for dashboard"
           },
           "completeOrder": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 10000 })",
-            "description":"completed orders of RFP for dashboard"
+            "description": "completed orders of RFP for dashboard"
           },
           "inprogressOrder": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"inprogress order of RFP for dashboard"
+            "description": "inprogress order of RFP for dashboard"
           },
           "totalspent": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 100000 })",
-            "description":"total spent amount of RFP"
+            "description": "total spent amount of RFP"
           },
           "requisitionPendding": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"pendding requisition of frp"
+            "description": "pendding requisition of frp"
           },
           "invoices": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"invoices of frp"
+            "description": "invoices of frp"
           },
           "totalPO": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"total of Purchase Orders"
+            "description": "total of Purchase Orders"
           },
           "penddingPo": {
             "type": "integer",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 1000 })",
-            "description":"total of Pendding Purchase Orders"
+            "description": "total of Pendding Purchase Orders"
           },
           "requisitionChart": {
             "type": "array",
             "x-count": 6,
-            "description":"list of requisition chart data",
+            "description": "list of requisition chart data",
             "items": {
               "type": "object",
               "properties": {
                 "name": {
                   "type": "string",
                   "x-faker": "{{date.month}}",
-                  "description":"name of the month"
+                  "description": "name of the month"
                 },
                 "TotalPaid": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
-                  "description":"total Paid amount"
+                  "description": "total Paid amount"
                 },
                 "TotalUnpaid": {
                   "type": "integer",
                   "format": "int64",
                   "x-faker": "datatype.number({ \"min\": 1, \"max\": 100 })",
-                  "description":"total unpaid amount or balance"
+                  "description": "total unpaid amount or balance"
                 }
               }
             }
@@ -4354,49 +4363,49 @@
           "orderedDate": {
             "type": "string",
             "x-faker": "{{date.past}}",
-            "description":"order date of track FRP"
+            "description": "order date of track FRP"
           },
           "approvedDate": {
             "type": "string",
             "x-faker": "{{date.past}}",
-            "description":"approved date of FRP"
+            "description": "approved date of FRP"
           },
           "poGenerateDate": {
             "type": "string",
             "x-faker": "{{date.recent}}",
-            "description":"date of Purcahsed order created or generated"
+            "description": "date of Purcahsed order created or generated"
           },
           "deliveryDate": {
             "type": "string",
             "x-faker": "{{date.future}}",
-            "description":"delivery date of FRP"
+            "description": "delivery date of FRP"
           },
           "trackUpdates": {
             "type": "array",
             "x-count": 6,
-            "description":"lsit of FRP details ",
+            "description": "lsit of FRP details ",
             "items": {
               "type": "object",
               "properties": {
                 "deliveryDate": {
                   "type": "string",
                   "x-faker": "{{date.future}}",
-                  "description":"delivery date of particular FRP"
+                  "description": "delivery date of particular FRP"
                 },
                 "location": {
                   "type": "string",
                   "x-faker": "{{address.county}}",
-                  "description":"location of created FRP"
+                  "description": "location of created FRP"
                 },
                 "department": {
                   "type": "string",
                   "x-faker": "{{commerce.department}}",
-                  "description":"department of Created FRP"
+                  "description": "department of Created FRP"
                 },
                 "orderedDate": {
                   "type": "string",
                   "x-faker": "{{date.past}}",
-                  "description":"ordered date of FRP"
+                  "description": "ordered date of FRP"
                 }
               }
             }
@@ -4410,42 +4419,42 @@
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })",
-            "description":"total budget allocated for Rquisition"
+            "description": "total budget allocated for Rquisition"
           },
           "UsedBudget": {
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 2000, \"max\": 20000 })",
-            "description":"total used budget for Rquisition"
+            "description": "total used budget for Rquisition"
           },
           "UsedBudgetPercentage": {
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10, \"max\": 50 })",
-            "description":"percentage of used budget"
+            "description": "percentage of used budget"
           },
           "CommitedBudgetPercentage": {
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 60, \"max\": 80})",
-            "description":"total commited budget in percentage"
+            "description": "total commited budget in percentage"
           },
           "AvaliableBudget": {
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 200000, \"max\": 2000000 })",
-            "description":"Avaliable or remaing budget for Rquisition"
+            "description": "Avaliable or remaing budget for Rquisition"
           },
           "CommitedBudget": {
             "type": "string",
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 20000, \"max\": 200000 })",
-            "description":"commited budget for requisitiuon"
+            "description": "commited budget for requisitiuon"
           },
           "Department": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"department who created or rised requisition"
+            "description": "department who created or rised requisition"
           }
         }
       },
@@ -4455,17 +4464,17 @@
           "title": {
             "type": "string",
             "x-faker": "{{internet.userName}}",
-            "description":"title of any notification"
+            "description": "title of any notification"
           },
           "img": {
             "type": "string",
             "x-faker": "{{image.imageUrl}}",
-            "description":"image of any notification"
+            "description": "image of any notification"
           },
           "description": {
             "type": "string",
             "x-faker": "{{lorem.text}}",
-            "description":"description of any notification"
+            "description": "description of any notification"
           }
         }
       },
@@ -4475,35 +4484,35 @@
           "requisitionDepartment": {
             "type": "string",
             "x-faker": "{{commerce.department}}",
-            "description":"department of report"
+            "description": "department of report"
           },
           "requisitionTypes": {
             "type": "string",
-            "description":"type of requisition for report"
+            "description": "type of requisition for report"
           },
           "lastUpdated": {
             "type": "string",
             "format": "date",
             "x-faker": "{{date.past}}",
-            "description":"last updated date of report"
+            "description": "last updated date of report"
           },
           "createdAt": {
             "type": "string",
             "format": "date",
             "x-faker": "{{date.past}}",
-            "description":"created date of report"
+            "description": "created date of report"
           },
           "profile": {
             "type": "array",
             "x-count": 10,
-            "description":"list of profiles",
+            "description": "list of profiles",
             "items": {
               "type": "object",
               "properties": {
                 "userProfile": {
                   "type": "string",
                   "x-faker": "{{image.imageUrl}}",
-                  "description":"user profile picture"
+                  "description": "user profile picture"
                 }
               }
             }
@@ -4516,7 +4525,7 @@
               "properties": {
                 "notification": {
                   "type": "string",
-                  "description":"typr of notifications"
+                  "description": "typr of notifications"
                 }
               }
             }
