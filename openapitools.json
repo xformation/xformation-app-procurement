@@ -513,7 +513,7 @@
         }
       }
     },
-    "/recievedRfp": {
+    "/rfp": {
       "get": {
         "summary": "Details about a RFP",
         "operationId": "",
@@ -637,7 +637,7 @@
         }
       }
     },
-    "/recievedRfp/{id}": {
+    "/rfp/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -702,7 +702,7 @@
         }
       }
     },
-    "/recievedRfq": {
+    "/rfq": {
       "get": {
         "summary": "Details about a RFQ",
         "operationId": "",
@@ -826,7 +826,7 @@
         }
       }
     },
-    "/recievedRfq/{id}": {
+    "/rfq/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -891,7 +891,7 @@
         }
       }
     },
-    "/generatePo": {
+    "/po": {
       "get": {
         "summary": "Details about a Generate PO",
         "operationId": "",
@@ -1014,7 +1014,7 @@
         }
       }
     },
-    "/generatePo/{id}": {
+    "/po/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -1079,7 +1079,7 @@
         }
       }
     },
-    "/generateApprovePo": {
+    "/approvePo": {
       "get": {
         "summary": "Details about a Approve PO",
         "operationId": "",
@@ -1139,7 +1139,7 @@
         }
       }
     },
-    "/generateApprovePo/{id}": {
+    "/approvePo/{id}": {
       "parameters": [
         {
           "name": "id",

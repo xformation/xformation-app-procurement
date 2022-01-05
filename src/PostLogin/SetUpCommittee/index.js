@@ -13,7 +13,7 @@ import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
 import { connect } from 'react-redux';
 import { committeeAction } from '../../_actions';
 import { status } from '../../_constants';
-
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 class SetUpCommittee extends Component {
     constructor(props) {
         super(props)
@@ -215,6 +215,9 @@ class SetUpCommittee extends Component {
             <div className="main-content">
                 <div className="setup-committee-section">
                     <div className="heading">
+                    <IconButton className="head-icon">
+                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/setupcommittee`)}/>
+                                </IconButton>
                         <h4>SetUp Committee</h4>
                     </div>
                     <div className="setup-committee-content">

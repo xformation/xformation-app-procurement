@@ -14,6 +14,8 @@ import 'simplebar/dist/simplebar.min.css';
 import { connect } from 'react-redux';
 import { purchaseOrderAction } from "../../_actions/purchaseOrder.action";
 import { status } from "../../_constants";
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 class ApprovePo extends Component {
     constructor(props) {
         super(props)
@@ -94,14 +96,15 @@ class ApprovePo extends Component {
         }
     }
     componentDidMount() {
-        if(this.props.approvePo && this.props.approvePo.length > 0){
+        if (this.props.approvePo && this.props.approvePo.length > 0) {
             this.setState({ tableData: this.props.approvePo })
-        }else{
-        this.props.dispatch(purchaseOrderAction.searchApprovePurchaseOrder())}
+        } else {
+            this.props.dispatch(purchaseOrderAction.searchApprovePurchaseOrder())
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-    
+
         if (prevProps.get_approvepo_status !== this.props.get_approvepo_status && this.props.get_approvepo_status === status.SUCCESS) {
             if (this.props.approvePo && this.props.approvePo.length > 0) {
                 this.setState({ tableData: this.props.approvePo })
@@ -188,6 +191,9 @@ class ApprovePo extends Component {
                 <div className="generate-content">
                     <div className="generate-purchase">
                         <div className="heading">
+                            <IconButton className="head-icon">
+                                <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/generatepo`)} />
+                            </IconButton>
                             <h4>Approve Purchase Order</h4>
                         </div>
                         <div className="requisitions-filter">

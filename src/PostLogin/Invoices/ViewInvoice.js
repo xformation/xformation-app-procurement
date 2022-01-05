@@ -69,7 +69,7 @@ class ViewInvoice extends Component {
                         <div className="col-xl-6 col-lg-5 col-md-12 col-sm-12 col-12">
                             <div className="head-left-content">
                                 <IconButton className="head-icon">
-                                    <KeyboardBackspaceIcon />
+                                    <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/invoices`)} />
                                 </IconButton>
                                 <h4>Invoice</h4>
                                 <p>#INV-{approvedData.requisitionsNo}</p>

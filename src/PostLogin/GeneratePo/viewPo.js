@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 import { purchaseOrderAction } from "../../_actions/purchaseOrder.action";
 import { status } from "../../_constants";
 import { commonFunctions } from '../../_utilities';
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 class ViewPurchaseOrder extends Component {
     constructor(props) {
         super(props)
@@ -121,6 +123,9 @@ class ViewPurchaseOrder extends Component {
                 <div className="generate-content">
                     <div className="generate-order">
                         <div className="heading">
+                        <IconButton className="head-icon">
+                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/generatepo`)}/>
+                                </IconButton>
                             <h4>Generate Purchase Order</h4>
                             <span>Lorem ipsum dolor sit amet</span>
                         </div>

@@ -205,7 +205,7 @@ class VendorEnroll extends Component {
         };
         isValid = false;
       }
-      else if (requiData.phoneNo.length > 12 || requiData.phoneNo.length < 10) {
+      if (requiData.phoneNo.length > 13 || requiData.phoneNo.length < 10) {
         console.log(retData.phoneNo)
         retData.phoneNo = {
           isValid: false,

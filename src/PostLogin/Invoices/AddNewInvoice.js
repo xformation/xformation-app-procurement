@@ -106,7 +106,7 @@ class AddInvoices extends Component {
                                 <div className="d-flex justify-content-start align-items-center">
                                     <div className="d-inline-block mr-3">
                                         <IconButton>
-                                            <ArrowBackIcon />
+                                            <ArrowBackIcon onClick={() => this.props.history.push(`/postlogin/invoices`)} />
                                         </IconButton>
                                     </div>
                                     <h4 className="d-inline-block mb-0">New Invoices</h4>

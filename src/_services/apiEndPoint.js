@@ -40,17 +40,16 @@ export const apiEndPoint = {
 
     // *recievedrfp api url
 
-    RECIEVEDRFP: `${config.apiUrl}/recievedRfp`,
+    RFP: `${config.apiUrl}/rfp`,
 
     //*generate po api url
 
-    GENERATEPO: `${config.apiUrl}/generatePo`,
-
-    APPROVEPO: `${config.apiUrl}/generateApprovePo`,
+    PO: `${config.apiUrl}/po`,
+    APPROVEPO: `${config.apiUrl}/approvePo`,
 
     //recievedefq api url
 
-    RECIEVEDRFQ: `${config.apiUrl}/recievedRfq`,
+    RFQ: `${config.apiUrl}/rfq`,
 
     // email api url
     CHATS: `${config.apiUrl}/chat`,

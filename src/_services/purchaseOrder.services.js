@@ -14,14 +14,14 @@ function getPurchaseOrder(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GENERATEPO}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.PO}/${data.id}`, requestOptions).then(response => response.json());
 }
 function searchPurchaseOrder(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GENERATEPO}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.PO}`, requestOptions).then(response => response.json());
 }
 
 function addPurchaseOrder(data) {
@@ -29,7 +29,7 @@ function addPurchaseOrder(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.GENERATEPO}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.PO}`, requestOptions).then(response => response.json());
 }
 
 function approvePurchaseOrder(data) {

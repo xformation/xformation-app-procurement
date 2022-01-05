@@ -11,7 +11,8 @@ import { committeeAction } from '../../_actions';
 import { status } from '../../_constants';
 import { alert } from '../../_utilities';
 import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox";
-
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 class selectCommitteeMember extends Component {
     constructor(props) {
         super(props)
@@ -144,6 +145,9 @@ class selectCommitteeMember extends Component {
                     <div className="heading">
                         <div className="row">
                             <div className="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-xs-12">
+                            <IconButton className="head-icon">
+                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/setupcommittee`)}/>
+                                </IconButton>
                                 <h4>Select Committee Members</h4>
                             </div>
                             <div className="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-12 text-right">
