@@ -4,7 +4,7 @@ import { alert, commonFunctions } from '../_utilities';
 
 export const buyerAction = {
     getBuyer,
-    updateBuyer
+    // updateBuyer
 };
 
 function getBuyer(id) {
@@ -40,38 +40,38 @@ function getBuyer(id) {
     };
 }
 
-function updateBuyer(id) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: buyerConstants.UPDATE_BUYER_REQUEST,
-            data: null
-        }));
-        buyerServices.updateBuyer(id)
-            .then(
-                response => {
-                    if (response.code===200) {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.UPDATE_BUYER_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: buyerConstants.UPDATE_BUYER_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: buyerConstants.UPDATE_BUYER_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-}
+// function updateBuyer(id) {
+//     return dispatch => {
+//         dispatch(dispatchFunction({
+//             type: buyerConstants.UPDATE_BUYER_REQUEST,
+//             data: null
+//         }));
+//         buyerServices.updateBuyer(id)
+//             .then(
+//                 response => {
+//                     if (response.code===200) {
+//                         dispatch(dispatchFunction({
+//                             type: buyerConstants.UPDATE_BUYER_SUCCESS,
+//                             data: response.object
+//                         }));
+//                     } else {
+//                         dispatch(dispatchFunction({
+//                             type: buyerConstants.UPDATE_BUYER_FAILURE,
+//                             data: response
+//                         }));
+//                         alert.error(response.message);
+//                     }
+//                 },
+//                 error => {
+//                     dispatch(dispatchFunction({
+//                         type: buyerConstants.UPDATE_BUYER_FAILURE,
+//                         data: error.message
+//                     }));
+//                     alert.error(error.message);
+//                 }
+//             );
+//     };
+// }
 
 function dispatchFunction(data) {
     // if (data.data && data.data.code === 401) {

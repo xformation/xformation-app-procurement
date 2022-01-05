@@ -136,9 +136,9 @@ class ApprovePo extends Component {
             const sendReqData = {
                 status: requiData.status,
                 payment: requiData.payment,
-                conditionText: requiData.conditionText
-
+                conditionText: requiData.conditionText,
             }
+            this.props.history.push(`/postlogin/approvepo`)
         }
     }
 

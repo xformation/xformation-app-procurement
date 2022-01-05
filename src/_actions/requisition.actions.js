@@ -228,6 +228,7 @@ function approveRequisition(data) {
                             type: requisitionConstants.APPROVE_REQUISITION_SUCCESS,
                             data: response.object
                         }));
+                        alert.success(response.message)
                     } else {
                         dispatch(dispatchFunction({
                             type: requisitionConstants.APPROVE_REQUISITION_FAILURE,

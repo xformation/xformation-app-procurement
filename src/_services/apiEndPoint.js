@@ -23,7 +23,7 @@ export const apiEndPoint = {
     NEWINVOICE: `${config.apiUrl}/newInvoice`,
 
     // Requisition Api Url
-    REQUISTION: `${config.apiUrl}/requisition`,
+    REQUISTIONS: `${config.apiUrl}/requisitions`,
     APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
 
 
@@ -33,7 +33,7 @@ export const apiEndPoint = {
     ROLE: `${config.apiUrl}/roles`,
 
     // *Vendor Api Url
-    ADDVENDOR: `${config.apiUrl}/addVendor`,
+    VENDOR: `${config.apiUrl}/vendor`,
 
     // *Rules Api Url
     RULES: `${config.apiUrl}/rules`,
@@ -54,6 +54,7 @@ export const apiEndPoint = {
     // email api url
     CHATS: `${config.apiUrl}/chat`,
     EMAIL: `${config.apiUrl}/mailList`,
+    // MAILLIST: `${config.apiUrl}/mailList`,
 
     //*kanban api url
     KANBAN: `${config.apiUrl}/kanbanList`,
@@ -71,6 +72,6 @@ export const apiEndPoint = {
     BUDGET: `${config.apiUrl}/bugetOverviewData`,
 
     //GET REPORTS DATA 
-    GETREPORTS: `${config.apiUrl}/getReorts`,
+    REPORTS: `${config.apiUrl}/reorts`,
 
 };

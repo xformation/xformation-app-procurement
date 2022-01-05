@@ -217,6 +217,7 @@ class addNewContact extends Component {
     const errorData = this.validate(true);
     if (errorData.isValid) {
       if (isEdit === true) {
+        sentdata.id = this.props.match.params.id;
         this.props.dispatch(contactAction.updateContact(sentdata));
       } else {
         this.props.dispatch(contactAction.addContact(sentdata));

@@ -10,5 +10,5 @@ function addVendor(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.ADDVENDOR}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.VENDOR}`, requestOptions).then(response => response.json());
 }

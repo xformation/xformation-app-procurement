@@ -144,7 +144,7 @@
         }
       }
     },
-    "/requisition": {
+    "/requisitions": {
       "get": {
         "summary": "Details about a user",
         "operationId": "",
@@ -266,73 +266,9 @@
             }
           }
         }
-      },
-      "patch": {
-        "summary": "Edit Requester Detail",
-        "operationId": "",
-        "requestBody": {
-          "description": "updateRequisition is used for modifing requisition",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "items": {
-                  "$ref": "#/components/schemas/updateRequisitionData"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {
-              "x-next": {
-                "description": "Edit Requisition",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Edit Requisition Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/requisition/{id}": {
+    "/requisitions/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -445,9 +381,91 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Edit Requester Detail",
+        "operationId": "",
+        "requestBody": {
+          "description": "updateRequisition is used for modifing requisition",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/updateRequisitionData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "Edit Requisition",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Edit Requisition Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/approveRequisition": {
+    "/requisitions/{id}/{type}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
       "post": {
         "summary": "Details about Approve Requisition",
         "operationId": "approverequisition",
@@ -1202,6 +1220,60 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Details for Approve PURCHASE ORDER",
+        "operationId": "createContact",
+        "requestBody": {
+          "description": "Approve PURCHASE ORDER",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/addapprovePo"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Approve PURCHASE ORDER Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/contacts": {
@@ -1326,70 +1398,6 @@
             }
           }
         }
-      },
-      "patch": {
-        "summary": "Edit contact",
-        "operationId": "editContact",
-        "requestBody": {
-          "description": "editContact used for update contact from contacts list ",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "items": {
-                  "$ref": "#/components/schemas/contactData"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {
-              "x-next": {
-                "description": "",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int64",
-                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
-                    },
-                    "message": {
-                      "type": "string",
-                      "default": "Edit Contact Successfully"
-                    },
-                    "type": {
-                      "type": "string",
-                      "default": "SUCCESS"
-                    },
-                    "object": {}
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/contacts/{id}": {
@@ -1490,6 +1498,70 @@
                       "type": "object",
                       "$ref": "#/components/schemas/userData"
                     }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Edit contact",
+        "operationId": "editContact",
+        "requestBody": {
+          "description": "editContact used for update contact from contacts list ",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/contactData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "Edit Contact Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
                   }
                 }
               }
@@ -1845,8 +1917,10 @@
             }
           }
         }
-      },
-      "patch": {
+      }
+    },
+    "/buyers/{id}":{
+      "post": {
         "summary": "Details about a buyer",
         "operationId": "setbuyer",
         "requestBody": {
@@ -2097,7 +2171,7 @@
         }
       }
     },
-    "/addVendor": {
+    "/vendor": {
       "post": {
         "summary": "Details about a vendor",
         "operationId": "",
@@ -2393,6 +2467,70 @@
                     "object": {
                       "$ref": "#/components/schemas/recentlyMailDetail"
                     }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Detail about email is readred",
+        "operationId": "read email",
+        "requestBody": {
+          "description": "post id and type of email which is readed",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/readEmail"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "post id and type of email which is readed",
+            "headers": {
+              "x-next": {
+                "description": "",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int64",
+                      "x-faker": "datatype.number({ \"min\": 200, \"max\": 200 })"
+                    },
+                    "message": {
+                      "type": "string",
+                      "default": "email is readed Successfully"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "SUCCESS"
+                    },
+                    "object": {}
                   }
                 }
               }
@@ -2890,7 +3028,7 @@
         }
       }
     },
-    "/getReorts": {
+    "/reorts": {
       "get": {
         "summary": "Details of Reports",
         "operationId": "",
@@ -2970,6 +3108,19 @@
           }
         }
       },
+      "readEmail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "descriprtion": "Id of read email or mail"
+          },
+          "type": {
+            "type": "string",
+            "descriprtion": "type of read email or mail its might be span , draft and etc"
+          }
+        }
+        },
       "currency": {
         "type": "object",
         "properties": {
@@ -3225,6 +3376,19 @@
             "format": "int64",
             "x-faker": "datatype.number({ \"min\": 10000, \"max\": 100000 })",
             "description": "limit of approve purchase order Requester"
+          }
+        }
+      },
+      "addapprovePo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "id of  approve purchase order Requester"
+          },
+          "Status": {
+            "type": "string",
+            "description": "status of  approve purchase order Requester"
           }
         }
       },
@@ -4078,6 +4242,11 @@
             "type": "boolean",
             "x-faker": "{{random.boolean}}"
           },
+           "isRead": {
+                "type": "string",
+                "x-faker": "{{random.boolean}}",
+                "description":"messages is readed or not"
+              },
           "tags": {
             "type": "array",
             "x-count": 3,

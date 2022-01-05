@@ -16,8 +16,8 @@ class PurchaseOrder extends Component {
         }
     }
     componentDidMount() {
-        let id =this.props.match.params.id;
-        this.props.dispatch(purchaseOrderAction.getApprovePurchaseOrder({"id":id}))
+        let id = this.props.match.params.id;
+        this.props.dispatch(purchaseOrderAction.getApprovePurchaseOrder({ "id": id }))
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.search_approvepo_status !== this.props.search_approvepo_status &&
@@ -25,16 +25,24 @@ class PurchaseOrder extends Component {
             this.setState({ ApproveOrder: this.props.search_pprovepo });
         }
     }
+    handleApprove = (status) => {
+        const { ApproveOrder } = this.state
+        // console.log(ApproveOrder)
+        // let data={ }
+        // console.log(data)
+        this.props.dispatch(purchaseOrderAction.approvePurchaseOrder({ 'id': ApproveOrder.id, 'status': status }))
+        this.props.history.push(`/postlogin/generatepo`)
+    }
     render() {
-        const{ApproveOrder}=this.state;
+        const { ApproveOrder } = this.state;
         return (
             <div className="main-content">
                 <div className="generate-content">
                     <div className="generate-purchase">
                         <div className="heading">
-                        <IconButton className="head-icon">
-                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/approvepo`)}/>
-                                </IconButton>
+                            <IconButton className="head-icon">
+                                <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/approvepo`)} />
+                            </IconButton>
                             <h4>Approve Purchase Order</h4>
                         </div>
                     </div>
@@ -51,42 +59,42 @@ class PurchaseOrder extends Component {
                                     <ul>
                                         <li>
                                             <strong className="pending-heading">Status</strong>
-                                            {ApproveOrder&& ApproveOrder.Status &&<p className="pending">#{ApproveOrder.Status}</p>}
+                                            {ApproveOrder && ApproveOrder.Status && <p className="pending">#{ApproveOrder.Status}</p>}
                                         </li>
                                         <li>
                                             <strong>Delivery Status</strong>
-                                            {ApproveOrder&& ApproveOrder.DeliveryStatus &&<p>{ApproveOrder.DeliveryStatus}</p>}
+                                            {ApproveOrder && ApproveOrder.DeliveryStatus && <p>{ApproveOrder.DeliveryStatus}</p>}
                                         </li>
                                         <li>
                                             <strong>Payment Status</strong>
-                                            {ApproveOrder&& ApproveOrder.PaymentStatus && <p className="not-paid">{ApproveOrder.PaymentStatus }</p>}
+                                            {ApproveOrder && ApproveOrder.PaymentStatus && <p className="not-paid">{ApproveOrder.PaymentStatus}</p>}
                                         </li>
                                         <li>
                                             <strong>P O Number</strong>
-                                            {ApproveOrder&& ApproveOrder.ContactNumber && <p>{ApproveOrder.ContactNumber}</p>}
+                                            {ApproveOrder && ApproveOrder.ContactNumber && <p>{ApproveOrder.ContactNumber}</p>}
                                         </li>
                                         <li>
                                             <strong>Department</strong>
-                                            {ApproveOrder&& ApproveOrder.Department &&<p>{ApproveOrder.Department}</p>}
+                                            {ApproveOrder && ApproveOrder.Department && <p>{ApproveOrder.Department}</p>}
                                         </li>
                                         <li>
                                             <strong>Requestor</strong>
                                             <div className="requestor">
                                                 <div className="image"><img src={ApproveOrder.RequestorAvatar} alt='' /></div>
-                                                {ApproveOrder&& ApproveOrder.RequestorName &&<div className="name">{ApproveOrder.RequestorName}</div>}
+                                                {ApproveOrder && ApproveOrder.RequestorName && <div className="name">{ApproveOrder.RequestorName}</div>}
                                             </div>
                                         </li>
                                         <li>
                                             <strong>Item</strong>
-                                            {ApproveOrder&& ApproveOrder.Item &&<p>{ApproveOrder.Item}</p>}
+                                            {ApproveOrder && ApproveOrder.Item && <p>{ApproveOrder.Item}</p>}
                                         </li>
                                         <li>
                                             <strong>Creation On</strong>
-                                            {ApproveOrder&& ApproveOrder.CreationOn &&<p>{ApproveOrder.CreationOn}</p>}
+                                            {ApproveOrder && ApproveOrder.CreationOn && <p>{ApproveOrder.CreationOn}</p>}
                                         </li>
                                         <li>
                                             <strong>Comment</strong>
-                                            {ApproveOrder&& ApproveOrder.Comment && <p className="comment-text">{ApproveOrder.Comment}</p>}
+                                            {ApproveOrder && ApproveOrder.Comment && <p className="comment-text">{ApproveOrder.Comment}</p>}
                                         </li>
                                     </ul>
                                 </div>
@@ -97,15 +105,15 @@ class PurchaseOrder extends Component {
                                     <ul>
                                         <li>
                                             <strong>Vendor</strong>
-                                            {ApproveOrder&& ApproveOrder.VendorName && <p>{ApproveOrder.VendorName }</p>}
+                                            {ApproveOrder && ApproveOrder.VendorName && <p>{ApproveOrder.VendorName}</p>}
                                         </li>
                                         <li>
                                             <strong>Vendor Email</strong>
-                                            {ApproveOrder&& ApproveOrder.VendorEmail &&<p>{ApproveOrder.VendorEmail}</p>}
+                                            {ApproveOrder && ApproveOrder.VendorEmail && <p>{ApproveOrder.VendorEmail}</p>}
                                         </li>
                                         <li>
                                             <strong>Nature if Business</strong>
-                                        {ApproveOrder&& ApproveOrder.NatureOfBusiness &&<p>{ApproveOrder.NatureOfBusiness}</p>}
+                                            {ApproveOrder && ApproveOrder.NatureOfBusiness && <p>{ApproveOrder.NatureOfBusiness}</p>}
                                         </li>
                                         <li>
                                             <strong>Quotation</strong>
@@ -114,17 +122,18 @@ class PurchaseOrder extends Component {
                                     </ul>
                                     <h5>P.O Generate by</h5>
                                     <div className="generate-box">
-                                    {ApproveOrder&& ApproveOrder.VendorAvatar &&<div className="image"><img src={ApproveOrder.VendorAvatar} alt="" /></div>}
+                                        {ApproveOrder && ApproveOrder.VendorAvatar && <div className="image"><img src={ApproveOrder.VendorAvatar} alt="" /></div>}
                                         <div className="name">
                                             <strong>Peter Perrison</strong>
-                                            {ApproveOrder&& ApproveOrder.VendorName&&<p>{ApproveOrder.VendorName}</p>}
+                                            {ApproveOrder && ApproveOrder.VendorName && <p>{ApproveOrder.VendorName}</p>}
                                         </div>
                                     </div>
-                                    {ApproveOrder&& ApproveOrder.Limit &&<div className="limit-text">Limit: ${ApproveOrder.Limit}</div>}
+                                    {ApproveOrder && ApproveOrder.Limit && <div className="limit-text">Limit: ${ApproveOrder.Limit}</div>}
                                     <div className="generated-btn">
                                         <Button
                                             variant="contained"
                                             className="primary-btn"
+                                            onClick={() => this.props.history.push(`/postlogin/generatepo`)}
                                         >
                                             Generated
                                         </Button>
@@ -138,6 +147,7 @@ class PurchaseOrder extends Component {
                         <Button
                             variant="contained"
                             className="approve-btn"
+                            onClick={()=>this.handleApprove('approve')}
                         >
                             <CheckCircleIcon className="approve-icon" />
                             Approve
@@ -146,6 +156,7 @@ class PurchaseOrder extends Component {
                         <Button
                             variant="contained"
                             className="decline-btn"
+                            onClick={()=>this.handleApprove('decline')}
                         >
                             <BlockIcon className="decline-icon" />
                             Decline

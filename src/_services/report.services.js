@@ -10,6 +10,6 @@ function fetchReportsList(data) {
         "Content-Type": "application/json"
     }
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.GETREPORTS}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REPORTS}`, requestOptions).then(response => response.json());
 
 }

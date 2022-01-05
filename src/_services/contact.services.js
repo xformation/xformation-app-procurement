@@ -47,8 +47,8 @@ function updateContact(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
-    const requestOptions = commonFunctions.getRequestOptions("PATCH", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.CONTACT}`, requestOptions).then(response => response.json());
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.CONTACT}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function sendInvitation(data) {

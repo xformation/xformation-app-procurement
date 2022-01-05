@@ -63,6 +63,7 @@ class ViewPurchaseOrder extends Component {
                 id: this.props.match.params.id
             }
             this.props.dispatch(purchaseOrderAction.addPurchaseOrder(sendReqData));
+            this.props.history.push(`/postlogin/generatepo`)
         }
     }
 

@@ -8,6 +8,7 @@ export const purchaseOrderServices = {
     addPurchaseOrder,
     approvePurchaseOrder,
     getApprovePo,
+    approvePO
 }
 function getPurchaseOrder(data) {
     const extraHeaders = {
@@ -40,6 +41,13 @@ function approvePurchaseOrder(data) {
     return fetch(`${apiEndPoint.APPROVEPO}`, requestOptions).then(response => response.json());
 }
 
+function approvePO(data) {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.APPROVEPO}/${data.id}`, requestOptions).then(response => response.json());
+}
 function getApprovePo(data) {
     const extraHeaders = {
         "Content-Type": "application/json"

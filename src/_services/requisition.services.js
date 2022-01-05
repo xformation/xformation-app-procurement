@@ -26,7 +26,7 @@ function addRequisition(data) {
     }
     formData.append("obj", JSON.stringify(data.obj));
     const requestOptions = commonFunctions.getRequestOptions("POST", {}, formData);
-    return fetch(`${apiEndPoint.REQUISTION}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REQUISTIONS}`, requestOptions).then(response => response.json());
 }
 
 function deleteRequisition(data) {
@@ -34,7 +34,7 @@ function deleteRequisition(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
-    return fetch(`${apiEndPoint.REQUISTION}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REQUISTIONS}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function getRequisition(data) {
@@ -60,7 +60,7 @@ function getRequisition(data) {
         }
     }
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.REQUISTION}${url}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REQUISTIONS}${url}`, requestOptions).then(response => response.json());
 }
 
 function editRequisition(data) {
@@ -76,8 +76,8 @@ function editRequisition(data) {
         }
     }
     formData.append("obj", JSON.stringify(data.obj));
-    const requestOptions = commonFunctions.getRequestOptions("PATCH", {}, formData);
-    return fetch(`${apiEndPoint.REQUISTION}`, requestOptions).then(response => response.json());
+    const requestOptions = commonFunctions.getRequestOptions("POST", {}, formData);
+    return fetch(`${apiEndPoint.REQUISTIONS}/${data.obj.id}`, requestOptions).then(response => response.json());
 }
 
 function getRequisitionEditData(data) {
@@ -85,7 +85,7 @@ function getRequisitionEditData(data) {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
-    return fetch(`${apiEndPoint.REQUISTION}/${data.id}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REQUISTIONS}/${data.id}`, requestOptions).then(response => response.json());
 }
 
 function getCurrency(data) {
@@ -97,17 +97,19 @@ function getCurrency(data) {
 }
 
 function approveRequisition(data) {
+    console.log(data)
     const extraHeaders = {
         "Content-Type": "application/json"
     };
     const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.APPROVEDREQUISITION}`, requestOptions).then(response => response.json());
+    return fetch(`${apiEndPoint.REQUISTIONS}/${data.requisitionId}/approve`, requestOptions).then(response => response.json());
 }
 
 function setRequisitionBuyers(data) {
+    console.log(data)
     const extraHeaders = {
         "Content-Type": "application/json"
     };
-    const requestOptions = commonFunctions.getRequestOptions("PATCH", extraHeaders, JSON.stringify(data));
-    return fetch(`${apiEndPoint.BUYER}`, requestOptions).then(response => response.json());
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders, JSON.stringify(data));
+    return fetch(`${apiEndPoint.BUYER}/${data.requisitionID}`, requestOptions).then(response => response.json());
 }
