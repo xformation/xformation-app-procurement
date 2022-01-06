@@ -12,8 +12,8 @@ const _nav = [
     {
         _tag: 'SidebarNavItem',
         name: 'Email',
-        to: '/postlogin/email',
-        activeArr: ['/postlogin/email'],
+        to: '/postlogin/email/inbox',
+        activeArr: ['/postlogin/email/inbox'],
         open: false,
         icon: <i className="fas fa-envelope"></i>,
         // children: [

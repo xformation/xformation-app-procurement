@@ -24,6 +24,8 @@ import Pagination from '../../_components/Pagination';
 import EmailsPage from './EmailsPage'
 import ComposeEmail from './ComposeEmail';
 import CancelIcon from '@material-ui/icons/Cancel';
+import { withRouter } from 'react-router-dom';
+
 class EmailPage extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,7 @@ class EmailPage extends Component {
       emailData: [],
       isSubmitted: false,
       searchemail: "inbox",
-      priorty:'social',
+      priorty: 'social',
       sendEmailData: {
         subject: '',
         emaildetail: '',
@@ -48,7 +50,6 @@ class EmailPage extends Component {
         attechment: [],
       },
     }
-
     this.paginationRef = React.createRef();
   }
 
@@ -60,7 +61,7 @@ class EmailPage extends Component {
   }
 
   closeDetailPage = () => {
-    this.props.history.push('/postlogin/email');
+    this.props.history.goBack();
   }
 
   componentDidMount() {
@@ -83,7 +84,6 @@ class EmailPage extends Component {
       this.setState({ sendEmailData })
     }
   }
-
   componentDidUpdate(prevProps, prevState) {
     const { perPageLimit } = this.state;
     if (this.props.search_email_status !== prevProps.search_email_status &&
@@ -140,13 +140,17 @@ class EmailPage extends Component {
           otherData = { perPageLimit, currentPage, i, history: this.props.history, searchemail }
           retData.push(
             <div className={activeindex == emailData.i ? "active" : ""}>
-              <EmailsPage row={row} otherData={otherData} setSelectedMail={this.setSelectedMail} />
+              <EmailsPage row={row} otherData={otherData} setSelectedMail={this.setSelectedMail} handleMessageRead={this.handleMessageRead} />
             </div>
           );
         }
       }
     }
     return retData;
+  }
+  handleMessageRead = (data) => {
+    const { id, type } = data
+    this.props.dispatch(emailActions.reademail({ 'id': id, "type": type }))
   }
   setSelectedMail = (e, index, value) => {
     let { emailData, isSelectAll } = this.state;
@@ -216,7 +220,7 @@ class EmailPage extends Component {
   setEmailType = (type) => {
     this.setState({
       searchemail: type,
-      composEmail:false
+      composEmail: false
     });
     this.props.history.push(`/postlogin/email/${type}`)
     this.props.dispatch(emailActions.searchallemails({ 'search': type }));
@@ -360,4 +364,4 @@ const mapStateToProps = (state) => {
   return { search_email_status, searchemail, search_all_email_status, searchallemail, send_email_status }
 }
 
-export default connect(mapStateToProps)(EmailPage);
+export default withRouter(connect(mapStateToProps)(EmailPage));

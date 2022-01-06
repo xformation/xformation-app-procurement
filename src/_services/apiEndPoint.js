@@ -8,7 +8,6 @@ export const apiEndPoint = {
 
     // *Committee Api Url
     COMMITTEE: `${config.apiUrl}/committee`,
-    COMMITTEETYPE: `${config.apiUrl}/committeeType`,
 
     // *Contact Api Url
     CONTACT: `${config.apiUrl}/contacts`,
@@ -24,8 +23,7 @@ export const apiEndPoint = {
 
     // Requisition Api Url
     REQUISTIONS: `${config.apiUrl}/requisitions`,
-    APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
-
+    // APPROVEDREQUISITION: `${config.apiUrl}/approveRequisition`,
 
     CURRENCY: `${config.apiUrl}/currency`,
 
@@ -44,8 +42,7 @@ export const apiEndPoint = {
 
     //*generate po api url
 
-    PO: `${config.apiUrl}/po`,
-    APPROVEPO: `${config.apiUrl}/approvePo`,
+    PURCHASEORDERS: `${config.apiUrl}/purchaseorders`,
 
     //recievedefq api url
 

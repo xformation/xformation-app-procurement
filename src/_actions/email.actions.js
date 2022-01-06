@@ -7,7 +7,8 @@ export const emailActions = {
     searchallemails,
     sendEmail,
     getEmailDetail,
-    deleteEmail
+    deleteEmail,
+    reademail
 
 };
 
@@ -179,6 +180,39 @@ function deleteEmail(data) {
     };
 }
 
+
+function reademail(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: emailConstants.READ_EMAIL_REQUEST,
+            data: null
+        }));
+        emailServices.readEmail(data)
+            .then(
+                response => {
+                    if (response.code === 200) {
+                        dispatch(dispatchFunction({
+                            type: emailConstants.READ_EMAIL_SUCCESS,
+                            data: response.object
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: emailConstants.READ_EMAIL_FAILURE,
+                            data: response
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: emailConstants.READ_EMAIL_FAILURE,
+                        data: error.message
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    };
+}
 function dispatchFunction(data) {
     // if (data.data && data.data.code === 401) {
     //     commonFunctions.onLogout();

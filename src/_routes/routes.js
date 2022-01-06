@@ -33,10 +33,9 @@ const BudgetAllocation = React.lazy(() => import("../PostLogin/BudgetOverview/Bu
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
-    { path: '/postlogin/email', exact: true, name: 'EmailPage', component: EmailPage },
+    // { path: '/postlogin/email', exact: true, name: 'EmailPage', component: EmailPage },
     { path: '/postlogin/email/:type', exact: true, name: 'EmailPage', component: EmailPage },
     { path: '/postlogin/email/:type/:id', exact: true, name: 'EmailPage', component: EmailPage },
-    { path: '/postlogin/email/draft/:draftId', exact: true, name: 'EmailPage', component: EmailPage },
     { path: '/postlogin/kanban', exact: true, name: 'Kanban', component: Kanban },
     { path: '/postlogin/requisitiontracker', exact: true, name: 'RequisitionTracker', component: RequisitionTracker },
     { path: '/postlogin/newrequisition', exact: true, name: 'NewRequisition', component: NewRequisition },

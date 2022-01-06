@@ -5,7 +5,8 @@ export const emailServices = {
     searchallemails,
     sendEmail,
     getEmailDetail,
-    deleteEmail
+    deleteEmail,
+    readEmail
 }
 
 function recentCommunication(data) {
@@ -52,3 +53,10 @@ function deleteEmail(data) {
     const requestOptions = commonFunctions.getRequestOptions("DELETE", extraHeaders, null);
     return fetch(`${apiEndPoint.EMAIL}/${data.id}`, requestOptions).then(response => response.json());
 }
+function readEmail(data) {
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("POST", extraHeaders,JSON.stringify(data));
+    return fetch(`${apiEndPoint.EMAIL}/${data.id}`, requestOptions).then(response => response.json());
+} 

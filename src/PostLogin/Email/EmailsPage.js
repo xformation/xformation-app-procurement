@@ -33,11 +33,11 @@ class EmailsPage extends Component {
   }
   handleUrl = () => {
     const { otherProps, rows } = this.state;
-    if (otherProps.searchemail.length > 0) {
       otherProps.history.push(`/postlogin/email/${otherProps.searchemail}/${rows.id}`)
-    }
-    else otherProps.history.push(`/postlogin/email/email/${rows.id}`);
-  }
+      if(rows.isRead=== false){
+      let data={"id":rows.id ,"type":otherProps.searchemail}
+   this.props.handleMessageRead(data);
+    }  }
   showIcon = (index, i) => {
     console.log()
     let { rows } = this.state;
@@ -52,6 +52,7 @@ class EmailsPage extends Component {
     this.props.setSelectedMail(e, id, rows.isChecked)
     this.setState({ rows })
   }
+
   render() {
     const { rows, otherProps } = this.state;
     return (
@@ -70,7 +71,7 @@ class EmailsPage extends Component {
           </div>
           <div className="user-content">
             <div className="d-flex">
-              <div className="col-9" onClick={this.onClickShowMailDetail} onClick={this.handleUrl}
+              <div className="col-9" onClick={this.handleUrl}
                 key={rows.body} >
                 <div className="d-flex">
                   <div className="user-img">  {rows && rows.sender && rows.sender.profilePic &&
