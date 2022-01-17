@@ -90,6 +90,12 @@ export function email(state = {}, action) {
                 ...state,
                 delete_email_status: status.FAILURE,
             }
+        case emailConstants.GET_INBOX_EMAIL_SUCCESS:
+            return {
+                ...state,
+                get_inbox_status: status.SUCCESS,
+                inbox_data: action.data
+            }
         default:
             return state
     }

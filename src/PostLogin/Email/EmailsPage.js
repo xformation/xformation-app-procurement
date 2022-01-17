@@ -33,13 +33,13 @@ class EmailsPage extends Component {
   }
   handleUrl = () => {
     const { otherProps, rows } = this.state;
-      otherProps.history.push(`/postlogin/email/${otherProps.searchemail}/${rows.id}`)
-      if(rows.isRead=== false){
-      let data={"id":rows.id ,"type":otherProps.searchemail}
-   this.props.handleMessageRead(data);
-    }  }
+    otherProps.history.push(`/postlogin/email/${otherProps.searchemail}/${otherProps.priorty}/${rows.id}`)
+    if (rows.isRead === false) {
+      let data = { "id": rows.id, "type": otherProps.searchemail }
+      this.props.handleMessageRead(data);
+    }
+  }
   showIcon = (index, i) => {
-    console.log()
     let { rows } = this.state;
     rows.showIcon = !rows.showIcon;
     this.setState({

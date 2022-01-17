@@ -25,7 +25,7 @@ import EmailsPage from './EmailsPage'
 import ComposeEmail from './ComposeEmail';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { withRouter } from 'react-router-dom';
-
+import ListItemText from '@material-ui/core/ListItemText';
 class EmailPage extends Component {
   constructor(props) {
     super(props);
@@ -33,14 +33,14 @@ class EmailPage extends Component {
       emails: [],
       composEmail: false,
       detailEmail: "",
-      activeindex: 0,
+      activeindex: [],
       isSelectAll: false,
       perPageLimit: 5,
       currentPage: 0,
       emailData: [],
       isSubmitted: false,
       searchemail: "inbox",
-      priorty: 'social',
+      priorty: 'important',
       sendEmailData: {
         subject: '',
         emaildetail: '',
@@ -48,6 +48,7 @@ class EmailPage extends Component {
         bcc: [],
         senderId: '2',
         attechment: [],
+        emailLength: 0,
       },
     }
     this.paginationRef = React.createRef();
@@ -65,16 +66,16 @@ class EmailPage extends Component {
   }
 
   componentDidMount() {
+    const { id, draftId, type, priorty } = this.props.match.params;
 
-    const { id, draftId } = this.props.match.params;
-    if (this.props && this.props.match && this.props.match.params && this.props.match.params.type) { this.setState({ searchemail: this.props.match.params.type }) }
-
+    if (type && !priorty) {
+      this.props.history.push(`/postlogin/email/${type}/${this.state.priorty}`)
+    }
+    if (type) { this.setState({ searchemail: this.props.match.params.type }) }
     if (id) {
       this.setState({
         detailEmail: id
       });
-    }
-    else if (draftId) {
     }
     else {
       let { sendEmailData, preselectValue } = this.state;
@@ -84,24 +85,43 @@ class EmailPage extends Component {
       this.setState({ sendEmailData })
     }
   }
+
   componentDidUpdate(prevProps, prevState) {
     const { perPageLimit } = this.state;
+    let { emailLength } = this.state
+    const { get_inbox_status, inbox_data } = this.props;
+    const { priorty } = this.props.match.params;
+    debugger
     if (this.props.search_email_status !== prevProps.search_email_status &&
       this.props.search_email_status === status.SUCCESS) {
       if (this.props.searchemail && this.props.searchemail.length > 0) {
         this.setState({
-          emails: this.props.searchemail
+          emails: this.props.searchemail,
+          priorty: priorty
         })
+      }
+    }
+    if (prevProps.get_inbox_status === get_inbox_status && prevProps.get_inbox_status === status.SUCCESS && !emailLength) {
+      emailLength = 0;
+      if (inbox_data && inbox_data.length > 0) {
+        for (let i = 0; i < inbox_data.length; i++) {
+          if (inbox_data[i].isRead === "false" || inbox_data[i].isRead === false) {
+            emailLength++;
+          }
+        }
+        this.setState({ emailLength })
       }
     }
     if (this.props.search_all_email_status !== prevProps.search_all_email_status
       && this.props.search_all_email_status === status.SUCCESS) {
-      if (this.props.searchallemail && this.props.searchallemail.length > 0) {
-        let data = this.props.searchallemail;
+      if (this.props.searchallemail.object && this.props.searchallemail.object.length > 0) {
+        let data = this.props.searchallemail.object;
+        if (this.props.match.params.type === "inbox") {
+          this.props.dispatch(emailActions.searchallinboxemails(data))
+        }
         if (data && data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             data[i].isChecked = false;
-            data[i].isRead = false;
             data[i].showIcon = false;
           }
           let indexOfLastData = Math.ceil(data.length / perPageLimit);
@@ -128,7 +148,8 @@ class EmailPage extends Component {
   }
 
   displayEmailList = () => {
-    const { emailData, activeindex, currentPage, perPageLimit, searchemail } = this.state;
+
+    const { emailData, activeindex, currentPage, perPageLimit, searchemail, priorty } = this.state;
     let otherData = {};
     let retData = [];
     if (emailData && emailData.length > 0) {
@@ -137,11 +158,11 @@ class EmailPage extends Component {
           let row = emailData[i];
           let time = row.time.split('T');
           time = time[1].split('.');
-          otherData = { perPageLimit, currentPage, i, history: this.props.history, searchemail }
+          otherData = { perPageLimit, currentPage, i, history: this.props.history, searchemail, priorty }
           retData.push(
-            <div className={activeindex == emailData.i ? "active" : ""}>
+            <li className={emailData[i].isChecked === true ? "active" : ""}>
               <EmailsPage row={row} otherData={otherData} setSelectedMail={this.setSelectedMail} handleMessageRead={this.handleMessageRead} />
-            </div>
+            </li>
           );
         }
       }
@@ -153,11 +174,12 @@ class EmailPage extends Component {
     this.props.dispatch(emailActions.reademail({ 'id': id, "type": type }))
   }
   setSelectedMail = (e, index, value) => {
-    let { emailData, isSelectAll } = this.state;
+    let { emailData, isSelectAll, activeindex } = this.state;
     let count = 0;
     emailData[index].isChecked = value;
     for (let i = 0; i < emailData.length; i++) {
-      if (emailData[i].isChecked) {
+      if (emailData[i].isChecked === true) {
+        debugger
         count++;
       } else {
         count--;
@@ -226,11 +248,13 @@ class EmailPage extends Component {
     this.props.dispatch(emailActions.searchallemails({ 'search': type }));
   }
 
-  emailType = (type) => {
+  emailType = (priorty) => {
+    const { searchemail } = this.state;
     this.setState({
-      searchemail: type,
+      priorty: priorty,
     });
-    this.props.dispatch(emailActions.searchallemails({ 'search': type }));
+    this.props.history.push(`/postlogin/email/${searchemail}/${priorty}`)
+    this.props.dispatch(emailActions.searchallemails({ 'search': priorty }));
   }
 
   onChangeCurrentPage = (currentPage) => {
@@ -241,8 +265,7 @@ class EmailPage extends Component {
 
   render() {
     const { composEmail, isSelectAll, detailEmail,
-      searchemail } = this.state;
-
+      searchemail, emailLength, priorty } = this.state;
     return (
       <div className="main-content">
         <div className="compose-email-section">
@@ -263,7 +286,10 @@ class EmailPage extends Component {
                   </div>
                   <ul>
                     <li className={searchemail === "inbox" ? "active" : ""} onClick={() => this.setEmailType('inbox')}>
-                      <button className="btn"><span><MoveToInboxIcon /></span>Inbox</button></li>
+                      <button className="btn"><span><MoveToInboxIcon /></span>Inbox
+                        {emailLength && emailLength > 0 && <span className="float-right length">{emailLength}</span>}</button>
+
+                    </li>
                     <li className={searchemail === "sent" ? "active" : ""} onClick={() => this.setEmailType('sent')}>
                       <button className="btn"><span><i class="fas fa-paper-plane"></i></span>Sent</button></li>
                     <li className={searchemail === "draft" ? "active" : ""} onClick={() => this.setEmailType('draft')}>
@@ -317,11 +343,11 @@ class EmailPage extends Component {
                                 />
                               </div>
                               <ul>
-                                <li onClick={() => this.emailType("important")}><a href="#" className={searchemail === "important" ? "active" : ""} >
+                                <li onClick={() => this.emailType("important")}><a href="#" className={priorty === "important" ? "active" : ""} onClick={e => e.preventDefault()}>
                                   <span><MailIcon /></span>Important</a></li>
-                                <li onClick={() => this.emailType("socials")}><a href="#" className={searchemail === "socials" ? "active" : ""} >
+                                <li onClick={() => this.emailType("socials")} ><a onClick={e => e.preventDefault()} href="#" className={priorty === "socials" ? "active" : ""} >
                                   <span><SupervisorAccountIcon /></span>Socials</a></li>
-                                <li onClick={() => this.emailType("promotion")}><a href="#" className={searchemail === "promotion" ? "active" : ""}>
+                                <li onClick={() => this.emailType("promotion")}><a href="#" className={priorty === "promotion" ? "active" : ""} onClick={e => e.preventDefault()}>
                                   <span><ConfirmationNumberIcon /></span>Promotion</a></li>
                               </ul>
                             </div>
@@ -360,8 +386,8 @@ class EmailPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { search_email_status, searchemail, search_all_email_status, searchallemail, send_email_status } = state.email
-  return { search_email_status, searchemail, search_all_email_status, searchallemail, send_email_status }
+  const { search_email_status, searchemail, search_all_email_status, inbox_data, get_inbox_status, searchallemail, send_email_status } = state.email
+  return { search_email_status, searchemail, search_all_email_status, searchallemail, send_email_status, inbox_data, get_inbox_status }
 }
 
 export default withRouter(connect(mapStateToProps)(EmailPage));

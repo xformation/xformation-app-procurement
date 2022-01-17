@@ -23,71 +23,7 @@ class RecentEmails extends Component {
     super(props)
     this.state = {
       selectedMailData: [],
-      recentEmailData: [
-        // {
-        //     recentEmail: "kevinhard@mail.com 24 min ago",
-        //     recentTitle: "Quotation for the requested products",
-        //     recentImg: Kevin,
-        //     type: 'important',
-        //     recentDes: "Ipsmum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "joanhsitepu@mail.com yesterday,at 11:24,AM",
-        //     recentTitle: "Need 10 Smart Phones for our team",
-        //     recentImg: Joannah,
-        //     type: 'important',
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "machelgreen@mail.com October 25th,2020 08:55PM",
-        //     recentTitle: "Order confirmed",
-        //     recentImg: Machel,
-        //     type: "important",
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "kevinhard@mail.com 24 min ago",
-        //     recentTitle: "Quotation for the requested products",
-        //     recentImg: Kevin,
-        //     type: 'social',
-        //     recentDes: "Ipsmum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "joanhsitepu@mail.com yesterday,at 11:24,AM",
-        //     recentTitle: "Need 10 Smart Phones for our team",
-        //     recentImg: Joannah,
-        //     type: 'social',
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "machelgreen@mail.com October 25th,2020 08:55PM",
-        //     recentTitle: "Order confirmed",
-        //     recentImg: Machel,
-        //     type: "social",
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "kevinhard@mail.com 24 min ago",
-        //     recentTitle: "Quotation for the requested products",
-        //     recentImg: Kevin,
-        //     type: 'promotion',
-        //     recentDes: "Ipsmum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "joanhsitepu@mail.com yesterday,at 11:24,AM",
-        //     recentTitle: "Need 10 Smart Phones for our team",
-        //     recentImg: Joannah,
-        //     type: 'promotion',
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // },
-        // {
-        //     recentEmail: "machelgreen@mail.com October 25th,2020 08:55PM",
-        //     recentTitle: "Order confirme",
-        //     recentImg: Machel,
-        //     type: "promotion",
-        //     recentDes: "Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        // }
-      ],
+      recentEmailData: [],
       selectedType: 'important',
       buttonIndex: 0,
       important: true,
@@ -104,15 +40,14 @@ class RecentEmails extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.search_all_email_status !== prevProps.search_all_email_status &&
+    if ((this.props.search_all_email_status !== prevProps.search_all_email_status) &&
       this.props.search_all_email_status === status.SUCCESS) {
-      if (this.props.searchallemail && this.props.searchallemail.length > 0) {
-        let data = this.props.searchallemail;
-        // this.setState({ selectedMailData: this.props.searchallemail });
+      if (this.props.searchallemail.object && this.props.searchallemail.object.length > 0) {
+        let data = this.props.searchallemail.object;
         if (data && data.length > 0) {
+          this.props.dispatch(emailActions.searchallinboxemails(data))
           for (let i = 0; i < data.length; i++) {
             data[i].isChecked = false;
-            data[i].isRead = false;
             data[i].showIcon = false;
           }
           this.setState({

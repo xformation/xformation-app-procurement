@@ -37,7 +37,8 @@ import "react-circular-progressbar/dist/styles.css";
 import { connect } from 'react-redux';
 import { contactAction, homeAction, invoiceAction } from "../../_actions";
 import { status } from "../../_constants";
-
+import RecentActivity from './RecentActivity'
+import Requisition from './Requisition'
 class Dashbord extends Component {
   constructor(props) {
     super(props);
@@ -206,7 +207,7 @@ class Dashbord extends Component {
             </div>
             <div className="col-xl-3 col-lg-3 col-md-3 col-3 px-0 text-right">
               <div className="timing">
-              <span>{time[0]}</span>
+                <span>{time[0]}</span>
               </div>
             </div>
           </div>
@@ -279,6 +280,14 @@ class Dashbord extends Component {
     return retData;
   }
 
+  handleUrls = (url, type) => {
+    if (type) {
+      this.props.history.push(`${url}/${type}`)
+    }
+    else {
+      this.props.history.push(`${url}`)
+    }
+  }
   displayPinedEmail = () => {
     const { pinnedEmailsData } = this.state;
     let pinData = [];
@@ -361,18 +370,18 @@ class Dashbord extends Component {
           {dashboardData &&
             <div className="progress-rfp-boxs">
               <div className="row">
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2">
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, "todayfrp")}>
                   <div className="progress-box">
                     <div className="progress-img">
                       <img src={rfpImg} alt="" />
                     </div>
-                    <div className="progress-content">
+                    <div className="progress-content" >
                       {dashboardData.todayRFP && <h3>{dashboardData.todayRFP}</h3>}
                       <span>Today's RFP</span>
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`,'totalfrp')}>
                   <div className="progress-box">
                     <div className="progress-img">
                       <img src={rfpImg} alt="" />
@@ -383,7 +392,18 @@ class Dashbord extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2">
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, 'rejectedrfp')}>
+                  <div className="progress-box">
+                    <div className="progress-img">
+                      <img src={rfpImg} alt="" />
+                    </div>
+                    <div className="progress-content">
+                      {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
+                      <span>Rejected RFP</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls('/postlogin/email/inbox', `important`)}>
                   <div className="progress-box">
                     <div className="progress-img">
                       <div className="mail-icon"><i className="fa fa-envelope"></i></div>
@@ -416,6 +436,16 @@ class Dashbord extends Component {
               </div>
             </div>
           }
+          <div className="recent-requisition-section">
+            <div className="row">
+              <div className="col-xl-7 col-md-7 col-12">
+                <RecentActivity />
+              </div>
+              <div className="col-xl-5 col-md-5 col-12">
+                <Requisition />
+              </div>
+            </div>
+          </div>
           <div className="average-section">
             <div className="row">
               {dashboardData &&

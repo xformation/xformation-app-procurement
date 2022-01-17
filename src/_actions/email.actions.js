@@ -8,7 +8,8 @@ export const emailActions = {
     sendEmail,
     getEmailDetail,
     deleteEmail,
-    reademail
+    reademail,
+    searchallinboxemails
 
 };
 
@@ -58,7 +59,7 @@ function searchallemails(data) {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
                             type: emailConstants.SEARCH_ALL_EMAILS_SUCCESS,
-                            data: response.object
+                            data: response
                         }));
                     } else {
                         dispatch(dispatchFunction({
@@ -213,6 +214,15 @@ function reademail(data) {
             );
     };
 }
+function searchallinboxemails(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: emailConstants.GET_INBOX_EMAIL_SUCCESS,
+            data: data,
+        }));
+    };
+}
+
 function dispatchFunction(data) {
     // if (data.data && data.data.code === 401) {
     //     commonFunctions.onLogout();

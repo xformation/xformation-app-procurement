@@ -2771,8 +2771,11 @@
                       "type": "string"
                     },
                     "type": {
+                      "type": "string"
+                    },
+                    "emailType": {
                       "type": "string",
-                      "default": "SUCCESS"
+                      "description": "type of email like inbox, draft, send, etc...."
                     },
                     "object": {
                       "type": "array",
@@ -3602,6 +3605,11 @@
             "format": "date",
             "x-faker": "datatype.datetime",
             "description": "created date of the Requisition"
+          },
+          "profilePic": {
+            "type": "string",
+            "x-faker":"image.imageUrl",
+            "description": "Profile pic of the Requisition"
           },
           "totalPrice": {
             "type": "integer",

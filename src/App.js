@@ -24,7 +24,7 @@ class App extends Component {
                     />
                     <Route path="/prelogin/login" component={LoginLayout} />
                     <Route path="/postlogin" component={DefaultLayout} />
-                  
+
                     <ToastContainer enableMultiContainer containerId={'TOP_RIGHT'} position={toast.POSITION.TOP_RIGHT} />
                 </Suspense>
             </BrowserRouter>

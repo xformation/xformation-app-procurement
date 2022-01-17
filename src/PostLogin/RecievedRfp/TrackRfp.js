@@ -33,7 +33,7 @@ class TrackRfp extends Component {
             }
         }
         if (prevProps.add_recieved_rfp_status !== this.props.add_recieved_rfp_status && this.props.add_recieved_rfp_status === status.SUCCESS) {
-            this.props.history.push(`/postlogin/recivedrfp/:id/trackrfp`);
+            this.props.history.push(`/postlogin/frp/recivedrfp/:id/trackrfp`);
         }
 
     }

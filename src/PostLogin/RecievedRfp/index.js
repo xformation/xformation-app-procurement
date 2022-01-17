@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { recievedrfpAction } from '../../_actions';
 import { status } from "../../_constants";
 import { commonFunctions } from "../../_utilities";
+// import { th } from "date-fns/locale";
 
 class RecievedRfp extends Component {
   constructor(props) {
@@ -138,7 +139,8 @@ class RecievedRfp extends Component {
   }
 
   onClickShowViewDetails = (id) => {
-    this.props.history.push(`/postlogin/recivedrfp/${id}`);
+    let url=this.props.match.params.url
+    this.props.history.push(`/postlogin/frp/${url}/${id}`);
   };
 
   handleStateChange = (e) => {

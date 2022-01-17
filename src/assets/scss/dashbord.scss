@@ -1,3 +1,200 @@
+.recent-requisition-section {
+    padding-top: 20px;
+
+    .recent-activity {
+        border-radius: 15px;
+        background-color: #ffffff;
+        box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+        -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+        -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
+        height: 400px;
+
+        .heading {
+            font-size: 20px;
+            line-height: 26px;
+            font-weight: 700;
+            color: #000000;
+            padding: 25px;
+        }
+
+        .recent-activity-table {
+            max-height: 325px;
+
+            .table-row {
+                border-bottom: 1px solid #f5f5f5;
+                padding-left: 25px;
+                padding-right: 25px;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                width: 100%;
+
+                &:last-child {
+                    margin-bottom: 0;
+                    border-bottom: none;
+                }
+
+                .image {
+                    margin-right: 15px;
+                    overflow: hidden;
+                    border-radius: 10px;
+                }
+
+                .name {
+                    span {
+                        display: block;
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 400;
+                        color: #6418c3;
+                    }
+
+                    strong {
+                        display: block;
+                        width: 100%;
+                        font-size: 18px;
+                        line-height: 22px;
+                        font-weight: 600;
+                        color: #202020;
+                        padding-top: 5px;
+                    }
+                }
+
+                .order-apporoved {
+                    strong {
+                        display: block;
+                        width: 100%;
+                        font-size: 18px;
+                        line-height: 22px;
+                        font-weight: 400;
+                        color: #202020;
+                    }
+
+                    span {
+                        display: block;
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 400;
+                        color: #333333;
+                        padding-top: 5px;
+                    }
+                }
+
+                .rfp-no {
+                    span {
+                        display: block;
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 400;
+                        color: #333333;
+                    }
+
+                    strong {
+                        display: block;
+                        width: 100%;
+                        font-size: 18px;
+                        line-height: 22px;
+                        font-weight: 400;
+                        color: #202020;
+                        padding-top: 5px;
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    .requisition {
+        border-radius: 15px;
+        background-color: #ffffff;
+        box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+        -webkit-box-shadow: 1px 2px 6px -2px rgb(0 0 0 / 30%);
+        -moz-box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.3);
+        height: 400px;
+
+        .heading {
+            padding: 25px;
+            font-size: 20px;
+            line-height: 26px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .requisition-table {
+            max-height: 325px;
+
+            .table-row {
+                border-bottom: 1px solid #f5f5f5;
+                padding-left: 25px;
+                padding-right: 25px;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                width: 100%;
+
+                &:last-child {
+                    margin-bottom: 0;
+                    border-bottom: none;
+                }
+
+                .track {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    color: #6317c1;
+                    width: 15%;
+                }
+
+                .nomber {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    color: #000000;
+                    width: 15%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .name {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    color: #000000;
+                    width: 15%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .employee {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    color: #000000;
+                    width: 25%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .time {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    color: #000000;
+                    width: 30%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}
+
 .dashbord-top-section {
     padding: 0 0 30px 0;
 
@@ -589,9 +786,10 @@
 
             .chartbar-content {
                 margin-top: 30px;
-                 text-align: center;
-                .recharts-layer{
-                    tspan{
+                text-align: center;
+
+                .recharts-layer {
+                    tspan {
                         font-size: 12px;
                     }
                 }
@@ -709,6 +907,7 @@
 
             .payment {
                 display: flex;
+
                 .graphic {
                     width: 30px;
                     height: 30px;
@@ -718,6 +917,7 @@
                     margin-top: 5px;
                     background: linear-gradient(to bottom left, #c9ebfe 0%, #f0b9ef 85%);
                 }
+
                 .payment-content {
                     display: inline-block;
 
@@ -1062,7 +1262,8 @@
                             button {
                                 position: relative;
                                 color: #6317c1;
-                                &::after{
+
+                                &::after {
                                     content: "";
                                     border-radius: 2px;
                                     border-bottom: 4px solid #6317c1;
@@ -1104,6 +1305,7 @@
                         display: flex;
                         align-items: flex-start;
                         justify-content: start;
+
                         .user-id {
                             // width: 160px;
                             display: flex;
@@ -1117,13 +1319,14 @@
                                 border-radius: 10px;
                                 text-align: center;
                                 border: 1px solid #8f8f8f8c;
+
                                 &.active {
                                     color: #ffab2d;
                                     border-color: #ffab2d;
                                     background-color: #ffeacb;
                                 }
                             }
-                           
+
 
                             .user-img {
                                 display: inline-block;
@@ -1136,6 +1339,7 @@
                         .user-content {
                             display: block;
                             width: 100%;
+
                             span {
                                 font-size: 14px;
                                 line-height: 18px;
@@ -1159,9 +1363,10 @@
 
                             .list-icon {
                                 float: right;
-                               .MuiIconButton-root{
-                                   padding: 8px;
-                               }
+
+                                .MuiIconButton-root {
+                                    padding: 8px;
+                                }
                             }
 
                             ul {
@@ -1463,27 +1668,29 @@
         }
     }
 }
-@media only screen and (min-width: 1200px){
-    .latest-invoices-secton{
-        .production-progress-left{
-            .production-progress{
+
+@media only screen and (min-width: 1200px) {
+    .latest-invoices-secton {
+        .production-progress-left {
+            .production-progress {
                 height: auto;
+
                 .CircularProgressbar {
                     max-width: 150px;
                 }
-            } 
-        } 
-    } 
+            }
+        }
+    }
 }
 
-@media only screen and (min-width: 992px)and(max-width: 1500px){
+@media only screen and (min-width: 992px)and(max-width: 1500px) {
     .average-section {
         .average-left {
             .requisition-section {
                 .Requisition-box {
                     .pendding-progress {
                         .last-month {
-                            p{
+                            p {
                                 font-size: 12px;
                             }
                         }
@@ -1491,6 +1698,7 @@
                 }
             }
         }
+
         .average-right {
             .statistics-graph {
                 .requistions-heading {
@@ -1503,23 +1711,23 @@
     }
 }
 
-
-@media only screen and (min-width: 992px)and(max-width: 1200px){
-    .dashbord-top-section{
-        .calender{
-            .clender-content{
+@media only screen and (min-width: 992px)and(max-width: 1200px) {
+    .dashbord-top-section {
+        .calender {
+            .clender-content {
                 padding: 0;
-                .calender-text{
+
+                .calender-text {
                     span {
-                        .picker__trigger{
+                        .picker__trigger {
                             padding: 18px 0 0 32px;
                         }
                     }
-                } 
+                }
             }
-        } 
+        }
     }
-    
+
 }
 
 @media only screen and (max-width: 1200px) {
@@ -1778,50 +1986,62 @@
             margin-top: 30px;
         }
     }
+
+    .recent-requisition-section {
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
+
 }
 
-@media only screen and (max-width: 991px){
-    .dashbord-top-section{
-        .calender{
-            .clender-content{
+@media only screen and (max-width: 991px) {
+    .dashbord-top-section {
+        .calender {
+            .clender-content {
                 padding: 0;
-                .calender-text{
+
+                .calender-text {
                     span {
-                        .picker__trigger{
+                        .picker__trigger {
                             padding: 20px 0 0 35px;
                         }
                     }
-                } 
+                }
             }
-        } 
+        }
     }
-    .latest-invoices-secton{
+
+    .latest-invoices-secton {
         .production-progress-left {
             height: auto;
         }
+
         .production-progress-right {
             height: auto;
         }
-    } 
-    .contact-section{
-        .contact-left{
-            .contect-list{
-                .user-content{
-                    .user-position {
-                      width: auto;
-                    }
-                } 
-            }  
-        }  
+    }
 
-    } 
+    .contact-section {
+        .contact-left {
+            .contect-list {
+                .user-content {
+                    .user-position {
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+    }
+    
 }
+
 @media only screen and (max-width: 992px) {
     .dashbord-top-section {
         .heading {
             padding-bottom: 30px;
         }
-         
+
     }
 
     .progress-rfp-boxs {
@@ -1944,7 +2164,7 @@
             }
         }
     }
-   
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -1952,17 +2172,19 @@
         .search-bar {
             margin-bottom: 30px;
         }
-        .calender{
-            .clender-content{
+
+        .calender {
+            .clender-content {
                 padding: 0;
-                .calender-text{
+
+                .calender-text {
                     span {
-                        .picker__trigger{
+                        .picker__trigger {
                             padding: 20px 0 0 32px;
-                            
+
                         }
                     }
-                } 
+                }
             }
         }
     }
@@ -2030,23 +2252,31 @@
             }
         }
     }
+
+    .recent-requisition-section {
+        .requisition {
+            margin-top: 20px;
+        }
+    }
 }
 
 @media only screen and (max-width: 540px) {
-    .dashbord-top-section{
-        .calender{
-            .clender-content{
+    .dashbord-top-section {
+        .calender {
+            .clender-content {
                 padding: 0;
-                .calender-text{
+
+                .calender-text {
                     span {
-                        .picker__trigger{
+                        .picker__trigger {
                             padding: 20px 0 0 32px;
                         }
                     }
-                } 
+                }
             }
-        } 
+        }
     }
+
     .progress-rfp-boxs {
         .progress-box {
             .order {

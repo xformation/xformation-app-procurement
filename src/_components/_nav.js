@@ -80,7 +80,7 @@ const _nav = [
     {
         _tag: 'SidebarNavItem',
         name: 'Recieved RFP',
-        to: '/postlogin/recivedrfp',
+        to: '/postlogin/frp/recivedrfp',
         activeArr: ['/postlogin/recivedrfp'],
         open: false,
         icon: <i className="fas fa-retweet"></i>,

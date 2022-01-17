@@ -12,13 +12,9 @@ import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
-// import { emailData } from './../PostLogin/Email/emaildata';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { connect } from "react-redux";
-import { emailActions } from "../_actions";
-import { status } from '../_constants';
-import { set } from 'date-fns';
 
 class SideMenu extends Component {
   constructor(props) {
@@ -39,29 +35,17 @@ class SideMenu extends Component {
     });
   };
 
-  componentDidMount() {
-    const { history } = this.props;
-    const { emailType } = this.state
-    this.historyListener = history.listen((location) => {
-      this.changeActiveTabColor(location);
-    });
-    this.changeActiveTabColor(this.props.location);
-    if(!this.props.search_all_email_status){
-      this.props.dispatch(emailActions.searchallemails({"search":emailType}))
-    }
-  }
+
 
   componentDidUpdate(prevProps, prevState) {
-    const { search_all_email_status, searchallemail } = this.props
+    const { get_inbox_status, inbox_data } = this.props;
     let { emailLength } = this.state
-    if (prevProps.search_all_email_status !== search_all_email_status
-      && search_all_email_status === status.SUCCESS) {
+    if (JSON.stringify(prevProps.inbox_data) !== JSON.stringify(inbox_data)) {
       emailLength = 0;
-      if (searchallemail && searchallemail.length > 0) {
-        for (let i = 0; i < searchallemail.length; i++) {
-          if (searchallemail[i].isRead === "false") {
+      if (inbox_data && inbox_data.length > 0) {
+        for (let i = 0; i < inbox_data.length; i++) {
+          if (inbox_data[i].isRead === "false" || inbox_data[i].isRead === false) {
             emailLength++;
-
           }
         }
       }
@@ -114,7 +98,7 @@ class SideMenu extends Component {
               {nav.icon}
             </ListItemIcon>
             <ListItemText primary={nav.name} className="name" />
-            {nav.name === 'Email' &&emailLength>0 && <span className="float-right length">{emailLength}</span>}
+            {nav.name === 'Email' && emailLength > 0 && <span className="float-right length">{emailLength}</span>}
           </ListItem>
           {nav.children &&
             <div className="float-right arrow" onClick={e => this.setOpenClose(e, i)}>
@@ -207,7 +191,7 @@ class SideMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { search_all_email_status, searchallemail } = state.email
-  return { search_all_email_status, searchallemail }
+  const { get_inbox_status, inbox_data } = state.email
+  return { get_inbox_status, inbox_data }
 }
 export default connect(mapStateToProps)(SideMenu);

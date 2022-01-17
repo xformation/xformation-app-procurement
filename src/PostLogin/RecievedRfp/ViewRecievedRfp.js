@@ -48,7 +48,8 @@ class ViewRecievedRfp extends Component {
     }
 
     onClickTrackRfp = () => {
-        this.props.history.push(`/postlogin/trackrfp/${this.props.match.params.id}`);
+        let url=this.props.match.params.url
+        this.props.history.push(`/postlogin/frp/${url}/trackrfp/${this.props.match.params.id}`);
     };
 
     render() {
