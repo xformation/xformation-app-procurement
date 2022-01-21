@@ -54,6 +54,7 @@ class ViewRecievedRfp extends Component {
 
     render() {
         const { recievedData, comment } = this.state;
+        console.log("helloo", recievedData)
         return (
             <div className="main-content">
                 <div className="recieved">
@@ -71,6 +72,14 @@ class ViewRecievedRfp extends Component {
                                     <Button variant="contained" className="waitingforapproval-btn">
                                         #waitingforapproval
                                     </Button>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p>
+                                            Creation Date
+                                            {<p>{new Date(recievedData.createdOn).toDateString()}</p>}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                     {/* <div className="creation-box">

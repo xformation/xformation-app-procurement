@@ -39,6 +39,7 @@ import { contactAction, homeAction, invoiceAction } from "../../_actions";
 import { status } from "../../_constants";
 import RecentActivity from './RecentActivity'
 import Requisition from './Requisition'
+import StatictisRFP from "./StatictisRFP";
 class Dashbord extends Component {
   constructor(props) {
     super(props);
@@ -318,7 +319,6 @@ class Dashbord extends Component {
     }
     return pinData;
   }
-
   render() {
     const { Linedata, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
     const BorderLinearProgress = withStyles((theme) =>
@@ -764,6 +764,7 @@ class Dashbord extends Component {
                 </div>
               </div>
               <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
+                <div><StatictisRFP /></div>
                 <div className="pinned-emails">
                   <div className="heading">
                     <h5>Pinned Emails</h5>

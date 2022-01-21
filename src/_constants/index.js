@@ -16,3 +16,5 @@ export * from './email.constant';
 export * from './kanban.constants';
 export * from './budgetOverview.constant';
 export * from './reports.constants';
+export * from './newComments.constants.js';
+

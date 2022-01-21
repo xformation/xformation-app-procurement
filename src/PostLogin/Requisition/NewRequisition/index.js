@@ -152,34 +152,34 @@ class NewRequisition extends Component {
 
     displayTableData = () => {
         const { addRequiData, open, anchorEl } = this.state;
-        const{editRequisitiondata ,get_edit_requisition_status}=this.props;
+        const { editRequisitiondata, get_edit_requisition_status } = this.props;
         let retData = [];
-    if (get_edit_requisition_status===status.SUCCESS && editRequisitiondata.requistionItem.length>0){
-        console.log(editRequisitiondata.requistionItem)
-        for (let i = 0; i <editRequisitiondata.requistionItem; i++) {
-            let data = editRequisitiondata.requistionItem[i];
-            retData.push(
-                <tr key={i}>
-                    <td>{i + 1}</td>
-                    <td>{data.itemDescription}</td>
-                    <td>{data.orderQuantity}</td>
-                    <td>{data.ratePerItem}</td>
-                    <td>{data.price}</td>
-                    <td>
-                        <div className="popper-toggle">
-                            <Button>
-                                <DeleteIcon onClick={() => this.deleteReqData(i)} />
-                            </Button>
-                            <Button>
-                                <CreateIcon onClick={() => this.editReqData(data, i)} />
-                            </Button>
-                        </div>
-                    </td>
-                </tr>
-            );
+        if (get_edit_requisition_status === status.SUCCESS && editRequisitiondata.requistionItem.length > 0) {
+            console.log(editRequisitiondata.requistionItem)
+            for (let i = 0; i < editRequisitiondata.requistionItem; i++) {
+                let data = editRequisitiondata.requistionItem[i];
+                retData.push(
+                    <tr key={i}>
+                        <td>{i + 1}</td>
+                        <td>{data.itemDescription}</td>
+                        <td>{data.orderQuantity}</td>
+                        <td>{data.ratePerItem}</td>
+                        <td>{data.price}</td>
+                        <td>
+                            <div className="popper-toggle">
+                                <Button>
+                                    <DeleteIcon onClick={() => this.deleteReqData(i)} />
+                                </Button>
+                                <Button>
+                                    <CreateIcon onClick={() => this.editReqData(data, i)} />
+                                </Button>
+                            </div>
+                        </td>
+                    </tr>
+                );
+            }
         }
-    }
-         
+
         if (
             addRequiData.requisitionLineItemLists &&
             addRequiData.requisitionLineItemLists.length > 0
@@ -207,7 +207,7 @@ class NewRequisition extends Component {
                 );
             }
         }
-    
+
         return retData;
     };
 
@@ -1022,6 +1022,12 @@ class NewRequisition extends Component {
                                                 </DialogActions>
                                             </Dialog>
                                         </div>
+
+                                        <div>
+                                            <div> <p>Total Estimate Coste</p> </div>
+                                            <div> {totalAmount ? <p>{totalAmount}</p> : "00.00 USD"} </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

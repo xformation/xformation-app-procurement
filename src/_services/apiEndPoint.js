@@ -71,4 +71,8 @@ export const apiEndPoint = {
     //GET REPORTS DATA 
     REPORTS: `${config.apiUrl}/reorts`,
 
+
+    //   getNewComments
+    COMMENTS: `${config.apiUrl}/newcomments`
+
 };

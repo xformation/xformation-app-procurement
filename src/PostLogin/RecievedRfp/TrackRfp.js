@@ -30,6 +30,7 @@ class TrackRfp extends Component {
                 this.setState({
                     recievedData: this.props.track_frp_data,
                 })
+                console.log("reciveddata",this.state.recievedData)
             }
         }
         if (prevProps.add_recieved_rfp_status !== this.props.add_recieved_rfp_status && this.props.add_recieved_rfp_status === status.SUCCESS) {
