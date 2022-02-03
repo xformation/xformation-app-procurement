@@ -36,7 +36,7 @@ class Reports extends Component {
             divisions: [1, 2, 3, 4, 5, 6],
             columns: [
                 {
-                    label: 'Sno',
+                    label: 'S.No',
                     key: "sno",
                     renderCallback: (value, index) => {
                         return (

@@ -32,6 +32,7 @@ export const apiEndPoint = {
 
     // *Vendor Api Url
     VENDOR: `${config.apiUrl}/vendor`,
+    VENDORQUOTATION: `${config.apiUrl}/vendorQuatation`,
 
     // *Rules Api Url
     RULES: `${config.apiUrl}/rules`,
@@ -70,9 +71,5 @@ export const apiEndPoint = {
 
     //GET REPORTS DATA 
     REPORTS: `${config.apiUrl}/reorts`,
-
-
-    //   getNewComments
-    COMMENTS: `${config.apiUrl}/newcomments`
 
 };

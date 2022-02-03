@@ -127,7 +127,7 @@ class ApprovedRequisition extends Component {
 
   componentDidMount() {
     this.props.dispatch(
-      requistionAction.getRequisition({ status: requisitionStatus.APPROVED })
+      requistionAction.getRequisitions({ status: requisitionStatus.APPROVED })
     );
   }
 
@@ -162,7 +162,7 @@ class ApprovedRequisition extends Component {
       toDate: searchData.toDate,
       status: searchData.status,
     };
-    this.props.dispatch(requistionAction.getRequisition(sendReqData));
+    this.props.dispatch(requistionAction.getRequisitions(sendReqData));
   };
 
   clearSearch = () => {
@@ -175,7 +175,7 @@ class ApprovedRequisition extends Component {
       searchData,
     });
     this.props.dispatch(
-      requistionAction.getRequisition({ status: searchData.status })
+      requistionAction.getRequisitions({ status: searchData.status })
     );
   };
 

@@ -102,17 +102,15 @@ class AddInvoices extends Component {
                 <div className="d-block add-invoices-content">
                     <div className="d-block heading">
                         <div className="row">
-                            <div className="col-9">
+                            <div className="col-11">
                                 <div className="d-flex justify-content-start align-items-center">
-                                    <div className="d-inline-block mr-3">
-                                        <IconButton>
-                                            <ArrowBackIcon onClick={() => this.props.history.push(`/postlogin/invoices`)} />
-                                        </IconButton>
-                                    </div>
+                                    <IconButton className="head-icon">
+                                        <ArrowBackIcon onClick={() => this.props.history.push(`/postlogin/invoices`)} />
+                                    </IconButton>
                                     <h4 className="d-inline-block mb-0">New Invoices</h4>
                                 </div>
                             </div>
-                            <div className="col-3">
+                            <div className="col-1">
                                 <div className="d-flex justify-content-end align-items-center">
                                     <IconButton>
                                         <MoreVertIcon />

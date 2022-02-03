@@ -9,7 +9,6 @@ import Pagination from "../../_components/Pagination"
 import { Link } from 'react-router-dom';
 
 class BudgetOverview extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -19,9 +18,11 @@ class BudgetOverview extends Component {
         }
         this.paginationRef = React.createRef();
     }
+
     componentDidMount() {
         this.props.dispatch(budgetActions.getBugetOverview())
     }
+
     componentDidUpdate(prevProps, prevState) {
         const { budget, perPageLimit, currentPage } = this.state
         if (this.props.budget_overview_status !== prevProps.budget_overview_status &&
@@ -38,11 +39,13 @@ class BudgetOverview extends Component {
             }
         }
     }
+
     onChangeCurrentPage = (currentPage) => {
         this.setState({
             currentPage
         });
-    };
+    }
+
     displayData = () => {
         const { budget, currentPage, perPageLimit } = this.state;
         let retData = []
@@ -58,8 +61,8 @@ class BudgetOverview extends Component {
                                         <h4>{row.Department}</h4>
                                         <div className="d-flex justify-content-center align-items-center graph-circle">
                                             <CircularProgressbar
-                                                 value={row.UsedBudgetPercentage}
-                                                 text={`${row.UsedBudgetPercentage}%`}
+                                                value={row.UsedBudgetPercentage}
+                                                text={`${row.UsedBudgetPercentage}%`}
                                                 strokeWidth={15}
                                                 styles={buildStyles({
                                                     strokeLinecap: "butt",
@@ -81,10 +84,10 @@ class BudgetOverview extends Component {
                         <div className="d-block allocate-progress">
                             <div className="d-block impacted">$ {row.UsedBudget} Impacted on $ {row.TotalBudget}</div>
                             <div class="progress">
-                            <div class="progress-bar used" role="progressbar" style={{ width: `${row.UsedBudgetPercentage}%` }} 
-aria-valuenow={row.UsedBudgetPercentage} aria-valuemin="0" aria-valuemax="100"></div>
- <div class="progress-bar commited" role="progressbar" style={{ width: `${row.CommitedBudgetPercentage}%`}}
- aria-valuenow={row.CommitedBudgetPercentage} aria-valuemin="75" aria-valuemax="100"></div>
+                                <div class="progress-bar used" role="progressbar" style={{ width: `${row.UsedBudgetPercentage}%` }}
+                                    aria-valuenow={row.UsedBudgetPercentage} aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar commited" role="progressbar" style={{ width: `${row.CommitedBudgetPercentage}%` }}
+                                    aria-valuenow={row.CommitedBudgetPercentage} aria-valuemin="75" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="d-flex justify-content-center align-items-center allocate-progress-prices">
@@ -107,6 +110,7 @@ aria-valuenow={row.UsedBudgetPercentage} aria-valuemin="0" aria-valuemax="100"><
         }
         return retData
     }
+
     render() {
         const { budget } = this.state;
         let percent;
@@ -133,7 +137,7 @@ aria-valuenow={row.UsedBudgetPercentage} aria-valuemin="0" aria-valuemax="100"><
                             <Button
                                 variant="contained"
                                 className="primary-btn allocate-btn"
-                                onClick={()=>this.props.history.push(`/postlogin/budgetallocation`)}>
+                                onClick={() => this.props.history.push(`/postlogin/budgetallocation`)}>
                                 Budget Allocate
                             </Button>
                         </div>

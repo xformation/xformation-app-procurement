@@ -10,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import IconButton from '@material-ui/core/IconButton';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 class BudgetAllocate extends Component {
@@ -121,23 +122,27 @@ class BudgetAllocate extends Component {
             <div className="main-content">
                 {allotedDudget && <div className="budget-section">
                     <div className="budget-content-section">
-                        <div className="row d-flex justify-content-center align-items-center">
-                            <div className="col-md-8 col-12">
-                                {allotedDudget && allotedDudget.Department &&
-                                    <div className="d-block w-100 heading">
-                                        <span onClick={this.backToBudgetOverview}><KeyboardBackspaceIcon /></span>
-                                        <h4>{allotedDudget.Department}</h4>
-                                    </div>
-                                }
-                                {allotedDudget.CommitedBudget && <div className="d-block w-100 limit-text">Approved Budget limit:
-                                    <span>${allotedDudget.CommitedBudget}</span></div>}
-                            </div>
-                            <div className="col-md-4 col-12">
-                                <Button onClick={() => this.props.history.push(`/postlogin/budgetallocation`)}
-                                    variant="contained"
-                                    className="primary-btn allocate-btn">
-                                    Budget Allocate
-                                </Button>
+                        <div className="budget-head-section">
+                            <div className="row d-flex justify-content-center align-items-top">
+                                <div className="col-md-8 col-12">
+                                    {allotedDudget && allotedDudget.Department &&
+                                        <div className="d-block w-100 heading">
+                                            <IconButton className="head-icon" onClick={this.backToBudgetOverview}>
+                                                <KeyboardBackspaceIcon />
+                                            </IconButton>
+                                            <h4 className="d-inline-block">{allotedDudget.Department}</h4>
+                                        </div>
+                                    }
+                                    {allotedDudget.CommitedBudget && <div className="d-block w-100 limit-text">Approved Budget limit:
+                                        <span>${allotedDudget.CommitedBudget}</span></div>}
+                                </div>
+                                <div className="col-md-4 col-12">
+                                    <Button onClick={() => this.props.history.push(`/postlogin/budgetallocation`)}
+                                        variant="contained"
+                                        className="primary-btn allocate-btn">
+                                        Budget Allocate
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className="allocate-box">
@@ -185,12 +190,12 @@ class BudgetAllocate extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div className="form-group row col-form-group">
-                                <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label">
-                                    <strong>Used</strong>|<p>Month:</p>
+                        <div className="d-block pt-5">
+                            <div class="form-group row">
+                                <label class="col-xl-2 col-sm-3 col-4 col-form-label">
+                                    <strong>Used</strong> | Month:
                                 </label>
-                                <FormControl >
+                                <div class="col-xl-10 col-sm-9 col-8">
                                     <NativeSelect
                                         name="status"
                                         value={""}
@@ -202,12 +207,8 @@ class BudgetAllocate extends Component {
                                         <option value={20}>jan</option>
                                         <option value={30}>feb</option>
                                     </NativeSelect>
-                                </FormControl>
-                                <span className="d-block w-100 text-danger">
-                                </span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="d-block pt-5">
                             <Table
                                 valueFromData={{ 'columns': columns, 'data': tableData }}
                                 perPageLimit={6}

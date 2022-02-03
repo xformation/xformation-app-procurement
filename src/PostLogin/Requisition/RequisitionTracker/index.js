@@ -98,7 +98,7 @@ class RequisitionTracker extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(requistionAction.getRequisition());
+        this.props.dispatch(requistionAction.getRequisitions());
         // this.props.dispatch(departmentAction.getDepartment());
     }
 
@@ -109,7 +109,7 @@ class RequisitionTracker extends Component {
             });
         }
         if (prevProps.approve_requisition_status !== this.props.approve_requisition_status && this.props.approve_requisition_status === status.SUCCESS) {
-            this.props.dispatch(requistionAction.getRequisition());
+            this.props.dispatch(requistionAction.getRequisitions());
         }
     }
 
@@ -180,7 +180,7 @@ class RequisitionTracker extends Component {
             fromDate: searchData.fromDate,
             toDate: searchData.toDate
         }
-        this.props.dispatch(requistionAction.getRequisition(sendReqData));
+        this.props.dispatch(requistionAction.getRequisitions(sendReqData));
     }
 
     clearSearch = () => {
@@ -193,7 +193,7 @@ class RequisitionTracker extends Component {
         this.setState({
             searchData
         });
-        this.props.dispatch(requistionAction.getRequisition({}));
+        this.props.dispatch(requistionAction.getRequisitions({}));
     }
 
     renderDepartments = () => {

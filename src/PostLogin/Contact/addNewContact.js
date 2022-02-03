@@ -334,18 +334,17 @@ class addNewContact extends Component {
             </div>
             <div className="col-md-9">
               <div className="general-contect">
-                <div className="heading">
-                  <h5>
-                    <IconButton className="head-icon">
-                      <KeyboardBackspaceIcon onClick={this.handleBack} />
-                    </IconButton>
+                <div className="d-flex heading">
+                  <IconButton className="head-icon">
+                    <KeyboardBackspaceIcon onClick={this.handleBack} />
+                  </IconButton>
+                  <h4 className="d-inline-block">
                     {this.props.match.params.id ?
                       <>Edit Contact</>
                       :
                       <>Add New Contact</>
                     }
-
-                  </h5>
+                  </h4>
                 </div>
                 <div className="general-information">
                   <div className="row">

@@ -1,9 +1,10 @@
-import { homeConstants } from '../_constants';
+import { homeConstants, status } from '../_constants';
 import { homeServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
 export const homeAction = {
-    Userdata, Dashboarddata,
+    Userdata,
+    Dashboarddata,
     Notificationdata
 };
 
@@ -18,21 +19,30 @@ function Userdata(data) {
                 response => {
                     if (response.status) {
                         dispatch(dispatchFunction({
-                            type: homeConstants.USERDATA_SUCCESS,
-                            data: response.object
+                            type: status.SUCCESS,
+                            data: {
+                                userdata_status: status.SUCCESS,
+                                addUserdata: response.object
+                            }
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: homeConstants.USERDATA_FAILURE,
-                            data: response
+                            type: status.FAILURE,
+                            data: {
+                                userdata_status: status.FAILURE,
+                                addUserdata: response
+                            }
                         }));
                         alert.error(response.message);
                     }
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: homeConstants.USERDATA_FAILURE,
-                        data: error.message
+                        type: status.FAILURE,
+                        data: {
+                            userdata_status: status.FAILURE,
+                            addUserdata: error.message
+                        }
                     }));
                     alert.error(error.message);
                 }
@@ -40,39 +50,51 @@ function Userdata(data) {
     };
 }
 
-
 function Dashboarddata(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: homeConstants.GET_DASHBOARD_REQUEST,
-            data: null
+            type: status.IN_PROGRESS,
+            data: {
+                get_dashboard_data_status: status.IN_PROGRESS,
+                dashboarddata: null
+            }
         }));
         homeServices.Dashboarddata(data)
             .then(
                 response => {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
-                            type: homeConstants.GET_DASHBOARD_SUCCESS,
-                            data: response.object
+                            type: status.SUCCESS,
+                            data: {
+                                get_dashboard_data_status: status.SUCCESS,
+                                dashboarddata: response.object
+                            }
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: homeConstants.GET_DASHBOARD_FAILURE,
-                            data: response
+                            type: status.FAILURE,
+                            data: {
+                                get_dashboard_data_status: status.FAILURE,
+                                dashboarddata: response
+                            }
                         }));
                         alert.error(response.message);
                     }
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: homeConstants.GET_DASHBOARD_FAILURE,
-                        data: error.message
+                        type: status.FAILURE,
+                        data: {
+                            get_dashboard_data_status: status.FAILURE,
+                            dashboarddata: error.message
+                        }
                     }));
                     alert.error(error.message);
                 }
             );
     };
 }
+
 function Notificationdata(data) {
     return dispatch => {
         dispatch(dispatchFunction({

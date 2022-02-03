@@ -192,6 +192,22 @@ const _nav = [
         activeArr: ['/postlogin/budgetoverview'],
         open: false,
         icon: <i className="fas fa-users"></i>,
+    },
+    {
+        _tag: 'SidebarNavItem',
+        name: 'Vendor Quotation',
+        to: '/postlogin/vendorquotation',
+        activeArr: ['/postlogin/vendorquotation'],
+        open: false,
+        icon: <i class="fas fa-file-signature"></i>,
+    },
+    {
+        _tag: 'SidebarNavItem',
+        name: 'Vendors',
+        to: '/postlogin/vendors',
+        activeArr: ['/postlogin/vendors'],
+        open: false,
+        icon: <i class="fas fa-truck-couch"></i>,
     }
 ]
 

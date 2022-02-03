@@ -1,238 +1,352 @@
-import { emailConstants } from '../_constants';
-import { emailServices } from '../_services';
-import { alert, commonFunctions } from '../_utilities';
+import { status } from "../_constants";
+import { emailServices } from "../_services";
+import { alert, commonFunctions } from "../_utilities";
 
 export const emailActions = {
-    recentcommunication,
-    searchallemails,
-    sendEmail,
-    getEmailDetail,
-    deleteEmail,
-    reademail,
-    searchallinboxemails
-
+  recentcommunication,
+  searchallemails,
+  sendEmail,
+  getEmailDetail,
+  deleteEmail,
+  reademail,
+  searchallinboxemails,
 };
 
 function recentcommunication(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.RECENT_COMUNICATION_REQUEST,
-            data: null
-        }));
-        emailServices.recentCommunication(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.RECENT_COMUNICATION_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.RECENT_COMUNICATION_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.RECENT_COMUNICATION_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
-
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          search_email_status: status.IN_PROGRESS,
+          searchemail: null,
+        },
+      })
+    );
+    emailServices.recentCommunication(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                search_email_status: status.SUCCESS,
+                searchemail: response.object,
+              },
+            })
+          );
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                search_email_status: status.FAILURE,
+                searchemail: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.status.FAILURE,
+            data: {
+              search_email_status: status.FAILURE,
+              searchemail: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
 
 function searchallemails(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.SEARCH_ALL_EMAILS_REQUEST,
-            data: null
-        }));
-        emailServices.searchallemails(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.SEARCH_ALL_EMAILS_SUCCESS,
-                            data: response
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.SEARCH_ALL_EMAILS_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.SEARCH_ALL_EMAILS_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          search_all_email_status: status.IN_PROGRESS,
+          searchallemail: null,
+        },
+      })
+    );
+    emailServices.searchallemails(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                search_all_email_status: status.SUCCESS,
+                searchallemail: response.object,
+              },
+            })
+          );
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                search_all_email_status: status.FAILURE,
+                searchallemail: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.FAILURE,
+            data: {
+              search_all_email_status: status.FAILURE,
+              searchallemail: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
 
 function sendEmail(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.SEND_EMAILS_REQUEST,
-            data: null
-        }));
-        emailServices.sendEmail(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.SEND_EMAILS_SUCCESS,
-                            data: response.object
-                        }));
-                        alert.success(response.message);
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.SEND_EMAILS_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.SEND_EMAILS_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          send_email_status: status.IN_PROGRESS,
+          sendEmailRes: null,
+        },
+      })
+    );
+    emailServices.sendEmail(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                send_email_status: status.SUCCESS,
+                sendEmailRes: response.object,
+              },
+            })
+          );
+          alert.success(response.message);
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                send_email_status: status.FAILURE,
+                sendEmailRes: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.FAILURE,
+            data: {
+              send_email_status: status.FAILURE,
+              sendEmailRes: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
 
 function getEmailDetail(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.GET_EMAIL_DETAIL_REQUEST,
-            data: null
-        }));
-        emailServices.getEmailDetail(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.GET_EMAIL_DETAIL_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.GET_EMAIL_DETAIL_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.GET_EMAIL_DETAIL_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          get_email_detail_status: status.IN_PROGRESS,
+          emaildetail_res: null,
+        },
+      })
+    );
+    emailServices.getEmailDetail(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                get_email_detail_status: status.SUCCESS,
+                emaildetail_res: response.object,
+              },
+            })
+          );
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                get_email_detail_status: status.FAILURE,
+                emaildetail_res: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.FAILURE,
+            data: {
+              get_email_detail_status: status.FAILURE,
+              emaildetail_res: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
 
 function deleteEmail(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.DELETE_EMAIL_REQUEST,
-            data: null
-        }));
-        emailServices.deleteEmail(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.DELETE_EMAIL_SUCCESS,
-                            data: response.object
-                        }));
-                        alert.success(response.message);
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.DELETE_EMAIL_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.DELETE_EMAIL_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          delete_email_status: status.IN_PROGRESS,
+          delete_email_data: null,
+        },
+      })
+    );
+    emailServices.deleteEmail(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                delete_email_status: status.SUCCESS,
+                delete_email_data: response.data,
+              },
+            })
+          );
+          alert.success(response.message);
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                delete_email_status: status.FAILURE,
+                delete_email_data: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.FAILURE,
+            data: {
+              delete_email_status: status.FAILURE,
+              delete_email_data: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
-
 
 function reademail(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.READ_EMAIL_REQUEST,
-            data: null
-        }));
-        emailServices.readEmail(data)
-            .then(
-                response => {
-                    if (response.code === 200) {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.READ_EMAIL_SUCCESS,
-                            data: response.object
-                        }));
-                    } else {
-                        dispatch(dispatchFunction({
-                            type: emailConstants.READ_EMAIL_FAILURE,
-                            data: response
-                        }));
-                        alert.error(response.message);
-                    }
-                },
-                error => {
-                    dispatch(dispatchFunction({
-                        type: emailConstants.READ_EMAIL_FAILURE,
-                        data: error.message
-                    }));
-                    alert.error(error.message);
-                }
-            );
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.IN_PROGRESS,
+        data: {
+          read_email_status: status.IN_PROGRESS,
+        },
+      })
+    );
+    emailServices.readEmail(data).then(
+      (response) => {
+        if (response.code === 200) {
+          dispatch(
+            dispatchFunction({
+              type: status.SUCCESS,
+              data: {
+                read_email_status: status.SUCCESS,
+              },
+            })
+          );
+        } else {
+          dispatch(
+            dispatchFunction({
+              type: status.FAILURE,
+              data: {
+                read_email_status: status.FAILURE,
+                read_email_data: response,
+              },
+            })
+          );
+          alert.error(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          dispatchFunction({
+            type: status.FAILURE,
+            data: {
+              read_email_status: status.FAILURE,
+              read_email_data: error.message,
+            },
+          })
+        );
+        alert.error(error.message);
+      }
+    );
+  };
 }
 function searchallinboxemails(data) {
-    return dispatch => {
-        dispatch(dispatchFunction({
-            type: emailConstants.GET_INBOX_EMAIL_SUCCESS,
-            data: data,
-        }));
-    };
+  return (dispatch) => {
+    dispatch(
+      dispatchFunction({
+        type: status.SUCCESS,
+        data: {
+          get_inbox_status: status.SUCCESS,
+          // searchemail: response.object,
+        },
+      })
+    );
+  };
 }
 
 function dispatchFunction(data) {
-    // if (data.data && data.data.code === 401) {
-    //     commonFunctions.onLogout();
-    //     return {
-    //         type: authConstants.USER_LOGOUT,
-    //         data: null
-    //     };
-    // }
-    return {
-        type: data.type,
-        data: data.data
-    };
+  // if (data.data && data.data.code === 401) {
+  //     commonFunctions.onLogout();
+  //     return {
+  //         type: authConstants.USER_LOGOUT,
+  //         data: null
+  //     };
+  // }
+  return {
+    type: data.type,
+    data: data.data,
+  };
 }

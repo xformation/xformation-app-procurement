@@ -17,6 +17,7 @@ import { email } from './email.reducers';
 import { kanban } from './kanban.reducers';
 import { budget } from './budgetOverview.reducer';
 import { reports } from './reports.reducers';
+import { icrisat } from './icrisat.reducer';
 
 const appReducers = combineReducers({
     auth,
@@ -36,6 +37,7 @@ const appReducers = combineReducers({
     kanban,
     budget,
     reports,
+    icrisat
 });
 
 const rootReducer = (state, action) => {

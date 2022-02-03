@@ -81,7 +81,7 @@ class NewRequisition extends Component {
         this.getCurrentFinancialYear();
         if (this.props.match.params.id) {
             this.props.dispatch(
-                requistionAction.getRequisitionEditData({
+                requistionAction.getRequisition({
                     id: this.props.match.params.id,
                 })
             );
@@ -936,8 +936,8 @@ class NewRequisition extends Component {
                                                         )}
                                                 </ul>
                                                 <div className="total-amount">
-                                                    <span>Total Amount</span>
-                                                    <p>{totalAmount}</p>
+                                                    <span>Total Estimate Coste</span>
+                                                    <p>{totalAmount ? totalAmount : "00.00 USD"}</p>
                                                 </div>
                                             </div>
 
@@ -1023,10 +1023,10 @@ class NewRequisition extends Component {
                                             </Dialog>
                                         </div>
 
-                                        <div>
+                                        {/* <div>
                                             <div> <p>Total Estimate Coste</p> </div>
                                             <div> {totalAmount ? <p>{totalAmount}</p> : "00.00 USD"} </div>
-                                        </div>
+                                        </div> */}
 
                                     </div>
                                 </div>

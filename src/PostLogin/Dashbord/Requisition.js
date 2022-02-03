@@ -13,7 +13,7 @@ class Requisition extends Component {
         }
     }
     componentDidMount() {
-        this.props.dispatch(requistionAction.getRequisition())
+        this.props.dispatch(requistionAction.getRequisitions())
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {

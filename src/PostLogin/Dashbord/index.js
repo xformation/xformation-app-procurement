@@ -40,6 +40,8 @@ import { status } from "../../_constants";
 import RecentActivity from './RecentActivity'
 import Requisition from './Requisition'
 import StatictisRFP from "./StatictisRFP";
+import BudgetOverview from "./BudgetOverview";
+
 class Dashbord extends Component {
   constructor(props) {
     super(props);
@@ -159,12 +161,12 @@ class Dashbord extends Component {
         });
       }
     }
-    if (this.props.get_dashboard_data_success !== prevProps.get_dashboard_data_success &&
-      this.props.get_dashboard_data_success === status.SUCCESS) {
-      if (this.props.getdashboarddata) {
+    if (this.props.get_dashboard_data_status !== prevProps.get_dashboard_data_status &&
+      this.props.get_dashboard_data_status === status.SUCCESS) {
+      if (this.props.dashboarddata) {
         this.setState({
-          dashboardData: this.props.getdashboarddata,
-          data: this.props.getdashboarddata.requisitionChart
+          dashboardData: this.props.dashboarddata,
+          data: this.props.dashboarddata.requisitionChart
         });
       }
     }
@@ -338,458 +340,359 @@ class Dashbord extends Component {
 
     )(LinearProgress);
     return (
-      <>
-        <div className="main-content">
-          <div className="dashbord-top-section">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-lg-4">
-                <div className="heading">
-                  <h3>Dashbord</h3>
-                  <span>Lorem ipsum dolor sit amet</span>
-                </div>
+      <div className="main-content">
+        <div className="dashbord-top-section">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-lg-4">
+              <div className="heading">
+                <h3>Dashbord</h3>
+                <span>Lorem ipsum dolor sit amet</span>
               </div>
-              <div className="col-lg-8">
-                <div className="row justify-content-center align-items-center">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                    <div className="search-bar">
-                      <div className="form-group">
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" />
-                        <button><i className="fas fa-search"></i></button>
-                      </div>
+            </div>
+            <div className="col-lg-8">
+              <div className="row justify-content-center align-items-center">
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+                  <div className="search-bar">
+                    <div className="form-group">
+                      <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" />
+                      <button><i className="fas fa-search"></i></button>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
-                    <div className="calender">
-                      <DateFormat className="d-block" />
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
+                  <div className="calender">
+                    <DateFormat className="d-block" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {dashboardData &&
+          <div className="progress-rfp-boxs">
+            <div className="row">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, "todayfrp")}>
+                <div className="progress-box">
+                  <div className="progress-img">
+                    <img src={rfpImg} alt="" />
+                  </div>
+                  <div className="progress-content" >
+                    {dashboardData.todayRFP && <h3>{dashboardData.todayRFP}</h3>}
+                    <span>Today's RFP</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, 'totalfrp')}>
+                <div className="progress-box">
+                  <div className="progress-img">
+                    <img src={rfpImg} alt="" />
+                  </div>
+                  <div className="progress-content">
+                    {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
+                    <span>Total RFP</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, 'rejectedrfp')}>
+                <div className="progress-box">
+                  <div className="progress-img">
+                    <img src={rfpImg} alt="" />
+                  </div>
+                  <div className="progress-content">
+                    {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
+                    <span>Rejected RFP</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-lg-2" onClick={() => this.handleUrls('/postlogin/email/inbox', `important`)}>
+                <div className="progress-box">
+                  <div className="progress-img">
+                    <div className="mail-icon"><i className="fa fa-envelope"></i></div>
+                    <span>&#33;</span>
+                  </div>
+                  <div className="progress-content">
+                    <h3>35</h3>
+                    <span>Important Emails</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pt-3">
+                <div className="progress-box">
+                  <div className="progress-img order">
+                    <div className="in-progress"></div>
+                    <div className="complate-progress"></div>
+                  </div>
+                  <div className="progress-content">
+                    <div className="completed">
+                      {dashboardData.completeOrder && <h5>{dashboardData.completeOrder}</h5>}
+                      <span>Completed Orders</span>
+                    </div>
+                    <div className="in-progrss">
+                      {dashboardData.inprogressOrder && <h5>{dashboardData.inprogressOrder}</h5>}
+                      <span>In-progrss Orders</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {dashboardData &&
-            <div className="progress-rfp-boxs">
-              <div className="row">
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, "todayfrp")}>
-                  <div className="progress-box">
-                    <div className="progress-img">
-                      <img src={rfpImg} alt="" />
-                    </div>
-                    <div className="progress-content" >
-                      {dashboardData.todayRFP && <h3>{dashboardData.todayRFP}</h3>}
-                      <span>Today's RFP</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`,'totalfrp')}>
-                  <div className="progress-box">
-                    <div className="progress-img">
-                      <img src={rfpImg} alt="" />
-                    </div>
-                    <div className="progress-content">
-                      {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
-                      <span>Total RFP</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls(`/postlogin/frp`, 'rejectedrfp')}>
-                  <div className="progress-box">
-                    <div className="progress-img">
-                      <img src={rfpImg} alt="" />
-                    </div>
-                    <div className="progress-content">
-                      {dashboardData.totalRFP && <h3>{dashboardData.totalRFP}</h3>}
-                      <span>Rejected RFP</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pr-lg-2 pl-lg-2" onClick={() => this.handleUrls('/postlogin/email/inbox', `important`)}>
-                  <div className="progress-box">
-                    <div className="progress-img">
-                      <div className="mail-icon"><i className="fa fa-envelope"></i></div>
-                      <span>&#33;</span>
-                    </div>
-                    <div className="progress-content">
-                      <h3>35</h3>
-                      <span>Important Emails</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pl-lg-2">
-                  <div className="progress-box">
-                    <div className="progress-img order">
-                      <div className="in-progress"></div>
-                      <div className="complate-progress"></div>
-                    </div>
-                    <div className="progress-content">
-                      <div className="completed">
-                        {dashboardData.completeOrder && <h5>{dashboardData.completeOrder}</h5>}
-                        <span>Completed Orders</span>
-                      </div>
-                      <div className="in-progrss">
-                        {dashboardData.inprogressOrder && <h5>{dashboardData.inprogressOrder}</h5>}
-                        <span>In-progrss Orders</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        }
+        <div className="recent-requisition-section">
+          <div className="row">
+            <div className="col-xl-7 col-md-7 col-12">
+              <RecentActivity />
             </div>
-          }
-          <div className="recent-requisition-section">
-            <div className="row">
-              <div className="col-xl-7 col-md-7 col-12">
-                <RecentActivity />
-              </div>
-              <div className="col-xl-5 col-md-5 col-12">
-                <Requisition />
-              </div>
+            <div className="col-xl-5 col-md-5 col-12">
+              <Requisition />
             </div>
           </div>
-          <div className="average-section">
-            <div className="row">
-              {dashboardData &&
-                <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-lg-2">
-                  <div className="average-left">
-                    <div className="average-form">
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-lg-7 col-md-7 col-sm-7">
-                          <div className="total-spend">
-                            <div className="spend-img">
-                              <img src={spend} alt="" />
-                            </div>
-                            <div className="spend-content">
-                              <span>Total Spend</span>
-                              {dashboardData.totalspent && <h4>${dashboardData.totalspent}</h4>}
-                            </div>
+        </div>
+        <div className="average-section">
+          <div className="row">
+            {dashboardData &&
+              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pr-lg-2">
+                <div className="average-left">
+                  <div className="average-form">
+                    <div className="row justify-content-center align-items-center">
+                      <div className="col-lg-7 col-md-7 col-sm-7">
+                        <div className="total-spend">
+                          <div className="spend-img">
+                            <img src={spend} alt="" />
                           </div>
-                        </div>
-                        <div className="col-lg-5 col-md-5 col-sm-5">
-                          <div className="last-month">
-                            <span>Average form last month</span>
-                            <p> <strong><TrendingUpIcon />  &#43; 0&#44; 5&#37; </strong> increase</p>
+                          <div className="spend-content">
+                            <span>Total Spend</span>
+                            {dashboardData.totalspent && <h4>${dashboardData.totalspent}</h4>}
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="requisition-section">
-                      <div className="row">
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                          <div className="Requisition-box">
-                            <div className="Requisition-content">
-                              <span className="d-block">Pendding Requisition</span>
-                              {dashboardData.requisitionPendding && <h4>{dashboardData.requisitionPendding}</h4>}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
-                          <div className="Requisition-box">
-                            <div className="Requisition-content">
-                              <span className="d-block">Invoices</span>
-                              {dashboardData.invoices && <h4>{dashboardData.invoices}</h4>}
-                            </div>
-                            <div className="invoices-img">
-                              <img src={invoices} alt="" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                          <div className="Requisition-box">
-                            <div className="Requisition-content">
-                              <span>Total PO&#39;s</span>
-                              {dashboardData.totalPO && <h4>{dashboardData.totalPO}</h4>}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
-                          <div className="Requisition-box">
-                            <div className="Requisition-content">
-                              <span>Pendding PO&#39;s</span>
-                            </div>
-                            <div className="d-block pendding-progress">
-                              <BorderLinearProgress variant="determinate" value={(dashboardData.totalPO / dashboardData.penddingPo) * 100} className="" />
-                              {dashboardData.penddingPo && <h4>{dashboardData.penddingPo}</h4>}
-                              <div className="last-month">
-                                <p> <strong>&#8722; 0&#44; 8&#37; </strong> From last month</p>
-                              </div>
-                            </div>
-                          </div>
+                      <div className="col-lg-5 col-md-5 col-sm-5">
+                        <div className="last-month">
+                          <span>Average form last month</span>
+                          <p> <strong><TrendingUpIcon />  &#43; 0&#44; 5&#37; </strong> increase</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              }
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
-                <div className="average-right">
-                  <div className="statistics-graph">
-                    <div className="requistions-heading">
-                      <div className="row">
-                        <div className="col-lg-6 col-md-6 col-sm-6 ">
-                          <h5 className="d-block">Requistions Spend Overview</h5>
-                          <div className="totalpaid">
-                            <div className="paid-content">
-                              <span>Total Paid</span>
-                              <label>1,567</label>
-                            </div>
-                            <div className="paid-content unpaid">
-                              <span>Total Unpaid</span>
-                              <label>569</label>
-                            </div>
+                  <div className="requisition-section">
+                    <div className="row">
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+                        <div className="Requisition-box">
+                          <div className="Requisition-content">
+                            <span className="d-block">Pendding Requisition</span>
+                            {dashboardData.requisitionPendding && <h4>{dashboardData.requisitionPendding}</h4>}
                           </div>
                         </div>
-                        <div className="col-lg-6 col-md-6 col-sm-6">
-                          <div className="requistions-dropdown">
-                            <div className="opensens-dropdown">
-                              <FormControl className="opensens-content">
-                                <NativeSelect>
-                                  <option value="">Monthly</option>
-                                  <option value={10}>abc</option>
-                                  <option value={20}>def</option>
-                                  <option value={30}>abc</option>
-                                </NativeSelect>
-                              </FormControl>
-                              <IconButton className="meore-menu-icon">
-                                <MoreVertIcon />
-                              </IconButton>
-                            </div>
-                            <div className="requistions-checkbox">
-                              <label>Number</label>
-                              <Switch
-                                size="small"
-                                color="primary"
-                                name="checkedB"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                              />
-                              <label>Analytics</label>
-                              <Switch
-                                size="small"
-                                color="primary"
-                                name="checkedB"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                              />
+                      </div>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
+                        <div className="Requisition-box">
+                          <div className="Requisition-content">
+                            <span className="d-block">Invoices</span>
+                            {dashboardData.invoices && <h4>{dashboardData.invoices}</h4>}
+                          </div>
+                          <div className="invoices-img">
+                            <img src={invoices} alt="" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+                        <div className="Requisition-box">
+                          <div className="Requisition-content">
+                            <span>Total PO&#39;s</span>
+                            {dashboardData.totalPO && <h4>{dashboardData.totalPO}</h4>}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-lg-2">
+                        <div className="Requisition-box">
+                          <div className="Requisition-content">
+                            <span>Pendding PO&#39;s</span>
+                          </div>
+                          <div className="d-block pendding-progress">
+                            <BorderLinearProgress variant="determinate" value={(dashboardData.totalPO / dashboardData.penddingPo) * 100} className="" />
+                            {dashboardData.penddingPo && <h4>{dashboardData.penddingPo}</h4>}
+                            <div className="last-month">
+                              <p> <strong>&#8722; 0&#44; 8&#37; </strong> From last month</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <SimpleBar style={{ maxHeight: '300px' }} className="user-content">
-                      <div className="chartbar-content">
-                        <BarChart
-                          width={550}
-                          height={255}
-                          data={data}
-                          margin={{
-                            right: 30,
-                          }}
-                        >
-                          <XAxis dataKey="name" />
-                          <YAxis tickCount={6} />
-                          <Tooltip />
-                          {/* <Legend /> */}
-                          <Bar dataKey="TotalUnpaid" fill="#8884d8" />
-                          <Bar dataKey="TotalPaid" fill="#82ca9d" />
-                        </BarChart>
-                      </div>
-                    </SimpleBar>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="latest-invoices-secton">
-            <div className="row">
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
-                <div className="production-progress-left">
-                  <div className="row justify-content-center align-items-center pb-3">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                      <div className="heading">Statistics</div>
-                    </div>
-                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12">
-                      <div className="show-value">
-                        <ul>
-                          <li className="frist">
-                            <Checkbox
-                              defaultChecked
+            }
+            <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
+              <div className="average-right">
+                <div className="statistics-graph">
+                  <div className="requistions-heading">
+                    <div className="row">
+                      <div className="col-lg-6 col-md-6 col-sm-6 ">
+                        <h5 className="d-block">Requistions Spend Overview</h5>
+                        <div className="totalpaid">
+                          <div className="paid-content">
+                            <span>Total Paid</span>
+                            <label>1,567</label>
+                          </div>
+                          <div className="paid-content unpaid">
+                            <span>Total Unpaid</span>
+                            <label>569</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-6">
+                        <div className="requistions-dropdown">
+                          <div className="opensens-dropdown">
+                            <FormControl className="opensens-content">
+                              <NativeSelect>
+                                <option value="">Monthly</option>
+                                <option value={10}>abc</option>
+                                <option value={20}>def</option>
+                                <option value={30}>abc</option>
+                              </NativeSelect>
+                            </FormControl>
+                            <IconButton className="meore-menu-icon">
+                              <MoreVertIcon />
+                            </IconButton>
+                          </div>
+                          <div className="requistions-checkbox">
+                            <label>Number</label>
+                            <Switch
+                              size="small"
                               color="primary"
-                              inputProps={{ 'aria-label': 'secondary checkbox' }}
+                              name="checkedB"
+                              inputProps={{ 'aria-label': 'primary checkbox' }}
                             />
-                            <label>Chart</label>
-                          </li>
-                          <li>
-                            <Checkbox
-                              defaultChecked
+                            <label>Analytics</label>
+                            <Switch
+                              size="small"
                               color="primary"
-                              inputProps={{ 'aria-label': 'seco ndary checkbox' }}
+                              name="checkedB"
+                              inputProps={{ 'aria-label': 'primary checkbox' }}
                             />
-                            <label>Show Value</label>
-                          </li>
-                        </ul>
-                        <IconButton className="more-menu-icon">
-                          <MoreVertIcon />
-                        </IconButton>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="row">
-                    {this.displayStatisticsData()}
-                  </div>
-                </div>
-              </div>
-              {/* <LatestPayment /> */}
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
-                <div className="production-progress-right">
-                  <div className="heading">
-                    Latest Invoice Payment
-                    <IconButton className="meore-menu-icon">
-                      <MoreVertIcon />
-                    </IconButton>
-                  </div>
-                  <div className="payment-update">
-                    <SimpleBar className="invoice">
-                      <div className="invoice-inner">
-                        {this.displayInvoice()}
-                      </div>
-                    </SimpleBar>
-                  </div>
+                  <SimpleBar style={{ maxHeight: '300px' }} className="user-content">
+                    <div className="chartbar-content">
+                      <BarChart
+                        width={550}
+                        height={255}
+                        data={data}
+                        margin={{
+                          right: 30,
+                        }}
+                      >
+                        <XAxis dataKey="name" />
+                        <YAxis tickCount={6} />
+                        <Tooltip />
+                        {/* <Legend /> */}
+                        <Bar dataKey="TotalUnpaid" fill="#8884d8" />
+                        <Bar dataKey="TotalPaid" fill="#82ca9d" />
+                      </BarChart>
+                    </div>
+                  </SimpleBar>
                 </div>
               </div>
             </div>
           </div>
-          <div className="cenversation-sectin">
-            <div className="row">
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
-                <div className="cenversation-left">
-                  <div className="image"><img src={EmailBackground} alt="" /></div>
-                  <div className="cenversation-content">
-                    {dashboardData && dashboardData.email && <h2>{dashboardData.email}</h2>}
-                    <b className="d-block">Total emails that you have</b>
-                    <span className="d-block">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    </span>
-                    <div className="compose-btn">
-                      <Button variant="contained" className="compose-email">&#43; Compose Email</Button>
-                      <Button variant="contained" className="compose-email inbox-btn">Go To inbox</Button>
-                    </div>
+        </div>
+        <div className="latest-invoices-secton">
+          <div className="row">
+            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
+              <div className="production-progress-left">
+                <div className="row justify-content-center align-items-center pb-3">
+                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div className="heading">Statistics</div>
                   </div>
-                </div>
-              </div>
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
-                <div className="cenversation-right">
-                  <div className="pagemaker-heading">
-                    <h5>Conversation Statistics</h5>
-                    <div className="conversation-btn">
-                      <Button variant="outlined" className="report-btn"><SystemUpdateAltIcon />Save Reports</Button>
-                    </div>
-                  </div>
-                  <div className="cenversation-content">
-                    <span>software like Aldus PageMaker including versions.</span>
-                    <div className="graph-chart">
-                      <SimpleBar className="invoice">
-                        <LineChart width={480} height={225} data={Linedata}>
-                          <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={6} />
-                          <XAxis dataKey="name" />
-                        </LineChart>
-                      </SimpleBar>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="contact-section">
-            <div className="row">
-              <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 pr-lg-2">
-                <div className="contact-left">
-                  <div className="row justify-content-center align-items-center">
-                    <div className="col-9">
-                      <div className="heading">
-                        <h4>Contacts</h4>
-                        <span>You have <strong>{contactsData.length}</strong> contacts</span>
-                      </div>
-                    </div>
-                    <div className="col-3 text-right">
-                      <IconButton className="contect-btn">
-                        <AddIcon />
-                      </IconButton>
-                    </div>
-                  </div>
-                  <div className="contect-list">
-                    {this.displayContactData()}
-                    <div className="view-btn">
-                      <Button variant="contained" className="view-more">View More</Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12 pl-lg-2">
-                <RecentEmails />
-              </div>
-            </div>
-          </div>
-          <div className="progress-categories-section">
-            <div className="row">
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
-                <MostTagUsed />
-              </div>
-              <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2 pl-lg-2">
-                <div className="email-categories">
-                  <h4>Email Categories</h4>
-                  <span>Lorem ipsum dolor sit amet</span>
-                  <div className="chart-content">
-                    <ResponsiveContainer height={200} width={200}>
-                      <PieChart height={200} width={200}>
-                        <Pie
-                          data={PieChartEmailData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={80}
-                          dataKey="value"
-                        >
-                          {PieChartEmailData.map((element) => (
-                            <Cell key={element.value} fill={element.COLORS} />
-                          ))}
-                        </Pie>
-                      </PieChart>
-                    </ResponsiveContainer>
-                    <div className="chart-details">
-                      <ul style={{ listStyle: 'none' }}>
-                        {PieChartEmailData.map(element => (
-                          <li style={{ display: 'block', alignItems: 'center' }} key={element.title}><div style={{ backgroundColor: element.COLORS, height: 15, width: 15, borderRadius: 5, display: 'inline-block', marginRight: '10px', marginTop: '-2px', verticalAlign: 'middle' }} />{element.title}({element.per}%) <span><b>{element.value}</b></span></li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
-                <div><StatictisRFP /></div>
-                <div className="pinned-emails">
-                  <div className="heading">
-                    <h5>Pinned Emails</h5>
-                    <span>Lorem ipsum dolor sit amet</span>
-                  </div>
-                  <Button variant="outlined" className="report-btn">View More <ArrowRightIcon /></Button>
-                  <div className="publishing">
-                    <div className="d-block heading">
-                      <span>Please review the Quotation</span>
-                      <IconButton className="contect-btn">
-                        <ColorizeIcon className="social-icon" />
-                      </IconButton>
-                    </div>
-                    <p>Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker</p>
-                    <div className="publish-btn">
-                      <Button variant="outlined" className="cover-preview-btn"><InsertDriveFileIcon className="social-icon" />Master_file.fig</Button>
-                      <Button variant="outlined" className="cover-preview-btn"><CollectionsIcon className="social-icon" />CoverPreview.jpg</Button>
-                      <Button variant="outlined" className="cover-preview-btn file-moe active">4 files more</Button>
-                    </div>
-                  </div>
-                  <div className="publish-content">
-                    <SimpleBar style={{ maxHeight: '225px' }}>
+                  <div className="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12">
+                    <div className="show-value">
                       <ul>
-                        {this.displayPinedEmail()}
+                        <li className="frist">
+                          <Checkbox
+                            defaultChecked
+                            color="primary"
+                            inputProps={{ 'aria-label': 'secondary checkbox' }}
+                          />
+                          <label>Chart</label>
+                        </li>
+                        <li>
+                          <Checkbox
+                            defaultChecked
+                            color="primary"
+                            inputProps={{ 'aria-label': 'seco ndary checkbox' }}
+                          />
+                          <label>Show Value</label>
+                        </li>
                       </ul>
+                      <IconButton className="more-menu-icon">
+                        <MoreVertIcon />
+                      </IconButton>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  {this.displayStatisticsData()}
+                </div>
+              </div>
+            </div>
+            {/* <LatestPayment /> */}
+            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
+              <div className="production-progress-right">
+                <div className="heading">
+                  Latest Invoice Payment
+                  <IconButton className="meore-menu-icon">
+                    <MoreVertIcon />
+                  </IconButton>
+                </div>
+                <div className="payment-update">
+                  <SimpleBar className="invoice">
+                    <div className="invoice-inner">
+                      {this.displayInvoice()}
+                    </div>
+                  </SimpleBar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="cenversation-sectin">
+          <div className="row">
+            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pr-lg-2">
+              <div className="cenversation-left">
+                <div className="image"><img src={EmailBackground} alt="" /></div>
+                <div className="cenversation-content">
+                  {dashboardData && dashboardData.email && <h2>{dashboardData.email}</h2>}
+                  <b className="d-block">Total emails that you have</b>
+                  <span className="d-block">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  </span>
+                  <div className="compose-btn">
+                    <Button variant="contained" className="compose-email">&#43; Compose Email</Button>
+                    <Button variant="contained" className="compose-email inbox-btn">Go To inbox</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 pl-lg-2">
+              <div className="cenversation-right">
+                <div className="pagemaker-heading">
+                  <h5>Conversation Statistics</h5>
+                  <div className="conversation-btn">
+                    <Button variant="outlined" className="report-btn"><SystemUpdateAltIcon />Save Reports</Button>
+                  </div>
+                </div>
+                <div className="cenversation-content">
+                  <span>software like Aldus PageMaker including versions.</span>
+                  <div className="graph-chart">
+                    <SimpleBar className="invoice">
+                      <LineChart width={480} height={225} data={Linedata}>
+                        <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={6} />
+                        <XAxis dataKey="name" />
+                      </LineChart>
                     </SimpleBar>
                   </div>
                 </div>
@@ -797,20 +700,128 @@ class Dashbord extends Component {
             </div>
           </div>
         </div>
-      </>
+        <div className="contact-section">
+          <div className="row">
+            <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 pr-lg-2">
+              <div className="contact-left">
+                <div className="row justify-content-center align-items-center">
+                  <div className="col-9">
+                    <div className="heading">
+                      <h4>Contacts</h4>
+                      <span>You have <strong>{contactsData.length}</strong> contacts</span>
+                    </div>
+                  </div>
+                  <div className="col-3 text-right">
+                    <IconButton className="contect-btn">
+                      <AddIcon />
+                    </IconButton>
+                  </div>
+                </div>
+                <div className="contect-list">
+                  {this.displayContactData()}
+                  <div className="view-btn">
+                    <Button variant="contained" className="view-more">View More</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12 pl-lg-2">
+              <RecentEmails />
+            </div>
+          </div>
+        </div>
+        <div className="progress-categories-section">
+          <div className="row">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2">
+              <MostTagUsed />
+            </div>
+            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 pr-lg-2 pl-lg-2">
+              <div className="email-categories">
+                <h4>Email Categories</h4>
+                <span>Lorem ipsum dolor sit amet</span>
+                <div className="chart-content">
+                  <ResponsiveContainer height={200} width={200}>
+                    <PieChart height={200} width={200}>
+                      <Pie
+                        data={PieChartEmailData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        dataKey="value"
+                      >
+                        {PieChartEmailData.map((element) => (
+                          <Cell key={element.value} fill={element.COLORS} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div className="chart-details">
+                    <ul style={{ listStyle: 'none' }}>
+                      {PieChartEmailData.map(element => (
+                        <li style={{ display: 'block', alignItems: 'center' }} key={element.title}><div style={{ backgroundColor: element.COLORS, height: 15, width: 15, borderRadius: 5, display: 'inline-block', marginRight: '10px', marginTop: '-2px', verticalAlign: 'middle' }} />{element.title}({element.per}%) <span><b>{element.value}</b></span></li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-lg-2">
+              <div className="pinned-emails">
+                <div className="heading">
+                  <h5>Pinned Emails</h5>
+                  <span>Lorem ipsum dolor sit amet</span>
+                </div>
+                <Button variant="outlined" className="report-btn">View More <ArrowRightIcon /></Button>
+                <div className="publishing">
+                  <div className="d-block heading">
+                    <span>Please review the Quotation</span>
+                    <IconButton className="contect-btn">
+                      <ColorizeIcon className="social-icon" />
+                    </IconButton>
+                  </div>
+                  <p>Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker</p>
+                  <div className="publish-btn">
+                    <Button variant="outlined" className="cover-preview-btn"><InsertDriveFileIcon className="social-icon" />Master_file.fig</Button>
+                    <Button variant="outlined" className="cover-preview-btn"><CollectionsIcon className="social-icon" />CoverPreview.jpg</Button>
+                    <Button variant="outlined" className="cover-preview-btn file-moe active">4 files more</Button>
+                  </div>
+                </div>
+                <div className="publish-content">
+                  <SimpleBar style={{ maxHeight: '225px' }}>
+                    <ul>
+                      {this.displayPinedEmail()}
+                    </ul>
+                  </SimpleBar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="budget-statictis-section">
+          <div className="row">
+            <div className="col-xl-7 col-lg-7 col-md-7 col-sm-12 pr-lg-2">
+              <BudgetOverview />
+            </div>
+            <div className="col-xl-5 col-lg-7 col-md-7 col-sm-12 pl-lg-2">
+              <StatictisRFP />
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { get_contact_status, getContact } = state.contact
-  const { get_dashboard_data_success, getdashboarddata } = state.home
+  const { get_contact_status, getContact } = state.contact;
+  const { get_dashboard_data_status, dashboarddata } = state.home;
   const { search_invoice_status, searchInvoice } = state.invoice;
   return {
     get_contact_status,
     getContact,
-    get_dashboard_data_success,
-    getdashboarddata,
+    get_dashboard_data_status,
+    dashboarddata,
     search_invoice_status,
     searchInvoice
   }

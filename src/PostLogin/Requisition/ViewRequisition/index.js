@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import "rc-calendar/assets/index.css";
 import "@y0c/react-datepicker/assets/styles/calendar.scss";
 import "simplebar/dist/simplebar.min.css";
-import { requistionAction, getRequisition } from "../../../_actions";
+import { requistionAction } from "../../../_actions";
 import { connect } from "react-redux";
 import { status } from "../../../_constants";
 import { commonFunctions } from "../../../_utilities";
@@ -121,7 +121,7 @@ class ViewRequisition extends Component {
     this.props.dispatch(requistionAction.getCurrency());
     if (this.props.match.params.id) {
       this.props.dispatch(
-        requistionAction.getRequisitionEditData({
+        requistionAction.getRequisition({
           id: this.props.match.params.id,
         })
       );

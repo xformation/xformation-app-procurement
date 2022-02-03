@@ -188,8 +188,8 @@ class Calender extends Component {
                         </div>
                         <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="calender-content-right">
-                                <div className="heading">
-                                    <h5>Invoice Details</h5>
+                                <div className="d-block mb-3 heading">
+                                    <h5 className="mb-1">Invoice Details</h5>
                                     <span>Thursday October 10th, 2020</span>
                                 </div>
                                 <SimpleBar style={{ height: 598 }}>

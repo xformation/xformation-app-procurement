@@ -1,4 +1,5 @@
-export function buyer(state = {}, action) {
+
+export function icrisat(state = {}, action) {
     return {
         ...state,
         ...action.data

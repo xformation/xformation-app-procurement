@@ -4,8 +4,8 @@ import { apiEndPoint } from "./apiEndPoint";
 export const requisitionServices = {
     addRequisition,
     deleteRequisition,
+    getRequisitions,
     getRequisition,
-    getRequisitionEditData,
     editRequisition,
     getCurrency,
     approveRequisition,
@@ -37,7 +37,7 @@ function deleteRequisition(data) {
     return fetch(`${apiEndPoint.REQUISTIONS}/${data.id}`, requestOptions).then(response => response.json());
 }
 
-function getRequisition(data) {
+function getRequisitions(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };
@@ -80,7 +80,7 @@ function editRequisition(data) {
     return fetch(`${apiEndPoint.REQUISTIONS}/${data.obj.id}`, requestOptions).then(response => response.json());
 }
 
-function getRequisitionEditData(data) {
+function getRequisition(data) {
     const extraHeaders = {
         "Content-Type": "application/json"
     };

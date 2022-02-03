@@ -124,11 +124,15 @@ class ViewPurchaseOrder extends Component {
                 <div className="generate-content">
                     <div className="generate-order">
                         <div className="heading">
-                        <IconButton className="head-icon">
-                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/generatepo`)}/>
-                                </IconButton>
-                            <h4>Generate Purchase Order</h4>
-                            <span>Lorem ipsum dolor sit amet</span>
+                            <IconButton className="head-icon">
+                                <KeyboardBackspaceIcon
+                                    onClick={() => this.props.history.push(`/postlogin/generatepo`)}
+                                />
+                            </IconButton>
+                            <div className="d-inline-block">
+                                <h4 className="d-block mb-0">Generate Purchase Order</h4>
+                                <span>Lorem ipsum dolor sit amet</span>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">

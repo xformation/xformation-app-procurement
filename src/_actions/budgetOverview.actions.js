@@ -1,4 +1,4 @@
-import { budgetConstant } from '../_constants';
+import { budgetConstant, status } from '../_constants';
 import { budgetServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -10,29 +10,41 @@ export const budgetActions = {
 function getBugetOverview(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: budgetConstant.GET_BUDGET_OVERVIEW_REQUEST,
-            data: null
+            type: status.IN_PROGRESS,
+            data: {
+                budget_overview_status: status.IN_PROGRESS,
+                budget_overview_data: null
+            }
         }));
         budgetServices.getBudgetOverview(data)
             .then(
                 response => {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
-                            type: budgetConstant.GET_BUDGET_OVERVIEW_SUCCESS,
-                            data: response.object
+                            type: status.SUCCESS,
+                            data: {
+                                budget_overview_status: status.SUCCESS,
+                                budget_overview_data: response.object
+                            }
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: budgetConstant.GET_BUDGET_OVERVIEW_FAILURE,
-                            data: response
+                            type: status.FAILURE,
+                            data: {
+                                budget_overview_status: status.FAILURE,
+                                budget_overview_data: response
+                            }
                         }));
                         alert.error(response.message);
                     }
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: budgetConstant.GET_BUDGET_OVERVIEW_FAILURE,
-                        data: error.message
+                        type: status.FAILURE,
+                        data: {
+                            budget_overview_status: status.FAILURE,
+                            budget_overview_data: error.message
+                        }
                     }));
                     alert.error(error.message);
                 }
@@ -43,29 +55,41 @@ function getBugetOverview(data) {
 function getBugetAllocated(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: budgetConstant.GET_ALLOCATED_BUDGET_REQUEST,
-            data: null
+            type: status.IN_PROGRESS,
+            data: {
+                budget_allocated_status: status.IN_PROGRESS,
+                budget_allocatyed_data: null
+            }
         }));
         budgetServices.getBudgetAllocated(data)
             .then(
                 response => {
                     if (response.code === 200) {
                         dispatch(dispatchFunction({
-                            type: budgetConstant.GET_ALLOCATED_BUDGET_SUCCESS,
-                            data: response.object
+                            type: status.SUCCESS,
+                            data: {
+                                budget_allocated_status: status.SUCCESS,
+                                budget_allocatyed_data: response.object
+                            }
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: budgetConstant.GET_ALLOCATED_BUDGET_FAILURE,
-                            data: response
+                            type: status.FAILURE,
+                            data: {
+                                budget_allocated_status: status.FAILURE,
+                                budget_allocatyed_data: response
+                            }
                         }));
                         alert.error(response.message);
                     }
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: budgetConstant.GET_ALLOCATED_BUDGET_FAILURE,
-                        data: error.message
+                        type: status.FAILURE,
+                        data: {
+                            budget_allocated_status: status.FAILURE,
+                            budget_allocatyed_data: error.message
+                        }
                     }));
                     alert.error(error.message);
                 }
@@ -78,32 +102,43 @@ function getBugetAllocated(data) {
 function sendBudghetAllocation(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: budgetConstant.POST_BUDGET_ALLOCATION_REQUEST,
-            data: null
-        }));
-
-        budgetServices.sendBudgeAllocation(data)
-        .then(response => {
-            if (response.code === 200) {
-                dispatch(dispatchFunction({
-                    type: budgetConstant.POST_BUDGET_ALLOCATION_SUCCESS,
-                    data: response.object
-                }));
-            } else {
-                dispatch(dispatchFunction({
-                    type: budgetConstant.POST_BUDGET_ALLOCATION_FAILURE,
-                    data: response
-                }));
-                alert.error(response.message)
+            type: status.IN_PROGRESS,
+            data: {
+                budgetAllocation_status: status.FAILURE,
+                budgetAllocation_data: null
             }
-        }, error => {
-            dispatch(dispatchFunction({
-                type: budgetConstant.POST_BUDGET_ALLOCATION_FAILURE,
-                data: error.message
-            }));
-            alert.error(error.message);
-        }
-        )
+        }));
+        budgetServices.sendBudgeAllocation(data)
+            .then(response => {
+                if (response.code === 200) {
+                    dispatch(dispatchFunction({
+                        type: status.SUCCESS,
+                        data: {
+                            budgetAllocation_status: status.SUCCESS,
+                            budgetAllocation_data: response.object
+                        }
+                    }));
+                } else {
+                    dispatch(dispatchFunction({
+                        type: status.FAILURE,
+                        data: {
+                            budgetAllocation_status: status.FAILURE,
+                            budgetAllocation_data: response
+                        }
+                    }));
+                    alert.error(response.message)
+                }
+            }, error => {
+                dispatch(dispatchFunction({
+                    type: status.FAILURE,
+                    data: {
+                        budgetAllocation_status: status.FAILURE,
+                        budgetAllocation_data: error.message
+                    }
+                }));
+                alert.error(error.message);
+            }
+            )
     }
 
 

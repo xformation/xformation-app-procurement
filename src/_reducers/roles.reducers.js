@@ -1,6 +1,10 @@
 import { rolesConstants, status } from '../_constants';
 
 export function roles(state = {}, action) {
+    return {
+        ...state,
+        ...action.data
+    }
     switch (action.type) {
         case rolesConstants.ADD_ROLES_REQUEST:
             return {

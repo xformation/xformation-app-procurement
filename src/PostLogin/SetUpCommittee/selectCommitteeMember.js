@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Card from '@material-ui/core/Card';
 import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
@@ -145,10 +142,12 @@ class selectCommitteeMember extends Component {
                     <div className="heading">
                         <div className="row">
                             <div className="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-xs-12">
-                            <IconButton className="head-icon">
-                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/setupcommittee`)}/>
-                                </IconButton>
-                                <h4>Select Committee Members</h4>
+                                <div className="d-flex w-100 align-items-center">
+                                    <IconButton className="head-icon">
+                                        <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/setupcommittee`)} />
+                                    </IconButton>
+                                    <h4 className="d-inline-block">Select Committee Members</h4>
+                                </div>
                             </div>
                             <div className="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-xs-12 text-right">
                                 <Button

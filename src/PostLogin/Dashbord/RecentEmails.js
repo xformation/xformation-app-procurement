@@ -42,8 +42,8 @@ class RecentEmails extends Component {
   componentDidUpdate(prevProps, prevState) {
     if ((this.props.search_all_email_status !== prevProps.search_all_email_status) &&
       this.props.search_all_email_status === status.SUCCESS) {
-      if (this.props.searchallemail.object && this.props.searchallemail.object.length > 0) {
-        let data = this.props.searchallemail.object;
+      if (this.props.searchallemail && this.props.searchallemail.length > 0) {
+        let data = this.props.searchallemail;
         if (data && data.length > 0) {
           this.props.dispatch(emailActions.searchallinboxemails(data))
           for (let i = 0; i < data.length; i++) {

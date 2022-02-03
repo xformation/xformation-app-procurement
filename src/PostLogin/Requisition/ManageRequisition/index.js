@@ -131,7 +131,7 @@ class ManageRequisition extends Component {
 
     componentDidMount() {
         // this.props.dispatch(departmentAction.getDepartment());
-        this.props.dispatch(requistionAction.getRequisition({}));
+        this.props.dispatch(requistionAction.getRequisitions({}));
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -142,7 +142,7 @@ class ManageRequisition extends Component {
             });
         }
         if (prevProps.delete_requisition_status !== this.props.delete_requisition_status && this.props.delete_requisition_status === status.SUCCESS) {
-            this.props.dispatch(requistionAction.getRequisition({}));
+            this.props.dispatch(requistionAction.getRequisitions({}));
             alert.success("Requisition deleted successfully");
         }
     }
@@ -194,7 +194,7 @@ class ManageRequisition extends Component {
             fromDate: searchData.fromDate,
             toDate: searchData.toDate
         }
-        this.props.dispatch(requistionAction.getRequisition(sendReqData));
+        this.props.dispatch(requistionAction.getRequisitions(sendReqData));
     }
 
     clearSearch = () => {
@@ -207,7 +207,7 @@ class ManageRequisition extends Component {
         this.setState({
             searchData
         });
-        this.props.dispatch(requistionAction.getRequisition({}));
+        this.props.dispatch(requistionAction.getRequisitions({}));
     }
 
     renderDepartments = () => {

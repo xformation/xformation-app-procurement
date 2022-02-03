@@ -1,6 +1,10 @@
 import { rulesConstants, status } from '../_constants';
 
 export function rules(state = {}, action) {
+    return{
+        ...state,
+        ...action.data
+    }
     switch (action.type) {
         case rulesConstants.ADD_RULES_REQUEST:
             return {

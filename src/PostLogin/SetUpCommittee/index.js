@@ -214,11 +214,11 @@ class SetUpCommittee extends Component {
         return (
             <div className="main-content">
                 <div className="setup-committee-section">
-                    <div className="heading">
-                    <IconButton className="head-icon">
-                                    <KeyboardBackspaceIcon  onClick={()=> this.props.history.push(`/postlogin/setupcommittee`)}/>
-                                </IconButton>
-                        <h4>SetUp Committee</h4>
+                    <div className="d-flex w-100 align-items-center heading">
+                        <IconButton className="head-icon">
+                            <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/setupcommittee`)} />
+                        </IconButton>
+                        <h4 className="d-inline-block">SetUp Committee</h4>
                     </div>
                     <div className="setup-committee-content">
                         <div className="add-members">

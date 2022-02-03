@@ -153,7 +153,6 @@ class Invoices extends Component {
     }
 
     onSearchChange = (e) => {
-        // debugger/
         let { value } = e.target
         const { duplicateApprovedData, approvedVendoreTableData } = this.state
         let queryResult = []
@@ -196,29 +195,25 @@ class Invoices extends Component {
                 <div className="invoices-content">
                     <div className="invoices-head-section">
                         <div className="row d-flex justify-content-center align-items-center ">
-                            <div className="col-xl-6 col-lg-4 col-md-4 col-sm-6 col-12">
+                            <div className="col-xl-5 col-lg-4 col-md-12 col-sm-12 col-12">
                                 <div className="heading">
-                                    <h3>Invoices List</h3>
+                                    <h4>Invoices List</h4>
                                     <span>Lorem ipsum dolor sit amet</span>
                                 </div>
                             </div>
-                            <div className="col-xl-6 col-lg-8 col-md-8 col-sm-6 col-12">
-                                <div className="row d-flex justify-content-center align-items-center ">
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                        <div className="search-bar">
-                                            <div className="form-group">
-                                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
-                                                <button><i className="fas fa-search"></i></button>
-                                            </div>
+                            <div className="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-12">
+                                <div className="head-right d-flex justify-content-lg-end align-items-center mt-lg-0 mt-3 flex-wrap">
+                                    <div className="search-bar">
+                                        <div className="form-group">
+                                            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search here" onChange={this.onSearchChange} />
+                                            <button><i className="fas fa-search"></i></button>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                        <div className="new-invoices-btn">
-                                            <Button variant="contained" className="primary-btn invoices-button" onClick={() => this.props.history.push(`/postlogin/invoices/newinvoice`)}>
+                                    <div className="new-invoices-btn">
+                                        <Button variant="contained" className="primary-btn invoices-button" onClick={() => this.props.history.push(`/postlogin/invoices/newinvoice`)}>
                                             <PersonAddIcon className="user-icon" />
-                                                Create NewInvoice
-                                            </Button>
-                                        </div>
+                                            Create NewInvoice
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

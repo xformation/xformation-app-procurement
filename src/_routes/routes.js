@@ -1,4 +1,5 @@
 import React from 'react';
+import VendorQuotation from '../PostLogin/VendorQuatation';
 const Dashbord = React.lazy(() => import('../PostLogin/Dashbord'));
 const EmailPage = React.lazy(() => import('../PostLogin/Email/EmailPage'));
 const Kanban = React.lazy(() => import('../PostLogin/Kanban'));
@@ -30,6 +31,7 @@ const Reports = React.lazy(() => import('../PostLogin/Reports'));
 const PurchaseOrder = React.lazy(() => import('../PostLogin/GeneratePo/purchaseOrder'));
 const BudgetAllocate = React.lazy(() => import('../PostLogin/BudgetOverview/allocatedBudget'));
 const BudgetAllocation = React.lazy(() => import("../PostLogin/BudgetOverview/BudgetAllocation"));
+const Vendors = React.lazy(() => import("../PostLogin/Vendors/index"));
 
 const routes = [
     { path: '/postlogin/dashboard', exact: true, name: 'Dashbord', component: Dashbord },
@@ -67,7 +69,9 @@ const routes = [
     { path: '/postlogin/reports', exact: true, name: 'Reports', component: Reports },
     { path: '/postlogin/approvepo/:id', exact: true, name: 'PurchaseOrder', component: PurchaseOrder },
     { path: '/postlogin/budgetoverview/:id', exact: true, name: 'BudgetAllocate', component: BudgetAllocate },
-    { path: "/postlogin/budgetallocation", exact: true, name: "BudgetAllocation", component: BudgetAllocation }
+    { path: "/postlogin/budgetallocation", exact: true, name: "BudgetAllocation", component: BudgetAllocation },
+    { path: "/postlogin/vendorquotation", exact: true, name: "VendorQuotation", component: VendorQuotation },
+    { path: '/postlogin/vendors', exact: true, name: "Vendors", component: Vendors }
 ]
 
 export default routes;

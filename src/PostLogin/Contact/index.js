@@ -299,14 +299,14 @@ class Contact extends Component {
           <div className="user-contact-list">
             <div className="buyers-head">
               <div className="row justify-content-center align-items-center">
-                <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 ">
+                <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 ">
                   <div className="heading">
                     <h4>Contacts</h4>
                     <p>Lorem ipsum dolor sit amet</p>
                   </div>
                 </div>
-                <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 ">
-                  <div className="head-right justify-content-lg-end align-items-center">
+                <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 ">
+                  <div className="head-right justify-content-xl-end align-items-center mt-xl-0 mt-3 flex-wrap">
                     <div className="search-bar">
                       <div className="form-group">
                         <input

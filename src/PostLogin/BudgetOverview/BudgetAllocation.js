@@ -7,6 +7,7 @@ import { budgetActions } from '../../_actions';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import { status } from "../../_constants";
+import IconButton from '@material-ui/core/IconButton';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 class BudgetAllocation extends Component {
@@ -123,9 +124,11 @@ class BudgetAllocation extends Component {
             <div className="main-content">
                 <div className="budget-allocation-section">
                     <div className="budget-allocation-content">
-                        <div className="heading">
-                            <span onClick={this.cancelBudgetAllocation}><KeyboardBackspaceIcon /></span>
-                            <h4>Budget Allocation</h4>
+                        <div className="d-flex w-100 heading">
+                            <IconButton className="head-icon" onClick={this.cancelBudgetAllocation}>
+                                <KeyboardBackspaceIcon />
+                            </IconButton>
+                            <h4 className="d-inline-block">Budget Allocation</h4>
                         </div>
                         <div className="budget-allocation-filter">
                             <div className="row">

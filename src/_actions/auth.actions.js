@@ -1,4 +1,4 @@
-import { authConstants } from '../_constants';
+import { authConstants, status } from '../_constants';
 import { authServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -10,29 +10,41 @@ export const authActions = {
 function login(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: authConstants.USER_LOGIN_REQUEST,
-            data: null
+            type: status.IN_PROGRESS,
+            data:  {
+                user_login_status: status.IN_PROGRESS,
+                user: null
+            }
         }));
         authServices.login(data)
             .then(
                 response => {
                     if (response.status) {
                         dispatch(dispatchFunction({
-                            type: authConstants.USER_LOGIN_SUCCESS,
-                            data: response.object
+                            type: status.SUCCESS,
+                            data: {
+                                user_login_status: status.SUCCESS,
+                                user: response.object
+                            }
                         }));
                     } else {
                         dispatch(dispatchFunction({
-                            type: authConstants.USER_LOGIN_FAILURE,
-                            data: response
+                            type: status.FAILURE,
+                            data: {
+                                user_login_status: status.FAILURE,
+                                user: response
+                            }
                         }));
                         alert.error(response.message);
                     }
                 },
                 error => {
                     dispatch(dispatchFunction({
-                        type: authConstants.USER_LOGIN_FAILURE,
-                        data: error.message
+                        type: status.FAILURE,
+                        data: {
+                            user_login_status: status.FAILURE,
+                            user: error.message
+                        }
                     }));
                     alert.error(error.message);
                 }
@@ -52,7 +64,7 @@ function login(data) {
 // }
 
 function dispatchFunction(data) {
-    if(data.data && data.data.code === 401){
+    if (data.data && data.data.code === 401) {
         commonFunctions.onLogout();
         return {
             type: authConstants.USER_LOGOUT,

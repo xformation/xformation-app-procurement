@@ -48,7 +48,7 @@ class ViewRecievedRfp extends Component {
     }
 
     onClickTrackRfp = () => {
-        let url=this.props.match.params.url
+        let url = this.props.match.params.url
         this.props.history.push(`/postlogin/frp/${url}/trackrfp/${this.props.match.params.id}`);
     };
 
@@ -64,7 +64,7 @@ class ViewRecievedRfp extends Component {
                         </div>
                         <div className="heading-content">
                             <div className="row">
-                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                                     <span>status</span>
                                     <Button variant="contained" className="pending-btn">
                                         #pendding
@@ -73,23 +73,21 @@ class ViewRecievedRfp extends Component {
                                         #waitingforapproval
                                     </Button>
                                 </div>
-                                <div>
-                                    <div>
-                                        <p>
+                                <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                    <div className="creation-box">
+                                        <span>
                                             Creation Date
-                                            {<p>{new Date(recievedData.createdOn).toDateString()}</p>}
-                                        </p>
+                                            {new Date(recievedData.createdOn).toDateString()}
+                                        </span>
                                     </div>
-                                </div>
-                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                     {/* <div className="creation-box">
                                     <span>Creation Date</span>
                                     {recievedData.createdOn && <span>{commonFunctions.convertDateToString(
                                         new Date(recievedData.createdOn))}</span>}
-                                </div> */}
+                                    </div> */}
                                     <Button
                                         variant="contained"
-                                        className="primary-btn track-btn float-md-right"
+                                        className="primary-btn track-btn float-right"
                                         onClick={() => this.onClickTrackRfp()}
                                     >
                                         Track RFP
