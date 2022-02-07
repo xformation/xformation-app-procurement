@@ -132,7 +132,7 @@ class VendorQuotation extends Component {
             <div className="main-content">
                 <div className="receivedrfq-content">
                     <div className="heading">
-                        <h4><strong>Vendor quotation</strong></h4>
+                        <h4>Vendor quotation</h4>
                     </div>
                     <div className="requisitions-filter">
                         <div className="form-group row col-form-group">
@@ -211,7 +211,7 @@ function mapStateToProps(state) {
     const {
         get_vendor_quotation_status,
         getVendorQuotation,
-    } = state.vendor
+    } = state.procurement
     return {
         get_vendor_quotation_status,
         getVendorQuotation,

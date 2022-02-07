@@ -134,7 +134,6 @@ class RecievedRfp extends Component {
     if (this.props.get_recieved_status !== prevProps.get_recieved_status && this.props.get_recieved_status === status.SUCCESS) {
       if (this.props.recieved_rfp_list && this.props.recieved_rfp_list.length > 0) {
         this.setState({ tableData: this.props.recieved_rfp_list });
-        console.log(this.state.tableData)
       }
     }
   }
@@ -293,7 +292,7 @@ class RecievedRfp extends Component {
 
 const mapStateToProps = (state) => {
   const { get_recieved_status,
-    recieved_rfp_list, } = state.recievedrfp;
+    recieved_rfp_list, } = state.procurement;
   return {
     get_recieved_status,
     recieved_rfp_list,

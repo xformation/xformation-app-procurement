@@ -24,7 +24,6 @@ class BudgetAllocation extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(this.props.budgetAllocation_status)
         if (prevProps.budgetAllocation_status !== this.props.budgetAllocation_status && this.props.budgetAllocation_status === status.SUCCESS) {
             this.props.history.push('/postlogin/budgetoverview')
         }
@@ -227,7 +226,7 @@ class BudgetAllocation extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { budgetAllocation_status, budgetAllocation_data } = state.budget;
+    const { budgetAllocation_status, budgetAllocation_data } = state.procurement;
     return {
         budgetAllocation_status,
         budgetAllocation_data

@@ -60,7 +60,6 @@ class selectCommitteeMember extends Component {
                 committeeMember,
                 userid: 5,
             };
-            console.log(sendData)
             this.props.dispatch(committeeAction.addSelectedMember(sendData))
         } else {
             alert.error("Please Select Committee Member");
@@ -174,7 +173,7 @@ class selectCommitteeMember extends Component {
 }
 
 function mapStateToProps(state) {
-    const { search_committee_status, searchCommittee, selected_committee_status, selected_member_list } = state.committee;
+    const { search_committee_status, searchCommittee, selected_committee_status, selected_member_list } = state.procurement;
     return {
         search_committee_status,
         searchCommittee,

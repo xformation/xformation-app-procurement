@@ -210,7 +210,7 @@ class EmailDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { get_email_detail_status, emaildetail_res, delete_email_status } = state.email
+    const { get_email_detail_status, emaildetail_res, delete_email_status } = state.procurement
     return { get_email_detail_status, emaildetail_res, delete_email_status }
 }
 

@@ -1,4 +1,4 @@
-import { committeeConstants, status } from '../_constants';
+import { status } from '../_constants';
 import { committeeServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -216,8 +216,11 @@ function getCommitteeType(data) {
 function addSelectedMember(data) {
     return dispatch => {
         dispatch(dispatchFunction({
-            type: committeeConstants.SET_SELECTED_COMITTEE_MEMBER,
-            data: data,
+            type: status.SUCCESS,
+            data: {
+                selected_committee_status: status.FAILURE,
+                selected_member_list: data
+            }
         }));
     };
 }

@@ -155,7 +155,6 @@ class NewRequisition extends Component {
         const { editRequisitiondata, get_edit_requisition_status } = this.props;
         let retData = [];
         if (get_edit_requisition_status === status.SUCCESS && editRequisitiondata.requistionItem.length > 0) {
-            console.log(editRequisitiondata.requistionItem)
             for (let i = 0; i < editRequisitiondata.requistionItem; i++) {
                 let data = editRequisitiondata.requistionItem[i];
                 retData.push(
@@ -585,7 +584,7 @@ class NewRequisition extends Component {
                     <div className="main-content">
                         <div className="new-req-section">
                             <div className="d-block heading">
-                                <h5>{editReq == false ? "Add New" : "Edit"} Requisition</h5>
+                                <h4 className="d-inline-block">{editReq == false ? "Add New" : "Edit"} Requisition</h4>
                                 <div className="heading-buttons">
                                     <Button
                                         variant="outlined"
@@ -1051,8 +1050,8 @@ function mapStateToProps(state) {
         get_currency_status,
         currencylistdata,
         update_requisition_status,
-    } = state.requisition;
-    const { get_department_status, departmentList } = state.department;
+    } = state.procurement;
+    const { get_department_status, departmentList } = state.procurement;
     return {
         departmentList,
         get_department_status,

@@ -1,4 +1,4 @@
-import { buyerConstants, status } from '../_constants';
+import { status } from '../_constants';
 import { buyerServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 

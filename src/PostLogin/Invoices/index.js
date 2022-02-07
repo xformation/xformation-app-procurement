@@ -240,7 +240,7 @@ function mapStateToProps(state) {
         delete_invoice_status,
         deleteInvoice,
         add_invoice_status,
-        addInvoice } = state.invoice
+        addInvoice } = state.procurement
     return {
         update_invoice_status,
         updateInvoice,

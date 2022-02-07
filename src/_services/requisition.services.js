@@ -97,7 +97,6 @@ function getCurrency(data) {
 }
 
 function approveRequisition(data) {
-    console.log(data)
     const extraHeaders = {
         "Content-Type": "application/json"
     };
@@ -106,7 +105,6 @@ function approveRequisition(data) {
 }
 
 function setRequisitionBuyers(data) {
-    console.log(data)
     const extraHeaders = {
         "Content-Type": "application/json"
     };

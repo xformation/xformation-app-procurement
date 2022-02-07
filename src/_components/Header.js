@@ -237,7 +237,7 @@ class Header extends Component {
 
 }
 const mapStateToProps = (state) => {
-  const { get_notification_status, get_notification_data } = state.home;
+  const { get_notification_status, get_notification_data } = state.procurement;
   return {
     get_notification_status, get_notification_data
   }

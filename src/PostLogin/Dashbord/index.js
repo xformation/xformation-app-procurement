@@ -49,7 +49,7 @@ class Dashbord extends Component {
       date: moment,
       dashboardData: {},
       data: [],
-      Linedata: [
+      linedata: [
         {
           name: "",
           pv: 10
@@ -291,6 +291,7 @@ class Dashbord extends Component {
       this.props.history.push(`${url}`)
     }
   }
+
   displayPinedEmail = () => {
     const { pinnedEmailsData } = this.state;
     let pinData = [];
@@ -322,7 +323,7 @@ class Dashbord extends Component {
     return pinData;
   }
   render() {
-    const { Linedata, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
+    const { linedata, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
     const BorderLinearProgress = withStyles((theme) =>
       createStyles({
         root: {
@@ -689,7 +690,7 @@ class Dashbord extends Component {
                   <span>software like Aldus PageMaker including versions.</span>
                   <div className="graph-chart">
                     <SimpleBar className="invoice">
-                      <LineChart width={480} height={225} data={Linedata}>
+                      <LineChart width={480} height={225} data={linedata}>
                         <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={6} />
                         <XAxis dataKey="name" />
                       </LineChart>
@@ -814,9 +815,8 @@ class Dashbord extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { get_contact_status, getContact } = state.contact;
-  const { get_dashboard_data_status, dashboarddata } = state.home;
-  const { search_invoice_status, searchInvoice } = state.invoice;
+  const { get_contact_status, getContact, get_dashboard_data_status, dashboarddata, search_invoice_status, searchInvoice } = state.procurement;
+
   return {
     get_contact_status,
     getContact,

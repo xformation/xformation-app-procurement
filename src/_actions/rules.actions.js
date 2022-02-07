@@ -1,4 +1,3 @@
-// import { rulesConstants } from '../_constants';
 import { rulesServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 

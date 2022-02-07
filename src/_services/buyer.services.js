@@ -16,7 +16,6 @@ function getBuyer(id) {
 }
 
 // function updateBuyer(data) {
-//     console.log(data)
 //     const extraHeaders = {
 //         "Content-Type": "application/json"
 //     };

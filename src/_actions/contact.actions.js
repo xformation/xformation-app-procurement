@@ -1,4 +1,4 @@
-import { contactConstants, status } from '../_constants';
+import { status } from '../_constants';
 import { contactServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -160,7 +160,6 @@ function getContactData(data) {
     contactServices.getContactData(data)
       .then(
         response => {
-          console.log(response)
           if (response.code == 200) {
             dispatch(dispatchFunction({
               type: status.SUCCESS,
@@ -206,7 +205,6 @@ function updateContact(data) {
     contactServices.updateContact(data)
       .then(
         response => {
-          console.log(response)
           if (response.code == 200) {
             dispatch(dispatchFunction({
               type: status.SUCCESS,

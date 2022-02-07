@@ -154,7 +154,6 @@ class Contact extends Component {
   //  display contact list -----------------------------------------
   displayContactUserList = () => {
     const { contactUserList, activeindex, displayOption, currentPage, perPageLimit } = this.state;
-    // console.log(contactUserList, activeindex, displayOption, currentPage, perPageLimit)
     let retData = [];
     let isloading = this.props.get_contact_status === status.IN_PROGRESS;
     if (!isloading) {
@@ -465,7 +464,7 @@ function mapStateToProps(state) {
     update_contact_status,
     updateContact,
     send_invitation_status
-  } = state.contact;
+  } = state.procurement;
   return {
     add_contact_status,
     addContact,

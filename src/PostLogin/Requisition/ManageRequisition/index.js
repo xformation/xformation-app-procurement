@@ -377,8 +377,8 @@ class ManageRequisition extends Component {
 }
 
 function mapStateToProps(state) {
-    const { get_requisition_status, getRequisitionlist, delete_requisition_status } = state.requisition;
-    const { get_department_status, departmentList } = state.department;
+    const { get_requisition_status, getRequisitionlist, delete_requisition_status } = state.procurement;
+    const { get_department_status, departmentList } = state.procurement;
     return {
         get_requisition_status,
         getRequisitionlist,

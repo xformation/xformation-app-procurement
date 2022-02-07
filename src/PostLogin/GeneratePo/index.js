@@ -181,7 +181,6 @@ class GeneratePo extends Component {
     render() {
         const { requiData, isSubmitted, GenerateButton, columns, tableData } = this.state;
         const errorData = this.validate(isSubmitted);
-        console.log(tableData)
         return (
             <div className="main-content">
                 <div className="generate-content">
@@ -409,7 +408,7 @@ class GeneratePo extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { searchpurchaseorder, search_purchase_status } = state.generatePurchaseOrder;
+    const { searchpurchaseorder, search_purchase_status } = state.procurement;
     return { searchpurchaseorder, search_purchase_status }
 
 }

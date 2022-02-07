@@ -30,7 +30,6 @@ class TrackRfp extends Component {
                 this.setState({
                     recievedData: this.props.track_frp_data,
                 })
-                console.log("reciveddata",this.state.recievedData)
             }
         }
         if (prevProps.add_recieved_rfp_status !== this.props.add_recieved_rfp_status && this.props.add_recieved_rfp_status === status.SUCCESS) {
@@ -139,7 +138,7 @@ class TrackRfp extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { track_frp_data, track_frp_status } = state.recievedrfp;
+    const { track_frp_data, track_frp_status } = state.procurement;
     return {
         track_frp_data, track_frp_status
     }

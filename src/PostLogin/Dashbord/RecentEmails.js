@@ -167,7 +167,7 @@ class RecentEmails extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { search_all_email_status, searchallemail, } = state.email
-  return { search_all_email_status, searchallemail, }
+  const { search_all_email_status, searchallemail, } = state.procurement
+  return { search_all_email_status, searchallemail }
 }
 export default connect(mapStateToProps)(RecentEmails);

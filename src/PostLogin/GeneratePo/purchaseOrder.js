@@ -32,8 +32,6 @@ class PurchaseOrder extends Component {
   }
   handleApprove = (status) => {
     const { ApproveOrder } = this.state;
-    // let data={ }
-    // console.log(data)
     this.props.dispatch(
       purchaseOrderAction.approvePurchaseOrder({
         id: ApproveOrder.id,
@@ -218,7 +216,7 @@ class PurchaseOrder extends Component {
 }
 const mapStateToProps = (state) => {
   const { search_approvepo_status, search_approvepo } =
-    state.generatePurchaseOrder;
+    state.procurement;
   return {
     search_approvepo_status,
     search_approvepo,

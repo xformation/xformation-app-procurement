@@ -96,7 +96,6 @@ class ComposeEmail extends Component {
     let { sendEmailData } = this.state
     sendEmailData.attechment.splice(indx, 1);
     this.setState({ sendEmailData })
-    console.log(sendEmailData.attechment)
   }
   validate = (isSubmitted) => {
     const validObj = {
@@ -139,7 +138,8 @@ class ComposeEmail extends Component {
           <div className="head-top progress-form">
             <div className="row justify-content-center align-items-center">
               <div className="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-12">
-                <div className="heading"><span onClick={this.props.onClickShowCompos}><KeyboardBackspaceIcon /></span>
+                <div className="heading">
+                  <span onClick={this.props.onClickShowCompos}><KeyboardBackspaceIcon /></span>
                   <h4>Compose Email</h4>
                 </div>
               </div>

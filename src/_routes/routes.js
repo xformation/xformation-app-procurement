@@ -1,4 +1,5 @@
 import React from 'react';
+import SendRfq from '../PostLogin/SendRfq';
 import VendorQuotation from '../PostLogin/VendorQuatation';
 const Dashbord = React.lazy(() => import('../PostLogin/Dashbord'));
 const EmailPage = React.lazy(() => import('../PostLogin/Email/EmailPage'));
@@ -71,7 +72,9 @@ const routes = [
     { path: '/postlogin/budgetoverview/:id', exact: true, name: 'BudgetAllocate', component: BudgetAllocate },
     { path: "/postlogin/budgetallocation", exact: true, name: "BudgetAllocation", component: BudgetAllocation },
     { path: "/postlogin/vendorquotation", exact: true, name: "VendorQuotation", component: VendorQuotation },
-    { path: '/postlogin/vendors', exact: true, name: "Vendors", component: Vendors }
+    { path: '/postlogin/vendors', exact: true, name: "Vendors", component: Vendors },
+    { path: '/postlogin/sendrfq', exact: true, name: "sendrfq", component: SendRfq }
+
 ]
 
 export default routes;

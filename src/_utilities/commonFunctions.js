@@ -14,7 +14,7 @@ function getRequestOptions(type, extraHeaders, body, bNoToken) {
     let authHeader = {};
     if (!bNoToken) {
         const currentState = store.getState();
-        const userInfo = currentState.auth.user;
+        const userInfo = currentState.procurement.user;
         const accessToken = userInfo ? userInfo.token : null;
         authHeader = {
             Authorization: `Bearer ${accessToken}`
@@ -35,7 +35,7 @@ function getRequestOptions(type, extraHeaders, body, bNoToken) {
 
 function getAccessToken() {
     const currentState = store.getState();
-    const userInfo = currentState.auth.user;
+    const userInfo = currentState.procurement.user;
     const accessToken = userInfo ? userInfo.token : null;
     return accessToken;
 }

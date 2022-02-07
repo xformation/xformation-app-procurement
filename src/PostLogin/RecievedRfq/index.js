@@ -199,7 +199,7 @@ class RecievedRfq extends Component {
 
 const mapStateToProps = (state) => {
     const { fetch_recieved_rfq_status,
-        recieved_rfq_list, } = state.recievedrfp;
+        recieved_rfq_list, } = state.procurement;
     return {
         fetch_recieved_rfq_status,
         recieved_rfq_list,

@@ -37,7 +37,6 @@ class AddInvoices extends Component {
     componentDidMount() { this.props.dispatch(invoiceAction.getNewInvoice()) }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.get_new_invoice_status !== prevProps.get_new_invoice_status && this.props.get_new_invoice_status === status.SUCCESS) {
-            console.log(this.props.get_new_invoice_status)
             if (this.props.newInvoiceData) {
                 this.setState({ invoiceData: this.props.newInvoiceData })
             }
@@ -73,7 +72,6 @@ class AddInvoices extends Component {
         this.setState({
             invoiceFile: {}
         })
-        console.log(invoiceFile)
     }
     handleChange = (e) => {
         let { description, amount } = this.state;
@@ -96,7 +94,6 @@ class AddInvoices extends Component {
     render() {
         const { invoiceData, invoiceFile, index } = this.state
         let { toggleDropown } = this.state
-        console.log(invoiceData)
         return (
             <div className="main-content">
                 <div className="d-block add-invoices-content">
@@ -311,7 +308,7 @@ class AddInvoices extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { get_new_invoice_status, newInvoiceData } = state.invoice;
+    const { get_new_invoice_status, newInvoiceData } = state.procurement;
     return { get_new_invoice_status, newInvoiceData }
 }
 export default connect(mapStateToProps)(AddInvoices);

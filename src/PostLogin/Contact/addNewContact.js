@@ -516,7 +516,7 @@ function mapStateToProps(state) {
     get_contact_status,
     add_contact_status,
     update_contact_status,
-  } = state.contact;
+  } = state.procurement;
   return {
     get_edit_contact_status,
     contactData,

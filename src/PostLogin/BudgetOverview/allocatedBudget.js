@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Table from "../../Table/Table";
 import { budgetActions } from '../../_actions/budgetOverview.actions'
 import { status } from '../../_constants'
-import { budget } from '../../_reducers/budgetOverview.reducer';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import FormControl from "@material-ui/core/FormControl";
@@ -230,7 +229,7 @@ class BudgetAllocate extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    const { budget_allocated_status, budget_allocatyed_data } = state.budget;
+    const { budget_allocated_status, budget_allocatyed_data } = state.procurement;
     return { budget_allocated_status, budget_allocatyed_data };
 }
 

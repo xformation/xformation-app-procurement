@@ -312,8 +312,8 @@ class RequisitionTracker extends Component {
 }
 
 function mapStateToProps(state) {
-    const { approve_requisition_status, approveRequisition, get_requisition_status, getRequisitionlist } = state.requisition;
-    const { get_department_status, departmentList } = state.department;
+    const { approve_requisition_status, approveRequisition, get_requisition_status, getRequisitionlist } = state.procurement;
+    const { get_department_status, departmentList } = state.procurement;
     return {
         approve_requisition_status,
         approveRequisition,

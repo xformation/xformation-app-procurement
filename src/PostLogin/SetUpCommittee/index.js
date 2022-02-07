@@ -215,9 +215,6 @@ class SetUpCommittee extends Component {
             <div className="main-content">
                 <div className="setup-committee-section">
                     <div className="d-flex w-100 align-items-center heading">
-                        <IconButton className="head-icon">
-                            <KeyboardBackspaceIcon onClick={() => this.props.history.push(`/postlogin/setupcommittee`)} />
-                        </IconButton>
                         <h4 className="d-inline-block">SetUp Committee</h4>
                     </div>
                     <div className="setup-committee-content">
@@ -274,7 +271,7 @@ class SetUpCommittee extends Component {
 }
 
 function mapStateToProps(state) {
-    const { addCommittee, add_committee_status, selected_committee_status, selected_member_list, get_committee_type_status, getCommitteeType } = state.committee;
+    const { addCommittee, add_committee_status, selected_committee_status, selected_member_list, get_committee_type_status, getCommitteeType } = state.procurement;
     return {
         add_committee_status,
         addCommittee,

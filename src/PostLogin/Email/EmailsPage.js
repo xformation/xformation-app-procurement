@@ -55,13 +55,12 @@ class EmailsPage extends Component {
   };
 
   render() {
-    console.log(this.props, "props ");
     const { rows, otherProps } = this.state;
     return (
       <>
         {rows && rows.id && (
           <div key={rows.id} className='d-flex'>
-            <div className='user-id'>
+            <div className='user-id mr-3'>
               <div className='check-box'>
                 <FormControlLabel
                   control={
@@ -79,67 +78,65 @@ class EmailsPage extends Component {
                 <StarIcon />
               </div>
             </div>
-            <div className='user-content'>
-              <div className='d-flex'>
-                <div className='col-9' onClick={this.handleUrl} key={rows.body}>
-                  <div className='d-flex'>
-                    <div className='user-img'>
-                      {" "}
-                      {rows && rows.sender && rows.sender.profilePic && (
-                        <img
-                          src={rows.sender.profilePic}
-                          alt=''
-                          height='50px'
-                          width='50px'
-                        />
-                      )}
-                    </div>
-                    <div className='user-inner-content'>
-                      <span>
-                        {rows.sender.email} {rows.time}
-                      </span>
-                      <h5>{rows.subject}</h5>
-                      <p>{rows.body}</p>
-                    </div>
+            <div className='d-flex w-100 user-content'>
+              <div className='col-9 p-0' onClick={this.handleUrl} key={rows.body}>
+                <div className='d-flex w-100'>
+                  <div className='user-img'>
+                    {" "}
+                    {rows && rows.sender && rows.sender.profilePic && (
+                      <img
+                        src={rows.sender.profilePic}
+                        alt=''
+                        height='50px'
+                        width='50px'
+                      />
+                    )}
+                  </div>
+                  <div className='user-inner-content'>
+                    <span>
+                      {rows.sender.email} {rows.time}
+                    </span>
+                    <h5>{rows.subject}</h5>
+                    <p>{rows.body}</p>
                   </div>
                 </div>
-                <div className='col-3 pr-0'>
-                  {!rows.showIcon && (
-                    <div className='list-icon'>
-                      <IconButton
-                        onClick={() => this.showIcon(otherProps.i)}
-                        className='menu-icon'>
-                        <MoreVertIcon />
+              </div>
+              <div className='col-3 p-0'>
+                {!rows.showIcon && (
+                  <div className='list-icon'>
+                    <IconButton
+                      onClick={() => this.showIcon(otherProps.i)}
+                      className='menu-icon'>
+                      <MoreVertIcon />
+                    </IconButton>
+                  </div>
+                )}
+                {rows.showIcon && (
+                  <ButtonGroup
+                    variant='text'
+                    aria-label='text primary button group'>
+                    {rows.isRead == "true" && (
+                      <IconButton>
+                        <DirectionsRailwayIcon />
                       </IconButton>
-                    </div>
-                  )}
-                  {rows.showIcon && (
-                    <ButtonGroup
-                      variant='text'
-                      aria-label='text primary button group'>
-                      {rows.isRead == "true" && (
-                        <IconButton>
-                          <DirectionsRailwayIcon />
-                        </IconButton>
-                      )}
-                      {rows.isSnooze == "true" && (
-                        <IconButton>
-                          <WatchLaterIcon />
-                        </IconButton>
-                      )}
-                      {rows.attechment && rows.attechment.length > 0 && (
-                        <IconButton>
-                          <AttachFileIcon />
-                        </IconButton>
-                      )}
-                      <IconButton
-                        onClick={() => this.showIcon(otherProps.i)}
-                        className='menu-icon'>
-                        <MoreVertIcon />
+                    )}
+                    {rows.isSnooze == "true" && (
+                      <IconButton>
+                        <WatchLaterIcon />
                       </IconButton>
-                    </ButtonGroup>
-                  )}
-                </div>
+                    )}
+                    {rows.attechment && rows.attechment.length > 0 && (
+                      <IconButton>
+                        <AttachFileIcon />
+                      </IconButton>
+                    )}
+                    <IconButton
+                      onClick={() => this.showIcon(otherProps.i)}
+                      className='menu-icon'>
+                      <MoreVertIcon />
+                    </IconButton>
+                  </ButtonGroup>
+                )}
               </div>
             </div>
           </div>

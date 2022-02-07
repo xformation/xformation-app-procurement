@@ -9,7 +9,9 @@ export const recievedrfpServices = {
     searchRecievedRFQ,
     getRecieveRFQ,
     addRecieveRFQ,
-    getTrackRfpData
+    getTrackRfpData,
+    sendRFQ
+    
 }
 
 function searchRecievedRFP(data) {
@@ -66,4 +68,13 @@ function getTrackRfpData(data) {
     };
     const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
     return fetch(`${apiEndPoint.TRACKFRPDATA}/${data.id}`, requestOptions).then(response => response.json());
+}
+
+
+function sendRFQ(data){
+    const extraHeaders = {
+        "Content-Type": "application/json"
+    };
+    const requestOptions = commonFunctions.getRequestOptions("GET", extraHeaders, null);
+    return fetch(`${apiEndPoint.SENDRFQ}/`, requestOptions).then(response => response.json());
 }

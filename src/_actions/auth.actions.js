@@ -1,4 +1,4 @@
-import { authConstants, status } from '../_constants';
+import { status } from '../_constants';
 import { authServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -64,13 +64,13 @@ function login(data) {
 // }
 
 function dispatchFunction(data) {
-    if (data.data && data.data.code === 401) {
-        commonFunctions.onLogout();
-        return {
-            type: authConstants.USER_LOGOUT,
-            data: null
-        };
-    }
+    // if (data.data && data.data.code === 401) {
+    //     commonFunctions.onLogout();
+    //     return {
+    //         type: authConstants.USER_LOGOUT,
+    //         data: null
+    //     };
+    // }
     return {
         type: data.type,
         data: data.data

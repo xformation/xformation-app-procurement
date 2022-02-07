@@ -174,7 +174,7 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-  const { user_login_status, user } = state.auth;
+  const { user_login_status, user } = state.procurement;
   return {
     user_login_status,
     user

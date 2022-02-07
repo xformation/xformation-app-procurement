@@ -331,7 +331,7 @@ class Kanban extends Component {
 }
 
 function mapStateToProps(state) {
-    const { fetch_kanban_status, kanban_list } = state.kanban;
+    const { fetch_kanban_status, kanban_list } = state.procurement;
     return {
         fetch_kanban_status,
         kanban_list

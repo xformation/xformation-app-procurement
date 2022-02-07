@@ -208,6 +208,14 @@ const _nav = [
         activeArr: ['/postlogin/vendors'],
         open: false,
         icon: <i class="fas fa-truck-couch"></i>,
+    },
+    {
+        _tag: 'SidebarNavItem',
+        name: 'Send RFQ',
+        to: '/postlogin/sendrfq',
+        activeArr: ['/postlogin/sendrfq'],
+        open: false,
+        icon: <i class="fas fa-fax"></i>,
     }
 ]
 

@@ -28,7 +28,7 @@ class DefaultLayout extends Component {
       if (this.props.searchallemail.object && this.props.searchallemail.object.length > 0 && this.props.searchallemail.type == 'inbox') {
         this.props.dispatch(emailActions.searchallinboxemails(this.props.searchallemail.object))
       }
-      else{
+      else {
         this.props.dispatch(emailActions.searchallinboxemails(this.props.searchallemail.object))
       }
     }
@@ -68,8 +68,7 @@ class DefaultLayout extends Component {
 }
 
 function mapStateToProps(state) {
-  const { get_roles_status, getRoles } = state.roles;
-  const { search_all_email_status, searchallemail } = state.email;
+  const { get_roles_status, getRoles, search_all_email_status, searchallemail } = state.procurement;
   return {
     get_roles_status,
     getRoles,

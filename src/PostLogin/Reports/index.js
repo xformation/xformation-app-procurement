@@ -218,7 +218,6 @@ class Reports extends Component {
     render() {
         const { requiData, isSubmitted, columns, tableData, years, divisions } = this.state;
         const errorData = this.validate(isSubmitted);
-        console.log(tableData)
         return (
             <div className="main-content">
                 <div className="reports-content">
@@ -282,7 +281,7 @@ class Reports extends Component {
 }
 
 const mapStateToProps = state => {
-    const { get_reports_status, get_reports_data } = state.reports
+    const { get_reports_status, get_reports_data } = state.procurement
     return {
         get_reports_status, get_reports_data
     }

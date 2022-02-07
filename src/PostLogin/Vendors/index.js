@@ -154,8 +154,6 @@ class Vendors extends Component {
     //  display contact list -----------------------------------------
     displayVendorList = () => {
         const { vendorList, activeindex, displayOption, currentPage, perPageLimit } = this.state;
-        // console.log(vendorList, activeindex, displayOption, currentPage, perPageLimit)
-        console.log("vendor list", vendorList)
         let retData = [];
         let isloading = this.props.get_vendor_status === status.IN_PROGRESS;
         if (!isloading) {
@@ -441,7 +439,7 @@ function mapStateToProps(state) {
         delete_vendor_status,
         deleteVendor
 
-    } = state.vendor;
+    } = state.procurement;
     return {
         get_vendor_status,
         getVendor,

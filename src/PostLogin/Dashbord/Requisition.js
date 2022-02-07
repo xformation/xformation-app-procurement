@@ -55,7 +55,7 @@ class Requisition extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { get_requisition_status, getRequisitionlist } = state.requisition;
+    const { get_requisition_status, getRequisitionlist } = state.procurement;
     return {
         get_requisition_status,
         getRequisitionlist

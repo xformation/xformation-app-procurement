@@ -54,7 +54,6 @@ class ViewRecievedRfp extends Component {
 
     render() {
         const { recievedData, comment } = this.state;
-        console.log("helloo", recievedData)
         return (
             <div className="main-content">
                 <div className="recieved">
@@ -213,7 +212,7 @@ class ViewRecievedRfp extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { recieved_rfp_status, recieved_rfp_data, add_recieved_rfp_status, recieved_rfp_res } = state.recievedrfp;
+    const { recieved_rfp_status, recieved_rfp_data, add_recieved_rfp_status, recieved_rfp_res } = state.procurement;
     return {
         recieved_rfp_status,
         recieved_rfp_data,

@@ -62,7 +62,7 @@ export const apiEndPoint = {
 
     // frp track Api url
     TRACKFRPDATA: `${config.apiUrl}/trackfrpdata`,
-
+    SENDRFQ: `${config.apiUrl}/sendrfq`,
     //GET NOTIFICATION DATA
     NOTIFICATIONS: `${config.apiUrl}/notifications`,
 

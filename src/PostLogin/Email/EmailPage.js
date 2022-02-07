@@ -125,7 +125,7 @@ class EmailPage extends Component {
     }
     if (
       this.props.search_all_email_status !==
-        prevProps.search_all_email_status &&
+      prevProps.search_all_email_status &&
       this.props.search_all_email_status === status.SUCCESS
     ) {
       if (this.props.searchallemail && this.props.searchallemail.length > 0) {
@@ -268,10 +268,10 @@ class EmailPage extends Component {
   countryToFlag = (isoCode) => {
     return typeof String.fromCodePoint !== "undefined"
       ? isoCode
-          .toUpperCase()
-          .replace(/./g, (char) =>
-            String.fromCodePoint(char.charCodeAt(0) + 127397)
-          )
+        .toUpperCase()
+        .replace(/./g, (char) =>
+          String.fromCodePoint(char.charCodeAt(0) + 127397)
+        )
       : isoCode;
   };
 
@@ -319,8 +319,8 @@ class EmailPage extends Component {
                     type='button'
                     onClick={this.onClickShowCompos}
                     className='compose active'>
-                    ComposEmail
                     <CreateIcon />
+                    ComposEmail
                   </Button>
                 </div>
                 <div className='compose-tabs'>
@@ -536,7 +536,7 @@ const mapStateToProps = (state) => {
     get_inbox_status,
     searchallemail,
     send_email_status,
-  } = state.email;
+  } = state.procurement;
   return {
     search_email_status,
     searchemail,

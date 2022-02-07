@@ -185,7 +185,6 @@ class ApprovePo extends Component {
     render() {
         const { requiData, isSubmitted, GenerateButton, columns, tableData } = this.state;
         const errorData = this.validate(isSubmitted);
-        console.log(tableData)
         return (
             <div className="main-content">
                 <div className="generate-content">
@@ -248,7 +247,7 @@ class ApprovePo extends Component {
 
 }
 const mapStateToProps = (state) => {
-    const { approvePo, get_approvepo_status } = state.generatePurchaseOrder;
+    const { approvePo, get_approvepo_status } = state.procurement;
     return { approvePo, get_approvepo_status }
 
 }

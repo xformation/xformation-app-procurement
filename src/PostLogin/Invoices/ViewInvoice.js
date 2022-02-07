@@ -197,7 +197,7 @@ class ViewInvoice extends Component {
 
 const mapStateToProps = (state) => {
     const { get_invoice_status,
-        getinvoicedata, } = state.invoice;
+        getinvoicedata, } = state.procurement;
     return {
         get_invoice_status,
         getinvoicedata,

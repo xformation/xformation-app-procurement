@@ -1,5 +1,5 @@
 
-import { recievedrfpConstants, status } from '../_constants';
+import { status } from '../_constants';
 import { recievedrfpServices } from '../_services';
 import { alert, commonFunctions } from '../_utilities';
 
@@ -10,7 +10,8 @@ export const recievedrfpAction = {
     searchRecievedRFQ,
     getRecieveRFQ,
     addRecieveRFQ,
-    getTrackRfpData
+    getTrackRfpData,
+    sendRFQ
 };
 
 function searchRecievedRFP(data) {
@@ -328,6 +329,51 @@ function getTrackRfpData(data) {
                 }
             );
     };
+}
+
+function sendRFQ(data) {
+    return dispatch => {
+        dispatch(dispatchFunction({
+            type: status.IN_PROGRESS,
+            data: {
+                send_frq_status: status.IN_PROGRESS,
+                send_rfq_data: null
+            }
+        }));
+        recievedrfpServices.sendRFQ(data)
+            .then(
+                response => {
+                    if (response.code == 200) {
+                        dispatch(dispatchFunction({
+                            type: status.SUCCESS,
+                            data: {
+                                send_frq_status: status.SUCCESS,
+                                send_rfq_data: response.object
+                            }
+                        }));
+                    } else {
+                        dispatch(dispatchFunction({
+                            type: status.FAILURE,
+                            data: {
+                                send_frq_status: status.FAILURE,
+                                send_rfq_data: response
+                            }
+                        }));
+                        alert.error(response.message);
+                    }
+                },
+                error => {
+                    dispatch(dispatchFunction({
+                        type: status.FAILURE,
+                        data: {
+                            send_frq_status: status.FAILURE,
+                            send_rfq_data: error.message
+                        }
+                    }));
+                    alert.error(error.message);
+                }
+            );
+    }
 }
 
 function dispatchFunction(data) {

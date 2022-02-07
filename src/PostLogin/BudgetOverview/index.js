@@ -150,7 +150,7 @@ class BudgetOverview extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    const { budget_overview_status, budget_overview_data } = state.budget;
+    const { budget_overview_status, budget_overview_data } = state.procurement;
     return { budget_overview_status, budget_overview_data };
 }
 export default connect(mapStateToProps)(BudgetOverview);

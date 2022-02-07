@@ -283,7 +283,7 @@ class ViewPurchaseOrder extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { get_purchase_status, getpurchaseorder } = state.generatePurchaseOrder;
+    const { get_purchase_status, getpurchaseorder } = state.procurement;
     return { get_purchase_status, getpurchaseorder }
 }
 

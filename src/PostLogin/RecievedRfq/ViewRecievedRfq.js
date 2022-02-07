@@ -230,7 +230,7 @@ class ViewRecievedRfq extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { recieved_rfq_status, recieved_rfq_data, add_recieved_rfq_status, recieved_rfq_res } = state.recievedrfp;
+    const { recieved_rfq_status, recieved_rfq_data, add_recieved_rfq_status, recieved_rfq_res } = state.procurement;
     return {
         recieved_rfq_status,
         recieved_rfq_data,

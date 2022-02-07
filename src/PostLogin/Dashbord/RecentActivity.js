@@ -69,7 +69,7 @@ class RecentActivity extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { get_recieved_status, recieved_rfp_list } = state.recievedrfp;
+    const { get_recieved_status, recieved_rfp_list } = state.procurement;
     return {
         get_recieved_status,
         recieved_rfp_list

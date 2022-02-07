@@ -191,7 +191,7 @@ class SideMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { get_inbox_status, inbox_data } = state.email
+  const { get_inbox_status, inbox_data } = state.procurement
   return { get_inbox_status, inbox_data }
 }
 export default connect(mapStateToProps)(SideMenu);

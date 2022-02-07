@@ -255,7 +255,6 @@ class ViewRequisition extends Component {
   setSelectedBuyers = () => {
     const { buyersListTable } = this.state;
     let buyersId = [];
-    console.log(buyersListTable.data);
     if (buyersListTable.data && buyersListTable.data.length > 0) {
       this.setState({
         isLoading: true,
@@ -473,7 +472,7 @@ function mapStateToProps(state) {
     selected_buyer_list,
     set_buyer_status,
     set_buyer_res,
-  } = state.requisition;
+  } = state.procurement;
 
   return {
     approve_requisition_status,

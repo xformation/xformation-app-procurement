@@ -297,9 +297,7 @@ class SelectBuyers extends Component {
 }
 
 function mapStateToProps(state) {
-  const {
-    get_buyer_status, getBuyer } = state.buyer;
-  const { selected_buyer_list, selected_buyer_status } = state.requisition;
+  const { selected_buyer_list, selected_buyer_status, get_buyer_status, getBuyer } = state.procurement;
   return {
     get_buyer_status,
     getBuyer,

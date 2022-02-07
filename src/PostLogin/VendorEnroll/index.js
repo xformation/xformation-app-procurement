@@ -206,7 +206,6 @@ class VendorEnroll extends Component {
         isValid = false;
       }
       if (requiData.phoneNo.length > 13 || requiData.phoneNo.length < 10) {
-        console.log(retData.phoneNo)
         retData.phoneNo = {
           isValid: false,
           message: "Phone number is invalid"
@@ -740,7 +739,7 @@ class VendorEnroll extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { add_vendor_status, addVendor } = state.vendor;
+  const { add_vendor_status, addVendor } = state.procurement;
   return {
     add_vendor_status,
     addVendor

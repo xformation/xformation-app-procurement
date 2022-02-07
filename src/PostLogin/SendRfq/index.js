@@ -120,21 +120,21 @@ class SendRfq extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(recievedrfpAction.searchRecievedRFQ());
+    this.props.dispatch(recievedrfpAction.sendRFQ());
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      this.props.fetch_recieved_rfq_status !==
-        prevProps.fetch_recieved_rfq_status &&
-      this.props.fetch_recieved_rfq_status === status.SUCCESS
+      this.props.send_frq_status !==
+      prevProps.send_frq_status &&
+      this.props.send_frq_status === status.SUCCESS
     ) {
       if (
-        this.props.recieved_rfq_list &&
-        this.props.recieved_rfq_list.length > 0
+        this.props.send_rfq_data &&
+        this.props.send_rfq_data.length > 0
       ) {
         this.setState({
-          tableData: this.props.recieved_rfq_list,
+          tableData: this.props.send_rfq_data,
         });
       }
     }
@@ -217,7 +217,7 @@ class SendRfq extends Component {
             perPageLimit={6}
             visiblecheckboxStatus={false}
             isLoading={
-              this.props.fetch_recieved_rfq_status === status.IN_PROGRESS
+              this.props.send_frq_status === status.IN_PROGRESS
             }
             tableClasses={{
               table: "ticket-tabel",
@@ -233,10 +233,10 @@ class SendRfq extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { fetch_recieved_rfq_status, recieved_rfq_list } = state.recievedrfp;
+  const { send_frq_status, send_rfq_data } = state.procurement;
   return {
-    fetch_recieved_rfq_status,
-    recieved_rfq_list,
+    send_frq_status,
+    send_rfq_data,
   };
 };
 export default connect(mapStateToProps, null)(SendRfq);

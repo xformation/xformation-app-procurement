@@ -116,7 +116,6 @@ class Calender extends Component {
     }
 
     renderEventContent = (eventInfo) => {
-        console.log(eventInfo)
         return (
             <>
                 <b>{eventInfo.timeText}</b>

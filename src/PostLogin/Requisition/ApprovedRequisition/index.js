@@ -341,8 +341,8 @@ function mapStateToProps(state) {
     approveRequisition,
     get_requisition_status,
     getRequisitionlist,
-  } = state.requisition;
-  const { get_department_status, departmentList } = state.department;
+  } = state.procurement;
+  const { get_department_status, departmentList } = state.procurement;
   return {
     approve_requisition_status,
     approveRequisition,
