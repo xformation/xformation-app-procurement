@@ -20,8 +20,8 @@ function addRequisition(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                add_requisition_status: status.IN_PROGRESS,
-                addRequisition: null
+                create_requisition_status: status.IN_PROGRESS,
+                create_requisition: null
             }
         }));
         requisitionServices.addRequisition(data)
@@ -31,16 +31,16 @@ function addRequisition(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                add_requisition_status: status.SUCCESS,
-                                addRequisition: response.object
+                                create_requisition_status: status.SUCCESS,
+                                create_requisition: response.object
                             }
                         }));
                     } else {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                add_requisition_status: status.FAILURE,
-                                addRequisition: response
+                                create_requisition_status: status.FAILURE,
+                                create_requisition: response
                             }
                         }));
                         alert.error(response.message);
@@ -50,8 +50,8 @@ function addRequisition(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            add_requisition_status: status.FAILURE,
-                            addRequisition: error.message
+                            create_requisition_status: status.FAILURE,
+                            create_requisition: error.message
                         }
                     }));
                     alert.error(error.message);
@@ -65,8 +65,8 @@ function getRequisitions(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                get_requisition_status: status.IN_PROGRESS,
-                getRequisitionlist: null
+                requisition_status: status.IN_PROGRESS,
+                requisition_list: null
             }
         }));
         requisitionServices.getRequisitions(data)
@@ -76,16 +76,16 @@ function getRequisitions(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                get_requisition_status: status.SUCCESS,
-                                getRequisitionlist: response.object
+                                requisition_status: status.SUCCESS,
+                                requisition_list: response.object
                             }
                         }));
                     } else {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                get_requisition_status: status.FAILURE,
-                                getRequisitionlist: response
+                                requisition_status: status.FAILURE,
+                                requisition_list: response
                             }
                         }));
                         alert.error(response.message);
@@ -95,8 +95,8 @@ function getRequisitions(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            get_requisition_status: status.FAILURE,
-                            getRequisitionlist: error.message
+                            requisition_status: status.FAILURE,
+                            requisition_list: error.message
                         }
                     }));
                     alert.error(error.message);
@@ -200,8 +200,8 @@ function getCurrency(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                get_currency_status: status.IN_PROGRESS,
-                currencylistdata: null
+                currency_status: status.IN_PROGRESS,
+                currency_list_data: null
             }
         }));
         requisitionServices.getCurrency(data)
@@ -211,16 +211,16 @@ function getCurrency(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                get_currency_status: status.SUCCESS,
-                                currencylistdata: response.object
+                                currency_status: status.SUCCESS,
+                                currency_list_data: response.object
                             }
                         }));
                     } else {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                get_currency_status: status.FAILURE,
-                                currencylistdata: response
+                                currency_status: status.FAILURE,
+                                currency_list_data: response
                             }
                         }));
                         alert.error(response.message);
@@ -230,8 +230,8 @@ function getCurrency(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            get_currency_status: status.FAILURE,
-                            currencylistdata: error.message
+                            currency_status: status.FAILURE,
+                            currency_list_data: error.message
                         }
                     }));
                     alert.error(error.message);
@@ -291,7 +291,7 @@ function approveRequisition(data) {
             type: status.IN_PROGRESS,
             data: {
                 approve_requisition_status: status.IN_PROGRESS,
-                approveRequisition: null
+                approve_requisition: null
             }
         }));
         requisitionServices.approveRequisition(data)
@@ -302,7 +302,7 @@ function approveRequisition(data) {
                             type: status.SUCCESS,
                             data: {
                                 approve_requisition_status: status.SUCCESS,
-                                approveRequisition: response.object
+                                approve_requisition: response.object
                             }
                         }));
                         alert.success(response.message)
@@ -311,7 +311,7 @@ function approveRequisition(data) {
                             type: status.FAILURE,
                             data: {
                                 approve_requisition_status: status.FAILURE,
-                                approveRequisition: response
+                                approve_requisition: response
                             }
                         }));
                         alert.error(response.message);
@@ -322,7 +322,7 @@ function approveRequisition(data) {
                         type: status.FAILURE,
                         data: {
                             approve_requisition_status: status.FAILURE,
-                            approveRequisition: error.message
+                            approve_requisition: error.message
                         }
                     }));
                     alert.error(error.message);

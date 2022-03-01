@@ -146,9 +146,9 @@ class ViewRequisition extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { requisitionData } = this.state;
-    if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
+    if (prevProps.requisition_status !== this.props.requisition_status && this.props.requisition_status === status.SUCCESS) {
       this.setState({
-        requistionList: this.props.getRequisitionlist,
+        requistionList: this.props.requisition_list,
         isLoading: false,
       });
     }
@@ -419,7 +419,7 @@ class ViewRequisition extends Component {
                   }}
                   perPageLimit={10}
                   visiblecheckboxStatus={false}
-                  isLoading={this.props.get_requisition_status === status.IN_PROGRESS}
+                  isLoading={this.props.requisition_status === status.IN_PROGRESS}
                   tableClasses={{
                     table: "ticket-tabel",
                     tableParent: "tickets-tabel",
@@ -458,15 +458,15 @@ class ViewRequisition extends Component {
 
 function mapStateToProps(state) {
   const {
-    add_requisition_status,
-    addRequisition,
-    get_currency_status,
-    currencylistdata,
+    create_requisition_status,
+    create_requisition,
+    currency_status,
+    currency_list_data,
     update_requisition_status,
     approve_requisition_status,
-    approveRequisition,
-    get_requisition_status,
-    getRequisitionlist,
+    approve_requisition,
+    requisition_status,
+    requisition_list,
     get_edit_requisition_status,
     editRequisitiondata,
     selected_buyer_list,
@@ -476,15 +476,15 @@ function mapStateToProps(state) {
 
   return {
     approve_requisition_status,
-    approveRequisition,
-    get_requisition_status,
-    getRequisitionlist,
+    approve_requisition,
+    requisition_status,
+    requisition_list,
     get_edit_requisition_status,
     editRequisitiondata,
-    add_requisition_status,
-    addRequisition,
-    get_currency_status,
-    currencylistdata,
+    create_requisition_status,
+    create_requisition,
+    currency_status,
+    currency_list_data,
     update_requisition_status,
     selected_buyer_list,
     set_buyer_status,

@@ -25,11 +25,11 @@ class DefaultLayout extends Component {
   componentDidUpdate(prevProps, prevState) {
     if ((this.props.search_all_email_status !== prevProps.search_all_email_status) &&
       this.props.search_all_email_status === status.SUCCESS) {
-      if (this.props.searchallemail.object && this.props.searchallemail.object.length > 0 && this.props.searchallemail.type == 'inbox') {
-        this.props.dispatch(emailActions.searchallinboxemails(this.props.searchallemail.object))
+      if (this.props.search_all_email.object && this.props.search_all_email.object.length > 0 && this.props.search_all_email.type == 'inbox') {
+        this.props.dispatch(emailActions.searchallinboxemails(this.props.search_all_email.object))
       }
       else {
-        this.props.dispatch(emailActions.searchallinboxemails(this.props.searchallemail.object))
+        this.props.dispatch(emailActions.searchallinboxemails(this.props.search_all_email.object))
       }
     }
   }
@@ -68,12 +68,12 @@ class DefaultLayout extends Component {
 }
 
 function mapStateToProps(state) {
-  const { get_roles_status, getRoles, search_all_email_status, searchallemail } = state.procurement;
+  const { get_roles_status, getRoles, search_all_email_status, search_all_email } = state.procurement;
   return {
     get_roles_status,
     getRoles,
     search_all_email_status,
-    searchallemail
+    search_all_email
   };
 }
 

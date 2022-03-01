@@ -7,8 +7,8 @@ import { RangeDatePicker } from "@y0c/react-datepicker";
 import "rc-calendar/assets/index.css";
 import "@y0c/react-datepicker/assets/styles/calendar.scss";
 import Table from "../../Table/Table";
-import { connect } from 'react-redux';
-import { recievedrfpAction } from '../../_actions';
+import { connect } from "react-redux";
+import { recievedrfpAction } from "../../_actions";
 import { status } from "../../_constants";
 import { commonFunctions } from "../../_utilities";
 // import { th } from "date-fns/locale";
@@ -29,7 +29,7 @@ class RecievedRfp extends Component {
         {
           label: "S No",
           key: "sno",
-          renderCallback: (value ,index) => {
+          renderCallback: (value, index) => {
             return (
               <td>
                 <span className={"s-no"}>{index + 1}</span>
@@ -77,8 +77,9 @@ class RecievedRfp extends Component {
           renderCallback: (value) => {
             return (
               <td>
-                <span className={"requestor"}>{commonFunctions.convertDateToString(
-                  new Date(value))}</span>
+                <span className={"requestor"}>
+                  {commonFunctions.convertDateToString(new Date(value))}
+                </span>
               </td>
             );
           },
@@ -127,19 +128,25 @@ class RecievedRfp extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(recievedrfpAction.searchRecievedRFP())
+    this.props.dispatch(recievedrfpAction.searchRecievedRFP());
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.get_recieved_status !== prevProps.get_recieved_status && this.props.get_recieved_status === status.SUCCESS) {
-      if (this.props.recieved_rfp_list && this.props.recieved_rfp_list.length > 0) {
+    if (
+      this.props.recieved_rfp_status !== prevProps.recieved_rfp_status &&
+      this.props.recieved_rfp_status === status.SUCCESS
+    ) {
+      if (
+        this.props.recieved_rfp_list &&
+        this.props.recieved_rfp_list.length > 0
+      ) {
         this.setState({ tableData: this.props.recieved_rfp_list });
       }
     }
   }
 
   onClickShowViewDetails = (id) => {
-    let url=this.props.match.params.url
+    let url = this.props.match.params.url;
     this.props.history.push(`/postlogin/frp/${url}/${id}`);
   };
 
@@ -273,10 +280,10 @@ class RecievedRfp extends Component {
           </div>
 
           <Table
-            valueFromData={{ 'columns': columns, 'data': tableData }}
+            valueFromData={{ columns: columns, data: tableData }}
             perPageLimit={6}
             visiblecheckboxStatus={false}
-            isLoading={this.props.get_recieved_status === status.IN_PROGRESS}
+            isLoading={this.props.recieved_rfp_status === status.IN_PROGRESS}
             tableClasses={{
               table: "ticket-tabel",
               tableParent: "tickets-tabel",
@@ -291,11 +298,10 @@ class RecievedRfp extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { get_recieved_status,
-    recieved_rfp_list, } = state.procurement;
+  const { recieved_rfp_status, recieved_rfp_list } = state.procurement;
   return {
-    get_recieved_status,
+    recieved_rfp_status,
     recieved_rfp_list,
-  }
-}
+  };
+};
 export default connect(mapStateToProps)(RecievedRfp);

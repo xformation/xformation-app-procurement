@@ -16,10 +16,10 @@ class Requisition extends Component {
         this.props.dispatch(requistionAction.getRequisitions())
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
-            if (this.props.getRequisitionlist && this.props.getRequisitionlist.length > 0) {
+        if (prevProps.requisition_status !== this.props.requisition_status && this.props.requisition_status === status.SUCCESS) {
+            if (this.props.requisition_list && this.props.requisition_list.length > 0) {
                 this.setState({
-                    requisitionList: this.props.getRequisitionlist
+                    requisitionList: this.props.requisition_list
                 })
             }
         }
@@ -35,8 +35,9 @@ class Requisition extends Component {
                     {row.totalPrice && <div className="d-inline-block nomber">{row.totalPrice}</div>}
                     {row.roleName && <div className="d-inline-block name">{row.roleName}</div>}
                     {row.department.name && <div className="d-inline-block employee">{row.department.name}</div>}
-                    {row.startDate && <div className="d-inline-block time"><span> {commonFunctions.convertDateToString(new Date(row.startDate))}</span>
-                     <span>  {new Date(row.startDate).toLocaleTimeString()}</span></div>}
+                    {row.startDate && <div className="d-inline-block time"><span>
+                        {commonFunctions.convertDateToString(new Date(row.startDate))}</span>
+                        <span>  {new Date(row.startDate).toLocaleTimeString()}</span></div>}
                 </div>)
             }
         }
@@ -55,10 +56,10 @@ class Requisition extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { get_requisition_status, getRequisitionlist } = state.procurement;
+    const { requisition_status, requisition_list } = state.procurement;
     return {
-        get_requisition_status,
-        getRequisitionlist
+        requisition_status,
+        requisition_list
     }
 }
 export default connect(mapStateToProps)(Requisition);

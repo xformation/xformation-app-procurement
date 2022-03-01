@@ -122,7 +122,7 @@ function getInvoice(data) {
         type: status.IN_PROGRESS,
         data: {
           get_invoice_status: status.IN_PROGRESS,
-          getinvoicedata: null,
+          get_invoice_data: null,
         },
       })
     );
@@ -134,7 +134,7 @@ function getInvoice(data) {
               type: status.SUCCESS,
               data: {
                 get_invoice_status: status.SUCCESS,
-                getinvoicedata: response.object,
+                get_invoice_data: response.object,
               },
             })
           );
@@ -144,7 +144,7 @@ function getInvoice(data) {
               type: status.FAILURE,
               data: {
                 get_invoice_status: status.FAILURE,
-                getinvoicedata: response,
+                get_invoice_data: response,
               },
             })
           );
@@ -157,7 +157,7 @@ function getInvoice(data) {
             type: status.FAILURE,
             data: {
               get_invoice_status: status.FAILURE,
-              getinvoicedata: error.message,
+              get_invoice_data: error.message,
             },
           })
         );
@@ -174,7 +174,7 @@ function getNewInvoice(data) {
         type: status.IN_PROGRESS,
         data: {
           get_new_invoice_status: status.IN_PROGRESS,
-          newInvoiceData: null,
+          new_invoice_data: null,
         },
       })
     );
@@ -186,7 +186,7 @@ function getNewInvoice(data) {
               type: status.SUCCESS,
               data: {
                 get_new_invoice_status: status.SUCCESS,
-                newInvoiceData: response.object,
+                new_invoice_data: response.object,
               },
             })
           );
@@ -196,7 +196,7 @@ function getNewInvoice(data) {
               type: status.FAILURE,
               data: {
                 get_new_invoice_status: status.FAILURE,
-                newInvoiceData: response,
+                new_invoice_data: response,
               },
             })
           );
@@ -209,7 +209,7 @@ function getNewInvoice(data) {
             type: status.FAILURE,
             data: {
               get_new_invoice_status: status.FAILURE,
-              newInvoiceData: error.message,
+              new_invoice_data: error.message,
             },
           })
         );
@@ -225,7 +225,7 @@ function searchInvoice(data) {
         type: status.IN_PROGRESS,
         data: {
           search_invoice_status: status.IN_PROGRESS,
-          searchInvoice: null,
+          search_invoice_data: null,
         },
       })
     );
@@ -237,7 +237,7 @@ function searchInvoice(data) {
               type: status.SUCCESS,
               data: {
                 search_invoice_status: status.SUCCESS,
-                searchInvoice: response.object,
+                search_invoice_data: response.object,
               },
             })
           );
@@ -247,7 +247,7 @@ function searchInvoice(data) {
               type: status.FAILURE,
               data: {
                 search_invoice_status: status.FAILURE,
-                searchInvoice: response,
+                search_invoice_data: response,
               },
             })
           );
@@ -260,7 +260,7 @@ function searchInvoice(data) {
             type: status.FAILURE,
             data: {
               search_invoice_status: status.FAILURE,
-              searchInvoice: error.message,
+              search_invoice_data: error.message,
             },
           })
         );
@@ -276,7 +276,7 @@ function updateInvoice(id) {
         type: status.IN_PROGRESS,
         data: {
           update_invoice_status: status.IN_PROGRESS,
-          updateInvoice: null,
+          update_invoice: null,
         },
       })
     );
@@ -288,7 +288,7 @@ function updateInvoice(id) {
               type: status.SUCCESS,
               data: {
                 update_invoice_status: status.SUCCESS,
-                updateInvoice: response.object,
+                update_invoice: response.object,
               },
             })
           );
@@ -298,7 +298,7 @@ function updateInvoice(id) {
               type: status.FAILURE,
               data: {
                 update_invoice_status: status.FAILURE,
-                updateInvoice: response,
+                update_invoice: response,
               },
             })
           );
@@ -311,7 +311,7 @@ function updateInvoice(id) {
             type: status.IN_PROGRESS,
             data: {
               update_invoice_status: status.FAILURE,
-              updateInvoice: error.message,
+              update_invoice: error.message,
             },
           })
         );

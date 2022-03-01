@@ -29,7 +29,6 @@ class RecentEmails extends Component {
       important: true,
       socials: false,
       promotion: false,
-
     }
   }
 
@@ -42,8 +41,8 @@ class RecentEmails extends Component {
   componentDidUpdate(prevProps, prevState) {
     if ((this.props.search_all_email_status !== prevProps.search_all_email_status) &&
       this.props.search_all_email_status === status.SUCCESS) {
-      if (this.props.searchallemail && this.props.searchallemail.length > 0) {
-        let data = this.props.searchallemail;
+      if (this.props.search_all_email && this.props.search_all_email.length > 0) {
+        let data = this.props.search_all_email;
         if (data && data.length > 0) {
           this.props.dispatch(emailActions.searchallinboxemails(data))
           for (let i = 0; i < data.length; i++) {
@@ -167,7 +166,7 @@ class RecentEmails extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { search_all_email_status, searchallemail, } = state.procurement
-  return { search_all_email_status, searchallemail }
+  const { search_all_email_status, search_all_email, } = state.procurement
+  return { search_all_email_status, search_all_email }
 }
 export default connect(mapStateToProps)(RecentEmails);

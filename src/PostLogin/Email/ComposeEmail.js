@@ -20,7 +20,7 @@ class ComposeEmail extends Component {
     this.state = {
       sendEmailData: {
         subject: '',
-        emaildetail: '',
+        emailDetail: '',
         to: [],
         bcc: [],
         senderId: '2',
@@ -53,7 +53,7 @@ class ComposeEmail extends Component {
     const errorData = this.validate(true);
     let sendData = {
       subject: sendEmailData.subject,
-      emaildetail: sendEmailData.emaildetail,
+      emailDetail: sendEmailData.emailDetail,
       to: sendEmailData.to,
       bcc: sendEmailData.bcc,
       senderId: '2',
@@ -104,14 +104,14 @@ class ComposeEmail extends Component {
     };
     let isValid = true;
     const retData = {
-      emaildetail: validObj,
+      emailDetail: validObj,
       to: validObj,
       isValid,
     };
     if (isSubmitted) {
       const { sendEmailData } = this.state;
-      if (!sendEmailData.emaildetail) {
-        retData.emaildetail = {
+      if (!sendEmailData.emailDetail) {
+        retData.emailDetail = {
           isValid: false,
           message: "Email details is required",
         };
@@ -195,12 +195,12 @@ class ComposeEmail extends Component {
               <div className="d-inline-block heading">massage</div>
               <div className="content">
                 <textarea placeholder="Hello guys Lorem ipsum dolor sit amet ,consectetur adipiscing elit, 
-                        sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua." name="emaildetail"
-                  value={sendEmailData.emaildetail} onChange={this.handleStateChange}
+                        sed do eiusmod temod tempor incidiunt ut labore et dolore magna aliqua." name="emailDetail"
+                  value={sendEmailData.emailDetail} onChange={this.handleStateChange}
                 >
                 </textarea>
                 <span className="text-danger">
-                  {errorData.emaildetail.message}
+                  {errorData.emailDetail.message}
                 </span>
               </div>
               <div className="col-4 pr-0">

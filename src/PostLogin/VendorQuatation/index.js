@@ -93,10 +93,10 @@ class VendorQuotation extends Component {
         this.props.dispatch(vendorAction.getVendorQuotation())
     }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.get_vendor_quotation_status !== prevProps.get_vendor_quotation_status && this.props.get_vendor_quotation_status == status.SUCCESS) {
-            if (this.props.getVendorQuotation && this.props.getVendorQuotation.length > 0) {
+        if (this.props.vendor_quotation_status !== prevProps.vendor_quotation_status && this.props.vendor_quotation_status == status.SUCCESS) {
+            if (this.props.vendor_quotation && this.props.vendor_quotation.length > 0) {
                 this.setState({
-                    vendorQuatation: this.props.getVendorQuotation
+                    vendorQuatation: this.props.vendor_quotation
                 })
             }
         }
@@ -193,7 +193,7 @@ class VendorQuotation extends Component {
                             columns: this.state.columns,
                             data: vendorQuatation,
                         }}
-                        isLoading={this.props.get_requisition_status === status.IN_PROGRESS}
+                        isLoading={this.props.requisition_status === status.IN_PROGRESS}
                         perPageLimit={6}
                         visiblecheckboxStatus={false}
                         tableClasses={{
@@ -209,12 +209,12 @@ class VendorQuotation extends Component {
 }
 function mapStateToProps(state) {
     const {
-        get_vendor_quotation_status,
-        getVendorQuotation,
+        vendor_quotation_status,
+        vendor_quotation,
     } = state.procurement
     return {
-        get_vendor_quotation_status,
-        getVendorQuotation,
+        vendor_quotation_status,
+        vendor_quotation,
     }
 }
 const connectVendorQuotation = connect(mapStateToProps, null)(VendorQuotation);

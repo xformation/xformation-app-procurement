@@ -245,8 +245,8 @@ function getVendorQuotation(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                get_vendor_quotation_status: status.IN_PROGRESS,
-                getVendorQuotation: null
+                vendor_quotation_status: status.IN_PROGRESS,
+                vendor_quotation: null
             }
         }));
         vendorServices.vendorQuotation(data)
@@ -256,16 +256,16 @@ function getVendorQuotation(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                get_vendor_quotation_status: status.SUCCESS,
-                                getVendorQuotation: response.object
+                                vendor_quotation_status: status.SUCCESS,
+                                vendor_quotation: response.object
                             }
                         }));
                     } else {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                get_vendor_quotation_status: status.FAILURE,
-                                getVendorQuotation: response
+                                vendor_quotation_status: status.FAILURE,
+                                vendor_quotation: response
                             }
                         }));
                         alert.error(response.message);
@@ -275,8 +275,8 @@ function getVendorQuotation(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            get_vendor_quotation_status: status.FAILURE,
-                            getVendorQuotation: error.message
+                            vendor_quotation_status: status.FAILURE,
+                            vendor_quotation: error.message
                         }
                     }));
                     alert.error(error.message);

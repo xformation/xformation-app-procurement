@@ -37,7 +37,7 @@ class addNewContact extends Component {
       duplicateContacts: [],
       isSubmitted: false,
       profileUrl: "",
-      activeindex: 0,
+      activeIndex: 0,
       displayOption: false,
     };
   }
@@ -269,7 +269,7 @@ class addNewContact extends Component {
       contactNo,
       profileUrl,
       isSubmitted,
-      activeindex,
+      activeIndex,
       displayOption
     } = this.state;
     let errrorMessage = this.validate(isSubmitted);

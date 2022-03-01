@@ -19,7 +19,7 @@ function searchRecievedRFP(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                get_recieved_status: status.IN_PROGRESS,
+                recieved_rfp_status: status.IN_PROGRESS,
                 recieved_rfp_list: null
             }
         }));
@@ -30,7 +30,7 @@ function searchRecievedRFP(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                get_recieved_status: status.SUCCESS,
+                                recieved_rfp_status: status.SUCCESS,
                                 recieved_rfp_list: response.object
                             }
                         }));
@@ -38,7 +38,7 @@ function searchRecievedRFP(data) {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                get_recieved_status: status.FAILURE,
+                                recieved_rfp_status: status.FAILURE,
                                 recieved_rfp_list: response
                             }
                         }));
@@ -49,7 +49,7 @@ function searchRecievedRFP(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            get_recieved_status: status.FAILURE,
+                            recieved_rfp_status: status.FAILURE,
                             recieved_rfp_list: error.message
                         }
                     }));
@@ -245,8 +245,8 @@ function addRecieveRFQ(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                add_recieved_rfq_status: status.IN_PROGRESS,
-                recieved_rfq_res: null
+                create_recieved_rfq_status: status.IN_PROGRESS,
+                create_recieved_rfq_res: null
             }
         }));
         recievedrfpServices.addRecieveRFQ(data)
@@ -256,8 +256,8 @@ function addRecieveRFQ(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                add_recieved_rfq_status: status.SUCCESS,
-                                recieved_rfq_res: response.object
+                                create_recieved_rfq_status: status.SUCCESS,
+                                create_recieved_rfq_res: response.object
                             }
                         }));
                         alert.success(response.message)
@@ -265,8 +265,8 @@ function addRecieveRFQ(data) {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                add_recieved_rfq_status: status.FAILURE,
-                                recieved_rfq_res: response
+                                create_recieved_rfq_status: status.FAILURE,
+                                create_recieved_rfq_res: response
                             }
                         }));
                         alert.error(response.message);
@@ -276,8 +276,8 @@ function addRecieveRFQ(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            add_recieved_rfq_status: status.FAILURE,
-                            recieved_rfq_res: error.message
+                            create_recieved_rfq_status: status.FAILURE,
+                            create_recieved_rfq_res: error.message
                         }
                     }));
                     alert.error(error.message);

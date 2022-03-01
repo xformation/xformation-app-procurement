@@ -13,7 +13,7 @@ function getDepartment(data) {
         type: status.IN_PROGRESS,
         data: {
           get_department_status: status.IN_PROGRESS,
-          departmentList: null,
+          department_list: null,
         },
       })
     );
@@ -25,7 +25,7 @@ function getDepartment(data) {
               type: status.SUCCESS,
               data: {
                 get_department_status: status.SUCCESS,
-                departmentList: response.object,
+                department_list: response.object,
               },
             })
           );
@@ -34,8 +34,8 @@ function getDepartment(data) {
             dispatchFunction({
               type: status.FAILURE,
               data: {
-                get_department_status: status.FAILURE,
-                departmentList: response,
+                department_status: status.FAILURE,
+                department_list: response,
               },
             })
           );
@@ -48,7 +48,7 @@ function getDepartment(data) {
             type: status.FAILURE,
             data: {
               get_department_status: status.FAILURE,
-              departmentList: error.message,
+              department_list: error.message,
             },
           })
         );

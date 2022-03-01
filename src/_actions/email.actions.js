@@ -19,7 +19,7 @@ function recentcommunication(data) {
         type: status.IN_PROGRESS,
         data: {
           search_email_status: status.IN_PROGRESS,
-          searchemail: null,
+          search_email: null,
         },
       })
     );
@@ -31,7 +31,7 @@ function recentcommunication(data) {
               type: status.SUCCESS,
               data: {
                 search_email_status: status.SUCCESS,
-                searchemail: response.object,
+                search_email: response.object,
               },
             })
           );
@@ -41,7 +41,7 @@ function recentcommunication(data) {
               type: status.FAILURE,
               data: {
                 search_email_status: status.FAILURE,
-                searchemail: response,
+                search_email: response,
               },
             })
           );
@@ -54,7 +54,7 @@ function recentcommunication(data) {
             type: status.status.FAILURE,
             data: {
               search_email_status: status.FAILURE,
-              searchemail: error.message,
+              search_email: error.message,
             },
           })
         );
@@ -71,19 +71,20 @@ function searchallemails(data) {
         type: status.IN_PROGRESS,
         data: {
           search_all_email_status: status.IN_PROGRESS,
-          searchallemail: null,
+          search_all_email: null,
         },
       })
     );
     emailServices.searchallemails(data).then(
       (response) => {
+        
         if (response.code === 200) {
           dispatch(
             dispatchFunction({
               type: status.SUCCESS,
               data: {
                 search_all_email_status: status.SUCCESS,
-                searchallemail: response.object,
+                search_all_email: response.object,
               },
             })
           );
@@ -93,7 +94,7 @@ function searchallemails(data) {
               type: status.FAILURE,
               data: {
                 search_all_email_status: status.FAILURE,
-                searchallemail: response,
+                search_all_email: response,
               },
             })
           );
@@ -106,7 +107,7 @@ function searchallemails(data) {
             type: status.FAILURE,
             data: {
               search_all_email_status: status.FAILURE,
-              searchallemail: error.message,
+              search_all_email: error.message,
             },
           })
         );
@@ -330,7 +331,7 @@ function searchallinboxemails(data) {
         type: status.SUCCESS,
         data: {
           get_inbox_status: status.SUCCESS,
-          // searchemail: response.object,
+          // search_email: response.object,
         },
       })
     );

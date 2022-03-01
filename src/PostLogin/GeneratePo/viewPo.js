@@ -32,10 +32,10 @@ class ViewPurchaseOrder extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.get_purchase_status !== prevProps.get_purchase_status && this.props.get_purchase_status === status.SUCCESS) {
-            if (this.props.getpurchaseorder) {
+        if (this.props.purchase_order_status !== prevProps.purchase_order_status && this.props.purchase_order_status === status.SUCCESS) {
+            if (this.props.purchase_order_data) {
                 this.setState({
-                    purchaseOrder: this.props.getpurchaseorder,
+                    purchaseOrder: this.props.purchase_order_data,
                 })
             }
         }
@@ -283,8 +283,8 @@ class ViewPurchaseOrder extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { get_purchase_status, getpurchaseorder } = state.procurement;
-    return { get_purchase_status, getpurchaseorder }
+    const { purchase_order_status, purchase_order_data } = state.procurement;
+    return { purchase_order_status, purchase_order_data }
 }
 
 export default connect(mapStateToProps)(ViewPurchaseOrder);
