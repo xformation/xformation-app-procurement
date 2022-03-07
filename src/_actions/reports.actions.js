@@ -9,8 +9,8 @@ function getRepots(data) {
         dispatch(dispatchFunction({
             type: status.IN_PROGRESS,
             data: {
-                get_reports_status: status.IN_PROGRESS,
-                get_reports_data: null
+                reports_status: status.IN_PROGRESS,
+                reports_data: null
             }
         }));
         reportServices.fetchReportsList(data)
@@ -20,16 +20,16 @@ function getRepots(data) {
                         dispatch(dispatchFunction({
                             type: status.SUCCESS,
                             data: {
-                                get_reports_status: status.SUCCESS,
-                                get_reports_data: response.object
+                                reports_status: status.SUCCESS,
+                                reports_data: response.object
                             }
                         }));
                     } else {
                         dispatch(dispatchFunction({
                             type: status.FAILURE,
                             data: {
-                                get_reports_status: status.FAILURE,
-                                get_reports_data: response
+                                reports_status: status.FAILURE,
+                                reports_data: response
                             }
                         }));
                         alert.error(response.message);
@@ -39,8 +39,8 @@ function getRepots(data) {
                     dispatch(dispatchFunction({
                         type: status.FAILURE,
                         data: {
-                            get_reports_status: status.FAILURE,
-                            get_reports_data: error.message
+                            reports_status: status.FAILURE,
+                            reports_data: error.message
                         }
                     }));
                     alert.error(error.message);

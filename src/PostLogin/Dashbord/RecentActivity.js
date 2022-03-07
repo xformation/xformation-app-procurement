@@ -16,8 +16,8 @@ class RecentActivity extends Component {
         this.props.dispatch(recievedrfpAction.searchRecievedRFP())
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.get_recieved_status !== this.props.get_recieved_status &&
-            this.props.get_recieved_status === status.SUCCESS) {
+        if (prevProps.recieved_rfp_status !== this.props.recieved_rfp_status &&
+            this.props.recieved_rfp_status === status.SUCCESS) {
             if (this.props.recieved_rfp_list && this.props.recieved_rfp_list.length > 0) {
                 this.setState({ recentActivity: this.props.recieved_rfp_list })
             }
@@ -69,9 +69,9 @@ class RecentActivity extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { get_recieved_status, recieved_rfp_list } = state.procurement;
+    const {  recieved_rfp_status, recieved_rfp_list } = state.procurement;
     return {
-        get_recieved_status,
+         recieved_rfp_status,
         recieved_rfp_list
     }
 }

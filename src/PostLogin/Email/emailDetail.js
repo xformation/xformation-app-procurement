@@ -53,10 +53,10 @@ class EmailDetail extends Component {
 
     render() {
         const { email } = this.state;
-        let emailtime = '';
+        let emailTime = '';
         if (email && email.time) {
             let time = email.time.split('T');
-            emailtime = time[1].split('.');
+            emailTime = time[1].split('.');
         }
         return (
             <div className="compose-right">

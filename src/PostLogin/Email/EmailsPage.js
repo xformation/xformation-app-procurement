@@ -33,10 +33,10 @@ class EmailsPage extends Component {
   handleUrl = () => {
     const { otherProps, rows } = this.state;
     otherProps.history.push(
-      `/postlogin/email/${otherProps.searchemail}/${otherProps.priorty}/${rows.id}`
+      `/postlogin/email/${otherProps.searchEmail}/${otherProps.priorty}/${rows.id}`
     );
     if (rows.isRead === false) {
-      let data = { id: rows.id, type: otherProps.searchemail };
+      let data = { id: rows.id, type: otherProps.searchEmail };
       this.props.handleMessageRead(data);
     }
   };

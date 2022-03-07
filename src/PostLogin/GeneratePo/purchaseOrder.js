@@ -12,7 +12,7 @@ class PurchaseOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ApproveOrder: {},
+      approveOrder: {},
     };
   }
   componentDidMount() {
@@ -27,21 +27,21 @@ class PurchaseOrder extends Component {
         this.props.search_approvepo_status &&
       this.props.search_approvepo_status === status.SUCCESS
     ) {
-      this.setState({ ApproveOrder: this.props.search_approvepo });
+      this.setState({ approveOrder: this.props.search_approvepo });
     }
   }
   handleApprove = (status) => {
-    const { ApproveOrder } = this.state;
+    const { approveOrder } = this.state;
     this.props.dispatch(
       purchaseOrderAction.approvePurchaseOrder({
-        id: ApproveOrder.id,
+        id: approveOrder.id,
         status: status,
       })
     );
     this.props.history.push(`/postlogin/generatepo`);
   };
   render() {
-    const { ApproveOrder } = this.state;
+    const { approveOrder } = this.state;
     return (
       <div className='main-content'>
         <div className='generate-content'>
@@ -68,63 +68,63 @@ class PurchaseOrder extends Component {
                   <ul>
                     <li>
                       <strong className='pending-heading'>Status</strong>
-                      {ApproveOrder && ApproveOrder.Status && (
-                        <p className='pending'>#{ApproveOrder.Status}</p>
+                      {approveOrder && approveOrder.Status && (
+                        <p className='pending'>#{approveOrder.Status}</p>
                       )}
                     </li>
                     <li>
                       <strong>Delivery Status</strong>
-                      {ApproveOrder && ApproveOrder.DeliveryStatus && (
-                        <p>{ApproveOrder.DeliveryStatus}</p>
+                      {approveOrder && approveOrder.DeliveryStatus && (
+                        <p>{approveOrder.DeliveryStatus}</p>
                       )}
                     </li>
                     <li>
                       <strong>Payment Status</strong>
-                      {ApproveOrder && ApproveOrder.PaymentStatus && (
-                        <p className='not-paid'>{ApproveOrder.PaymentStatus}</p>
+                      {approveOrder && approveOrder.PaymentStatus && (
+                        <p className='not-paid'>{approveOrder.PaymentStatus}</p>
                       )}
                     </li>
                     <li>
                       <strong>P O Number</strong>
-                      {ApproveOrder && ApproveOrder.ContactNumber && (
-                        <p>{ApproveOrder.ContactNumber}</p>
+                      {approveOrder && approveOrder.ContactNumber && (
+                        <p>{approveOrder.ContactNumber}</p>
                       )}
                     </li>
                     <li>
                       <strong>Department</strong>
-                      {ApproveOrder && ApproveOrder.Department && (
-                        <p>{ApproveOrder.Department}</p>
+                      {approveOrder && approveOrder.Department && (
+                        <p>{approveOrder.Department}</p>
                       )}
                     </li>
                     <li>
                       <strong>Requestor</strong>
                       <div className='requestor'>
                         <div className='image'>
-                          <img src={ApproveOrder.RequestorAvatar} alt='' />
+                          <img src={approveOrder.RequestorAvatar} alt='' />
                         </div>
-                        {ApproveOrder && ApproveOrder.RequestorName && (
+                        {approveOrder && approveOrder.RequestorName && (
                           <div className='name'>
-                            {ApproveOrder.RequestorName}
+                            {approveOrder.RequestorName}
                           </div>
                         )}
                       </div>
                     </li>
                     <li>
                       <strong>Item</strong>
-                      {ApproveOrder && ApproveOrder.Item && (
-                        <p>{ApproveOrder.Item}</p>
+                      {approveOrder && approveOrder.Item && (
+                        <p>{approveOrder.Item}</p>
                       )}
                     </li>
                     <li>
                       <strong>Creation On</strong>
-                      {ApproveOrder && ApproveOrder.CreationOn && (
-                        <p>{ApproveOrder.CreationOn}</p>
+                      {approveOrder && approveOrder.CreationOn && (
+                        <p>{approveOrder.CreationOn}</p>
                       )}
                     </li>
                     <li>
                       <strong>Comment</strong>
-                      {ApproveOrder && ApproveOrder.Comment && (
-                        <p className='comment-text'>{ApproveOrder.Comment}</p>
+                      {approveOrder && approveOrder.Comment && (
+                        <p className='comment-text'>{approveOrder.Comment}</p>
                       )}
                     </li>
                   </ul>
@@ -136,20 +136,20 @@ class PurchaseOrder extends Component {
                   <ul>
                     <li>
                       <strong>Vendor</strong>
-                      {ApproveOrder && ApproveOrder.VendorName && (
-                        <p>{ApproveOrder.VendorName}</p>
+                      {approveOrder && approveOrder.VendorName && (
+                        <p>{approveOrder.VendorName}</p>
                       )}
                     </li>
                     <li>
                       <strong>Vendor Email</strong>
-                      {ApproveOrder && ApproveOrder.VendorEmail && (
-                        <p>{ApproveOrder.VendorEmail}</p>
+                      {approveOrder && approveOrder.VendorEmail && (
+                        <p>{approveOrder.VendorEmail}</p>
                       )}
                     </li>
                     <li>
                       <strong>Nature if Business</strong>
-                      {ApproveOrder && ApproveOrder.NatureOfBusiness && (
-                        <p>{ApproveOrder.NatureOfBusiness}</p>
+                      {approveOrder && approveOrder.NatureOfBusiness && (
+                        <p>{approveOrder.NatureOfBusiness}</p>
                       )}
                     </li>
                     <li>
@@ -161,21 +161,21 @@ class PurchaseOrder extends Component {
                   </ul>
                   <h5>P.O Generate by</h5>
                   <div className='generate-box'>
-                    {ApproveOrder && ApproveOrder.VendorAvatar && (
+                    {approveOrder && approveOrder.VendorAvatar && (
                       <div className='image'>
-                        <img src={ApproveOrder.VendorAvatar} alt='' />
+                        <img src={approveOrder.VendorAvatar} alt='' />
                       </div>
                     )}
                     <div className='name'>
                       <strong>Peter Perrison</strong>
-                      {ApproveOrder && ApproveOrder.VendorName && (
-                        <p>{ApproveOrder.VendorName}</p>
+                      {approveOrder && approveOrder.VendorName && (
+                        <p>{approveOrder.VendorName}</p>
                       )}
                     </div>
                   </div>
-                  {ApproveOrder && ApproveOrder.Limit && (
+                  {approveOrder && approveOrder.Limit && (
                     <div className='limit-text'>
-                      Limit: ${ApproveOrder.Limit}
+                      Limit: ${approveOrder.Limit}
                     </div>
                   )}
                   <div className='generated-btn'>
@@ -215,8 +215,7 @@ class PurchaseOrder extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const { search_approvepo_status, search_approvepo } =
-    state.procurement;
+  const { search_approvepo_status, search_approvepo } = state.procurement;
   return {
     search_approvepo_status,
     search_approvepo,

@@ -102,7 +102,7 @@ class ManageRequisition extends Component {
                                     }
                                     {row.status !== requisitionStatus.APPROVED &&
                                         <Button>
-                                            <Link to={`/postlogin/newrequisition/${value}`}> <CreateIcon /></Link>
+                                            <Link to={`/postlogin/managerequisition/${value}`}> <CreateIcon /></Link>
                                         </Button>
                                     }
                                     {row.status == requisitionStatus.DRAFT &&
@@ -135,9 +135,9 @@ class ManageRequisition extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
+        if (prevProps.requisition_status !== this.props.requisition_status && this.props.requisition_status === status.SUCCESS) {
             this.setState({
-                requistionList: this.props.getRequisitionlist,
+                requistionList: this.props.requisition_list,
                 isLoading: false,
             });
         }
@@ -211,12 +211,12 @@ class ManageRequisition extends Component {
     }
 
     renderDepartments = () => {
-        const { departmentList } = this.props;
+        const { department_list } = this.props;
         let retData = [];
-        if (departmentList) {
-            for (let i = 0; i < departmentList.length; i++) {
+        if (department_list) {
+            for (let i = 0; i < department_list.length; i++) {
                 retData.push(
-                    <option value={departmentList[i].id}>{departmentList[i].name}</option>
+                    <option value={department_list[i].id}>{department_list[i].name}</option>
                 )
             }
         }
@@ -282,7 +282,7 @@ class ManageRequisition extends Component {
 
     render() {
         const { searchData, isSubmitted, openDialog, isLoading } = this.state;
-        const { get_requisition_status } = this.props;
+        const { requisition_status } = this.props;
         return (
             <div className="main-content">
                 <div className="manage-requisitions">
@@ -341,7 +341,7 @@ class ManageRequisition extends Component {
                         <div className="form-group row col-form-group">
                             <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
                             <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
-                                <Button variant="contained" className="primary-btn" disableElevation onClick={this.onClickSearch} disabled={get_requisition_status === status.IN_PROGRESS}>
+                                <Button variant="contained" className="primary-btn" disableElevation onClick={this.onClickSearch} disabled={requisition_status === status.IN_PROGRESS}>
                                     Search
                                 </Button>
                                 <Button variant="contained" onClick={this.clearSearch} className="default-btn ml-2">
@@ -351,7 +351,7 @@ class ManageRequisition extends Component {
                         </div>
                     </div>
                     <Table valueFromData={{ columns: this.state.columns, data: this.state.requistionList }} perPageLimit={6} visiblecheckboxStatus={false}
-                        isLoading={this.props.get_requisition_status == status.IN_PROGRESS}
+                        isLoading={this.props.requisition_status == status.IN_PROGRESS}
                         tableClasses={{ table: "ticket-tabel", tableParent: "tickets-tabel", parentClass: "all-support-ticket-tabel" }} searchKey="subject" showingLine="Showing %start% to %end% of %total% Tickets" />
                 </div>
                 <Dialog open={openDialog} onClose={() => this.setState({ openDialog: false })} aria-labelledby="form-dialog-title" className="addNewItemDialog">
@@ -377,13 +377,13 @@ class ManageRequisition extends Component {
 }
 
 function mapStateToProps(state) {
-    const { get_requisition_status, getRequisitionlist, delete_requisition_status } = state.procurement;
-    const { get_department_status, departmentList } = state.procurement;
+    const { requisition_status, requisition_list, delete_requisition_status } = state.procurement;
+    const { department_status, department_list } = state.procurement;
     return {
-        get_requisition_status,
-        getRequisitionlist,
-        get_department_status,
-        departmentList,
+        requisition_status,
+        requisition_list,
+        department_status,
+        department_list,
         delete_requisition_status
     };
 }

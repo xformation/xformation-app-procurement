@@ -90,19 +90,20 @@ class NewRequisition extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const { addRequiData, requisitionFile, requisitionFileName } = this.state;
-        if (prevProps.add_requisition_status !== this.props.add_requisition_status && this.props.add_requisition_status === status.SUCCESS) {
+        if (prevProps.create_requisition_status !== this.props.create_requisition_status && this.props.create_requisition_status === status.SUCCESS) {
             alert.success("Add requisition successful");
             this.props.history.push("/postlogin/managerequisition");
             this.setState({
                 isLoading: false
             })
         }
+     
         if (prevProps.get_edit_requisition_status !== this.props.get_edit_requisition_status && this.props.get_edit_requisition_status === status.SUCCESS) {
             const { editRequisitiondata } = this.props;
             if (editRequisitiondata) {
                 addRequiData.departmentId = editRequisitiondata.department.id;
                 addRequiData.currencyId = editRequisitiondata.currency.id;
-                addRequiData.financialYear = editRequisitiondata.financialYear;
+                addRequiData.financialYear = new Date(editRequisitiondata.financialYear).getFullYear();
                 addRequiData.status = editRequisitiondata.status;
                 addRequiData.roleName = editRequisitiondata.roleName;
                 addRequiData.totalPrice = editRequisitiondata.totalPrice;
@@ -115,8 +116,10 @@ class NewRequisition extends Component {
                     totalAmount: editRequisitiondata.totalPrice,
                     requisitionFile,
                 });
+                
             }
         }
+
         if (
             prevProps.update_requisition_status !==
             this.props.update_requisition_status &&
@@ -131,6 +134,7 @@ class NewRequisition extends Component {
             this.props.history.push("/postlogin/managerequisition");
             alert.success("Requisition Update successfully");
         }
+        
     }
 
     tableToggle = (e) => {
@@ -285,8 +289,9 @@ class NewRequisition extends Component {
             status: validObj,
             isValid,
         };
+        const { addRequiData } = this.state;
         if (isSubmitted) {
-            const { addRequiData } = this.state;
+            
             if (!addRequiData.roleName) {
                 retData.roleName = {
                     isValid: false,
@@ -339,14 +344,13 @@ class NewRequisition extends Component {
         retData.isValid = isValid;
         return retData;
     };
-
     displayDepartment = () => {
-        const { departmentList } = this.props;
+        const { department_list } = this.props;
         let departmentoption = [];
-        if (departmentList) {
-            for (let i = 0; i < departmentList.length; i++) {
+        if (department_list) {
+            for (let i = 0; i < department_list.length; i++) {
                 departmentoption.push(
-                    <option value={departmentList[i].id}>{departmentList[i].name}</option>
+                    <option value={department_list[i].id}>{department_list[i].name}</option>
                 );
             }
         }
@@ -354,13 +358,13 @@ class NewRequisition extends Component {
     };
 
     displayCurrency = () => {
-        const { currencylistdata } = this.props;
+        const { currency_list_data } = this.props;
         let currencyoption = [];
-        if (currencylistdata) {
-            for (let i = 0; i < currencylistdata.length; i++) {
+        if (currency_list_data) {
+            for (let i = 0; i < currency_list_data.length; i++) {
                 currencyoption.push(
-                    <option value={currencylistdata[i].id}>
-                        {currencylistdata[i].code}
+                    <option value={currency_list_data[i].id}>
+                        {currency_list_data[i].code}
                     </option>
                 );
             }
@@ -575,7 +579,7 @@ class NewRequisition extends Component {
             editReq,
             isLoading
         } = this.state;
-        const { add_requisition_status, update_requisition_status } = this.props;
+        const { create_requisition_status, update_requisition_status } = this.props;
         const errorData = this.validate(isSubmitted);
         const errorReqData = this.validateReq(validateSubmit);
         return (
@@ -823,7 +827,7 @@ class NewRequisition extends Component {
                                                     onClick={this.handleaddRequiDataClick}
                                                     disableElevation
                                                     disabled={
-                                                        add_requisition_status == status.IN_PROGRESS ||
+                                                        create_requisition_status == status.IN_PROGRESS ||
                                                         update_requisition_status == status.IN_PROGRESS
                                                     }
                                                 >
@@ -1043,24 +1047,24 @@ class NewRequisition extends Component {
 
 function mapStateToProps(state) {
     const {
-        add_requisition_status,
-        addRequisition,
+        create_requisition_status,
+        create_requisition,
         get_edit_requisition_status,
         editRequisitiondata,
-        get_currency_status,
-        currencylistdata,
+        currency_status,
+        currency_list_data,
         update_requisition_status,
     } = state.procurement;
-    const { get_department_status, departmentList } = state.procurement;
+    const { department_status, department_list } = state.procurement;
     return {
-        departmentList,
-        get_department_status,
-        add_requisition_status,
-        addRequisition,
+        department_list,
+        department_status,
+        create_requisition_status,
+        create_requisition,
         get_edit_requisition_status,
         editRequisitiondata,
-        get_currency_status,
-        currencylistdata,
+        currency_status,
+        currency_list_data,
         update_requisition_status,
     };
 }

@@ -132,9 +132,9 @@ class ApprovedRequisition extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
+    if (prevProps.requisition_status !== this.props.requisition_status && this.props.requisition_status === status.SUCCESS) {
       this.setState({
-        requistionList: this.props.getRequisitionlist,
+        requistionList: this.props.requisition_list,
         isLoading: false,
       });
     }
@@ -219,12 +219,12 @@ class ApprovedRequisition extends Component {
   };
 
   renderDepartments = () => {
-    const { departmentList } = this.props;
+    const { department_list } = this.props;
     let retData = [];
-    if (departmentList) {
-      for (let i = 0; i < departmentList.length; i++) {
+    if (department_list) {
+      for (let i = 0; i < department_list.length; i++) {
         retData.push(
-          <option value={departmentList[i].id}>{departmentList[i].name}</option>
+          <option value={department_list[i].id}>{department_list[i].name}</option>
         );
       }
     }
@@ -233,7 +233,7 @@ class ApprovedRequisition extends Component {
 
   render() {
     const { searchData, isLoading } = this.state;
-    const { get_requisition_status } = this.props;
+    const { requisition_status } = this.props;
     return (
       <div className="main-content">
         <div className="approved-content">
@@ -299,7 +299,7 @@ class ApprovedRequisition extends Component {
                   className="primary-btn"
                   disableElevation
                   onClick={this.onClickSearch}
-                  disabled={get_requisition_status === status.IN_PROGRESS}
+                  disabled={requisition_status === status.IN_PROGRESS}
                 >
                   Search
                 </Button>
@@ -318,7 +318,7 @@ class ApprovedRequisition extends Component {
               columns: this.state.columns,
               data: this.state.requistionList,
             }}
-            isLoading={this.props.get_requisition_status === status.IN_PROGRESS}
+            isLoading={this.props.requisition_status === status.IN_PROGRESS}
             perPageLimit={6}
             visiblecheckboxStatus={false}
             tableClasses={{
@@ -338,18 +338,18 @@ class ApprovedRequisition extends Component {
 function mapStateToProps(state) {
   const {
     approve_requisition_status,
-    approveRequisition,
-    get_requisition_status,
-    getRequisitionlist,
+    approve_requisition,
+    requisition_status,
+    requisition_list,
   } = state.procurement;
-  const { get_department_status, departmentList } = state.procurement;
+  const { department_status, department_list } = state.procurement;
   return {
     approve_requisition_status,
-    approveRequisition,
-    get_requisition_status,
-    getRequisitionlist,
-    get_department_status,
-    departmentList,
+    approve_requisition,
+    requisition_status,
+    requisition_list,
+    department_status,
+    department_list,
   };
 }
 

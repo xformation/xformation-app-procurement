@@ -49,7 +49,7 @@ class Dashbord extends Component {
       date: moment,
       dashboardData: {},
       data: [],
-      linedata: [
+      lineData: [
         {
           name: "",
           pv: 10
@@ -171,9 +171,9 @@ class Dashbord extends Component {
       }
     }
     if (prevProps.search_invoice_status !== this.props.search_invoice_status && this.props.search_invoice_status === status.SUCCESS) {
-      if (this.props.searchInvoice && this.props.searchInvoice.length > 0) {
+      if (this.props.search_invoice_data && this.props.search_invoice_data.length > 0) {
         this.setState({
-          invoices: this.props.searchInvoice,
+          invoices: this.props.search_invoice_data,
         })
       }
     }
@@ -323,7 +323,7 @@ class Dashbord extends Component {
     return pinData;
   }
   render() {
-    const { linedata, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
+    const { lineData, data, invoices, PieChartEmailData, contactsData, dashboardData } = this.state;
     const BorderLinearProgress = withStyles((theme) =>
       createStyles({
         root: {
@@ -690,7 +690,7 @@ class Dashbord extends Component {
                   <span>software like Aldus PageMaker including versions.</span>
                   <div className="graph-chart">
                     <SimpleBar className="invoice">
-                      <LineChart width={480} height={225} data={linedata}>
+                      <LineChart width={480} height={225} data={lineData}>
                         <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={6} />
                         <XAxis dataKey="name" />
                       </LineChart>
@@ -815,7 +815,7 @@ class Dashbord extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { get_contact_status, getContact, get_dashboard_data_status, dashboarddata, search_invoice_status, searchInvoice } = state.procurement;
+  const { get_contact_status, getContact, get_dashboard_data_status, dashboarddata, search_invoice_status, search_invoice_data } = state.procurement;
 
   return {
     get_contact_status,
@@ -823,7 +823,7 @@ const mapStateToProps = (state) => {
     get_dashboard_data_status,
     dashboarddata,
     search_invoice_status,
-    searchInvoice
+    search_invoice_data
   }
 }
 

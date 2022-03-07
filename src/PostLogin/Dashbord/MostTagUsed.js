@@ -104,7 +104,9 @@ class MostTagUsed extends Component {
                     <div className="heading">Other tag</div>
                     <div className="tag-btn">
                         {this.displyOtherTag()}
-                        <Button variant="contained" className="btn btn-secondary" onClick={this.tagLimt}>{this.state.expanded ? "See less" : otherTagName.length - 3}{!this.state.expanded && '+'}</Button>
+                        <Button variant="contained" className="btn btn-secondary" onClick={this.tagLimt}>
+                            {this.state.expanded ? "See less" : otherTagName.length - 3}
+                            {!this.state.expanded && '+'}</Button>
                     </div>
                 </div>
             </div>

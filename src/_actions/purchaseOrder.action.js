@@ -18,7 +18,7 @@ function searchPurchaseOrder(data) {
         type: status.IN_PROGRESS,
         data: {
           search_purchase_status: status.IN_PROGRESS,
-          searchpurchaseorder: null,
+          search_purchase_order: null,
         },
       })
     );
@@ -30,7 +30,7 @@ function searchPurchaseOrder(data) {
               type: status.SUCCESS,
               data: {
                 search_purchase_status: status.SUCCESS,
-                searchpurchaseorder: response.object,
+                search_purchase_order: response.object,
               },
             })
           );
@@ -40,7 +40,7 @@ function searchPurchaseOrder(data) {
               type: status.FAILURE,
               data: {
                 search_purchase_status: status.FAILURE,
-                searchpurchaseorder: response,
+                search_purchase_order: response,
               },
             })
           );
@@ -53,7 +53,7 @@ function searchPurchaseOrder(data) {
             type: status.FAILURE,
             data: {
               search_purchase_status: status.FAILURE,
-              searchpurchaseorder: error.message,
+              search_purchase_order: error.message,
             },
           })
         );
@@ -68,8 +68,8 @@ function searchApprovePurchaseOrder(data) {
       dispatchFunction({
         type: status.IN_PROGRESS,
         data: {
-          get_approvepo_status: status.IN_PROGRESS,
-          approvePo: null,
+          approvepo_status: status.IN_PROGRESS,
+          approvepo_data: null,
         },
       })
     );
@@ -80,8 +80,8 @@ function searchApprovePurchaseOrder(data) {
             dispatchFunction({
               type: status.SUCCESS,
               data: {
-                get_approvepo_status: status.SUCCESS,
-                approvePo: response.object,
+                approvepo_status: status.SUCCESS,
+                approvepo_data: response.object,
               },
             })
           );
@@ -90,8 +90,8 @@ function searchApprovePurchaseOrder(data) {
             dispatchFunction({
               type: status.FAILURE,
               data: {
-                get_approvepo_status: status.FAILURE,
-                approvePo: response,
+                approvepo_status: status.FAILURE,
+                approvepo_data: response,
               },
             })
           );
@@ -103,8 +103,8 @@ function searchApprovePurchaseOrder(data) {
           dispatchFunction({
             type: status.FAILURE,
             data: {
-              get_approvepo_status: status.FAILURE,
-              approvePo: error.message,
+              approvepo_status: status.FAILURE,
+              approvepo_data: error.message,
             },
           })
         );
@@ -170,8 +170,8 @@ function getPurchaseOrder(data) {
       dispatchFunction({
         type: status.IN_PROGRESS,
         data: {
-          get_purchase_status: status.IN_PROGRESS,
-          getpurchaseorder: null,
+          purchase_order_status: status.IN_PROGRESS,
+          purchase_order_data: null,
         },
       })
     );
@@ -182,8 +182,8 @@ function getPurchaseOrder(data) {
             dispatchFunction({
               type: status.SUCCESS,
               data: {
-                get_purchase_status: status.SUCCESS,
-                getpurchaseorder: response.object,
+                purchase_order_status: status.SUCCESS,
+                purchase_order_data: response.object,
               },
             })
           );
@@ -192,8 +192,8 @@ function getPurchaseOrder(data) {
             dispatchFunction({
               type: status.FAILURE,
               data: {
-                get_purchase_status: status.FAILURE,
-                getpurchaseorder: response,
+                purchase_order_status: status.FAILURE,
+                purchase_order_data: response,
               },
             })
           );
@@ -205,8 +205,8 @@ function getPurchaseOrder(data) {
           dispatchFunction({
             type: status.FAILURE,
             data: {
-              get_purchase_status: status.FAILURE,
-              getpurchaseorder: error.message,
+              purchase_order_status: status.FAILURE,
+              purchase_order_data: error.message,
             },
           })
         );

@@ -24,7 +24,7 @@ class ViewRecievedRfq extends Component {
                 recievedData: this.props.recieved_rfq_data,
             })
         }
-        if (prevProps.add_recieved_rfq_status !== this.props.add_recieved_rfq_status && this.props.add_recieved_rfq_status === status.SUCCESS) {
+        if (prevProps.create_recieved_rfq_status !== this.props.create_recieved_rfq_status && this.props.create_recieved_rfq_status === status.SUCCESS) {
             this.props.history.push(`/postlogin/recievedrfq`);
         }
     }
@@ -230,12 +230,12 @@ class ViewRecievedRfq extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { recieved_rfq_status, recieved_rfq_data, add_recieved_rfq_status, recieved_rfq_res } = state.procurement;
+    const { recieved_rfq_status, recieved_rfq_data, create_recieved_rfq_status, create_recieved_rfq_res } = state.procurement;
     return {
         recieved_rfq_status,
         recieved_rfq_data,
-        add_recieved_rfq_status,
-        recieved_rfq_res
+        create_recieved_rfq_status,
+        create_recieved_rfq_res
     };
 }
 export default connect(mapStateToProps)(ViewRecievedRfq);

@@ -43,7 +43,7 @@ const routes = [
     { path: '/postlogin/kanban', exact: true, name: 'Kanban', component: Kanban },
     { path: '/postlogin/requisitiontracker', exact: true, name: 'RequisitionTracker', component: RequisitionTracker },
     { path: '/postlogin/newrequisition', exact: true, name: 'NewRequisition', component: NewRequisition },
-    { path: '/postlogin/newrequisition/:id', exact: true, name: 'NewRequisition', component: NewRequisition },
+    { path: '/postlogin/managerequisition/:id', exact: true, name: 'NewRequisition', component: NewRequisition },
     { path: '/postlogin/approvedrequisition', exact: true, name: 'ApprovedRequisition', component: ApprovedRequisition },
     { path: '/postlogin/viewdetails/:id', exact: true, name: 'ViewRequisition', component: ViewRequisition },
     { path: '/postlogin/selectbuyers/:id', exact: true, name: 'SelectBuyers', component: SelectBuyers },

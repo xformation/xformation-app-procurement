@@ -41,7 +41,7 @@ class Contact extends Component {
       openDialog: false,
       openInviteDialog: false,
       newContact: false,
-      activeindex: 0,
+      activeIndex: 0,
       contactMemberList: [],
       contactUserList: [],
       duplicateContactUserList: [],
@@ -153,7 +153,7 @@ class Contact extends Component {
   }
   //  display contact list -----------------------------------------
   displayContactUserList = () => {
-    const { contactUserList, activeindex, displayOption, currentPage, perPageLimit } = this.state;
+    const { contactUserList, activeIndex, displayOption, currentPage, perPageLimit } = this.state;
     let retData = [];
     let isloading = this.props.get_contact_status === status.IN_PROGRESS;
     if (!isloading) {
@@ -164,8 +164,8 @@ class Contact extends Component {
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" key={row.name} >
               <div className="member-boxs">
                 <Card
-                  className={activeindex == i ? "members-box active" : "members-box"}
-                  onClick={() => this.setState({ activeindex: i })}
+                  className={activeIndex == i ? "members-box active" : "members-box"}
+                  onClick={() => this.setState({ activeIndex: i })}
                 >
                   <div className="d-flex justify-content-center align-items-center user-img">
                     <div className="d-flex justify-content-center align-items-center image">
@@ -175,10 +175,10 @@ class Contact extends Component {
                   </div>
                   <div className="d-inline-block menu-icon" style={{ display: "flex" }} >
                     <IconButton aria-label="settings">
-                      <MoreVertIcon onClick={i === activeindex ? this.toggleDisplayOptions : null} />
+                      <MoreVertIcon onClick={i === activeIndex ? this.toggleDisplayOptions : null} />
                     </IconButton>
                     <div className="settings-toggle">
-                      {displayOption && i === activeindex ? (
+                      {displayOption && i === activeIndex ? (
                         <>
                           <span onClick={() => this.editContact(row.id)}>
                             <EditTwoToneIcon /> Edit

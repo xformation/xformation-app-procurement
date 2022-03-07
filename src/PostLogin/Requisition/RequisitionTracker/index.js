@@ -103,9 +103,9 @@ class RequisitionTracker extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.get_requisition_status !== this.props.get_requisition_status && this.props.get_requisition_status === status.SUCCESS) {
+        if (prevProps.requisition_status !== this.props.requisition_status && this.props.requisition_status === status.SUCCESS) {
             this.setState({
-                requistionList: this.props.getRequisitionlist,
+                requistionList: this.props.requisition_list,
             });
         }
         if (prevProps.approve_requisition_status !== this.props.approve_requisition_status && this.props.approve_requisition_status === status.SUCCESS) {
@@ -197,12 +197,12 @@ class RequisitionTracker extends Component {
     }
 
     renderDepartments = () => {
-        const { departmentList } = this.props;
+        const { department_list } = this.props;
         let retData = [];
-        if (departmentList) {
-            for (let i = 0; i < departmentList.length; i++) {
+        if (department_list) {
+            for (let i = 0; i < department_list.length; i++) {
                 retData.push(
-                    <option value={departmentList[i].id}>{departmentList[i].name}</option>
+                    <option value={department_list[i].id}>{department_list[i].name}</option>
                 )
             }
         }
@@ -226,7 +226,7 @@ class RequisitionTracker extends Component {
 
     render() {
         const { searchData, isSubmitted } = this.state;
-        const { get_requisition_status } = this.props;
+        const { requisition_status } = this.props;
         // const errorData = this.validate(isSubmitted);
         return (
             <div className="main-content">
@@ -282,7 +282,7 @@ class RequisitionTracker extends Component {
                         <div className="form-group row col-form-group">
                             <label className="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label"></label>
                             <div className="col-sm-12 col-md-8 col-lg-9 col-xl-10 col-form-button">
-                                <Button variant="contained" className="primary-btn" disableElevation onClick={this.onClickSearch} disabled={get_requisition_status === status.IN_PROGRESS}>
+                                <Button variant="contained" className="primary-btn" disableElevation onClick={this.onClickSearch} disabled={requisition_status === status.IN_PROGRESS}>
                                     Search
                                 </Button>
                                 <Button variant="contained" onClick={this.clearSearch} className="default-btn ml-2">
@@ -295,7 +295,7 @@ class RequisitionTracker extends Component {
                         valueFromData={{ columns: this.state.columns, data: this.state.requistionList }}
                         perPageLimit={6}
                         visiblecheckboxStatus={false}
-                        isLoading={this.props.get_requisition_status == status.IN_PROGRESS}
+                        isLoading={this.props.requisition_status == status.IN_PROGRESS}
                         tableClasses={{
                             table: "ticket-tabel",
                             tableParent: "tickets-tabel",
@@ -312,15 +312,15 @@ class RequisitionTracker extends Component {
 }
 
 function mapStateToProps(state) {
-    const { approve_requisition_status, approveRequisition, get_requisition_status, getRequisitionlist } = state.procurement;
-    const { get_department_status, departmentList } = state.procurement;
+    const { approve_requisition_status, approve_requisition, requisition_status, requisition_list } = state.procurement;
+    const { department_status, department_list } = state.procurement;
     return {
         approve_requisition_status,
-        approveRequisition,
-        get_requisition_status,
-        getRequisitionlist,
-        get_department_status,
-        departmentList,
+        approve_requisition,
+        requisition_status,
+        requisition_list,
+        department_status,
+        department_list,
     };
 }
 

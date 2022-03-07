@@ -33,13 +33,13 @@ class EmailPage extends Component {
       emails: [],
       composEmail: false,
       detailEmail: "",
-      activeindex: [],
+      activendex: [],
       isSelectAll: false,
       perPageLimit: 5,
       currentPage: 0,
       emailData: [],
       isSubmitted: false,
-      searchemail: "inbox",
+      searchEmail: "inbox",
       priorty: "important",
       sendEmailData: {
         subject: "",
@@ -72,7 +72,7 @@ class EmailPage extends Component {
       this.props.history.push(`/postlogin/email/${type}/${this.state.priorty}`);
     }
     if (type) {
-      this.setState({ searchemail: this.props.match.params.type });
+      this.setState({ searchEmail: this.props.match.params.type });
     }
     if (id) {
       this.setState({
@@ -82,7 +82,7 @@ class EmailPage extends Component {
       let { sendEmailData, preselectValue } = this.state;
       this.props.dispatch(emailActions.recentcommunication());
       this.props.dispatch(
-        emailActions.searchallemails({ search: this.state.searchemail })
+        emailActions.searchallemails({ search: this.state.searchEmail })
       );
       sendEmailData.to = preselectValue;
       this.setState({ sendEmailData });
@@ -98,9 +98,9 @@ class EmailPage extends Component {
       this.props.search_email_status !== prevProps.search_email_status &&
       this.props.search_email_status === status.SUCCESS
     ) {
-      if (this.props.searchemail && this.props.searchemail.length > 0) {
+      if (this.props.search_email && this.props.search_email.length > 0) {
         this.setState({
-          emails: this.props.searchemail,
+          emails: this.props.search_email,
           priorty: priorty,
         });
       }
@@ -128,8 +128,8 @@ class EmailPage extends Component {
       prevProps.search_all_email_status &&
       this.props.search_all_email_status === status.SUCCESS
     ) {
-      if (this.props.searchallemail && this.props.searchallemail.length > 0) {
-        let data = this.props.searchallemail;
+      if (this.props.search_all_email && this.props.search_all_email.length > 0) {
+        let data = this.props.search_all_email;
         if (this.props.match.params.type === "inbox") {
           this.props.dispatch(emailActions.searchallinboxemails(data));
         }
@@ -161,15 +161,15 @@ class EmailPage extends Component {
         sendEmailData: {},
       });
     }
-    // this.setState({searchemail:this.props.params})
+    // this.setState({searchEmail:this.props.params})
   }
   displayEmailList = () => {
     const {
       emailData,
-      activeindex,
+      activIndex,
       currentPage,
       perPageLimit,
-      searchemail,
+      searchEmail,
       priorty,
     } = this.state;
     let otherData = {};
@@ -188,7 +188,7 @@ class EmailPage extends Component {
             currentPage,
             i,
             history: this.props.history,
-            searchemail,
+            searchEmail,
             priorty,
           };
           retData.push(
@@ -211,7 +211,7 @@ class EmailPage extends Component {
     this.props.dispatch(emailActions.reademail({ id: id, type: type }));
   };
   setSelectedMail = (e, index, value) => {
-    let { emailData, isSelectAll, activeindex } = this.state;
+    let { emailData, isSelectAll, activendex } = this.state;
     let count = 0;
     emailData[index].isChecked = value;
     for (let i = 0; i < emailData.length; i++) {
@@ -277,7 +277,7 @@ class EmailPage extends Component {
 
   setEmailType = (type) => {
     this.setState({
-      searchemail: type,
+      searchEmail: type,
       composEmail: false,
     });
     this.props.history.push(`/postlogin/email/${type}`);
@@ -285,11 +285,11 @@ class EmailPage extends Component {
   };
 
   emailType = (priorty) => {
-    const { searchemail } = this.state;
+    const { searchEmail } = this.state;
     this.setState({
       priorty: priorty,
     });
-    this.props.history.push(`/postlogin/email/${searchemail}/${priorty}`);
+    this.props.history.push(`/postlogin/email/${searchEmail}/${priorty}`);
     this.props.dispatch(emailActions.searchallemails({ search: priorty }));
   };
 
@@ -304,7 +304,7 @@ class EmailPage extends Component {
       composEmail,
       isSelectAll,
       detailEmail,
-      searchemail,
+      searchEmail,
       emailLength,
       priorty,
     } = this.state;
@@ -335,7 +335,7 @@ class EmailPage extends Component {
                   </div>
                   <ul>
                     <li
-                      className={searchemail === "inbox" ? "active" : ""}
+                      className={searchEmail === "inbox" ? "active" : ""}
                       onClick={() => this.setEmailType("inbox")}>
                       <button className='btn'>
                         <span>
@@ -350,7 +350,7 @@ class EmailPage extends Component {
                       </button>
                     </li>
                     <li
-                      className={searchemail === "sent" ? "active" : ""}
+                      className={searchEmail === "sent" ? "active" : ""}
                       onClick={() => this.setEmailType("sent")}>
                       <button className='btn'>
                         <span>
@@ -360,7 +360,7 @@ class EmailPage extends Component {
                       </button>
                     </li>
                     <li
-                      className={searchemail === "draft" ? "active" : ""}
+                      className={searchEmail === "draft" ? "active" : ""}
                       onClick={() => this.setEmailType("draft")}>
                       <button className='btn'>
                         <span>
@@ -370,7 +370,7 @@ class EmailPage extends Component {
                       </button>
                     </li>
                     <li
-                      className={searchemail === "archived" ? "active" : ""}
+                      className={searchEmail === "archived" ? "active" : ""}
                       onClick={() => this.setEmailType("archived")}>
                       <button className='btn'>
                         <span>
@@ -380,7 +380,7 @@ class EmailPage extends Component {
                       </button>
                     </li>
                     <li
-                      className={searchemail == "favorites" ? "active" : ""}
+                      className={searchEmail == "favorites" ? "active" : ""}
                       onClick={() => this.setEmailType("favorites")}>
                       <button className='btn'>
                         <span>
@@ -390,7 +390,7 @@ class EmailPage extends Component {
                       </button>
                     </li>
                     <li
-                      className={searchemail === "spam" ? "active" : ""}
+                      className={searchEmail === "spam" ? "active" : ""}
                       onClick={() => this.setEmailType("spam")}>
                       <button className='btn'>
                         <span>
@@ -530,18 +530,18 @@ class EmailPage extends Component {
 const mapStateToProps = (state) => {
   const {
     search_email_status,
-    searchemail,
+    search_email,
     search_all_email_status,
     inbox_data,
     get_inbox_status,
-    searchallemail,
+    search_all_email,
     send_email_status,
   } = state.procurement;
   return {
     search_email_status,
-    searchemail,
+    search_email,
     search_all_email_status,
-    searchallemail,
+    search_all_email,
     send_email_status,
     inbox_data,
     get_inbox_status,

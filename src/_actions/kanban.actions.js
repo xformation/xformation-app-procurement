@@ -12,7 +12,7 @@ function fetchKanbanList(data) {
       dispatchFunction({
         type: status.IN_PROGRESS,
         data: {
-          fetch_kanban_status: status.IN_PROGRESS,
+          kanban_status: status.IN_PROGRESS,
           kanban_list: null,
         },
       })
@@ -24,7 +24,7 @@ function fetchKanbanList(data) {
             dispatchFunction({
               type: status.SUCCESS,
               data: {
-                fetch_kanban_status: status.SUCCESS,
+                kanban_status: status.SUCCESS,
                 kanban_list: response.object,
               },
             })
@@ -34,7 +34,7 @@ function fetchKanbanList(data) {
             dispatchFunction({
               type: status.FAILURE,
               data: {
-                fetch_kanban_status: status.FAILURE,
+                kanban_status: status.FAILURE,
                 kanban_list: response,
               },
             })
@@ -47,7 +47,7 @@ function fetchKanbanList(data) {
           dispatchFunction({
             type: status.FAILURE,
             data: {
-              fetch_kanban_status: status.FAILURE,
+              kanban_status: status.FAILURE,
               kanban_list: error.message,
             },
           })
